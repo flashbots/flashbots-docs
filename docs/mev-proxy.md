@@ -1,4 +1,6 @@
-# mev-proxy
+---
+title: MEV Proxy
+---
 
 [A simple example](src/proxy.js) of a reverse proxy that a miner can run to expose just the eth_sendBundle JSON-RPC method. You can install/run it like so:
 

@@ -1,4 +1,6 @@
-# MEV GETH Demo
+---
+title: MEV Geth Demo
+---
 
 Launches an MEV GETH node, and shows how a miner may profit from it by accepting MEV
 bundles either via direct `block.coinbase` smart contract "bribes", or with extra transactions that pay

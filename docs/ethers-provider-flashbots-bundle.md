@@ -1,4 +1,6 @@
-# ethers-provider-flashbots-bundle
+---
+title: Ethers Provider - Flashbot-bundle
+---
 
 Contains the `FlashbotsBundleProvider` ethers.js provider to provide high-level access to `eth_sendBundle` rpc endpoint on [mev-relay](https://github.com/flashbots/mev-relay-js).
 

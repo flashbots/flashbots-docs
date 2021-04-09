@@ -1,4 +1,6 @@
-searcher-sponsored-tx
+---
+title: Search Sponsored TX
+---
 =======================
 This repository contains a simple Flashbots "searcher" for submitting a transaction from account X, but paying for the transaction from account Y. This is accomplished by submitting a Flashbots transaction bundle, with the first transaction(s) executing from account X, and the last, single transaction calling a contract which verifies the early transactions ran successfully, then pays the miner.
 

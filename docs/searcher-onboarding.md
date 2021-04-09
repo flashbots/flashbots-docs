@@ -1,8 +1,10 @@
-# Flashbots Alpha - Searcher Onboarding
+---
+title: Searcher Onboarding
+---
 
 A collection of relevant information for searchers looking to use Flashbots Alpha. This document will be continuously updated as we receive more questions from you.
 
-<br/> _Updated: 6.04.2021. Check Flashbots Discord [#release](https://discord.gg/Z26a7e2x) channel for the latest releases._ 
+ _Updated: 6.04.2021. Check Flashbots Discord [#release](https://discord.gg/Z26a7e2x) channel for the latest releases._ 
 
 ## Contents
 1. [Summary](#summary)
@@ -52,7 +54,7 @@ We go over this in further detail in the FAQ below.
 See you on-chain ! :zap:🤖
 
 Resources to get started:
-* Simple-arbitrage-searcher example bot we've open-sourced here: [simple-arbitrage-searcher]()
+* Simple-arbitrage-searcher example bot we've open-sourced here: [simple-arbitrage-searcher](#)
 * Dedicated [#🤖searchers](https://discord.gg/KNFBvZzJyT) channel on Discord!
 * Full [list](#resources) of resources
 

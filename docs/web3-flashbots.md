@@ -1,4 +1,6 @@
-
+---
+title: Web3.py
+---
 This library works by injecting a new module in the Web3.py instance, which allows
 submitting "bundles" of transactions directly to miners. This is done by also creating
 a middleware which captures calls to `eth_sendBundle` and `eth_callBundle`, and sends
