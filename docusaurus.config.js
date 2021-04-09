@@ -3,7 +3,7 @@ module.exports = {
   title: 'Flashbots Docs',
   tagline: 'Flashbots repository of knowledge',
   url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/docs',
+  baseUrl: '/docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
