@@ -9,6 +9,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'flashbots', 
   projectName: 'docs', 
+  url: "https://flashbots.github.io",
   themeConfig: {
     navbar: {
       title: 'Flashbots Docs',
