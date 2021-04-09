@@ -12,10 +12,10 @@ module.exports = {
   themeConfig: {
     navbar: {
       title: 'Flashbots Docs',
-      // logo: {
-      //   alt: 'My Site Logo',
-      //   src: 'img/logo.svg',
-      // },
+      logo: {
+        alt: 'Flashbots Logo',
+        src: 'img/logo.svg',
+      },
       items: [
         {
           href: 'https://github.com/flashbots/docs',
@@ -28,20 +28,11 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Welcome',
-          items: [
-            {
-              label: 'Welcome',
-              to: 'docs/welcome.md',
-            },
-          ],
-        },
-        {
           title: 'Community',
           items: [
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.gg/7hvTycdNcK',
             },
             // {
             //   label: 'Twitter',
