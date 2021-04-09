@@ -1,8 +1,8 @@
 ---
 title: MEV Proxy
 ---
-
-[A simple example](src/proxy.js) of a reverse proxy that a miner can run to expose just the eth_sendBundle JSON-RPC method. You can install/run it like so:
+TODO: Add proper link
+[A simple example](#) of a reverse proxy that a miner can run to expose just the eth_sendBundle JSON-RPC method. You can install/run it like so:
 
 ```bash
 # install nodejs on your system, e.g. `sudo apt install nodejs npm` on debian/ubuntu

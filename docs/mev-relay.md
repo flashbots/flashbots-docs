@@ -6,7 +6,8 @@ This repository contains a public relay for accepting transactions from searcher
 
 ## Public Relay
 
-[This is the relay entrypoint](server/main.js). The public flashbots relay is available at https://relay.flashbots.net. See https://github.com/flashbots/ethers-provider-flashbots-bundle for a library to help you call this.
+TODO: add proper link
+[This is the relay entrypoint](#). The public flashbots relay is available at https://relay.flashbots.net. See https://github.com/flashbots/ethers-provider-flashbots-bundle for a library to help you call this.
 
 The relay provides new JSON-RPC methods for interfacing with Flashbots. They are documented below:
 
