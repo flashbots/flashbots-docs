@@ -15,7 +15,7 @@ module.exports = {
       title: 'Flashbots Docs',
       logo: {
         alt: 'Flashbots Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
