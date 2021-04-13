@@ -1,0 +1,3 @@
+---
+title: Inspect inspector example
+---
