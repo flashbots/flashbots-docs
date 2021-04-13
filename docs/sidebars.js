@@ -1,45 +1,55 @@
 module.exports = {
   docs: [
+    'welcome',
     {
-      type: 'category',
-      label: 'Flashbots Alpha',
-      items: [
-        'welcome',
+      'Flashbots Core': [
+        {
+          "For searchers": [
+            'flashbots-core/searchers/searchers-introduction',
+            'flashbots-core/searchers/searcher-quick-start',
+            'flashbots-core/searchers/searcher-implementation-faq',
+            'flashbots-core/searchers/searchers-interacting-with-relay',
+            'flashbots-core/searchers/ethers-provider-flashbots-bundle',
+            'flashbots-core/searchers/web3-flashbots',
+          ],
+          'For miners & mining pools': [
+            'flashbots-core/miners/miners-introduction',
+            'flashbots-core/miners/miners-quick-start',
+            'flashbots-core/miners/miners-implementation-faq',
+            'flashbots-core/miners/mev-geth',
+            'flashbots-core/miners/mev-geth-demo',
+            'flashbots-core/miners/mev-proxy'
+          ],
+          'For whitehats': [
+            'flashbots-core/whitehats/whitehat-introduction',
+            'flashbots-core/whitehats/searcher-sponsored-tx',
+          ]
+        },
       ]
     },
     {
-      type: 'category',
-      label: 'Miners',
-      items: [
-       'miner-onboarding',
-       'mev-geth',
-       'mev-geth-demo',
-       'mev-proxy',
-       'mev-relay'
-      ],
-    },  
-    {
-      type: 'category',
-      label: 'Searcher',
-      items: [
-        'searcher-onboarding',
-        'searcher-sponsored-tx',
-        'simple-arbitrage'
+      "Flashbots Data": [
+        'flashbots-data/blockapi',
+        {
+          'MEV-Explore': [
+            'flashbots-data/mev-explore/explore-data-metrics',
+            'flashbots-data/mev-explore/explore-introduction',
+            {
+              'mev-inspect-rs': [
+                'flashbots-data/mev-explore/mev-inspect-rs/inspect-quick-start',
+                'flashbots-data/mev-explore/mev-inspect-rs/inspect-codebase',
+                'flashbots-data/mev-explore/mev-inspect-rs/inspect-inspector-example',
+              ]
+            }
+          ]
+        }
       ],
     },
     {
-      type: 'category',
-      label: 'Resources',
-      items: [
-        'web3-flashbots',
-        'ethers-provider-flashbots-bundle',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'How to contribute',
-      items: [
-        'contribution-guide'
+      'How to contribute': [
+        'contribution/docs-contribution-guide',
+        'contribution/become-a-contributor',
+
       ],
     },
   ],
