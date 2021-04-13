@@ -1,6 +1,5 @@
 ---
 title: Docs contribution guide
-image: ../static/img/logo.png
 ---
 
 Thank you for your interest in adding to our knowledgebase!
