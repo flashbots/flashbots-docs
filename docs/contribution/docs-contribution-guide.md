@@ -1,5 +1,5 @@
 ---
-title: Contribution guide
+title: Docs contribution guide
 image: ../static/img/logo.png
 ---
 
