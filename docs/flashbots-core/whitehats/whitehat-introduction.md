@@ -1,3 +1,3 @@
 ---
-title: Whitehat Introduction
+title: Introduction
 ---
