@@ -1,3 +1,3 @@
 ---
-title: Miner's quick start
+title: Quick start
 ---
