@@ -1,5 +1,5 @@
 ---
-title: Searcher Implementation FAQ
+title: Implementation FAQ
 ---
 A collection of relevant information for searchers looking to use Flashbots Alpha. This document will be continuously updated as we receive more questions from you.
 
