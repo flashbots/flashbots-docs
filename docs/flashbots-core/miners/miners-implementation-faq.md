@@ -1,5 +1,5 @@
 ---
-title: Miner Implementation FAQ
+title: Implementation FAQ
 ---
 A collection of relevant information for miners looking to participate in Flashbots Alpha. This is a living document that will be continuously updated as we receive more questions from you.
 
