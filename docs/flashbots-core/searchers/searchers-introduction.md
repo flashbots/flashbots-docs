@@ -1,3 +1,3 @@
 ---
-title: Searcher's Introduction
+title: Introduction
 ---
