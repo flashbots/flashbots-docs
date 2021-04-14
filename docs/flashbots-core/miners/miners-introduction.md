@@ -1,3 +1,3 @@
 ---
-title: Miner's Introduction
+title: Introduction
 ---
