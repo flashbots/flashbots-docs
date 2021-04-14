@@ -33,8 +33,8 @@ module.exports = {
         'flashbots-data/blockapi',
         {
           'MEV-Explore': [
-            'flashbots-data/mev-explore/explore-data-metrics',
             'flashbots-data/mev-explore/explore-introduction',
+            'flashbots-data/mev-explore/explore-data-metrics',
             {
               'mev-inspect-rs': [
                 'flashbots-data/mev-explore/mev-inspect-rs/inspect-quick-start',
