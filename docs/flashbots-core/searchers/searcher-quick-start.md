@@ -1,3 +1,3 @@
 ---
-title: Searcher Quick start
+title: Quick start
 ---
