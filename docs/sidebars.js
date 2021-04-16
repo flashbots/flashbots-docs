@@ -10,6 +10,7 @@ module.exports = {
             'flashbots-core/searchers/searcher-quick-start',
             'flashbots-core/searchers/searcher-implementation-faq',
             'flashbots-core/searchers/searchers-interacting-with-relay',
+            'flashbots-core/searchers/searcher-sponsored-tx',
             'flashbots-core/searchers/ethers-provider-flashbots-bundle',
             'flashbots-core/searchers/web3-flashbots',
           ],
@@ -21,10 +22,6 @@ module.exports = {
             'flashbots-core/miners/mev-geth-demo',
             'flashbots-core/miners/mev-proxy'
           ],
-          'For whitehats': [
-            'flashbots-core/whitehats/whitehat-introduction',
-            'flashbots-core/whitehats/searcher-sponsored-tx',
-          ]
         },
       ]
     },
