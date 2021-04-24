@@ -4,6 +4,10 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 
 ## Installation
 
+First create a copy of the environment file `.env.template` in the root of the codebase and rename it to `.env`
+
+Then run the following:
+
 ```console
 yarn install
 ```
