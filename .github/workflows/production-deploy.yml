@@ -1,5 +1,5 @@
 name: Prod deploy
-environment: gproduction
+environment: production
 
 on:
   pull_request:
