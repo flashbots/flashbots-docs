@@ -1,5 +1,4 @@
 name: Staging deploy
-environment: staging
 
 on:
   pull_request:
@@ -11,6 +10,7 @@ jobs:
   checks:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -29,6 +29,7 @@ jobs:
   gh-release:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
