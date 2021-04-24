@@ -1,4 +1,4 @@
-name: documentation
+name: Prod deploy
 
 on:
   pull_request:
