@@ -10,7 +10,7 @@ jobs:
   checks:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
-    environment: staging
+    environment: production
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -30,8 +30,8 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment: 
-      name: staging
-      url: docs-staging.flashbots.net
+      name: production
+      url: docs.flashbots.net
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
