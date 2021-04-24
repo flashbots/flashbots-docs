@@ -10,18 +10,13 @@ jobs:
   checks:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
-    environment: production
+    environment: staging
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
       - name: Test Build
-        env: 
-          USE_SSH: true
-          GIT_USER: git
-          TARGET_URL: ${{ secrets.TARGET_URL }}
-          BASE_URL: ${{ secrets.BASE_URL }}
         run: |
           if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
@@ -35,7 +30,7 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment: 
-      name: production
+      name: staging
       url: docs-staging.flashbots.net
     steps:
       - uses: actions/checkout@v1
