@@ -1,10 +1,11 @@
-name: Prod deploy
+name: Staging deploy
+environment: staging
 
 on:
   pull_request:
-    branches: [main]
+    branches: [staging]
   push:
-    branches: [main]
+    branches: [staging]
 
 jobs:
   checks:

@@ -1,11 +1,12 @@
 name: Prod deploy
+environment: gproduction
 
 on:
   pull_request:
-    branches: [staging]
+    branches: [main]
   push:
-    branches: [staging]
-
+    branches: [main]
+    
 jobs:
   checks:
     if: github.event_name != 'push'
