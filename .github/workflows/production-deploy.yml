@@ -3,7 +3,9 @@ name: Production Deploy
 on:
   pull_request:
     branches: [main]
-
+  push:
+    branches: [main]
+    
 jobs:
   checks:
     if: github.event_name != 'push'
