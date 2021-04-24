@@ -1,15 +1,16 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+require('dotenv').config()
+
 module.exports = {
   title: 'Flashbots Docs',
   tagline: 'Flashbots repository of knowledge',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/docs/',
+  baseUrl: process.env.BASE_URL,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'flashbots', 
   projectName: 'docs', 
-  url: "https://flashbots.github.io",
+  url: process.env.TARGET_URL,
   themeConfig: {
     navbar: {
       title: 'Flashbots Docs',
@@ -60,6 +61,14 @@ module.exports = {
 
           customCss: require.resolve('./src/css/custom.css'),
         },
+      },
+    ],
+  ],
+    plugins: [
+    [
+      "docusaurus2-dotenv",
+      {
+        systemvars: true,
       },
     ],
   ],
