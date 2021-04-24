@@ -1,16 +1,16 @@
-name: Prod deploy
-environment: production
+name: Production Deploy
 
 on:
   pull_request:
     branches: [main]
   push:
     branches: [main]
-    
+
 jobs:
   checks:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -29,6 +29,9 @@ jobs:
   gh-release:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    environment: 
+      name: staging
+      url: docs-staging.flashbots.net
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -41,6 +44,10 @@ jobs:
         env:
           USE_SSH: true
           GIT_USER: git
+          CURRENT_BRANCH: ${{ secrets.CURRENT_BRANCH }}
+          DEPLOYMENT_BRANCH: ${{ secrets.DEPLOYMENT_BRANCH }}
+          TARGET_URL: ${{ secrets.TARGET_URL }}
+          BASE_URL: ${{ secrets.BASE_URL }}
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "gh-actions"
