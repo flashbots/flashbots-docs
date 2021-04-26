@@ -1,5 +1,5 @@
 ---
-title: Implementation FAQ
+title: implementation FAQ
 ---
 A collection of relevant information for searchers looking to use Flashbots Alpha. This document will be continuously updated as we receive more questions from you.
 
@@ -296,5 +296,3 @@ Your previous bundle is dropped if the new bundle is more valuable.
 * [The enemy of your enemy is NOT your friend](https://fiona.mirror.xyz/QXdCOAggA5g_j5R_JpO-V5LqK89EbimnYIV6c2rOsT0) by Fiona Kobayashi
 * [Flashbots gasless transactions thread](https://twitter.com/amanusk_/status/1370642493621080071?s=20) by Alex Manuskin
 * [Beginner's guide to troubleshooting MEV on Flashbots](https://fifikobayashi.medium.com/beginners-guide-to-troubleshooting-mev-on-flashbots-aee175048858) by Fiona Kobayashi
-
-

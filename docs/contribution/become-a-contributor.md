@@ -1,3 +1,3 @@
 ---
-title: Become a Contributor
+title: contributing to flashbots
 ---

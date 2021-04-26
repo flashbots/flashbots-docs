@@ -1,16 +1,7 @@
 ---
-title: MEV Proxy
+title: interacting with MEV-Relay
 ---
-TODO: Add proper link
-[A simple example](#) of a reverse proxy that a miner can run to expose just the eth_sendBundle JSON-RPC method. You can install/run it like so:
 
-```bash
-# install nodejs on your system, e.g. `sudo apt install nodejs npm` on debian/ubuntu
-sudo npm install -g yarn
+In order to facilitate your interaction with MEV-Relay, we have created the mev-proxy repository as a simple example of a reserve proxy a miner can run to expose just the eth_sendBundle JSON-RPC method.
 
-git clone https://github.com/flashbots/mev-proxy
-cd mev-proxy
-
-yarn install
-yarn run start
-```
+Access the mev-proxy repository [here](https://github.com/flashbots/mev-proxy).
