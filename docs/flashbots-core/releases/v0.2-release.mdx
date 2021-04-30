@@ -79,21 +79,18 @@ Here is the formal definition of these scoring functions:
 >
 <TabItem value="v0.1">
 
-##### v0.1: implied gas price
 $$
 s_{v0.1} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tp_T}{\sum_{T\in U}g_T}
 $$
 </TabItem>
 <TabItem value="v0.2-pre">
 
-##### v0.2-pre: ignore gas price
 $$
 s_{v0.2-pre} = \frac{\Delta_{coinbase}}{\sum_{T\in U}g_T}
 $$
 </TabItem>
 <TabItem value="v0.2">
 
-##### v0.2: ignore gas price of mempool txs
 $$
 s_{v0.2} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tp_T - \sum_{T\in M \cap U}g_Tp_T}{\sum_{T\in U}g_T}
 $$
@@ -125,7 +122,7 @@ A new config parameter `miner.strictprofitswitch` is added to mev-geth which all
 
 ## Timeline
 
-**May 3rd**: launch v0.2 relay
+**May 6th**: launch v0.2 relay
 - v0.2 relay starts accepting new bundle format
 - searchers are asked to update their bots to send bundles to v0.2 relay endpoint
 - v0.2 bundles are converted to v0.1 bundles in the relay and submitted to v0.1 miners along with v0.1 bundles
@@ -134,7 +131,7 @@ A new config parameter `miner.strictprofitswitch` is added to mev-geth which all
 Rollback plan:
 - Since v0.2 bundles are backwards compatible with v0.1 bundle, if v0.2 to v0.1 bundle conversion on the relay is having issues, searchers can fallback to using v0.1 bundle format
 
-**May 10th**: v0.1 relay deprecation
+**May 17th**: v0.1 relay deprecation
 - relay only accepts v0.2 bundles, v0.1 bundle submission is deprecated
 - v0.2 bundles are converted to v0.1 bundles by the relay and sent to the v0.1 miners over RPC
 - relay starts sending v0.2 bundles to the v0.2 mev-geth miners over RPC
@@ -143,7 +140,7 @@ Rollback plan:
 Rollback plan:
 - If the v0.2 mev-geth nodes are having issues, notify miners to continue pointing hashpower to v0.1 nodes
 
-**May 17th**: v0.1 mev-geth deprecation
+**May 24th**: v0.1 mev-geth deprecation
 - relay only delivers v0.2 bundles to miners over websockets and stops sending v0.2 bundles over RPC
 - relay stops converting v0.1 bundles and stops sending bundles to miners v0.1 mev-geth miners
 
@@ -153,14 +150,14 @@ Rollback plan:
 ## Upgrade Steps
 
 ### Searchers
-- **May 3rd**: Searchers able to send v0.2 bundles.
-- **May 3rd to May 10th**: Searchers upgrade their bots to direct payments through the payment router contract.
-- **May 10th**: Deadline for searchers to upgrade to sending v0.2 bundles.
+- **May 6th**: Searchers able to send v0.2 bundles.
+- **May 6th to May 17th**: Searchers upgrade their bots to direct payments through the payment router contract.
+- **May 17th**: Deadline for searchers to upgrade to sending v0.2 bundles.
 
 ### Miners
-- **Before May 3rd**: Miner provides a GPG public key Flashbots can use to encrypt the new access key.
-- **May 3rd**: Miners receive mev-geth v0.2 spec, mev-geth v0.2 reference implementation, and bundle delivery access key over discord.
-- **May 3rd to May 10th**: Miners review, integrate, and deploy their mev-geth v0.2 nodes in parallel to their v0.1 deployment and provide a new IP address to receive v0.2 bundles. The v0.2 nodes will need to enable outgoing connections in order to connect to the relay over websockets.
-- **May 10th**: Miners who have provided the new IP addresses will begin receiving bundles and can begin migrating their hashrate to these nodes.
-- **May 10th to May 17th**: Miners monitor the performance of the v0.2 nodes and communicate back any issues. Miners enable connecting to the relay using their access keys over websockets for receiving bundles.
-- **May 17th**: The relay stops delivering bundles over RPC and the v0.1 nodes can safely be shut down.
+- **Before May 6th**: Miner provides a GPG public key Flashbots can use to encrypt the new access key.
+- **May 6th**: Miners receive mev-geth v0.2 spec, mev-geth v0.2 reference implementation, and bundle delivery access key over discord.
+- **May 6th to May 17th**: Miners review, integrate, and deploy their mev-geth v0.2 nodes in parallel to their v0.1 deployment and provide a new IP address to receive v0.2 bundles. The v0.2 nodes will need to enable outgoing connections in order to connect to the relay over websockets.
+- **May 17th**: Miners who have provided the new IP addresses will begin receiving bundles and can begin migrating their hashrate to these nodes.
+- **May 17th to May 24th**: Miners monitor the performance of the v0.2 nodes and communicate back any issues. Miners enable connecting to the relay using their access keys over websockets for receiving bundles.
+- **May 24th**: The relay stops delivering bundles over RPC and the v0.1 nodes can safely be shut down.
