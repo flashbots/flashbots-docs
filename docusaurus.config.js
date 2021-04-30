@@ -26,26 +26,26 @@ module.exports = {
         },
       ],
     },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/7hvTycdNcK',
-            },
-            // {
-            //   label: 'Twitter',
-            //   href: 'https://twitter.com/docusaurus',
-            // },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Flashbots. Built with Docusaurus.`,
-    },
-  },
+  //   footer: {
+  //     style: 'dark',
+  //     links: [
+  //       {
+  //         title: 'Community',
+  //         items: [
+  //           {
+  //             label: 'Discord',
+  //             href: 'https://discord.gg/7hvTycdNcK',
+  //           },
+  //           // {
+  //           //   label: 'Twitter',
+  //           //   href: 'https://twitter.com/docusaurus',
+  //           // },
+  //         ],
+  //       },
+  //     ],
+  //     copyright: `Copyright © ${new Date().getFullYear()} Flashbots. Built with Docusaurus.`,
+  //   },
+  // },
   presets: [
     [
       '@docusaurus/preset-classic',
