@@ -1,3 +1,7 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 ## Changelog
 
 #### `eth_sendBundle` RPC parameters change
@@ -5,7 +9,15 @@ The specification of the `eth_sendBundle` RPC is changing to support new feature
 
 Here is the change in the specification:
 
-v0.1
+<Tabs
+  defaultValue="v0.1"
+  values={[
+    { label: 'v0.1', value: 'v0.1', },
+    { label: 'v0.2', value: 'v0.2' },
+  ]}
+>
+<TabItem value="v0.1">
+
 ```json
 {
   "jsonrpc": "2.0",
@@ -20,7 +32,9 @@ v0.1
 }
 ```
 
-v0.2
+</TabItem>
+<TabItem value="v0.2">
+
 ```json
 {
   "jsonrpc": "2.0",
@@ -38,6 +52,9 @@ v0.2
 }
 ```
 
+</TabItem>
+</Tabs>
+
 #### Payment router contract
 Searchers can no longer send payments directly to block.coinbase to pay the miner for inclusion. Valid payments need to be routed through the flashbots payment router contract which emits an event on every payment.
 
@@ -52,18 +69,36 @@ While the v0.2 pre-release removed the ability to pay the miner using gas price 
 
 Here is the formal definition of these scoring functions:
 
+<Tabs
+  defaultValue="v0.1"
+  values={[
+    { label: 'v0.1', value: 'v0.1', },
+    { label: 'v0.2-pre', value: 'v0.2-pre' },
+    { label: 'v0.2', value: 'v0.2' }
+  ]}
+>
+<TabItem value="v0.1">
+
 ##### v0.1: implied gas price
 $$
 s_{v0.1} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tp_T}{\sum_{T\in U}g_T}
 $$
+</TabItem>
+<TabItem value="v0.2-pre">
+
 ##### v0.2-pre: ignore gas price
 $$
 s_{v0.2-pre} = \frac{\Delta_{coinbase}}{\sum_{T\in U}g_T}
 $$
+</TabItem>
+<TabItem value="v0.2">
+
 ##### v0.2: ignore gas price of mempool txs
 $$
 s_{v0.2} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tp_T - \sum_{T\in M \cap U}g_Tp_T}{\sum_{T\in U}g_T}
 $$
+</TabItem>
+</Tabs>
 
 $s$: bundle $U$ _score_ used to sort bundles.  
 $U$: ordered list of transactions $T$ in a bundle.  
