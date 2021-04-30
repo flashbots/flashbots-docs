@@ -1,5 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 require('dotenv').config()
+const math = require('remark-math');
+const katex = require('rehype-katex');
 
 module.exports = {
   title: 'Flashbots Docs',
@@ -11,6 +13,15 @@ module.exports = {
   organizationName: 'flashbots', 
   projectName: 'docs', 
   url: process.env.TARGET_URL,
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X',
+      crossorigin: 'anonymous',
+    },
+  ],
   themeConfig: {
     navbar: {
       title: 'Flashbots Docs',
@@ -26,27 +37,28 @@ module.exports = {
         },
       ],
     },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/7hvTycdNcK',
-            },
-            // {
-            //   label: 'Twitter',
-            //   href: 'https://twitter.com/docusaurus',
-            // },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Flashbots. Built with Docusaurus.`,
-    },
+  //   footer: {
+  //     style: 'dark',
+  //     links: [
+  //       {
+  //         title: 'Community',
+  //         items: [
+  //           {
+  //             label: 'Discord',
+  //             href: 'https://discord.gg/7hvTycdNcK',
+  //           },
+  //           // {
+  //           //   label: 'Twitter',
+  //           //   href: 'https://twitter.com/docusaurus',
+  //           // },
+  //         ],
+  //       },
+  //     ],
+  //     copyright: `Copyright © ${new Date().getFullYear()} Flashbots. Built with Docusaurus.`,
+  //   },
   },
   presets: [
+   
     [
       '@docusaurus/preset-classic',
       {
@@ -54,11 +66,12 @@ module.exports = {
           sidebarPath: require.resolve('./docs/sidebars.js'),
           // Please change this to your repo.
           routeBasePath: '/',
-          editUrl:
-            'https://github.com/flashbots/docs/edit/main/',
+          // editUrl:
+          //   'https://github.com/flashbots/docs/edit/main/',
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
         },
         theme: {
-
           customCss: require.resolve('./src/css/custom.css'),
         },
       },
@@ -72,4 +85,4 @@ module.exports = {
       },
     ],
   ],
-};
+}
