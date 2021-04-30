@@ -13,6 +13,7 @@ You can access the mev-geth repository [here](https://github.com/flashbots/mev-g
 MEV-Geth miners select the most profitable bundle per unit of gas used and place it at the beginning of the list of transactions of the block template at a given blockheight. Miners determine the value of a bundle based on the following equation.
 _Note, the change in block.coinbase balance represents a direct transfer of ETH through a smart contract._
 
+
 ![Docusaurus](https://hackmd.io/_uploads/Bk6iQmr5P.png)
 
 To submit a bundle, the searcher sends the bundle directly to the miner using the rpc method `eth_sendBundle`. Since MEV-Geth requires direct communication between searchers and miners, a searcher can configure the list of miners where they want to send their bundle.

@@ -6,28 +6,30 @@ module.exports = {
         'flashbots-core-overview',
         {
           "for searchers": [
-            'flashbots-core/searchers/searchers-introduction',
-            'flashbots-core/searchers/searcher-implementation-faq',
-            'flashbots-core/searchers/searchers-interacting-with-relay',
-            'flashbots-core/searchers/mev-geth-for-searchers',
-            'flashbots-core/searchers/searcher-quick-start',
-            'flashbots-core/searchers/ethers-provider-flashbots-bundle',
-            'flashbots-core/searchers/web3-flashbots',
+            'flashbots-core/searchers/quick-start',
+            'flashbots-core/searchers/faq',
+            'flashbots-core/searchers/interacting-with-mev-relay',
+            'flashbots-core/searchers/interacting-with-mev-geth',
+            'flashbots-core/searchers/simple-arbitrage-bot',
+            'flashbots-core/searchers/ethers-js-provider',
+            'flashbots-core/searchers/web3py-provider',
+            'flashbots-core/searchers/go-provider',
             'flashbots-core/searchers/searcher-sponsored-tx',
           ],
           'for miners & mining pools': [
-            'flashbots-core/miners/miners-introduction',
-            'flashbots-core/miners/miners-implementation-faq',
+            'flashbots-core/miners/quick-start',
+            'flashbots-core/miners/faq',
+            'flashbots-core/miners/mev-geth-introduction',
             'flashbots-core/miners/mev-geth',
             'flashbots-core/miners/mev-geth-demo',
-            'flashbots-core/miners/mev-proxy'
+            'flashbots-core/miners/interacting-with-mev-relay'
           ],
         },
       ]
     },
     {
       "Flashbots Data": [
-        'flashbots-data/blockapi','flashbots-data/mev-explore','flashbots-data/transparency-dashboard',
+        'flashbots-data/blockapi','flashbots-data/mev-explore','flashbots-data/dashboard',
         {
           'mev-inspect': [
             'flashbots-data/mev-inspect-rs/inspect-quick-start',
