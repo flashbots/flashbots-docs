@@ -11,16 +11,19 @@ The docs repository is structured intuitively with the staging branch as the def
 
 ## Contribution steps:
 
-**Step 1:** Add your changes to the staging branch as a PR
-- you can use yarn to visualize your edits of the docs locally
-    - yarn instructions are on the [readme of the repository](https://github.com/flashbots/docs#readme)
+**Step 1:**  Create a branch off of the staging branch
+
+**Step 2:** Add your desired changes to your branch
+- you can use yarn to visualize your edits of the docs locally, yarn instructions are on the [readme of the repository](https://github.com/flashbots/docs#readme)
+
+**Step 3:** Make a PR to the staging branch
 - once your PR is submitted, changes from your PR can be visualized thanks to Render
     - the render bot will comment a link on your PR others can use to look at the version of the staging-docs website with your PR implemented [eg.](https://github.com/flashbots/docs/pull/23)
 
-**Step 2:** Changes to staging branch (PRs) are reviewed and merged by *docs* admins
+**Step 4:** Changes to staging branch (PRs) are reviewed and merged by *docs* admins
 - after review, PRs are merged to the staging branch and your changes are now deployed live to the [staging docs website](https://docs-staging.flashbots.net/)
 
-**Step 3:** Once enough changes have been collected/time is right, staging branch is merged into main branch by *docs* admins
+**Step 5:** Once enough changes have been collected/time is right, staging branch is merged into main branch by *docs* admins
 - changes are now deployed live to the [docs website](https://docs.flashbots.net/)
 
 ## Docusaurus-specific considerations
