@@ -1,8 +1,29 @@
 ---
-title: docs contribution guide
+title: Contribute
 ---
+Thank you for your interest in adding to our knowledge base!
 
-Thank you for your interest in adding to our knowledgebase!
+## Repo structure
+The docs repository is structured intuitively with the staging branch as the default branch. Once you click on docs [(docs/docs)](https://github.com/flashbots/docs/tree/staging/docs), you access a collection of .mds documents organized in folders the same way they are organized in the sidebar of the docs website.
+- All the pages on Docusaurus are created from these mds
+- the docusaurus sidebar is created from the [sidebar.js](https://github.com/flashbots/docs/blob/staging/docs/sidebars.js) file
+
+
+## Contribution steps:
+
+**Step 1:** Add your changes to the staging branch as a PR
+- you can use yarn to visualize your edits of the docs locally
+    - yarn instructions are on the [readme of the repository](https://github.com/flashbots/docs#readme)
+- once your PR is submitted, changes from your PR can be visualized thanks to Render
+    - the render bot will comment a link on your PR others can use to look at the version of the staging-docs website with your PR implemented [eg.](https://github.com/flashbots/docs/pull/23)
+
+**Step 2:** Changes to staging branch (PRs) are reviewed and merged by *docs* admins
+- after review, PRs are merged to the staging branch and your changes are now deployed live to the [staging docs website](https://docs-staging.flashbots.net/)
+
+**Step 3:** Once enough changes have been collected/time is right, staging branch is merged into main branch by *docs* admins
+- changes are now deployed live to the [docs website](https://docs.flashbots.net/)
+
+## Docusaurus-specific considerations
 There's a couple things to be aware of when adding your own `*.md` files to our codebase:
 
 - Please remove all `HTML` elements
@@ -16,7 +37,7 @@ There's a couple things to be aware of when adding your own `*.md` files to our 
 />
 ```
 
-## Adding meta data to your doc
+### Adding meta data to your doc
 
 The docs make use of a feature called [frontmatter](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-frontmatter) which lets you add some meta data and
 control the way the docs are referenced through the site.
@@ -56,7 +77,7 @@ slug: /myDoc
 My Document Markdown content
 ```
 
-## Side bar navigation
+### Side bar navigation
 
 To update the high level navigation, open the file in `docs/sidebars.js` and arrange n order as required. The titles for links are pulled from their files.
 

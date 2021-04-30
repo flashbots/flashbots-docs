@@ -1,5 +1,5 @@
 ---
-title: interacting with MEV-geth
+title: interacting with mev-geth
 ---
 
 MEV-Geth is a fork of the go-ethereum client that miners run to accept searchers' bundles. You do _not_ need to run MEV-Geth as a searcher, but, instead, to monitor the Ethereum state and transaction pool for MEV opportunities and produce transaction bundles that extract that MEV. Anyone can become a searcher. In fact, the bundles produced by searchers don't need to extract MEV at all, but we expect the most valuable bundles will.

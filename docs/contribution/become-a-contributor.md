@@ -1,3 +1,0 @@
----
-title: contributing to flashbots
----

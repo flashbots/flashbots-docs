@@ -1,5 +1,5 @@
 ---
-title: MEV-Geth demo
+title: mev-geth demo
 ---
 
 mev-geth-demo is a repository that launches an MEV-Geth node, and shows how a miner may profit from it by accepting MEV

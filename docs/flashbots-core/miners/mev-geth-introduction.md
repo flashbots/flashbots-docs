@@ -1,5 +1,5 @@
 ---
-title: MEV-Geth introduction
+title: mev-geth introduction
 ---
 ## MEV-Geth: a proof of concept
 

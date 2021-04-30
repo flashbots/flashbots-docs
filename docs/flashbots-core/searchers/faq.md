@@ -1,5 +1,5 @@
 ---
-title: FAQs
+title: faqs
 ---
 *Check Flashbots Discord [#release](https://discord.gg/Z26a7e2x) channel for the latest releases.*
 

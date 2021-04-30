@@ -7,7 +7,6 @@ module.exports = {
         {
           "for searchers": [
             'flashbots-core/searchers/quick-start',
-            'flashbots-core/searchers/faq',
             'flashbots-core/searchers/interacting-with-mev-relay',
             'flashbots-core/searchers/interacting-with-mev-geth',
             'flashbots-core/searchers/simple-arbitrage-bot',
@@ -15,14 +14,15 @@ module.exports = {
             'flashbots-core/searchers/web3py-provider',
             'flashbots-core/searchers/go-provider',
             'flashbots-core/searchers/searcher-sponsored-tx',
+            'flashbots-core/searchers/faq',
           ],
           'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
-            'flashbots-core/miners/faq',
             'flashbots-core/miners/mev-geth-introduction',
-            'flashbots-core/miners/mev-geth',
+            'flashbots-core/miners/mev-geth-usage',
             'flashbots-core/miners/mev-geth-demo',
-            'flashbots-core/miners/interacting-with-mev-relay'
+            'flashbots-core/miners/interacting-with-mev-relay',
+            'flashbots-core/miners/faq',
           ],
         },
       ]
@@ -34,17 +34,11 @@ module.exports = {
           'mev-inspect': [
             'flashbots-data/mev-inspect-rs/inspect-quick-start',
             'flashbots-data/mev-inspect-rs/inspect-codebase',
-            'flashbots-data/mev-inspect-rs/inspect-inspector-example'
+            'flashbots-data/mev-inspect-rs/inspect-inspector-example',
           ]
         }
       ],
     },
-    {
-      'Contribute': [
-        'contribution/docs-contribution-guide',
-        'contribution/become-a-contributor',
-
-      ],
-    },
+   'contribution-guide',
   ],
 };

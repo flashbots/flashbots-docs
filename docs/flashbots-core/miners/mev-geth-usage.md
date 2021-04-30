@@ -1,5 +1,5 @@
 ---
-title: MEV-Geth
+title: mev-geth usage
 ---
 
 MEV-Geth is a fork of go-ethereum. Miners can start mining MEV blocks by running MEV-Geth, or by implementing their own fork that matches the specification. We issue and maintain [releases](https://github.com/flashbots/mev-geth/releases) for the recommended configuration for the current and immediately prior versions of geth.
