@@ -24,6 +24,9 @@ module.exports = {
             'flashbots-core/miners/interacting-with-mev-relay',
             'flashbots-core/miners/faq',
           ],
+          'releases': [
+            'flashbots-core/releases/v0.2-release',
+          ],
         },
       ]
     },
