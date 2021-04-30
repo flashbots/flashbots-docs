@@ -3,7 +3,7 @@ module.exports = {
     'welcome',
     {
       'Flashbots Core': [
-        'flashbots-core-overview',
+        'flashbots-core/overview',
         {
           "for searchers": [
             'flashbots-core/searchers/quick-start',
