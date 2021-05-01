@@ -6,7 +6,7 @@ Flashbots Core is a permissionless, transparent, and fair ecosystem for frontrun
 
 Flashbots Core consists of [mev-geth](https://github.com/flashbots/mev-geth), a patch on top of the go-ethereum client, along with the [mev-relay](https://github.com/flashbots/mev-relay-js), a transaction bundle relayer. 
 
-The latest version is v0.2.
+Flashbots Core is currently on version [v0.2](/flashbots-core/releases/v0.2-release).
 
 ## Why Flashbots Core?
 Throughout the second half of 2020 and begining of 2021, a spike in Ethereum usage has revealed a set of negative externalities brought by MEV. These include network congestion (i.e. p2p network load) and chain congestion (i.e. block space usage) caused by inefficient communication between PGA bot operators and miners for transaction order preference. These negative externalities create a deadweight loss which is shouldered by regular Ethereum users though high gas price volatility and artificially scarce blockspace.
@@ -64,7 +64,11 @@ Ultimately, the design goals are the following:
 
 The Flashbots Core architecture proposes a network with three distinct parties who specialize in performing a subset of the work required for sustaining this communication channel.
 
+<div style={{textAlign: 'center'}}>
+
 ![Core Architecture](/img/core-architecture.png)
+
+</div>
 
 Flashbots Core introduces a new `eth_sendBundle` RPC which standardizes the message format in the communication channel. This is called a "Flashbots Bundle".
 
@@ -88,23 +92,31 @@ The bundle specifies an array of arbitrary signed ethereum transactions with som
 ```
 
 ### Searchers
-Searchers are Ethereum users who, for whatever reason, prefer to use the Flashbots private transaction pool over the regular p2p transaction pool.
+Searchers are Ethereum users who, for whatever reason, prefer to use the Flashbots private transaction pool over the regular p2p transaction pool. These users monitor the state of the chain and send bundles to relayers.
 
 Typically, these users will be one of the following types:
 1. Ethereum users (for example, Uniswap traders) looking for frontrunning protection on their transactions
 2. Ethereum bot operators (for example, arbitrage and liquidation bots) looking for fast, and risk free access to blockspace
 3. Ethereum Dapps (for example, tornado.cash and mistX) with advanced use cases looking for account abstraction
 
-These users monitor the state of the chain and send bundles to relayers.
+See the [searcher quick-start guide](/flashbots-core/searchers/quick-start) to learn how to get started.
+
+<div style={{textAlign: 'center'}}>
 
 ![Searcher Architecture](/img/searcher-architecture.png)
+
+</div>
 
 ### Relayers
 A relayer is a bundle propagation service which receives bundles from searchers and forwards them to miners.
 
 The Flashbots organization operates an [open-source relayer called mev-relay](https://github.com/flashbots/mev-relay-js) which operates according to the [Flashbots Fair Market Principles](https://hackmd.io/@flashbots/fair-market-principles).
 
+<div style={{textAlign: 'center'}}>
+
 ![Relay Architecture](/img/relay-architecture.png)
+
+</div>
 
 ⚠️ Not all relayers can be trusted ⚠️
 
@@ -117,7 +129,11 @@ A miner is the party who ultimately collects all the bundles and produces a bloc
 
 The mev-geth nodes evaluate incoming bundles using the first-price sealed-bid auction and pick the most profitable ones to place at the top of the block. The node then compares the Flashbots block with a vanilla block and begins mining on the most profitable.
 
+<div style={{textAlign: 'center'}}>
+
 ![Miner Architecture](/img/miner-architecture.png)
+
+</div>
 
 ⚠️ Not all miners can be trusted ⚠️
 
