@@ -46,7 +46,7 @@ Here is the change in the specification:
       blockNumber,       // String, a hex encoded block number for which this bundle is valid on
       minTimestamp,      // (Optional) Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
       maxTimestamp,      // (Optional) Number, the maximum timestamp for which this bundle is valid, in seconds since the unix epoch
-      revertingTxHashes, // (Optional) Array[String], A list of tx hashes that are allowed to revert 
+      revertingTxHashes // (Optional) Array[String], A list of tx hashes that are allowed to revert 
     }
   ]
 }
@@ -54,6 +54,8 @@ Here is the change in the specification:
 
 </TabItem>
 </Tabs>
+
+A new parameter `revertingTxHashes` is added to the bundles which allows the searcher to list the transactions in their bundle which are allowed to revert. By default, all transactions included in a bundle should never revert on chain.
 
 #### Payment router contract
 Searchers can no longer send payments directly to block.coinbase to pay the miner for inclusion. Valid payments need to be routed through the flashbots payment router contract which emits an event on every payment.
@@ -108,17 +110,15 @@ $\Delta_{coinbase}$: coinbase difference from direct payment.
 The relay removes the temporary limitation of two 'from' addresses per bundle. The bundle can once again contain transactions from an arbitrary number of EOAs.
 
 #### Bundle delivery
-The `eth_sendBundle` RPC method on mev-geth is put into maintenance mode in the v0.2 release. Instead, mev-geth establishes an outgoing websockets connection with the relay and streams bundles as they become available. This improves the security of the miner infrastructure as it no longer requires exposing an incoming RPC port.
+The `eth_sendBundle` RPC method on mev-geth is put into maintenance mode in the v0.2 release. Instead, mev-geth establishes an outgoing websockets connection with the relay, which streams bundles as they become available. This improves the security of the miner infrastructure as it no longer requires exposing an incoming RPC port.
 
 To connect to the relay over websockets, each miner will receive an access key which they must add to their mev-geth node to perform the authentication.
 
 #### Block construction
-A new parameter `revertingTxHashes` is added to the bundles which allows the searcher to list the transactions in their bundle which are allowed to revert. By default, all transactions included in a bundle should never revert on chain.
-
 A [simple bundle merging algorithm](https://hackmd.io/@flashbots/core-v2-proposal#Bundle-merging) is introduced to mev-geth which allows multiple bundles to be merged together in a block so long as they do not cause an unexpected revert, or pass a certain amount of gas. The number of bundles mev-geth will attempt to merge together `miner.maxmergedbundles` and the amount of blockspace available for flashbots bundles `miner.maxbundlegas` can be configured by the miner according to the performance of their hardware and their risk tolerance.
 
 #### Strict profit switching
-A new config parameter `miner.strictprofitswitch` is added to mev-geth which allows the miner to force the flashbots workers to wait for the vanila block production to complete before evaluating a flashbots block. This allows the miner to avoid a race condition where they may mine a block which appears less profitable than a vanilla block, but comes at the cost of increasing the number of empty blocks mined. A miner should only enable this feature if they know exactly what they are doing.
+A new config parameter `miner.strictprofitswitch` is added to mev-geth which allows the miner to force the flashbots workers to wait for the vanilla block production to complete before evaluating a flashbots block. This allows the miner to avoid a race condition where they may mine a block which appears less profitable than a vanilla block, but comes at the cost of increasing the number of empty blocks mined. A miner should only enable this feature if they know exactly what they are doing.
 
 ## Timeline
 
@@ -129,7 +129,7 @@ A new config parameter `miner.strictprofitswitch` is added to mev-geth which all
 - miners receive access key and are asked to deploy a parallel v0.2 mev-geth node and provide relevant IPs
 
 Rollback plan:
-- Since v0.2 bundles are backwards compatible with v0.1 bundle, if v0.2 to v0.1 bundle conversion on the relay is having issues, searchers can fallback to using v0.1 bundle format
+- Since v0.2 bundles can be made backwards compatible with v0.1 bundles by dropping the `revertingTxHashes` field, if v0.2 to v0.1 bundle conversion on the relay is having issues, searchers can fallback to using v0.1 bundle format
 
 **May 17th**: v0.1 relay deprecation
 - relay only accepts v0.2 bundles, v0.1 bundle submission is deprecated
