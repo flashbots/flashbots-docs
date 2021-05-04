@@ -1,5 +1,5 @@
 ---
-title: faqs
+title: FAQ
 ---
 *Check Flashbots Discord [#release](https://discord.gg/Z26a7e2x) channel for the latest releases.*
 
@@ -10,6 +10,18 @@ Don't see your question answered? Join our dedicated [#🤖searchers](https://di
 
 The Flashbots organization is behind Flashbots Alpha. We are a research and development organization working on solving the problems MEV causes to state-rich blockchains. You can find out more about the organization on our [pm repo](https://github.com/flashbots/pm) and in this introductory [Medium post](https://medium.com/flashbots/frontrunning-the-mev-crisis-40629a613752) that details our values and motives.
 
+### Who should use Flashbots Core?
+1. Ethereum users (for example, Uniswap traders) looking for frontrunning protection on their transactions
+2. Ethereum bot operators (for example, arbitrage and liquidation bots) looking for fast, and risk free access to blockspace
+3. Ethereum Dapps (for example, tornado.cash and mistX) with advanced use cases looking for account abstraction
+4. Miners looking to maximize their long run profits and maintain a healthy ecosystem.
+
+
+### Why use Flashbots Core?
+* It allows searchers to bypass the Ethereum mempool and avoid their strategy leaking before it is mined on-chain (e.g. being frontrun by generalized frontrunners)
+* It allows searchers to save money from avoiding to pay gas fees for failed transactions.
+* It allows miners to receive additional revenue in the form of the bundle tip, in exchange for including the most profitable bundle in the block they mined.
+* It reduces Ethereum network congestion and lowers Ethereum network transaction fees.
 
 ### Why is this an Alpha?
 

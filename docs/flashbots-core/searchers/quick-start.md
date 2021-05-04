@@ -11,9 +11,9 @@ This quickstart guide contains all the information necessary to get up and runni
 See you on-chain! ⚡🤖
 
 ### Who should use Flashbots Core?
-1. Ethereum users looking for frontrunning protection on their transactions (for example, Uniswap traders)
-2. Ethereum bot operators looking for fast, and risk free access to blockspace (for example, arbitrage and liquidation bots)
-3. Ethereum Dapps with advanced use cases looking for account abstraction (for example, tornado.cash and mistX)
+1. Ethereum bot operators looking for fast, and risk free access to blockspace (for example, arbitrage and liquidation bots)
+2. Ethereum users looking for frontrunning protection on their transactions (for example, Uniswap traders)
+3. Ethereum Dapps with advanced use cases like account abstraction or gasless transactions (for example, tornado.cash and mistX)
 
 ### How to send your first private transaction
 
@@ -98,3 +98,11 @@ signature := addr.Hex() + ":" + hexutil.Encode(sig)
 ### How to send your first zero gas transaction
 
 // todo //
+
+### Next steps
+
+Congrats! You should now have everything you need to start sending transactions to the Flashbots network.
+
+For examples of advanced usage of Flashbots, check out the [example searchers](/flashbots-core/searchers/example-searchers/simple-arbitrage-bot)
+
+For additional tools, check out the [searcher libraries](/flashbots-core/searchers/searcher-libraries/ethers-js-provider)
