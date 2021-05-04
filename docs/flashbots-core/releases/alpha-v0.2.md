@@ -1,6 +1,9 @@
+---
+title: alpha-v0.2
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
 
 ## Changelog
 
