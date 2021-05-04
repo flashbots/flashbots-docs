@@ -60,13 +60,6 @@ Here is the change in the specification:
 
 A new parameter `revertingTxHashes` is added to the bundles which allows the searcher to list the transactions in their bundle which are allowed to revert. By default, all transactions included in a bundle should never revert on chain.
 
-#### Payment router contract
-Searchers can no longer send payments directly to block.coinbase to pay the miner for inclusion. Valid payments need to be routed through the flashbots payment router contract which emits an event on every payment.
-
-A searcher using an execution contract for their trades which hardcodes block.coinbase as the payment recipient will need to deploy a new contract which can send the payment to a configurable address with a configurable gas budget.
-
-The address and gas consumption of the router contract is likely to change in the future but the ABI is expected to remain backwards compatible.
-
 #### Bundle scoring
 Bundles received by mev-geth will use a new scoring function to [mitigate some of the issues](https://hackmd.io/@flashbots/core-v2-proposal#Revamped-auction-pricing) with the scoring function used in v0.1.
 
@@ -125,7 +118,7 @@ A new config parameter `miner.strictprofitswitch` is added to mev-geth which all
 
 ## Timeline
 
-**May 6th**: launch v0.2 relay
+**May 10th**: launch v0.2 relay
 - v0.2 relay starts accepting new bundle format
 - searchers are asked to update their bots to send bundles to v0.2 relay endpoint
 - v0.2 bundles are converted to v0.1 bundles in the relay and submitted to v0.1 miners along with v0.1 bundles
@@ -153,14 +146,14 @@ Rollback plan:
 ## Upgrade Steps
 
 ### Searchers
-- **May 6th**: Searchers able to send v0.2 bundles.
-- **May 6th to May 17th**: Searchers upgrade their bots to direct payments through the payment router contract.
-- **May 17th**: Deadline for searchers to upgrade to sending v0.2 bundles.
+- **May 10th**: Searchers able to send v0.2 bundles using new bundle format.
+- **May 10th to May 17th**: Searchers upgrade their bots to send v0.2 bundles.
+- **May 17th**: Deadline for searchers to upgrade to v0.2 bundles.
 
 ### Miners
-- **Before May 6th**: Miner provides a GPG public key Flashbots can use to encrypt the new access key.
-- **May 6th**: Miners receive mev-geth v0.2 spec, mev-geth v0.2 reference implementation, and bundle delivery access key over discord.
-- **May 6th to May 17th**: Miners review, integrate, and deploy their mev-geth v0.2 nodes in parallel to their v0.1 deployment and provide a new IP address to receive v0.2 bundles. The v0.2 nodes will need to enable outgoing connections in order to connect to the relay over websockets.
+- **Before May 10th**: Miner provides a GPG public key Flashbots can use to encrypt the new access key.
+- **May 10th**: Miners receive mev-geth v0.2 spec, mev-geth v0.2 reference implementation, and bundle delivery access key over discord.
+- **May 10th to May 17th**: Miners review, integrate, and deploy their mev-geth v0.2 nodes in parallel to their v0.1 deployment and provide a new IP address to receive v0.2 bundles. The v0.2 nodes will need to enable outgoing connections in order to connect to the relay over websockets.
 - **May 17th**: Miners who have provided the new IP addresses will begin receiving bundles and can begin migrating their hashrate to these nodes.
 - **May 17th to May 24th**: Miners monitor the performance of the v0.2 nodes and communicate back any issues. Miners enable connecting to the relay using their access keys over websockets for receiving bundles.
 - **May 24th**: The relay stops delivering bundles over RPC and the v0.1 nodes can safely be shut down.
