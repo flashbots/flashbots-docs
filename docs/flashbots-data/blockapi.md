@@ -1,4 +1,6 @@
 ---
-title: Block API
+title: mev-blocks API
 ---
-https://blocks.flashbots.net/
+mev-blocks is a a public API for displaying flashbots blocks and transactions.
+
+Access it here: https://blocks.flashbots.net/

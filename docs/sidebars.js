@@ -3,52 +3,45 @@ module.exports = {
     'welcome',
     {
       'Flashbots Core': [
-        'flashbots-core-welcome',
+        'flashbots-core-overview',
         {
-          "For searchers": [
-            'flashbots-core/searchers/searchers-introduction',
-            'flashbots-core/searchers/searcher-quick-start',
-            'flashbots-core/searchers/searcher-implementation-faq',
-            'flashbots-core/searchers/searchers-interacting-with-relay',
+          "for searchers": [
+            'flashbots-core/searchers/quick-start',
+            'flashbots-core/searchers/interacting-with-mev-relay',
+            'flashbots-core/searchers/interacting-with-mev-geth',
+            'flashbots-core/searchers/simple-arbitrage-bot',
+            'flashbots-core/searchers/ethers-js-provider',
+            'flashbots-core/searchers/web3py-provider',
+            'flashbots-core/searchers/go-provider',
             'flashbots-core/searchers/searcher-sponsored-tx',
-            'flashbots-core/searchers/ethers-provider-flashbots-bundle',
-            'flashbots-core/searchers/web3-flashbots',
+            'flashbots-core/searchers/faq',
           ],
-          'For miners & mining pools': [
-            'flashbots-core/miners/miners-introduction',
-            'flashbots-core/miners/miners-quick-start',
-            'flashbots-core/miners/miners-implementation-faq',
-            'flashbots-core/miners/mev-geth',
+          'for miners & mining pools': [
+            'flashbots-core/miners/quick-start',
+            'flashbots-core/miners/mev-geth-introduction',
+            'flashbots-core/miners/mev-geth-usage',
             'flashbots-core/miners/mev-geth-demo',
-            'flashbots-core/miners/mev-proxy'
+            'flashbots-core/miners/interacting-with-mev-relay',
+            'flashbots-core/miners/faq',
+          ],
+          'releases': [
+            'flashbots-core/releases/alpha-v0.2',
           ],
         },
       ]
     },
     {
       "Flashbots Data": [
-        'flashbots-data/blockapi',
+        'flashbots-data/blockapi','flashbots-data/mev-explore','flashbots-data/dashboard',
         {
-          'MEV-Explore': [
-            'flashbots-data/mev-explore/explore-introduction',
-            'flashbots-data/mev-explore/explore-data-metrics',
-            {
-              'mev-inspect-rs': [
-                'flashbots-data/mev-explore/mev-inspect-rs/inspect-quick-start',
-                'flashbots-data/mev-explore/mev-inspect-rs/inspect-codebase',
-                'flashbots-data/mev-explore/mev-inspect-rs/inspect-inspector-example',
-              ]
-            }
+          'mev-inspect': [
+            'flashbots-data/mev-inspect-rs/inspect-quick-start',
+            'flashbots-data/mev-inspect-rs/inspect-codebase',
+            'flashbots-data/mev-inspect-rs/inspect-inspector-example',
           ]
         }
       ],
     },
-    {
-      'How to contribute': [
-        'contribution/docs-contribution-guide',
-        'contribution/become-a-contributor',
-
-      ],
-    },
+   'contribution-guide',
   ],
 };
