@@ -25,7 +25,7 @@ module.exports = {
             'flashbots-core/miners/faq',
           ],
           'releases': [
-            'flashbots-core/releases/v0.2-release',
+            'flashbots-core/releases/alpha-v0.2',
           ],
         },
       ]
