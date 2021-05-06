@@ -5,22 +5,22 @@ module.exports = {
       'Flashbots Core': [
         'flashbots-core/overview',
         {
-          "for searchers": [
+          "For searchers": [
             'flashbots-core/searchers/quick-start',
             'flashbots-core/searchers/faq',
             {
-              "example searchers": [
+              "Example searchers": [
                 'flashbots-core/searchers/example-searchers/simple-arbitrage-bot',
                 'flashbots-core/searchers/example-searchers/searcher-sponsored-tx',
               ],
-              "searcher libraries": [
+              "Searcher libraries": [
                 'flashbots-core/searchers/searcher-libraries/ethers-js-provider',
-                'flashbots-core/searchers/searcher-libraries/web3py-provider',
-                'flashbots-core/searchers/searcher-libraries/go-provider',
+                'flashbots-core/searchers/searcher-libraries/web3py-provider'
               ]
             },
+            'flashbots-core/searchers/rpc-endpoint'
           ],
-          'for miners & mining pools': [
+          'For miners & mining pools': [
             'flashbots-core/miners/quick-start',
             'flashbots-core/miners/mev-geth-introduction',
             'flashbots-core/miners/mev-geth-usage',
@@ -28,7 +28,7 @@ module.exports = {
             'flashbots-core/miners/interacting-with-mev-relay',
             'flashbots-core/miners/faq',
           ],
-          'releases': [
+          'Releases': [
             'flashbots-core/releases/alpha-v0.2',
           ],
         },
