@@ -3,6 +3,7 @@ title: Cheatsheet (Heading 1)
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import TOCInline from '@theme/TOCInline'
 
 On this page you'll find every single markdown & mdx component used in our docs
 
@@ -19,8 +20,9 @@ id: page-id-when-linking-to-it
 ---
 ```
 
+For Heading 1 specifically, you should set the page title in the meta data.
 
-For Heading 1 specifically, you should set the page title in the meta data
+[Docusaurus source docs](https://docusaurus.io/docs/next/markdown-features/headings)
 
 ```md
 # Heading 1
@@ -341,7 +343,9 @@ import TabItem from '@theme/TabItem';
 
 ### Tabs
 
-This is an example of an `mdx` component
+This is an example of the `tabs` component.
+
+For extend usage, please refer to the [Docusaurus documentation.](https://docusaurus.io/docs/next/markdown-features/tabs)
 
 <Tabs
   defaultValue="apple"
@@ -372,6 +376,20 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 ```
 
+### Inline Table of Contents
+
+If you need a table contents literally anywhere, you can make use of the `<TOCInline>` component.
+ 
+For extend usage, please refer to the [Docusaurus documentation.](https://docusaurus.io/docs/next/markdown-features/inline-toc)
+
+<TOCInline toc={toc} />
+
+
+```mdx
+import TOCInline from '@theme/TOCInline'
+
+<TOCInline toc={toc} />
+```
 
 ## Footnotes & references
 
