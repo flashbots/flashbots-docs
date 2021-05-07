@@ -9,6 +9,12 @@ The docs repository is structured intuitively with the staging branch as the def
 - the docusaurus sidebar is created from the [sidebar.js](https://github.com/flashbots/docs/blob/staging/docs/sidebars.js) file
 
 
+## Cheatsheet
+
+We've created a simple cheatsheet file with examples of every heading, code block & tab component you can use to create your doc entry.
+
+[Click here to see the reference doc](cheatsheet)
+
 ## Contribution steps:
 
 **Step 1:**  Create a branch off of the staging branch
