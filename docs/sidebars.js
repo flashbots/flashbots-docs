@@ -18,6 +18,10 @@ module.exports = {
                 'flashbots-core/searchers/searcher-libraries/web3py-provider'
               ]
             },
+            'flashbots-core/searchers/coinbase-payments',
+            'flashbots-core/searchers/understanding-bundles',
+            'flashbots-core/searchers/bundle-pricing',
+            'flashbots-core/searchers/goerli-testnet',
             'flashbots-core/searchers/rpc-endpoint'
           ],
           'For miners & mining pools': [
