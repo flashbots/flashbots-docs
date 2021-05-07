@@ -152,6 +152,26 @@ _Italic/Emphasize_
 **_Italic & Bold_**
 ```
 
+## Codeblocks
+
+So you basically define a section using the ` ``` ` anything between two lines that contain these 3 back quotes will be in the block
+
+If you want specific formatting for a certain language like for example Javascript here:
+
+```js
+const threeCats = ["cat", "cat", "cat"]
+```
+
+```md
+Mind the indentation here, code blocks in code blocks isn't normal usage
+    ```js
+    const threeCats = ["cat", "cat", "cat"]
+    ```
+```
+
+Theres a lot of different formattings to use, `md`, `js`, `ts`, etc. The package used is [Prism react render](https://github.com/FormidableLabs/prism-react-renderer)
+
+
 ## Quotes
 
 > Quoted text.
@@ -181,6 +201,74 @@ _Italic/Emphasize_
 > > > Quoted quote.
 > > > > Quoted quote.
 ```
+
+## Admonitions
+
+These are nifty notification blocks [from Docusaurus](https://docusaurus.io/docs/next/markdown-features/admonitions)
+
+:::note
+
+The content and title *can* include markdown.
+
+:::
+
+:::tip You can specify an optional title
+
+Heads up! Here's a pro-tip.
+
+:::
+
+:::info
+
+Useful information.
+
+:::
+
+:::caution
+
+Warning! You better pay attention!
+
+:::
+
+:::danger
+
+Danger danger, mayday!
+
+:::
+
+```
+:::note
+
+The content and title *can* include markdown.
+
+:::
+
+:::tip You can specify an optional title
+
+Heads up! Here's a pro-tip.
+
+:::
+
+:::info
+
+Useful information.
+
+:::
+
+:::caution
+
+Warning! You better pay attention!
+
+:::
+
+:::danger
+
+Danger danger, mayday!
+
+:::
+```
+
+
 
 ## Links 	
 
