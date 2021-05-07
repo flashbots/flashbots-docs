@@ -1,8 +1,6 @@
 name: PR Tests
 
-on:
-  pull_request:
-    branches: [ staging ]
+on: pull_request
 
 jobs:
   checks:
