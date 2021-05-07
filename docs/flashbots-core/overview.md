@@ -15,7 +15,7 @@ The incentives around MEV extraction pose an existential risk to Ethereum consen
 
 We have observed and are concerned about the active development of permissioned and exclusive transaction routing infrastructure as it holds the potential to erode the neutrality, transparency, decentralization, and fairness of Ethereum today. Flashbots Core is an open-sourced, democratic, and credibly neutral alternative which aims to mitigate the aforementioned negative externalities and existential risks.
 
-## Timeline
+## Timeline 
 - July 2020: Formation of MEV-Ship Research Collective.  
 - November 2020: Formation of Flashbots Research Organization and proposal of [Flashbots Core architecture](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251).  
 - January 2021: Flashbots Core Alpha (v0.1) made available for miners and searchers to adopt.  
