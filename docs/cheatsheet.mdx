@@ -3,9 +3,22 @@ title: Cheatsheet
 ---
 On this page you'll find every single markdown & mdx component used in our docs
 
-# Headings 
+## Page Title & Data
+
+For the title of the page, and the name of the tab, at the very top of your file, just add this code snippet to the top.
+
+Any thing inbetween the `---` tags will be used for the meta data of the page
+
+```md
+---
+title: Cheatsheet
+id: page-id-when-linking-to-it
+---
+```
 
 # Heading 1
+
+For Heading 1 specifically, you should set the page title in the meta data
 
 ```md
 # Heading 1
@@ -41,9 +54,17 @@ On this page you'll find every single markdown & mdx component used in our docs
 ###### Heading 6
 ```
 
-# Lists 
+## Line breaks 
 
-## Unordered lists
+```md
+Some text
+
+With a line between them
+```
+
+## Lists 
+
+### Unordered lists
 
 - Unordered list 1
 - Unordered list 2
@@ -55,7 +76,7 @@ On this page you'll find every single markdown & mdx component used in our docs
 - Unordered list 3
 ```
 
-## Unordered lists
+### Unordered lists
 
 You don't actually have to do the numbers, as long as there is a number at the start it'll count incrementally starting with the first number in the list
 
@@ -70,7 +91,49 @@ You don't actually have to do the numbers, as long as there is a number at the s
 42. Ordererd list 3
 ```
 
-# Text styling 
+### Nested & Mixed lists
+
+1. Ordererd list
+    1. Sable
+    2. Ferret
+        - Cat rat
+        - Fox weasel 
+    8. Lamp
+69. Ordererd list 
+    - Grape
+    - Potatoes
+        - Chips
+            1. Crisps
+            1. Fondant 
+            1. Frites
+    - Lemons
+        1. Three cats
+        1. Pasta
+        9. Ragu
+42. Ordererd list 
+
+```md
+1. Ordererd list
+    1. Sable
+    2. Ferret
+        - Cat rat
+        - Fox weasel 
+    8. Lamp
+69. Ordererd list 
+    - Grape
+    - Potatoes
+        - Chips
+            1. Crisps
+            1. Fondant 
+            1. Frites
+    - Lemons
+        1. Three cats
+        1. Pasta
+        9. Ragu
+42. Ordererd list 
+```
+
+## Text styling 
 
 _Italic/Emphasize_
 
@@ -90,10 +153,52 @@ _Italic/Emphasize_
 **_Italic & Bold_**
 ```
 
-# Links 	
+## Quotes
 
-Some text with [a link][1] and
+> Quoted text.
+
+> > Quoted quote.
+
+> Quoted text.
+> > Quoted quote.
+> > > Quoted quote.
+
+> Quoted text.
+> > Quoted quote.
+> > > Quoted quote.
+> > > > Quoted quote.
+
+```md
+> Quoted text.
+
+> > Quoted quote.
+
+> Quoted text.
+> > Quoted quote.
+> > > Quoted quote.
+
+> Quoted text.
+> > Quoted quote.
+> > > Quoted quote.
+> > > > Quoted quote.
+```
+
+## Links 	
+
+The links in this paragraph are being pulled from a list [a link][1] and
 another [link][2].
+
+```md
+The links in this paragraph are being pulled from a list [a link][1] and
+another [link][2].
+```
+
+```md
+This is that list
+
+[1]: http://example.com/ "Title"
+[2]: http://example.org/ "Title"
+```
 
 [1]: http://example.com/ "Title"
 [2]: http://example.org/ "Title"
@@ -115,17 +220,7 @@ Linked logo: [![alt text](/wp-smaller.png)]
 
 
 
-
-
-line breaks 
-
-```md
-Some text
-
-With a line between them
-```
-
-# Footnotes & references
+## Footnotes & references
 
 This is how we make a reference to a foot note or reference that's found at the bottoms of the page.[^1]
 
