@@ -31,7 +31,7 @@ The `eth_sendBundle` RPC has the following payload format:
   "method": "eth_sendBundle",
   "params": [
     {
-      signedTxs,         // Array[String], A list of signed transactions to execute in an atomic bundle
+      txs,               // Array[String], A list of signed transactions to execute in an atomic bundle
       blockNumber,       // String, a hex encoded block number for which this bundle is valid on
       minTimestamp,      // (Optional) Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
       maxTimestamp,      // (Optional) Number, the maximum timestamp for which this bundle is valid, in seconds since the unix epoch
