@@ -46,6 +46,16 @@ module.exports = {
         }
       ],
     },
-   'contribution-guide',
+    'contribution-guide',
+    {
+      type: 'link',
+      label: 'Discord',
+      href: 'https://discord.gg/7hvTycdNcK',
+    },
+    {
+      type: 'link',
+      href: 'https://github.com/flashbots/docs',
+      label: 'GitHub',
+    },
   ],
 };
