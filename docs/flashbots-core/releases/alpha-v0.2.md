@@ -27,7 +27,7 @@ Here is the change in the specification:
   "id": 1,
   "method": "eth_sendBundle",
   "params": [
-    signedTxs,    // Array[String], A list of signed transactions to execute in an atomic bundle
+    txs,          // Array[String], A list of signed transactions to execute in an atomic bundle
     blockNumber,  // String, a hex encoded block number for which this bundle is valid on
     minTimestamp, // (Optional) Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
     maxTimestamp  // (Optional) Number, the maximum timestamp for which this bundle is valid, in seconds since the unix epoch
@@ -45,11 +45,11 @@ Here is the change in the specification:
   "method": "eth_sendBundle",
   "params": [
     {
-      signedTxs,         // Array[String], A list of signed transactions to execute in an atomic bundle
+      txs,               // Array[String], A list of signed transactions to execute in an atomic bundle
       blockNumber,       // String, a hex encoded block number for which this bundle is valid on
       minTimestamp,      // (Optional) Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
       maxTimestamp,      // (Optional) Number, the maximum timestamp for which this bundle is valid, in seconds since the unix epoch
-      revertingTxHashes // (Optional) Array[String], A list of tx hashes that are allowed to revert 
+      revertingTxHashes  // (Optional) Array[String], A list of tx hashes that are allowed to revert 
     }
   ]
 }
