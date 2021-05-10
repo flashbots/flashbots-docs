@@ -1,5 +1,5 @@
 ---
-title: Using coinbase.transfer()
+title: coinbase.transfer()
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,7 +12,7 @@ Flashbots allows you to pay miners for your transactions through a smart contrac
 
 Here's an example from our open source simple arbitrage bot of how paying through coinbase transfers work:
 
-```s
+```solidity
 function uniswapWeth(uint256 _wethAmountToFirstMarket, uint256 _ethAmountToCoinbase, address[] memory _targets, bytes[] memory _payloads) external onlyExecutor payable {
         require (_targets.length == _payloads.length);
         uint256 _wethBalanceBefore = WETH.balanceOf(address(this));

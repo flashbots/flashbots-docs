@@ -2,45 +2,53 @@ module.exports = {
   docs: [
     'welcome',
     {
-      'Flashbots Core': [
+      'flashbots core': [
         'flashbots-core/overview',
         {
-          "For searchers": [
+          "for searchers": [
             'flashbots-core/searchers/quick-start',
             'flashbots-core/searchers/faq',
             {
-              "Example searchers": [
+              "advanced concepts": [
+                'flashbots-core/searchers/advanced/understanding-bundles',
+                'flashbots-core/searchers/advanced/coinbase-payment',
+                'flashbots-core/searchers/advanced/bundle-pricing',
+                'flashbots-core/searchers/advanced/rpc-endpoint',
+                'flashbots-core/searchers/advanced/goerli-testnet',
+              ],
+              "example searchers": [
                 'flashbots-core/searchers/example-searchers/simple-arbitrage-bot',
                 'flashbots-core/searchers/example-searchers/searcher-sponsored-tx',
               ],
-              "Searcher libraries": [
-                'flashbots-core/searchers/searcher-libraries/ethers-js-provider',
-                'flashbots-core/searchers/searcher-libraries/web3py-provider'
+              "libraries": [
+                'flashbots-core/searchers/libraries/ethers-js-provider',
+                'flashbots-core/searchers/libraries/web3py-provider',
               ]
             },
-            'flashbots-core/searchers/coinbase-payments',
-            'flashbots-core/searchers/understanding-bundles',
-            'flashbots-core/searchers/bundle-pricing',
-            'flashbots-core/searchers/goerli-testnet',
-            'flashbots-core/searchers/rpc-endpoint'
           ],
-          'For miners & mining pools': [
+          'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
-            'flashbots-core/miners/mev-geth-introduction',
-            'flashbots-core/miners/mev-geth-usage',
-            'flashbots-core/miners/mev-geth-demo',
-            'flashbots-core/miners/interacting-with-mev-relay',
             'flashbots-core/miners/faq',
+            {
+              "advanced concepts": [
+                'flashbots-core/miners/advanced/mev-geth-introduction',
+                'flashbots-core/miners/advanced/mev-geth-usage',
+                'flashbots-core/miners/advanced/mev-geth-demo',
+                'flashbots-core/miners/advanced/interacting-with-mev-relay',
+              ],
+            },
           ],
-          'Releases': [
+          'releases': [
             'flashbots-core/releases/alpha-v0.2',
           ],
         },
       ]
     },
     {
-      "Flashbots Data": [
-        'flashbots-data/blockapi','flashbots-data/mev-explore','flashbots-data/dashboard',
+      "flashbots data": [
+        'flashbots-data/blockapi',
+        'flashbots-data/mev-explore',
+        'flashbots-data/dashboard',
         {
           'mev-inspect': [
             'flashbots-data/mev-inspect-rs/inspect-quick-start',

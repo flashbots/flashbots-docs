@@ -1,5 +1,5 @@
 ---
-title: Flashbots Goerli Testnet
+title: goerli testnet
 ---
 
 import Tabs from '@theme/Tabs';

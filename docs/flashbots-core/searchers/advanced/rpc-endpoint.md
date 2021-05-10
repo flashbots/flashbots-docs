@@ -1,5 +1,5 @@
 ---
-title: Interacting directly with Flashbots' RPC endpoint
+title: RPC endpoint
 ---
 
 import Tabs from '@theme/Tabs';

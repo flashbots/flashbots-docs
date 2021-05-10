@@ -1,5 +1,5 @@
 ---
-title: Understanding bundles
+title: understanding bundles
 ---
 
 import Tabs from '@theme/Tabs';

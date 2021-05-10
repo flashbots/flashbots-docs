@@ -1,5 +1,5 @@
 ---
-title: Bundle pricing
+title: bundle pricing
 ---
 
 import Tabs from '@theme/Tabs';
