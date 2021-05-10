@@ -3,18 +3,22 @@ module.exports = {
     'welcome',
     {
       'Flashbots Core': [
-        'flashbots-core-overview',
+        'flashbots-core/overview',
         {
           "for searchers": [
             'flashbots-core/searchers/quick-start',
-            'flashbots-core/searchers/interacting-with-mev-relay',
-            'flashbots-core/searchers/interacting-with-mev-geth',
-            'flashbots-core/searchers/simple-arbitrage-bot',
-            'flashbots-core/searchers/ethers-js-provider',
-            'flashbots-core/searchers/web3py-provider',
-            'flashbots-core/searchers/go-provider',
-            'flashbots-core/searchers/searcher-sponsored-tx',
             'flashbots-core/searchers/faq',
+            {
+              "example searchers": [
+                'flashbots-core/searchers/example-searchers/simple-arbitrage-bot',
+                'flashbots-core/searchers/example-searchers/searcher-sponsored-tx',
+              ],
+              "searcher libraries": [
+                'flashbots-core/searchers/searcher-libraries/ethers-js-provider',
+                'flashbots-core/searchers/searcher-libraries/web3py-provider',
+                'flashbots-core/searchers/searcher-libraries/go-provider',
+              ]
+            },
           ],
           'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
@@ -42,6 +46,16 @@ module.exports = {
         }
       ],
     },
-   'contribution-guide',
+    'contribution-guide',
+    {
+      type: 'link',
+      label: 'Discord',
+      href: 'https://discord.gg/7hvTycdNcK',
+    },
+    {
+      type: 'link',
+      href: 'https://github.com/flashbots/docs',
+      label: 'GitHub',
+    },
   ],
 };

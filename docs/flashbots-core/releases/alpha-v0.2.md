@@ -27,7 +27,7 @@ Here is the change in the specification:
   "id": 1,
   "method": "eth_sendBundle",
   "params": [
-    signedTxs,    // Array[String], A list of signed transactions to execute in an atomic bundle
+    txs,          // Array[String], A list of signed transactions to execute in an atomic bundle
     blockNumber,  // String, a hex encoded block number for which this bundle is valid on
     minTimestamp, // (Optional) Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
     maxTimestamp  // (Optional) Number, the maximum timestamp for which this bundle is valid, in seconds since the unix epoch
@@ -45,11 +45,11 @@ Here is the change in the specification:
   "method": "eth_sendBundle",
   "params": [
     {
-      signedTxs,         // Array[String], A list of signed transactions to execute in an atomic bundle
+      txs,               // Array[String], A list of signed transactions to execute in an atomic bundle
       blockNumber,       // String, a hex encoded block number for which this bundle is valid on
       minTimestamp,      // (Optional) Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
       maxTimestamp,      // (Optional) Number, the maximum timestamp for which this bundle is valid, in seconds since the unix epoch
-      revertingTxHashes // (Optional) Array[String], A list of tx hashes that are allowed to revert 
+      revertingTxHashes  // (Optional) Array[String], A list of tx hashes that are allowed to revert 
     }
   ]
 }
@@ -127,7 +127,7 @@ A new config parameter `miner.strictprofitswitch` is added to mev-geth which all
 Rollback plan:
 - Since v0.2 bundles can be made backwards compatible with v0.1 bundles by dropping the `revertingTxHashes` field, if v0.2 to v0.1 bundle conversion on the relay is having issues, searchers can fallback to using v0.1 bundle format
 
-**May 17th**: v0.1 relay deprecation
+**May 24th**: v0.1 relay deprecation
 - relay only accepts v0.2 bundles, v0.1 bundle submission is deprecated
 - v0.2 bundles are converted to v0.1 bundles by the relay and sent to the v0.1 miners over RPC
 - relay starts sending v0.2 bundles to the v0.2 mev-geth miners over RPC
@@ -136,7 +136,7 @@ Rollback plan:
 Rollback plan:
 - If the v0.2 mev-geth nodes are having issues, notify miners to continue pointing hashpower to v0.1 nodes
 
-**May 24th**: v0.1 mev-geth deprecation
+**May 31st**: v0.1 mev-geth deprecation
 - relay only delivers v0.2 bundles to miners over websockets and stops sending v0.2 bundles over RPC
 - relay stops converting v0.1 bundles and stops sending bundles to miners v0.1 mev-geth miners
 
@@ -147,13 +147,13 @@ Rollback plan:
 
 ### Searchers
 - **May 10th**: Searchers able to send v0.2 bundles using new bundle format.
-- **May 10th to May 17th**: Searchers upgrade their bots to send v0.2 bundles.
-- **May 17th**: Deadline for searchers to upgrade to v0.2 bundles.
+- **May 10th to May 24th**: Searchers upgrade their bots to send v0.2 bundles.
+- **May 24th**: Deadline for searchers to upgrade to v0.2 bundles.
 
 ### Miners
-- **Before May 10th**: Miner provides a GPG public key Flashbots can use to encrypt the new access key.
-- **May 10th**: Miners receive mev-geth v0.2 spec, mev-geth v0.2 reference implementation, and bundle delivery access key over discord.
-- **May 10th to May 17th**: Miners review, integrate, and deploy their mev-geth v0.2 nodes in parallel to their v0.1 deployment and provide a new IP address to receive v0.2 bundles. The v0.2 nodes will need to enable outgoing connections in order to connect to the relay over websockets.
-- **May 17th**: Miners who have provided the new IP addresses will begin receiving bundles and can begin migrating their hashrate to these nodes.
-- **May 17th to May 24th**: Miners monitor the performance of the v0.2 nodes and communicate back any issues. Miners enable connecting to the relay using their access keys over websockets for receiving bundles.
-- **May 24th**: The relay stops delivering bundles over RPC and the v0.1 nodes can safely be shut down.
+- **Before May 17th**: Miner complete new [authentication process](https://hackmd.io/@flashbots/miner-authentication).
+- **May 17th**: Miners receive mev-geth v0.2 spec, mev-geth v0.2 reference implementation, and bundle delivery access key over discord.
+- **May 17th to May 24th**: Miners review, integrate, and deploy their mev-geth v0.2 nodes in parallel to their v0.1 deployment and provide a new IP address to receive v0.2 bundles. The v0.2 nodes will need to enable outgoing connections in order to connect to the relay over websockets.
+- **May 24th**: Miners who have provided the new IP addresses will begin receiving bundles and can begin migrating their hashrate to these nodes.
+- **May 24th to May 31st**: Miners monitor the performance of the v0.2 nodes and communicate back any issues. Miners enable connecting to the relay using their access keys over websockets for receiving bundles.
+- **May 31st**: The relay stops delivering bundles over RPC and the v0.1 nodes can safely be shut down.
