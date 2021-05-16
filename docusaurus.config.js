@@ -7,7 +7,7 @@ module.exports = {
   title: 'Flashbots Docs',
   tagline: 'Flashbots repository of knowledge',
   baseUrl: process.env.BASE_URL,
-  onBrokenLinks: 'ignore',
+  onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'flashbots', 
