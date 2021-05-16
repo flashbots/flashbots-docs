@@ -16,7 +16,7 @@ See you on-chain! ⚡🤖
 3. Ethereum Dapps with advanced use cases like account abstraction or gasless transactions (for example, tornado.cash and mistX)
 
 ### How does Flashbots work for searchers?
-Flashbots connects searchers directly to miners and allows them to avoid public mempools. Searchers with transactions they would like to send miners first craft what we call "bundles" and send these to Flashbots' MEV-Relay. MEV-Relay is a gateway that Flashbots runs today which simulates searchers' bundles, and if there are no errors then forwards them on to miners. Miners then receive bundles and include them in blocks if it is profitable for them to do so.
+Flashbots connects searchers directly to miners and allows them to avoid the public tx pool. Searchers with transactions they would like to send miners first craft what we call "bundles" and send these to Flashbots' MEV-Relay. MEV-Relay is a gateway that Flashbots runs today which simulates searchers' bundles, and if there are no errors then forwards them on to miners. Miners then receive bundles and include them in blocks if it is profitable for them to do so.
 
 Getting onboarded to Flashbots is easy for searchers; you simply need to update how you send transactions.
 
@@ -107,6 +107,6 @@ That's it!
 
 Congrats! You should now have everything you need to start sending transactions to the Flashbots network.
 
-For examples of advanced usage of Flashbots, check out the [example searchers](/flashbots-core/searchers/example-searchers/simple-arbitrage-bot)
-
-For additional tools, check out the [searcher libraries](/flashbots-core/searchers/searcher-libraries/ethers-js-provider)
+- If you are looking to interact with the Flashbots Relay without using one of the libraries, check out the [RPC endpoint documentation](/flashbots-core/searchers/advanced/rpc-endpoint) and other advanced concepts.
+- For examples of advanced usage of Flashbots, check out the [example searchers](/flashbots-core/searchers/example-searchers/simple-arbitrage-bot)
+- For additional tools, check out the [searcher libraries](/flashbots-core/searchers/searcher-libraries/ethers-js-provider)
