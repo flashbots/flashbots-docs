@@ -1,6 +1,6 @@
 ---
 slug: /
-title: Welcome to docs.flashbots.net
+title: welcome
 description: The home page of the knowledge base
 keywords:
   - flashbots
