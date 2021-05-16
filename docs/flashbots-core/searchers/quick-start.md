@@ -109,4 +109,4 @@ Congrats! You should now have everything you need to start sending transactions 
 
 - If you are looking to interact with the Flashbots Relay without using one of the libraries, check out the [RPC endpoint documentation](/flashbots-core/searchers/advanced/rpc-endpoint) and other advanced concepts.
 - For examples of advanced usage of Flashbots, check out the [example searchers](/flashbots-core/searchers/example-searchers/simple-arbitrage-bot)
-- For additional tools, check out the [searcher libraries](/flashbots-core/searchers/searcher-libraries/ethers-js-provider)
+- For additional tools, check out the [searcher libraries](/flashbots-core/searchers/libraries/ethers-js-provider)
