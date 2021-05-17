@@ -10,4 +10,4 @@ Access the mev-proxy repository [here](https://github.com/flashbots/mev-proxy).
 
 ## v0.2
 
-Starting from version v0.2 it is possible to use WebSockets to connect to MEV relay. See more details [here](../specs/mev-geth-spec-v02.md)
+Starting from version v0.2 it is possible to use WebSockets to connect to MEV relay. See more details [here](../mev-geth-spec/v02.md)
