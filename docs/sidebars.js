@@ -46,6 +46,10 @@ module.exports = {
         }
       ],
     },
-   'contribution-guide',
+    {
+      "Contribute": [
+        'contribution-guide','cheatsheet',
+      ],
+    },
   ],
 };
