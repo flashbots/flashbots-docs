@@ -47,35 +47,14 @@ The MEV-Geth proof of concept is compatible with any regular Ethereum client. Th
 
 ### Differences between MEV-Geth and [_vanilla_ geth](https://github.com/ethereum/go-ethereum)
 
-The entire patch can be broken down into four modules:
-
-1. bundle worker and `eth_sendBundle` rpc (commits [8104d5d7b0a54bd98b3a08479a1fde685eb53c29](https://github.com/flashbots/mev-geth/commit/8104d5d7b0a54bd98b3a08479a1fde685eb53c29) and [c2b5b4029b2b748a6f1a9d5668f12096f096563d](https://github.com/flashbots/mev-geth/commit/c2b5b4029b2b748a6f1a9d5668f12096f096563d))
-2. profit switcher (commit [aa5840d22f4882f91ecba0eb20ef35a702b134d5](https://github.com/flashbots/mev-geth/commit/aa5840d22f4882f91ecba0eb20ef35a702b134d5))
-3. `eth_callBundle` simulation rpc (commits [9199d2e13d484df7a634fad12343ed2b46d5d4c3](https://github.com/flashbots/mev-geth/commit/9199d2e13d484df7a634fad12343ed2b46d5d4c3) and [a99dfc198817dd171128cc22439c81896e876619](https://github.com/flashbots/mev-geth/commit/a99dfc198817dd171128cc22439c81896e876619))
-4. Documentation (this file) and CI/infrastructure configuration (commit [035109807944f7a446467aa27ca8ec98d109a465](https://github.com/flashbots/mev-geth/commit/035109807944f7a446467aa27ca8ec98d109a465))
-
-The entire changeset can be viewed inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master).
+Please check the list of the [MEV-Geth repository commits](https://github.com/flashbots/mev-geth/commits/master) to see changes made to the original Geth repo. Each commit represents a single change to MEV Geth, e.g. providing support for accepting bundles, accepting JSON RPC calls, simulating bundle profitability, connecting to a relay via WebSockets, etc.
 
 In summary:
 
-- Geth’s txpool is modified to also contain a `mevBundles` field, which stores a list of MEV bundles. Each MEV bundle is an array of transactions, along with a min/max timestamp for their inclusion.
-- A new `eth_sendBundle` API is exposed which allows adding an MEV Bundle to the txpool. During the Flashbots Alpha, this is only called by MEV-relay.
-  - The transactions submitted to the bundle are “eth_sendRawTransaction-style” RLP encoded signed transactions along with the min/max block of inclusion
-  - This API is a no-op when run in light mode
-- Geth’s miner is modified as follows:
-  - While in the event loop, before adding all the pending txpool “normal” transactions to the block, it:
-    - Finds the most profitable bundle
-      - It picks the most profitable bundle by returning the one with the highest average gas price per unit of gas
-        - computeBundleGas: Returns average gas price (\sum{gasprice_i\*gasused_i + (coinbase_after - coinbase_before)) / \sum{gasused_i})
-    - Commits the bundle (remember: Bundle transactions are not ordered by nonce or gas price). For each transaction in the bundle, it:
-      - `Prepare`’s it against the state
-      - CommitsTransaction with trackProfit = true
-        w.current.profit += coinbase_after_tx - coinbase_before_tx
-        w.current.profit += gas \* gas_price
-  - If a block is found where the w.current.profit is more than the previous profit, it switches mining to that block.
-- A new `eth_callBundle` API is exposed that enables simulation of transaction bundles.
-- Documentation and CI/infrastructure files are added.
+MEV-Geth accepts MEV-bundles that are arrays of transactions with extra properties defining when they can be executed. Bundles can be picked up during the block construction phase and added in front of other transactions as long as the order of transactions inside the bundle does not change.
 
-### Moving beyond proof of concept
+Each bundle can make a payment to the coinbase account which defines the bundle profitability from a miner perspective. If the bundle is more profitable than the transactions that it pushes out of the block (opportunity cost) then it can be accepted and included in the blok.
 
-We provide the MEV-Geth proof of concept as a first milestone on the path to mitigating the negative externalities caused by MEV. We hope to discuss with the community the merits of adopting MEV-Geth in its current form. Our preliminary research indicates it could free at least 2.5% of the current chain congestion by eliminating the use of frontrunning and backrunning and provide uplift of up to 18% on miner rewards from Ethereum. That being said, we believe a sustainable solution to MEV existential risks requires complete privacy and finality, which the proof of concept does not address. We hope to engage community feedback throughout the development of this complete version of MEV-Geth.
+### Moving towards version 1.0
+
+We believe a sustainable solution to MEV existential risks requires complete privacy and finality, which the proof of concept does not address. We hope to engage community feedback throughout the development of this complete version of MEV-Geth.
