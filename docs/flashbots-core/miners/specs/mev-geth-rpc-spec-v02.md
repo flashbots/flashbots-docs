@@ -1,5 +1,5 @@
 ---
-title: MEV-Geth v0.1 RPC
+title: MEV-Geth v0.2 RPC
 ---
 
 # eth_sendBundle
@@ -10,10 +10,11 @@ Sends a bundle of transactions to the miner. The bundle has to be executed at th
 
 | Name | Type | Description | Comment
 --------|----------|-----------|-----------
-transactions |	`Array<Data>` | Array of signed transactions (`eth_sendRawTransaction` style, signed and RLP-encoded)	| a no-op in the light mode
+txs |	`Array<Data>` | Array of signed transactions (`eth_sendRawTransaction` style, signed and RLP-encoded)	| a no-op in the light mode
 blockNumber	|`Quantity`	|Exact block number at which the bundle can be included.	|bundle is evicted after the block
 minTimestamp	|`Quantity`	|Minimum (inclusive) block timestamp at which the bundle can be included. If this value is 0 then any timestamp is acceptable.
 maxTimestamp	|`Quantity`	|Maximum (inclusive) block timestamp at which the bundle can be included. If this value is 0 then any timestamp is acceptable.
+revertingTxHashes	|Array<`Data`>	|Array of tx hashes within the bundle that are allowed to cause the EVM execution to revert without preventing the bundle inclusion in a block.
 
 ### Returns
 
@@ -28,13 +29,15 @@ curl -X POST --data '{
     "jsonrpc": "2.0",
     "method": "eth_sendBundle",
     "params": [
-        [
-            "f9014946843b9aca00830493e094a011e5f4ea471ee4341a135bb1a4af368155d7a280b8e40d5f2659000000000000000000000000fdd45a22dd1d606b3782f2119621e928e32743000000000000000000000000000000000000000000000000000000000077359400000000000000000000000000000000000000000000000",
-            "f86e8204d085012a05f200830c350094daf24c20717f428f00d8448d74d67a77f67ceb8287354a6ba7a18000802ea00e411bcb660dd8d47717df89078d2e8160c08e7f11cb7ad0ee935e7436eceb32a013ee00a21b7fa0a9f9c1224d11261648191875d4633aed6003543ea319f12b62"
-        ],
-        "0x12ab34",
-        "0x0",
-        "0x0"
+        {
+          "txs" : [
+              "f9014946843b9aca00830493e094a011e5f4ea471ee4341a135bb1a4af368155d7a280b8e40d5f2659000000000000000000000000fdd45a22dd1d606b3782f2119621e928e32743000000000000000000000000000000000000000000000000000000000077359400000000000000000000000000000000000000000000000",
+              "f86e8204d085012a05f200830c350094daf24c20717f428f00d8448d74d67a77f67ceb8287354a6ba7a18000802ea00e411bcb660dd8d47717df89078d2e8160c08e7f11cb7ad0ee935e7436eceb32a013ee00a21b7fa0a9f9c1224d11261648191875d4633aed6003543ea319f12b62"
+          ],
+          "blockNumber" : "0x12ab34",
+          "minTimestamp" : "0x0",
+          "minTimestamp" :"0x0"
+        }
     ]
 }' <url>
 
