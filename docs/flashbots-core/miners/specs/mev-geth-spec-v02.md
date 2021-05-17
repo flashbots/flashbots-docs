@@ -93,6 +93,7 @@ A sum of all `eligible coinbase payments` and `eligible gas payments` of a `bund
 A difference between the balance of the `coinbase` account at the end and at the beginning of the execution of a `unit of work`. We can measure a `transaction profit`, a `bundle profit`, and a `block profit`.
 
 Balance of the `coinbase` account changes in the following way
+
 |Unit of work|Balance Change|
 |-|-|
 |Transaction| `average gas price` * `total gas used` + `direct coinbase payment` + `contract coinbase payment` |

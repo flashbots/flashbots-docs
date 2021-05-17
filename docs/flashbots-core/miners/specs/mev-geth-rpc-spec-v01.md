@@ -2,7 +2,7 @@
 title: MEV-Geth v0.1 RPC
 ---
 
-# eth_sendBundle
+## eth_sendBundle
 
 ### Description
 
@@ -46,7 +46,7 @@ curl -X POST --data '{
 }
 ```
 
-# eth_callBundle
+## eth_callBundle
 
 ### Description
 
