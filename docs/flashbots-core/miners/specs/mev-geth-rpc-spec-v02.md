@@ -1,5 +1,5 @@
 ---
-title: MEV-Geth v0.2 RPC
+title: mev-geth v0.2 RPC
 ---
 
 ## eth_sendBundle
