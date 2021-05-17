@@ -36,6 +36,12 @@ module.exports = {
                 'flashbots-core/miners/advanced/mev-geth-demo',
                 'flashbots-core/miners/advanced/interacting-with-mev-relay',
               ],
+              "mev-geth spec": [
+                'flashbots-core/miners/mev-geth-spec/v01',
+                'flashbots-core/miners/mev-geth-spec/v01-rpc',
+                'flashbots-core/miners/mev-geth-spec/v02',
+                'flashbots-core/miners/mev-geth-spec/v02-rpc',
+              ],
             },
           ],
           'releases': [
