@@ -37,6 +37,14 @@ module.exports = {
                 'flashbots-core/miners/advanced/interacting-with-mev-relay',
               ],
             },
+            {
+              "specs": [
+                'flashbots-core/miners/specs/MEV_spec_RPC_v0_1',
+                'flashbots-core/miners/specs/MEV_spec_RPC_v0_2',
+                'flashbots-core/miners/specs/MEV_spec_RPC_v0_1',
+                'flashbots-core/miners/specs/MEV_spec_RPC_v0_1',
+              ],
+            },
           ],
           'releases': [
             'flashbots-core/releases/alpha-v0.2',
