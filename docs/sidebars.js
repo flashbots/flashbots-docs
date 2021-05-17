@@ -38,8 +38,8 @@ module.exports = {
               ],
               "specs": [
                 'flashbots-core/miners/specs/mev-geth-spec-v01',
-                'flashbots-core/miners/specs/mev-geth-spec-v02',
                 'flashbots-core/miners/specs/mev-geth-rpc-spec-v01',
+                'flashbots-core/miners/specs/mev-geth-spec-v02',
                 'flashbots-core/miners/specs/mev-geth-rpc-spec-v02',
               ],
             },
