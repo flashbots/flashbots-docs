@@ -1,8 +1,6 @@
 ---
-tags: spec
+title: MEV-Geth v0.1
 ---
-
-# MEV-Geth v0.1 specification
 
 ## Simple Summary
 

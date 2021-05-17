@@ -1,8 +1,6 @@
 ---
-tags: spec
+title: MEV-Geth v0.1 RPC
 ---
-
-# MEV-Geth RPC v0.1
 
 # eth_sendBundle
 
