@@ -24,14 +24,14 @@ module.exports = {
   ],
   themeConfig: {
     algolia: {
-      apiKey: 'YOUR_API_KEY',
-      indexName: 'YOUR_INDEX_NAME',
+      apiKey: '693df7609c6aeaac03b78418095b79c4',
+      indexName: 'flashbots',
 
       // Optional: see doc section below
       contextualSearch: true,
 
       // Optional: see doc section below
-      appId: 'YOUR_APP_ID',
+      appId: 'flashbots-docs',
 
       // Optional: Algolia search parameters
       searchParameters: {},
