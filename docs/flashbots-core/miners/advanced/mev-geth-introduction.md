@@ -1,7 +1,8 @@
 ---
 title: mev-geth introduction
 ---
-## MEV-Geth: a proof of concept
+
+### MEV-Geth: a proof of concept
 
 We have designed and implemented a proof of concept for permissionless MEV extraction called MEV-Geth. It is a sealed-bid block space auction mechanism for communicating transaction order preference. While our proof of concept has incomplete trust guarantees, we believe it's a significant improvement over the status quo. The adoption of MEV-Geth should relieve a lot of the network and chain congestion caused by frontrunning and backrunning bots.
 
@@ -47,13 +48,27 @@ The MEV-Geth proof of concept is compatible with any regular Ethereum client. Th
 
 ### Differences between MEV-Geth and [_vanilla_ geth](https://github.com/ethereum/go-ethereum)
 
-Please check the list of the [MEV-Geth repository commits](https://github.com/flashbots/mev-geth/commits/master) to see changes made to the original Geth repo. Each commit represents a single change to MEV Geth, e.g. providing support for accepting bundles, accepting JSON RPC calls, simulating bundle profitability, connecting to a relay via WebSockets, etc.
+The entire patch can be broken down into 3 releases with a few commits in each:
 
-In summary:
+#### v0.1.0
 
-MEV-Geth accepts MEV-bundles that are arrays of transactions with extra properties defining when they can be executed. Bundles can be picked up during the block construction phase and added in front of other transactions as long as the order of transactions inside the bundle does not change.
+- commits [535a7834902f184813a6588c6d66175f9f633118](https://github.com/flashbots/mev-geth/commit/535a7834902f184813a6588c6d66175f9f633118) and [b48f1023eea934a14ca58052421036219f1ea3e3](https://github.com/flashbots/mev-geth/commit/b48f1023eea934a14ca58052421036219f1ea3e3) bundle worker and `eth_sendBundle` rpc
+- commit [920af5c609b14c28283b9b7ce1e14dab0d7ebf3b](https://github.com/flashbots/mev-geth/commit/920af5c609b14c28283b9b7ce1e14dab0d7ebf3b) profit switcher
+- commit [26e12228bfcd046e0112fecd7f0a57e93b515bab](https://github.com/flashbots/mev-geth/commit/26e12228bfcd046e0112fecd7f0a57e93b515bab) Documentation (this file) and CI/infrastructure configuration
 
-Each bundle can make a payment to the coinbase account which defines the bundle profitability from a miner perspective. If the bundle is more profitable than the transactions that it pushes out of the block (opportunity cost) then it can be accepted and included in the blok.
+#### v0.2.0-pre
+
+- commit [fabb91ede326d352f4f211d4d2a4f0dfb46ad2b2](https://github.com/flashbots/mev-geth/commit/fabb91ede326d352f4f211d4d2a4f0dfb46ad2b2) Change flashbots bundle pricing formula to ignore gas fees
+- commit [f933b038a5915c07d65d5c97ca92acf499e7e475](https://github.com/flashbots/mev-geth/commit/f933b038a5915c07d65d5c97ca92acf499e7e475) Discard bundles with reverting txs
+
+#### v0.2.0
+
+- commit [688206c400de253e293a6fdc1e9dc14fbbbfa903](https://github.com/flashbots/mev-geth/commit/688206c400de253e293a6fdc1e9dc14fbbbfa903) Change pricing formula to ignore gas from txs in the txpool
+- commit [044469b6577478b6b2f028dd5ec0a9cebc4f00d9](https://github.com/flashbots/mev-geth/commit/044469b6577478b6b2f028dd5ec0a9cebc4f00d9) Use object in eth_sendBundle params and add revertingTxHashes param
+- commit [b36e0f0d58ee5222244450ab50345c91194fc065](https://github.com/flashbots/mev-geth/commit/b36e0f0d58ee5222244450ab50345c91194fc065) Add bundle merging with multiple workers
+- commit [cb4764f0fe239bcb10f9565e6309fd40773a9787](https://github.com/flashbots/mev-geth/commit/cb4764f0fe239bcb10f9565e6309fd40773a9787) Add relay websocket support
+
+The entire changeset can be viewed inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master).
 
 ### Moving towards version 1.0
 
