@@ -1,16 +1,45 @@
 ---
-title: quick start
+title: onboarding
 ---
 
-### Onboard Flashbots Alpha as a Miner
+For new mining pools who would like to receive Flashbots bundles, please complete the [Miner Indication of Interest Form](https://docs.google.com/forms/d/e/1FAIpQLSdz29fKXJXJFWXkEu8hZNG-NJUeAbOz0Jvw9mnNLskJHlMUDA/viewform).
 
-We invite you to try Flashbots during this Alpha phase and start receiving MEV revenue by following these 4 steps:
+The following steps are for mining pools already running Flashbots to receive v0.2 bundles:
 
-1. Fill out this [form](https://forms.gle/78JS52d22dwrgabi6) to indicate your interest in participating in the Alpha and be added to the MEV-relay miner whitelist.
-2. You will receive an onboarding email from Flashbots to help [set up](https://github.com/flashbots/mev-geth/blob/master/README.md#quick-start) your MEV-geth node and protect it with a [reverse proxy](https://github.com/flashbots/mev-proxy).
-3. To start receiving flashbots bundles from users, the miner needs to set a [reverse proxy](https://github.com/flashbots/mev-proxy) to open their `eth_sendBundle` rpc and request to be whitelisted on the Flashbots hosted gateway called [MEV-relay](https://github.com/flashbots/mev-relay-js). MEV-relay is needed during the alpha to aggregate bundle requests from all users, prevent spam and DOS attacks on participating miner(s)/mining pool(s), and collect necessary system health metrics.
-4. Respond to Flashbots' email with your MEV-geth node endpoint to be added to the MEV-relay gateway.
-5. After receiving a confirmation email that your MEV-geth node's endpoint has been added to the relay, you will immediately start receiving Flashbots transaction bundles with associated MEV revenue paid to you.
+**Stage I. Miner Authentication**
+* Step 1: Generate a new ethereum address, save the private key for step 5
+* Step 2: Send the new ethereum address to Flashbots through a pre-established Flashbots technical support private Discord channel
+* Step 3: Wait for Flashbots to ask you for the same ethereum address via another independent channel (email/wechat/telegram) as a 2FA verification
+
+:::caution
+
+It is critical that miners only send their address to a trusted member of the Flashbots team, over a previously established communication channel.
+
+:::
 
 
-See you on chain! :zap:🤖
+**Stage II. Integration and Testing (May 17 - 23)**
+* Step 4: Update MEV-geth node to the lastest version according to the [MEV-geth v0.2 spec](https://github.com/flashbots/mev-geth/releases/tag/v1.10.3-mev0.2.0), MEV-geth v0.2 reference implementation released on May 17
+* Step 5: Add the private key to the cli command for the miner's mev-geth, eg. `--relayWSSigningKey=0x....` You should start receiving some test fundles through the newly established websocket connection to test your set up.
+
+:::tip reminder
+
+Please continue to run your MEV-geth v0.2 pre-release node, while you set up a v0.2 full release node for testing.
+
+:::
+
+
+
+**Stage III. Receive Flashbots Bundles on v0.2 nodes (May 24 - 30)**
+* Step 6: We will start sending Flashbots MEV bundles to the mining pools who have integrated with Flashbots Alpha v0.2.
+* Step 7: Start migrating your hashrate to the Flashbots Alpha v0.2 nodes
+
+:::tip reminder
+
+Please continue to run your MEV-geth v0.2 pre-release node, while you set up a v0.2 full release node for testing.
+
+:::
+
+
+**Stage IV. Complete switch to v0.2 nodes (May 31)**
+* Step 8: Flashbots relay stops delivering bundles over RPC, and your v0.1 and v0.2 pre-release nodes can safely be shut down, leaving only the Flashbots Alpha v0.2 nodes.
