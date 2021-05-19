@@ -14,9 +14,9 @@ In order to differentiate between the theoretical maximum extractable and what _
 
 ### 2. How much MEV revenue has been extracted on Ethereum?
 
-According to preliminary results from our [data collection and processing efforts](https://github.com/flashbots/mev-inspect-rs), a conservative estimate of REV, the total value extracted from transaction ordering on Ethereum since February 2020 is worth over $124 million. This figure accounts for revenue captured by traders who deployed common MEV strategies on DeFi protocols, and gas fees spent on these trades that went to miners who ended up mining the blocks with such MEV strategies. We plan to release more statistics and metrics on MEV extraction activities on Ethereum through our public dashboard 'MEV-explore' in the near future.
+According to preliminary results from our [data collection and processing efforts](https://github.com/flashbots/mev-inspect-rs), a conservative estimate of REV, the total value extracted from transaction ordering on Ethereum since February 2020 is worth over $513 million. This figure accounts for revenue captured by traders who deployed common MEV strategies on DeFi protocols, and gas fees spent on these trades that went to miners who ended up mining the blocks with such MEV strategies. More metrics can be explored through our [public dashboard](https://explore.flashbots.net).
 
-(_Note: these are preliminary results we plan to open-source and publish. As we expand our data collection efforts to further increase our coverage of major MEV-strategies, we expect REV measured to be significantly higher._)
+(_Note: As we expand our data collection efforts to further increase our coverage of major MEV-strategies, we expect REV measured to be significantly higher._)
 
 ### 3. What is the revenue upside from running Flashbots Alpha?
 
@@ -58,7 +58,7 @@ more hashrate running MEV-geth leads to more MEV-search activity which leads to 
 
 ### 7. What are the main differences between MEV-geth vs. geth?
 
-MEV-geth is a fork of geth that adds an ability to include a transaction bundle at the beginning of each block via a new `eth_sendBundle` RPC call. You can see a summary of the differences between MEV-geth and geth [here](https://github.com/flashbots/mev-geth/blob/master/README.md#what-is-the-difference-between-mev-geth-and-geth), and a detailed list of changes by inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master#diff-c426ecd2f7d247753b9ea8c1cc003f21fa412661c1f967d203d4edf8163da344R1970).
+MEV-geth is a fork of geth that adds an ability to include a transaction bundle at the beginning of each block via a new `eth_sendBundle` RPC call or via a WebSockets connection between a miner and the relay. You can see a summary of the differences between MEV-geth and geth [here](https://github.com/flashbots/mev-geth/blob/master/README.md#what-is-the-difference-between-mev-geth-and-geth), and a detailed list of changes by inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master#diff-c426ecd2f7d247753b9ea8c1cc003f21fa412661c1f967d203d4edf8163da344R1970).
 
 
 ### 8. How does MEV-geth technically guarantee a net positive outcome for miners?
@@ -157,7 +157,7 @@ _Note: continuous degraded performance of miner(s) and/or mining pool(s)' endpoi
 
 ### 17. How does Flashbots plan to address HTTP inefficiency for high volume of bundles?
 
-Future iterations of MEV-relay will implement WebSocket connection in order to improve performance of bundle submission.
+Starting with version v0.2 MEV-Geth implements WebSocket connection in order to improve performance of bundle submission.
 
 ### 18. Can miners/mining pools choose to include only part of a Flashbots transaction bundle submitted through Flashbots?
 
