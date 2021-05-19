@@ -31,7 +31,7 @@ module.exports = {
       contextualSearch: true,
 
       // Optional: see doc section below
-      appId: 'flashbots-docs',
+      appId: 'BH4D9OD16A',
 
       // Optional: Algolia search parameters
       searchParameters: {},
