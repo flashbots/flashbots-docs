@@ -65,7 +65,7 @@ module.exports = {
       ],
     },
     {
-      "Contribute": [
+      "contribute": [
         'contribution-guide','cheatsheet',
       ],
     },
