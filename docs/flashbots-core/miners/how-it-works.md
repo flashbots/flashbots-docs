@@ -1,5 +1,5 @@
 ---
-title: mev-geth introduction
+title: how it works
 ---
 
 ### MEV-Geth: a proof of concept
@@ -38,6 +38,15 @@ The MEV-Geth proof of concept relies on the fact that searchers can withhold bid
 
 The MEV-Geth proof of concept does not provide any finality guarantees. We expect the solution to this problem to require post-trade execution privacy through private chain state or strong economic infeasibility. The design of a system with strong finality is the second core objective of the MEV-Geth research effort.
 
+### MEV-Geth ###
+
+MEV-Geth is a fork of go-ethereum. Miners can start mining MEV blocks by running MEV-Geth, or by implementing their own fork that matches the specification. We issue and maintain [releases](https://github.com/flashbots/mev-geth/releases) for the recommended configuration for the current and immediately prior versions of geth.
+
+At this stage, we recommend only receiving bundles via a relay, to prevent abuse via denial-of-service attacks. We have [implemented](https://github.com/flashbots/mev-relay) and currently run such relay. This relay performs basic rate limiting and miner profitability checks, but does otherwise not interfere with submitted bundles in any way, and is open for everybody to participate.
+
+Access the mev-geth repository [here](https://github.com/flashbots/mev-geth).
+
+
 ### How it works
 
 MEV-Geth introduces the concepts of "searchers", "transaction bundles", and "block template" to Ethereum. Effectively, MEV-Geth provides a way for miners to delegate the task of finding and ordering transactions to third parties called "searchers". These searchers compete with each other to find the most profitable ordering and bid for its inclusion in the next block using a standardized template called a "transaction bundle". These bundles are evaluated in a sealed-bid auction hosted by miners to produce a "block template" which holds the [information about transaction order required to begin mining](https://ethereum.stackexchange.com/questions/268/ethereum-block-architecture).
@@ -73,3 +82,7 @@ The entire changeset can be viewed inspecting the [diff](https://github.com/ethe
 ### Moving towards version 1.0
 
 We believe a sustainable solution to MEV existential risks requires complete privacy and finality, which the proof of concept does not address. We hope to engage community feedback throughout the development of this complete version of MEV-Geth.
+
+### Feature requests and bug reports
+
+If you are a user of MEV-Geth and have suggestions on how to make integration with your current setup easier, or would like to submit a bug report, we encourage you to open an issue in the mev-geth repository with the `enhancement` or `bug` labels respectively. If you need help getting started, please ask in the dedicated [#⛏️miners](https://discord.gg/rcgADN9qFX) channel in our Discord.

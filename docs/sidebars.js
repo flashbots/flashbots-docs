@@ -28,11 +28,11 @@ module.exports = {
           ],
           'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
+            'flashbots-core/miners/how-it-works',
+            'flashbots-core/miners/v02-transition',
             'flashbots-core/miners/faq',
             {
               "advanced concepts": [
-                'flashbots-core/miners/advanced/mev-geth-introduction',
-                'flashbots-core/miners/advanced/mev-geth-usage',
                 'flashbots-core/miners/advanced/mev-geth-demo',
                 'flashbots-core/miners/advanced/interacting-with-mev-relay',
               ],
