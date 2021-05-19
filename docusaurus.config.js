@@ -23,6 +23,21 @@ module.exports = {
     },
   ],
   themeConfig: {
+    algolia: {
+      apiKey: '693df7609c6aeaac03b78418095b79c4',
+      indexName: 'flashbots',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
+      // Optional: see doc section below
+      appId: 'flashbots-docs',
+
+      // Optional: Algolia search parameters
+      searchParameters: {},
+
+      //... other Algolia params
+    },
     navbar: {
       title: 'Flashbots Docs',
       logo: {
@@ -36,6 +51,7 @@ module.exports = {
           position: 'right',
         },
       ],
+     
     },
   //   footer: {
   //     style: 'dark',
