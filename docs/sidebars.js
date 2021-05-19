@@ -64,7 +64,11 @@ module.exports = {
         }
       ],
     },
-    'contribution-guide',
+    {
+      "contribute": [
+        'contribution-guide','cheatsheet',
+      ],
+    },
     {
       type: 'link',
       label: 'Discord',
@@ -74,6 +78,6 @@ module.exports = {
       type: 'link',
       href: 'https://github.com/flashbots/docs',
       label: 'GitHub',
-    },
+    }
   ],
 };
