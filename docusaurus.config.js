@@ -26,17 +26,8 @@ module.exports = {
     algolia: {
       apiKey: '693df7609c6aeaac03b78418095b79c4',
       indexName: 'flashbots',
-
-      // Optional: see doc section below
-      contextualSearch: true,
-
       // Optional: see doc section below
       appId: 'BH4D9OD16A',
-
-      // Optional: Algolia search parameters
-      searchParameters: {},
-
-      //... other Algolia params
     },
     navbar: {
       title: 'Flashbots Docs',
