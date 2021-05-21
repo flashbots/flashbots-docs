@@ -37,3 +37,14 @@ function uniswapWeth(uint256 _wethAmountToFirstMarket, uint256 _ethAmountToCoinb
 The above smart contract code will attempt to capitalize on arbitrage opportunities. If it does not make money doing so then the transaction will fail. Moreover, since the searcher is paying the miner via `block.coinbase.transfer()` on the last line then the searcher won't pay any transaction fees.
 
 For more information on how coinbase transfers are priced see the [bundle pricing page](/flashbots-core/searchers/advanced/bundle-pricing).
+
+## Managing payments to coinbase.address when it is a contract
+Miners will occasionally have a smart contract listed as their block.coinbase address. This changes the expected behavior of the making payments to block.coinbase. Specifically it costs more gas to transfer ETH to block.coinbase if it is a contract than if it is an EOA, and as such many searchers will underestimate their gas consumption and their bundles will fail for miners who use contracts instead.
+
+To handle this edge case searchers can up their gas limit to accomodate the additional payment to miners and call block.coinbase in the following way:
+
+```solidity
+block.coinbase.call{value:amount}(new bytes(0));
+```
+
+However, searchers should be acutely aware of the risk of [reentrancy attacks](https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21), as calling coinbase in this way temporarily gives execution to a third party, and typically payments to coinbase are made after checks for profit.
