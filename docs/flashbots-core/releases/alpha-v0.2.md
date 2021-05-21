@@ -131,17 +131,12 @@ Rollback plan:
 - relay only accepts v0.2 bundles, v0.1 bundle submission is deprecated
 - v0.2 bundles are converted to v0.1 bundles by the relay and sent to the v0.1 miners over RPC
 - relay starts sending v0.2 bundles to the v0.2 mev-geth miners over RPC
-- miners are asked to start requesting bundles over websockets in preparation for RPC deprecation
 
 Rollback plan:
 - If the v0.2 mev-geth nodes are having issues, notify miners to continue pointing hashpower to v0.1 nodes
 
 **May 31st**: v0.1 mev-geth deprecation
-- relay only delivers v0.2 bundles to miners over websockets and stops sending v0.2 bundles over RPC
 - relay stops converting v0.1 bundles and stops sending bundles to miners v0.1 mev-geth miners
-
-Rollback plan:
-- If bundle delivery over websockets is having issues, re-enable sending bundles over RPC
 
 ## Upgrade Steps
 
@@ -153,7 +148,7 @@ Rollback plan:
 ### Miners
 - **Before May 17th**: Miner complete new [authentication process](https://hackmd.io/@flashbots/miner-authentication).
 - **May 17th**: Miners receive mev-geth v0.2 spec, mev-geth v0.2 reference implementation, and bundle delivery access key over discord.
-- **May 17th to May 24th**: Miners review, integrate, and deploy their mev-geth v0.2 nodes in parallel to their v0.1 deployment and provide a new IP address to receive v0.2 bundles. The v0.2 nodes will need to enable outgoing connections in order to connect to the relay over websockets.
+- **May 17th to May 24th**: Miners review, integrate, and deploy their mev-geth v0.2 nodes in parallel to their v0.1 deployment and provide a new IP address to receive v0.2 bundles.
 - **May 24th**: Miners who have provided the new IP addresses will begin receiving bundles and can begin migrating their hashrate to these nodes.
-- **May 24th to May 31st**: Miners monitor the performance of the v0.2 nodes and communicate back any issues. Miners enable connecting to the relay using their access keys over websockets for receiving bundles.
-- **May 31st**: The relay stops delivering bundles over RPC and the v0.1 nodes can safely be shut down.
+- **May 24th to May 31st**: Miners monitor the performance of the v0.2 nodes and communicate back any issues.
+- **May 31st**: v0.1 nodes can safely be shut down.
