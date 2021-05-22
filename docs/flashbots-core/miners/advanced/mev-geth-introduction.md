@@ -66,7 +66,6 @@ The entire patch can be broken down into 3 releases with a few commits in each:
 - commit [688206c400de253e293a6fdc1e9dc14fbbbfa903](https://github.com/flashbots/mev-geth/commit/688206c400de253e293a6fdc1e9dc14fbbbfa903) Change pricing formula to ignore gas from txs in the txpool
 - commit [044469b6577478b6b2f028dd5ec0a9cebc4f00d9](https://github.com/flashbots/mev-geth/commit/044469b6577478b6b2f028dd5ec0a9cebc4f00d9) Use object in eth_sendBundle params and add revertingTxHashes param
 - commit [b36e0f0d58ee5222244450ab50345c91194fc065](https://github.com/flashbots/mev-geth/commit/b36e0f0d58ee5222244450ab50345c91194fc065) Add bundle merging with multiple workers
-- commit [cb4764f0fe239bcb10f9565e6309fd40773a9787](https://github.com/flashbots/mev-geth/commit/cb4764f0fe239bcb10f9565e6309fd40773a9787) Add relay websocket support
 
 The entire changeset can be viewed inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master).
 

@@ -58,7 +58,7 @@ more hashrate running MEV-geth leads to more MEV-search activity which leads to 
 
 ### 7. What are the main differences between MEV-geth vs. geth?
 
-MEV-geth is a fork of geth that adds an ability to include a transaction bundle at the beginning of each block via a new `eth_sendBundle` RPC call or via a WebSockets connection between a miner and the relay. You can see a summary of the differences between MEV-geth and geth [here](https://github.com/flashbots/mev-geth/blob/master/README.md#what-is-the-difference-between-mev-geth-and-geth), and a detailed list of changes by inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master#diff-c426ecd2f7d247753b9ea8c1cc003f21fa412661c1f967d203d4edf8163da344R1970).
+MEV-geth is a fork of geth that adds an ability to include a transaction bundle at the beginning of each block via a new `eth_sendBundle` RPC call. You can see a summary of the differences between MEV-geth and geth [here](https://github.com/flashbots/mev-geth/blob/master/README.md#what-is-the-difference-between-mev-geth-and-geth), and a detailed list of changes by inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master#diff-c426ecd2f7d247753b9ea8c1cc003f21fa412661c1f967d203d4edf8163da344R1970).
 
 
 ### 8. How does MEV-geth technically guarantee a net positive outcome for miners?
