@@ -79,4 +79,53 @@ signature := addr.Hex() + ":" + hexutil.Encode(sig)
 ```
 
 </TabItem>
+<TabItem value="rust">
+
+```rust
+use secp256k1::SecretKey;
+use std::convert::TryInto;
+use tiny_keccak;
+use tiny_keccak::Hasher;
+use web3::signing::{Key, SecretKeyRef};
+
+fn keccak256(to_hash: &[u8]) -> [u8; 32] {
+    let mut hasher = tiny_keccak::Keccak::v256();
+    let mut output = [0u8; 32];
+    hasher.update(to_hash);
+    hasher.finalize(&mut output);
+    output
+}
+
+fn sign_flashbots(body: &str, private_key: &str) -> String {
+    // Create a secp256k1 secret key
+    let fb_sk = SecretKey::from_slice(&hex::decode(private_key).unwrap()).unwrap();
+    // Create a web3 reference wrapper for the secp256k1 secret key
+    let flashbots_key_rf = SecretKeyRef::new(&fb_sk);
+    // EIP-191 Salt
+    let eth_salt = "\x19Ethereum Signed Message:\n66".to_string();
+    // Take Kekkak injecting a 0x prefix
+    let digest = format!("0x{}", hex::encode(keccak256(body.as_bytes()).to_owned()));
+    let digest = keccak256(&[eth_salt.as_bytes(), &digest.as_bytes()].concat()).to_owned();
+    // Sign with key
+    let signature = flashbots_key_rf.sign(&digest, None).unwrap();
+    // Get recovery bits
+    let v = signature
+        .v
+        .try_into()
+        .expect("signature recovery in electrum notation always fits in a u8");
+    // Build signature utf8 vector
+    let signature_bytes = {
+        let mut bytes = Vec::with_capacity(65);
+        bytes.extend_from_slice(signature.r.as_bytes());
+        bytes.extend_from_slice(signature.s.as_bytes());
+        bytes.push(v);
+        bytes
+    };
+    // Return hex encoded string from utf8 signature_bytes vector with 0x prefix
+    format!("0x{}", hex::encode(signature_bytes))
+}
+```
+
+</TabItem>
+
 </Tabs>
