@@ -44,7 +44,7 @@ Miners will occasionally have a smart contract listed as their block.coinbase ad
 To handle this edge case searchers can up their gas limit to accomodate the additional payment to miners and call block.coinbase in the following way:
 
 ```solidity
-block.coinbase.call{value:amount}(new bytes(0));
+block.coinbase.call{value: _ethAmountToCoinbase}(new bytes(0));
 ```
 
-However, searchers should be acutely aware of the risk of [reentrancy attacks](https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21), as calling coinbase in this way temporarily gives execution to a third party, and typically payments to coinbase are made after checks for profit.
+However, searchers should be acutely aware of the risk of [reentrancy attacks](https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21), as calling coinbase in this way temporarily gives execution to a third party, and typically payments to coinbase are made after checks for profit. Moreover, searchers should be aware that supporting payments to coinbase addresses that are contracts will cause their gas consumption to go up, and as a result their bundle gas price to go down. This is a tradeoff that should be considered.
