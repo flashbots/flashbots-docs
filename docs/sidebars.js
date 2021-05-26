@@ -65,6 +65,11 @@ module.exports = {
       ],
     },
     {
+      "community tools": [
+        "community-tools"
+      ]
+    },
+    {
       "contribute": [
         'contribution-guide','cheatsheet',
       ],
