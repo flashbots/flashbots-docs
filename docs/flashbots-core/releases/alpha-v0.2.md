@@ -111,10 +111,7 @@ The `eth_sendBundle` RPC method on mev-geth is put into maintenance mode in the 
 To connect to the relay over websockets, each miner will receive an access key which they must add to their mev-geth node to perform the authentication.
 
 #### Block construction
-A [simple bundle merging algorithm](https://hackmd.io/@flashbots/core-v2-proposal#Bundle-merging) is introduced to mev-geth which allows multiple bundles to be merged together in a block so long as they do not cause an unexpected revert, or pass a certain amount of gas. The number of bundles mev-geth will attempt to merge together `miner.maxmergedbundles` and the amount of blockspace available for flashbots bundles `miner.maxbundlegas` can be configured by the miner according to the performance of their hardware and their risk tolerance.
-
-#### Strict profit switching
-A new config parameter `miner.strictprofitswitch` is added to mev-geth which allows the miner to force the flashbots workers to wait for the vanilla block production to complete before evaluating a flashbots block. This allows the miner to avoid a race condition where they may mine a block which appears less profitable than a vanilla block, but comes at the cost of increasing the number of empty blocks mined. A miner should only enable this feature if they know exactly what they are doing.
+A [simple bundle merging algorithm](https://hackmd.io/@flashbots/core-v2-proposal#Bundle-merging) is introduced to mev-geth which allows multiple bundles to be merged together in a block so long as they do not cause an unexpected revert, or pass a certain amount of gas. The number of bundles mev-geth will attempt to merge together is controlled by the CLI flag`miner.maxmergedbundles`. This can be configured by the miner according to the performance of their hardware and their risk tolerance.
 
 ## Timeline
 
