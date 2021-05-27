@@ -1,5 +1,5 @@
 ---
-title: Discord setup
+title: discord setup
 ---
 
 Flashbots' main tool for communicating with participating miners is our Discord server. Please join us there with the invite you've been extended, and follow this quick guide to setting up your Discord effectively.
