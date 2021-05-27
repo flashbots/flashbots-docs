@@ -15,8 +15,8 @@ jobs:
           node-version: '12.x'
       - name: Test Build
         env:
-          TARGET_URL: 'http://not-docs.flashbots.net'
-          BASE_URL: '/docs/'
+          TARGET_URL: "http://not-docs.flashbots.net"
+          BASE_URL: "/docs/"
         run: |
           if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
