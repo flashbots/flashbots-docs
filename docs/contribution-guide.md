@@ -10,7 +10,7 @@ The docs repository is structured intuitively with the staging branch as the def
 
 
 ## Cheatsheet
-
+ 
 We've created a simple cheatsheet file with examples of every heading, code block & tab component you can use to create your doc entry.
 
 [Click here to see the reference doc](cheatsheet)
