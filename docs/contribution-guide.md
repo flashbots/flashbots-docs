@@ -2,7 +2,7 @@
 title: contribution guide
 ---
 Thank you for your interest in adding to our knowledge base!
-
+ 
 ## Repo structure
 The docs repository is structured intuitively with the staging branch as the default branch. Once you click on docs [(docs/docs)](https://github.com/flashbots/docs/tree/staging/docs), you access a collection of .mds documents organized in folders the same way they are organized in the sidebar of the docs website.
 - All the pages on Docusaurus are created from these mds
