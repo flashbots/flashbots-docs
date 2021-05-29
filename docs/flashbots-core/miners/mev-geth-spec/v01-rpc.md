@@ -23,7 +23,7 @@ maxTimestamp	|`Quantity`	|Maximum (inclusive) block timestamp at which the bundl
 
 ```bash
 # Request
-curl -X POST --data '{
+curl -X POST -H 'Content-Type: application/json' --data '{
     "id": 1337,
     "jsonrpc": "2.0",
     "method": "eth_sendBundle",
@@ -68,7 +68,7 @@ Map<`Data`, "error|value" : `Data`> - a mapping from transaction hashes to execu
 
 ```bash
 # Request
-curl -X POST --data '{
+curl -X POST -H 'Content-Type: application/json' --data '{
     "id": 1337,
     "jsonrpc": "2.0",
     "method": "eth_callBundle",

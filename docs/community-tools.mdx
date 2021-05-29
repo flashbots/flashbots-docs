@@ -1,0 +1,25 @@
+---
+title: community tools
+---
+
+### [Flashbots Bundle Explorer](http://flashbots-explorer.marto.lol/)
+
+- Inspect bundles (bundle merging supported!)
+- Search by block number
+- Shareable permalinks (e.g. https://flashbots-explorer.marto.lol/?block=12506647)
+
+[![Flashbots Bundle Explorer](/img/bundle-explorer.png)](http://flashbots-explorer.marto.lol/)
+
+### [flashbots.tools](https://flashbots.tools/)
+
+Simple frontend to interface with https://github.com/flashbots
+
+![Flashbots Tools](/img/flashbots-tools.png)
+
+### [zeneth](https://github.com/ScopeLift/zeneth)
+
+[![Zeneth](/img/zeneth.png)](https://youtu.be/lTivZBhqltY)
+
+A major UX problem in Ethereum is that most wallets are not contract wallets, but externally owned accounts (EOAs), such as MetaMask. With EOAs, you always need ETH for gas unless you happen to be interacting with a contract that supports meta-transactions. This can be problematic for user-facing applications as their new users need to acquire both ETH and often some token to user their application. For example, you don't need ETH for transaction fees on zkSync, but if I'm a new user trying to get DAI into zkSync, I need to first find ETH, use that to pay for gas to enter zkSync, then never use that ETH again. This adds a lot of friction to user onboarding.
+
+Zeneth fixes this. You can now bundle any sequence of transactions, send them for zero gas, and at the end use our "SwapBriber" contract which will swap some of your tokens for ETH to pay the miner.
