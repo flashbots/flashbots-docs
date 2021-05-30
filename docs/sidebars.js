@@ -29,6 +29,7 @@ module.exports = {
           'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
             'flashbots-core/miners/mev-geth-introduction',
+            'flashbots-core/miners/discord-setup',
             'flashbots-core/miners/faq',
             {
               "advanced concepts": [
@@ -63,6 +64,7 @@ module.exports = {
         }
       ],
     },
+    "community-tools",
     {
       "contribute": [
         'contribution-guide','cheatsheet',

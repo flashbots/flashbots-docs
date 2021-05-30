@@ -8,9 +8,6 @@ jobs:
   build:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
-    environment: 
-      name: production
-      url: docs.flashbots.net
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -18,8 +15,8 @@ jobs:
           node-version: '12.x'
       - name: Test Build
         env:
-          TARGET_URL: ${{ secrets.TARGET_URL }}
-          BASE_URL: ${{ secrets.BASE_URL }}
+          TARGET_URL: "http://not-docs.flashbots.net"
+          BASE_URL: "/docs/"
         run: |
           if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
