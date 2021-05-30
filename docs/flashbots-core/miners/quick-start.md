@@ -2,24 +2,35 @@
 title: onboarding
 ---
 
-For new mining pools who would like to receive Flashbots bundles, please complete the [Miner Indication of Interest Form](https://docs.google.com/forms/d/e/1FAIpQLSdz29fKXJXJFWXkEu8hZNG-NJUeAbOz0Jvw9mnNLskJHlMUDA/viewform).
+:::tip Join Flashbots
 
-The following steps are for mining pools already running Flashbots to receive v0.2 bundles:
-
-
-**Stage I. Integration and Testing (May 17 - 23)**
-* Step 1: Update MEV-geth node to the lastest version according to the [MEV-geth v0.2 spec](https://github.com/flashbots/mev-geth/releases/tag/v1.10.3-mev0.2.0), MEV-geth v0.2 reference implementation released on May 19
-
-**Stage II. Receive Flashbots Bundles on v0.2 nodes (May 24 - 30)**
-* Step 2: We will start sending Flashbots MEV bundles to the mining pools who have integrated with Flashbots Alpha v0.2.
-* Step 3: Start migrating your hashrate to the Flashbots Alpha v0.2 nodes
-
-:::tip reminder
-
-Please continue to run your MEV-geth v0.2 pre-release node, while you set up a v0.2 full release node for testing.
+Over 80% of the Ethereum hashrate accepts Flashbots bundles which leads to fairer access to MEV and [0.3 ETH](https://explore.flashbots.net/) on average on top of every block reward for miners.
 
 :::
 
+For new mining pools who would like to receive Flashbots bundles, please complete the [Miner Indication of Interest Form](https://docs.google.com/forms/d/e/1FAIpQLSdz29fKXJXJFWXkEu8hZNG-NJUeAbOz0Jvw9mnNLskJHlMUDA/viewform).
 
-**Stage III. Complete switch to v0.2 nodes (May 31)**
-* Step 4: v0.2 pre-release nodes can safely be shut down, leaving only the Flashbots Alpha v0.2 nodes.
+-----
+
+## Running MEV-Geth
+
+You can choose one of the following approaches to start using MEV-Geth
+
+### Build and launch MEV-Geth
+
+You can find the MEV-Geth repository [here](https://github.com/flashbots/mev-geth).
+
+```
+git clone https://github.com/flashbots/mev-geth
+cd mev-geth
+make geth
+```
+
+### Implement specification
+
+If the Geth version that you are using contains a lot of custom code, you may want to implement required MEV-Geth changes yourself.
+You can find the latest specification [here](../miners/mev-geth-spec/v02.md) and the example implementation [here](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master)
+
+### Install the MEV-Geth Go Plugin (coming soon)
+
+We are planning to deliver future versions of MEV-Geth in the form of Go plugins for Geth. Get in touch with [Flashbots](https://discord.com/invite/7hvTycdNcK) if you want to contribute!
