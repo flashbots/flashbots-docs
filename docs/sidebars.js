@@ -64,6 +64,7 @@ module.exports = {
         }
       ],
     },
+    'community-tools',
     {
       "contribute": [
         'contribution-guide','cheatsheet',
