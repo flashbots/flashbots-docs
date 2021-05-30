@@ -31,6 +31,6 @@ make geth
 If the Geth version that you are using contains a lot of custom code, you may want to implement required MEV-Geth changes yourself.
 You can find the latest specification [here](../miners/mev-geth-spec/v02.md) and the example implementation [here](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master)
 
-### Install the MEV-Geth Go Plugin
+### Install the MEV-Geth Go Plugin (coming soon)
 
 We are planning to deliver future versions of MEV-Geth in the form of Go plugins for Geth. Get in touch with [Flashbots](https://discord.com/invite/7hvTycdNcK) if you want to contribute!
