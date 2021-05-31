@@ -4,7 +4,7 @@ title: onboarding
 
 :::tip Join Flashbots
 
-Over 80% of the Ethereum hashrate accepts Flashbots bundles which leads to fairer access to MEV and [0.3 ETH](https://explore.flashbots.net/) on average on top of every block reward for miners.
+Over 80% of the Ethereum hashrate accepts Flashbots bundles which leads to fairer access to MEV and [0.3 ETH](https://dashboard.flashbots.net/) on average on top of every block reward for miners.
 
 :::
 
