@@ -35,7 +35,6 @@ module.exports = {
               "advanced concepts": [
                 'flashbots-core/miners/advanced/source-code',
                 'flashbots-core/miners/advanced/interacting-with-relay',
-                'flashbots-core/miners/advanced/ffmp',
                 {'mev-geth spec': [
                   'flashbots-core/miners/mev-geth-spec/v02',
                   'flashbots-core/miners/mev-geth-spec/v02-rpc',
