@@ -28,15 +28,14 @@ module.exports = {
           ],
           'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
-            'flashbots-core/miners/mev-geth-introduction',
+            'flashbots-core/miners/how-it-works',
             'flashbots-core/miners/discord-setup',
             'flashbots-core/miners/faq',
             {
               "advanced concepts": [
-                'flashbots-core/miners/advanced/mev-geth-changes',
-                'flashbots-core/miners/advanced/interacting-with-mev-relay',
-                'flashbots-core/miners/advanced/ffmp',
-                {'MEV-Geth spec': [
+                'flashbots-core/miners/advanced/source-code',
+                'flashbots-core/miners/advanced/interacting-with-relay',
+                {'mev-geth spec': [
                   'flashbots-core/miners/mev-geth-spec/v02',
                   'flashbots-core/miners/mev-geth-spec/v02-rpc',
                   'flashbots-core/miners/mev-geth-spec/v01',

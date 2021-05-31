@@ -56,7 +56,7 @@ The MEV-Geth proof of concept is compatible with any regular Ethereum client. Th
 
 ### Differences between MEV-Geth and [_vanilla_ geth](https://github.com/ethereum/go-ethereum)
 
-You can find a detailed list of changes [here](advanced/mev-geth-changes.md)
+You can find a detailed list of changes [here](advanced/source-code.md)
 
 ### Moving towards version 1.0
 
