@@ -1,8 +1,8 @@
 ---
-title: Flashbots Fair Market Principles
+title: flashbots fair market principles
 ---
 
-This document aims to define a set of key principles and best practices upon which stakeholders of the Flashbots network can hold block producers (miners in ETH 1.0) accountable for their continued participation in the Flashbots Alpha. 
+This document aims to define a set of key principles and best practices upon which stakeholders of the Flashbots network can hold block producers (miners in ETH 1.0) accountable for their continued participation in the Flashbots Alpha.
 
 Fair Market Principles for MEV is required in the Flashbots Alpha due to the technical limitations in the early stage of the project which are mitigated on the basis of trust. Flashbots aims to eliminate these trust requirements in [future releases of the system](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251).
 
@@ -23,7 +23,7 @@ Bad behavior includes any deviation from the specified node behavior. This inclu
 
 ### Fairness
 
-Block producers are expected never to act or enable third parties to act on sensitive information received through the Flashbots relay. 
+Block producers are expected never to act or enable third parties to act on sensitive information received through the Flashbots relay.
 
 Sensitive information includes the state of the MEV bundle queue, sealed bid, pending block, bundle simulation, bundle content, or bundle merging. Sensitive information excludes MEV bundles correctly included in a block and distributed over the public network with the intention of such block being included as a canonical block or as an uncle block.
 

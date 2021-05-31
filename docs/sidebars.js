@@ -33,10 +33,10 @@ module.exports = {
             'flashbots-core/miners/faq',
             {
               "advanced concepts": [
-                'flashbots-core/miners/advanced/mev-geth-changes',
+                'flashbots-core/miners/advanced/source-code',
                 'flashbots-core/miners/advanced/interacting-with-mev-relay',
                 'flashbots-core/miners/advanced/ffmp',
-                {'MEV-Geth spec': [
+                {'mev-geth spec': [
                   'flashbots-core/miners/mev-geth-spec/v02',
                   'flashbots-core/miners/mev-geth-spec/v02-rpc',
                   'flashbots-core/miners/mev-geth-spec/v01',
