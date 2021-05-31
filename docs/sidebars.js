@@ -28,20 +28,19 @@ module.exports = {
           ],
           'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
+            'flashbots-core/miners/mev-geth-introduction',
             'flashbots-core/miners/discord-setup',
             'flashbots-core/miners/faq',
             {
               "advanced concepts": [
-                'flashbots-core/miners/advanced/mev-geth-introduction',
-                'flashbots-core/miners/advanced/mev-geth-usage',
-                'flashbots-core/miners/advanced/mev-geth-demo',
+                'flashbots-core/miners/advanced/mev-geth-changes',
                 'flashbots-core/miners/advanced/interacting-with-mev-relay',
-              ],
-              "mev-geth spec": [
-                'flashbots-core/miners/mev-geth-spec/v01',
-                'flashbots-core/miners/mev-geth-spec/v01-rpc',
-                'flashbots-core/miners/mev-geth-spec/v02',
-                'flashbots-core/miners/mev-geth-spec/v02-rpc',
+                {'MEV-Geth spec': [
+                  'flashbots-core/miners/mev-geth-spec/v02',
+                  'flashbots-core/miners/mev-geth-spec/v02-rpc',
+                  'flashbots-core/miners/mev-geth-spec/v01',
+                  'flashbots-core/miners/mev-geth-spec/v01-rpc',
+                ]},
               ],
             },
           ],
@@ -65,7 +64,7 @@ module.exports = {
         }
       ],
     },
-    "community-tools",
+    'community-tools',
     {
       "contribute": [
         'contribution-guide','cheatsheet',

@@ -34,3 +34,7 @@ You can find the latest specification [here](../miners/mev-geth-spec/v02.md) and
 ### Install the MEV-Geth Go Plugin (coming soon)
 
 We are planning to deliver future versions of MEV-Geth in the form of Go plugins for Geth. Get in touch with [Flashbots](https://discord.com/invite/7hvTycdNcK) if you want to contribute!
+
+## Feature requests and bug reports
+
+If you are a user of MEV-Geth and have suggestions on how to make integration with your current setup easier, or would like to submit a bug report, we encourage you to open an issue in the mev-geth repository with the `enhancement` or `bug` labels respectively. If you need help getting started, please ask in the dedicated [#⛏️miners](https://discord.gg/rcgADN9qFX) channel in our Discord.
