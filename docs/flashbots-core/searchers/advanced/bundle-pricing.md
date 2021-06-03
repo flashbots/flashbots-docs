@@ -34,6 +34,8 @@ The gas fees of mempool transactions are deducted to prevent "stuffing" bundles 
 
 ### Why aren't my bundles being included?
 
-There are two reasons to examine. First, your bundles may not be paying a higher gas price than the tail end of a block. You should examine the gas price that your bundles are paying by first simulating the bundles and looking at the coinbase difference and gas consumed. If it is lower than the tail end of recent blocks you will need to up your gas price accordingly.
+There are three reasons to examine. First, your bundles may not be paying a higher gas price than the tail end of a block. You should examine the gas price that your bundles are paying by first simulating the bundles and looking at the coinbase difference and gas consumed. If it is lower than the tail end of recent blocks you will need to up your gas price accordingly.
 
 Second, you may be competing with other searchers to capture the same opportunities, and they may be paying a higher gas price than you. Again, check the gas price that your bundles are paying by simulating them first and logging how much you are paying for a particular opportunity in a particular block. Then if your bundle is not included you can use the [blocks API](https://blocks.flashbots.net/) to see what bundle was included in your target block and how much they paid.
+
+Third, bundles below 42,000 gas used are rejected by the relay. This is to mitigate spam bundles that do nothing meaningful on chain.
