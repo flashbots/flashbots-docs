@@ -1,12 +1,12 @@
 ---
-title: inspect codebase
+title: codebase
 ---
 
-### design: 
-mev-inspect aims to quantify the lower bound of MEV (from txs such as arbitrage and liquidations) extracted on Ethereum. The profits are denominated in Ether and for cases where the reward is extracted in a non-ETH token, we query the historical price (via uniswap) and convert it accordingly. Additionally, even transactions with failed arb attempts and liquidation checks (where they might decide to check if the position is still liquidatable and halt accordingly) as they still end up paying the miner a gas fee. 
+### design:
+mev-inspect aims to quantify a lower bound of MEV extracted on Ethereum from txs such as arbitrage and liquidations. The profits are denominated in Ether and for cases where the reward is extracted in a non-ETH token, we query the historical price (via uniswap) and convert it accordingly. Additionally, we also count as MEV txs transactions with failed arb attempts and liquidation checks (where they might decide to check if the position is still liquidatable and halt accordingly) as they still end up paying the miner a gas fee.
 
-Components: 
-* Inspectors 
+Components:
+* Inspectors
     * Examines transactions to see if they belong to a relevant protocol we're interested in
     are "parsers" that know how a given contract is set up, and are able to extract necessary fields
 * Reducers and Processor
@@ -40,7 +40,7 @@ Direct ETH/token transfers, trades routed through an aggregator or a router are 
 * `Create`, when a contract deploys another contract (and potentially transfers assets to it).
 * `Reward`, pertaining to the block reward and uncle reward.
 
-On proxy implementation: 
+On proxy implementation:
 
 Aside from the eoa that initiates the transaction and the recepient (which can be another eoa or a contract), we are also interested in identifying any proxy implementations used during MEV extraction. We do that by iterating over the traces to find delegate calls originating from the contract to any other proxy implementations.
 
