@@ -4,6 +4,7 @@ module.exports = {
     {
       'flashbots core': [
         'flashbots-core/overview',
+        'flashbots-core/upgrade-process',
         {
           "for searchers": [
             'flashbots-core/searchers/quick-start',
@@ -25,6 +26,7 @@ module.exports = {
                 'flashbots-core/searchers/libraries/web3py-provider',
               ]
             },
+            'flashbots-core/other-resources'
           ],
           'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
