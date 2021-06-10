@@ -2,7 +2,7 @@
 title: other resources
 ---
 
-Remember you can ssk any questions in the [#🤖searchers](https://discord.gg/d9XYzHA4hM) channel on our Discord, below are a list of useful resources for searchers to wrap their heads around running Flashbots:
+Remember you can ask any questions in the [#🤖searchers](https://discord.gg/d9XYzHA4hM) channel on our Discord, below are a list of useful resources for searchers to wrap their heads around running Flashbots:
 
 
 * A technical overview of Flashbots the organization: https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251
