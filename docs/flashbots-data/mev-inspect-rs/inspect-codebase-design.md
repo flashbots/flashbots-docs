@@ -1,8 +1,7 @@
 ---
-title: codebase
+title: codebase - design
 ---
 
-### design:
 mev-inspect aims to quantify a lower bound of MEV extracted on Ethereum from txs such as arbitrage and liquidations. The profits are denominated in Ether and for cases where the reward is extracted in a non-ETH token, we query the historical price (via uniswap) and convert it accordingly. Additionally, we also count as MEV txs transactions with failed arb attempts and liquidation checks (where they might decide to check if the position is still liquidatable and halt accordingly) as they still end up paying the miner a gas fee.
 
 Components:
