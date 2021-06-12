@@ -81,7 +81,7 @@ Next we match on command, but if it's a tx, we inspect.
 We create a `mev_inspect::types::Inspection`. This seems to choose the correct inspector and from that extracts:
 
 - status (success/fail)
-- actions that happened, which can be any of the ones described [here](/docs/flashbots-data/mev-inspect-rs/inspect-codebase-design)
+- actions that happened, which can be any of the ones described [here](inspect-codebase-design)
 - protocols involved
 - the sender, contract (if any), and proxy contract (if any) of the tx
 - tx hsh & block height
