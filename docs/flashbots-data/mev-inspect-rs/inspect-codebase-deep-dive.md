@@ -2,9 +2,9 @@
 title: codebase - deep dive
 ---
 
-_Notes courtesy of Will Drevo, [source](https://github.com/worldveil/mev-inspect-rs/blob/master/NOTES.md)_
-
 A deep dive into the codebase, particularly for those who are looking to get familiar with both Rust and the inspect codebase
+
+_Notes courtesy of Will Drevo, [source](https://github.com/worldveil/mev-inspect-rs/blob/master/NOTES.md)_
 
 ## `main.rs`
 
@@ -16,7 +16,7 @@ The [gumdrop::Options](https://docs.rs/gumdrop/0.5.0/gumdrop/trait.Options.html)
 
 ```bash
 # will work
-./target/release/mev-inspect -u http://localhost:8080 tx 0xa72072f5041bcde89c560ba12cc00b22a87779ee369dbff81a78bba26d35e989 
+./target/release/mev-inspect -u http://localhost:8080 tx 0xa72072f5041bcde89c560ba12cc00b22a87779ee369dbff81a78bba26d35e989
 
 # won't parse url
 ./target/release/mev-inspect tx 0xa72072f5041bcde89c560ba12cc00b22a87779ee369dbff81a78bba26d35e989 -u http://localhost:8080
@@ -45,10 +45,10 @@ async fn run<M: Middleware + Clone + 'static>(provider: M, opts: Opts) -> anyhow
 ```
 
 * takes the provider & options as input
-* returns an [anyhow:::Result](https://docs.rs/anyhow/1.0.0/anyhow/type.Result.html), which is some nice syntactic sugar around catching and printing context and a backtrace if something goes wrong. See [here](https://docs.rs/anyhow/1.0.0/anyhow/trait.Context.html) specifically for how to add context inside a function. 
-* defines a type `M` that accepts any type that implements the Middleware, Clone, and [static lifetime](https://doc.rust-lang.org/rust-by-example/scope/lifetime/static_lifetime.html#trait-bound) traits. This is like an interface in Java. In our code, you can see how this was done for `CachedProvider` (src/cached_provider.rs). 
+* returns an [anyhow:::Result](https://docs.rs/anyhow/1.0.0/anyhow/type.Result.html), which is some nice syntactic sugar around catching and printing context and a backtrace if something goes wrong. See [here](https://docs.rs/anyhow/1.0.0/anyhow/trait.Context.html) specifically for how to add context inside a function.
+* defines a type `M` that accepts any type that implements the Middleware, Clone, and [static lifetime](https://doc.rust-lang.org/rust-by-example/scope/lifetime/static_lifetime.html#trait-bound) traits. This is like an interface in Java. In our code, you can see how this was done for `CachedProvider` (src/cached_provider.rs).
 
-We wrap our provider in a reference counter [std::styc::Arc](https://doc.rust-lang.org/std/sync/struct.Arc.html), which is the [C++ equvilent of std::shared_ptr](https://stackoverflow.com/a/49834496), inorder to prevent memory leaks. 
+We wrap our provider in a reference counter [std::styc::Arc](https://doc.rust-lang.org/std/sync/struct.Arc.html), which is the [C++ equvilent of std::shared_ptr](https://stackoverflow.com/a/49834496), inorder to prevent memory leaks.
 
 We create a `mev_inspect::HistoricalPrice` object, giving it a provider, the price coming from Uniswap.
 
@@ -62,15 +62,15 @@ doesn't have a size known at compile-time
 
 The [`dyn` keyword](https://doc.rust-lang.org/std/keyword.dyn.html) isn't strictly necessary (the compiler will make this trait dynamically dispatched), but know that it's depcrated and you'll get a warning.
 
-Next we create a vector of reducers. 
+Next we create a vector of reducers.
 
-After that, we create a processor. 
+After that, we create a processor.
 
 The connection between these different types seems to be:
 
 - **Inspectors** are "parsers" that know how a given contract is set up, and are able to extract necessary fields
 - **Reducers** are "checkers" that examine extracted fields for different MEV actions
-- **Processor** is a coordinating object that takes inspectors and parsers to inspect transactions 
+- **Processor** is a coordinating object that takes inspectors and parsers to inspect transactions
 
 Next we create a database connection.
 
@@ -118,7 +118,7 @@ First, generate the ABI with [ethers::contract::abigen](https://docs.rs/ethers-c
 
 This is the inspector for Aave.
 
-[As is customary in Rust](https://doc.rust-lang.org/std/keyword.impl.html), we define a `struct` for the data fields, and an `impl` for the methods on the object itself. 
+[As is customary in Rust](https://doc.rust-lang.org/std/keyword.impl.html), we define a `struct` for the data fields, and an `impl` for the methods on the object itself.
 
 Aave inspector doesn't need a provider because it can simply load the ABI included in the repo.
 
