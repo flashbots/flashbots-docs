@@ -60,7 +60,8 @@ module.exports = {
         {
           'mev-inspect': [
             'flashbots-data/mev-inspect-rs/inspect-quick-start',
-            'flashbots-data/mev-inspect-rs/inspect-codebase',
+            'flashbots-data/mev-inspect-rs/inspect-codebase-design',
+            'flashbots-data/mev-inspect-rs/inspect-codebase-deep-dive',
             'flashbots-data/mev-inspect-rs/inspect-inspector-example',
           ]
         }
