@@ -33,8 +33,8 @@ In the Flashbots Forums [Discussions section](https://flashbots.com/pm/discussio
   * Bundles cannot be 'broken up' into multiple transactions. All transactions in a bundle must be included together. (Note: we cannot prevent your bundle from being included in an uncle or a chain reorg)
 * MEV-Relay receives bundles and sends them to all whitelisted miners running MEV-Geth
 * Miners receive Flashbots bundles from MEV-Relay and process them in MEV-Geth
-* MEV-Geth picks the most profitable bundle out of all bundles it is sent.
-* MEV-Geth then compares the block that includes this bundle with a vanilla block that does not include any bundles. If it is more profitable to include a bundle MEV-Geth will do so, but otherwise it will default back to a vanilla Geth block.
+* MEV-Geth picks the most profitable combination of bundles out of all bundles it is sent.
+* MEV-Geth then compares the block that includes these bundles with a vanilla block that does not include any bundles. If it is more profitable to include a bundle, or multiple ones, MEV-Geth will do so, but otherwise it will default back to a vanilla Geth block.
 * Only when the a searcher's bundle is included in a block is the tip associated with their bundle paid.
   * If a bundle is not included it does not cost the searcher anything (i.e. no gas fees are paid for failed transactions)
 
@@ -47,7 +47,7 @@ In the Flashbots Forums [Discussions section](https://flashbots.com/pm/discussio
 
 ### How much hashrate is currently on Flashbots Core?
 
-The mining pools running MEV-geth collectively account for over 80% of total Ethereum hashrate.
+The mining pools running MEV-geth collectively account for over 85.5% of total Ethereum hashrate.
 
 ### Can I send bundles directly to miners without going through the Relay?
 
@@ -72,12 +72,11 @@ https://etherscan.io/tx/0x5e1657ef0e9be9bc72efefe59a2528d0d730d478cfc9e6cdd09af9
 *Red line indicates where the bundle is*
 
 ### What level of transparency do you provide into how this infrastructure works?
-
 MEV-Geth, MEV-Relay and all the code searchers interact with is open-source and documented on our [Github repo](https://flashbots.com). In addition, we publish monthly [transparency reports](https://medium.com/flashbots/tagged/transparency-report).
 
 We've also released a publicly accessible API [blocks.flashbots.net](https://blocks.flashbots.net) for displaying Flashbots blocks and txs, and will be releasing live data visualizations useful in the coming weeks.
 
-### Can Flashbots Core be used concurrently with the regular Ethereum tx pool? 
+### Can Flashbots Core be used concurrently with the regular Ethereum tx pool?
 
 Yes! As a searcher you want to maximize the hashrate you're exposed to and there is no reason you can't submit your trades to Flashbots and another system in parallel. One could also imagine a dual system that submits txs to both the traditional Ethereum mempool and Flashbots, with bot logic conditional on one or the other landing.
 
@@ -145,7 +144,7 @@ Unfortunately not at the current moment.
 
 The lower bound on a successfully mined Flashbots bundle is the block tail gas price since the 'tail' of the block, and its transactions, will be pushed out to make room for a Flashbots bundle of transactions. This is what the miner's software will compare against when deciding whether to mine a Flashbots block or the vanilla Geth block.
 
-If you have no competition for that block, then any tip above the lower bound will get you included (modulo hashrate). If other searchers are going for the same block, you have to pay the highest tip to be selected. We suggest you look at past data for other bids to get an idea of the average bid sizes.
+If you have no competition for that block, then any tip above the lower bound will get you included (modulo hashrate). If other searchers are going for the same block, you have to pay the highest tip of conflicting bundles for your bundle to be selected. We suggest you look at past data for other bids to get an idea of the average bid sizes and encourage you to check the [bundle pricing section](/flashbots-core/searchers/advanced/bundle-pricing) in advanced concepts.
 
 ### Will you implement a way for several non-overlapping bundles to be accepted within the same block?
 
@@ -161,9 +160,9 @@ Nope!
 
 ### Can I simulate my bundle against historical blocks to backtest them?
 
-Yes, but only for dates after March 12th since the Relay is running with partial archive nodes. This means you can simulate blocks >= 12030000. This range will be extended shortly. 
+Yes, but only for dates after March 12th since the Relay is running with partial archive nodes. This means you can simulate blocks >= 12030000. This range will be extended shortly.
 
-### Can bundle simulations take into account state changes from an earlier transaction in the bundle? Eg. say first TX is buying the tokens, second is selling. 
+### Can bundle simulations take into account state changes from an earlier transaction in the bundle? Eg. say first TX is buying the tokens, second is selling.
 
 Yep!
 
@@ -183,7 +182,7 @@ Currently, MEV-Geth compares:
 
 It then picks the block that results in the miner's balance increasing the most.
 
-### Can I use a contract to tip ETH to the miner? 
+### Can I use a contract to tip ETH to the miner?
 
 You can pay miners either via gas or by sending ETH to their coinbase.
 It's best to pay via block.coinbase transfer to prevent the inclusion of your bundle when you miss (i.e. you remove the miner incentive of inclusion on a miss) and to protect yourself from re-orgs.
@@ -214,26 +213,10 @@ We recommend checking out this [great guide](https://fifikobayashi.medium.com/be
 
 ### What do I need to change in my bot aside from using the sendBundle to submit transactions?
 
-To get the full benefit of using flashbots, it is beneficial to transition from transaction fee payment (e.g. `gasPrice * gasUsed`) to coinbase payments. Since you can now submit 0-gas-price transactions, you will need to add functionality to your on-chain code to pay `block.coinbase.transfer()` based on the reward intended for the miner. 
+To get the full benefit of using flashbots, it is beneficial to transition from transaction fee payment (e.g. `gasPrice * gasUsed`) to coinbase payments. Since you can now submit 0-gas-price transactions, you will need to add functionality to your on-chain code to pay `block.coinbase.transfer()` based on the reward intended for the miner.
 
 This can come from a calldata argument or some fixed percentage of the overall opportunity calculated on-chain. We recommend using calldata for specifying the reward in order to quickly react to fluctuations in flashbot bundle prices.
 
 ### Can I have a running bundle which I constantly update whenever I find a new trade? Essentially I want to continuously update my bunle until the next block arrives.
 
 Your previous bundle is dropped if the new bundle is more valuable.
-
-## Resources
-
-### Other Resources
-* Example arbitrage searcher: https://github.com/flashbots/simple-arbitrage
-* MEV-Relay repo: https://github.com/flashbots/mev-relay-js
-* Flashbots ethers.js provider: https://github.com/flashbots/ethers-provider-flashbots-bundle
-* Flashbots web3.py provider: https://github.com/flashbots/web3-flashbots
-* Ask any questions in the [#🤖searchers](https://discord.gg/d9XYzHA4hM) channel on our Discord 
-* A technical overview of Flashbots the organization: https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251
-* Our values and what we stand for: https://medium.com/flashbots/frontrunning-the-mev-crisis-40629a613752
-* [Flashbots: MEV Of The Week thread](https://twitter.com/epheph/status/1357089176898969600?s=20) by Scott Bigelow 
-* [Lost ENS sanctuary using Flashbots](https://twitter.com/andrekorol1/status/1358252320207876104?s=19) by Andre Korol 🔥
-* [The enemy of your enemy is NOT your friend](https://fiona.mirror.xyz/QXdCOAggA5g_j5R_JpO-V5LqK89EbimnYIV6c2rOsT0) by Fiona Kobayashi
-* [Flashbots gasless transactions thread](https://twitter.com/amanusk_/status/1370642493621080071?s=20) by Alex Manuskin
-* [Beginner's guide to troubleshooting MEV on Flashbots](https://fifikobayashi.medium.com/beginners-guide-to-troubleshooting-mev-on-flashbots-aee175048858) by Fiona Kobayashi

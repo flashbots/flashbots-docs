@@ -1,5 +1,5 @@
 ---
-title: contribution guide
+title: docs contribution guide
 ---
 Thank you for your interest in adding to our knowledge base!
 

@@ -4,6 +4,7 @@ module.exports = {
     {
       'flashbots core': [
         'flashbots-core/overview',
+        'flashbots-core/upgrade-process',
         {
           "for searchers": [
             'flashbots-core/searchers/quick-start',
@@ -25,6 +26,7 @@ module.exports = {
                 'flashbots-core/searchers/libraries/web3py-provider',
               ]
             },
+            'flashbots-core/other-resources'
           ],
           'for miners & mining pools': [
             'flashbots-core/miners/quick-start',
@@ -58,7 +60,8 @@ module.exports = {
         {
           'mev-inspect': [
             'flashbots-data/mev-inspect-rs/inspect-quick-start',
-            'flashbots-data/mev-inspect-rs/inspect-codebase',
+            'flashbots-data/mev-inspect-rs/inspect-codebase-design',
+            'flashbots-data/mev-inspect-rs/inspect-codebase-deep-dive',
             'flashbots-data/mev-inspect-rs/inspect-inspector-example',
           ]
         }
