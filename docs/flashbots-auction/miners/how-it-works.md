@@ -52,7 +52,7 @@ MEV-Geth introduces the concepts of "searchers", "transaction bundles", and "blo
 
 ![](https://hackmd.io/_uploads/B1fWz7rcD.png)
 
-The MEV-Geth proof of concept is compatible with any regular Ethereum client. The Flashbots core devs are maintaining [a reference implementation](https://github.com/flashbots/mev-geth) for the go-ethereum client.
+The MEV-Geth proof of concept is compatible with any regular Ethereum client. The Flashbots Auction devs are maintaining [a reference implementation](https://github.com/flashbots/mev-geth) for the go-ethereum client.
 
 ### Differences between MEV-Geth and [_vanilla_ geth](https://github.com/ethereum/go-ethereum)
 

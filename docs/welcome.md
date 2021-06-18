@@ -10,7 +10,7 @@ keywords:
 Flashbots is a research and development organization working on mitigating the negative externalities of current MEV extraction techniques and avoiding the existential risks MEV could cause to state-rich blockchains like Ethereum. Our primary focus is to enable a permissionless, transparent, and fair ecosystem for MEV extraction. It falls under three goals: Democratizing Access to MEV Revenue, Bringing Transparency to MEV Activity, and Redistributing MEV Revenue.
 
 Our efforts are focused on three verticals:
-- **Flashbots Core**: a private communication channel between miners and searchers for transparent and efficient MEV extraction.
+- **Flashbots Auction**: a private communication channel between miners and searchers for transparent and efficient MEV extraction.
 - **Flashbots Data**: a suite of tools for increasing MEV transparency and reducing information asymmetry.
 - **Flashbots Research**: an open, transparent, and collaborative research effort to tackle short and long term research questions relevant to MEV.
 
@@ -22,7 +22,7 @@ Learn more about our values and our mission: [Flashbots - Frontrunning the MEV C
 Join us on Discord: [#Flashbots](https://discord.gg/7hvTycdNcK)<br/>
 Find out more about our organization and our past community calls [here](https://github.com/flashbots/pm)<br/>
 Subscribe to our public calendar [here](https://bit.ly/3uJAHpo)  
-
+Auction
 ### New to MEV? Here's where to get started
 * [Ethereum is a Dark Forest](https://medium.com/@danrobinson/ethereum-is-a-dark-forest-ecc5f0505dff) by Dan Robinson & Georgios Konstantopoulos
 * [How to get Front-Run on Ethereum mainnet](https://youtu.be/UZ-NNd6yjFM) by Scott Bigelow
