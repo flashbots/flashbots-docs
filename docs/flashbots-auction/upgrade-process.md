@@ -19,11 +19,10 @@ We do not make any commitments around how frequently / quickly these upgrades wi
 The goal of the feature selection process is to surface feature requests from the community and collaborate on implementation.
 
 Product Manager (PM): @thegostep
-Auction
 1. Feature requests are submitted by anyone to the [flashbots forum](https://github.com/flashbots/pm/discussions) and titled 'Feature request:'
 2. The PM is responsible for engaging and moderating the forums
 3. The PM updates the ['core releases' project board](https://github.com/orgs/flashbots/projects/6) to keep track of feature requests and assigns them to target releases
-4. The PM produces a proposal that outlines the details of modifications to the flashbots Auction infrastructure
+4. The PM produces a proposal that outlines the details of modifications to the flashbots auction infrastructure
 5. The proposal is posted to ['General' forum](https://github.com/flashbots/pm/discussions/categories/general) and shared with the community for feedback
 6. Feedback is incorporated into the formal specification
 

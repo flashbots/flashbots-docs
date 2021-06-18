@@ -22,7 +22,7 @@ Learn more about our values and our mission: [Flashbots - Frontrunning the MEV C
 Join us on Discord: [#Flashbots](https://discord.gg/7hvTycdNcK)<br/>
 Find out more about our organization and our past community calls [here](https://github.com/flashbots/pm)<br/>
 Subscribe to our public calendar [here](https://bit.ly/3uJAHpo)  
-Auction
+
 ### New to MEV? Here's where to get started
 * [Ethereum is a Dark Forest](https://medium.com/@danrobinson/ethereum-is-a-dark-forest-ecc5f0505dff) by Dan Robinson & Georgios Konstantopoulos
 * [How to get Front-Run on Ethereum mainnet](https://youtu.be/UZ-NNd6yjFM) by Scott Bigelow
