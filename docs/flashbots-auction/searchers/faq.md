@@ -5,21 +5,21 @@ title: FAQ
 
 Don't see your question answered? Join our dedicated [#🤖searchers](https://discord.gg/KNFBvZzJyT) channel on Discord!
 
-### What is Flashbots Core?
+### What is Flashbots Auction?
 
-Flashbots Core is a permissionless, transparent, and fair ecosystem for efficient MEV extraction and frontrunning protection which preserves the ideals of Ethereum. Flashbots Core provides a private communication channel between Ethereum users and miners for efficiently communicating preferred transaction order within a block. See the full [Flashbots Core overview](/flashbots-core/overview).
+Flashbots Auction is a permissionless, transparent, and fair ecosystem for efficient MEV extraction and frontrunning protection which preserves the ideals of Ethereum. Flashbots Auction provides a private communication channel between Ethereum users and miners for efficiently communicating preferred transaction order within a block. See the full [Flashbots Auction overview](/flashbots-auction/overview).
 
-### Who is behind Flashbots Core?
+### Who is behind Flashbots Auction?
 
-Flashbots Core is built by the Flashbots crew. We are a research and development organization working on solving the problems MEV causes to state-rich blockchains. You can find out more about the organization on our [pm repo](https://github.com/flashbots/pm) and in this introductory [Medium post](https://medium.com/flashbots/frontrunning-the-mev-crisis-40629a613752) that details our values and motives.
+Flashbots Auction is built by the Flashbots crew. We are a research and development organization working on solving the problems MEV causes to state-rich blockchains. You can find out more about the organization on our [pm repo](https://github.com/flashbots/pm) and in this introductory [Medium post](https://medium.com/flashbots/frontrunning-the-mev-crisis-40629a613752) that details our values and motives.
 
 ### How is Flashbots funded?
 
 The Flashbots organization is funded by long term capital partners with a track record of alignment with the ecosystem. Our current capital partner is [Paradigm](https://www.paradigm.xyz).
 
-### What is the Flashbots Core roadmap?
+### What is the Flashbots Auction roadmap?
 
-As laid out in our [ETHResearch post](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251), we look at the development of Flashbots in phases. See the latest progress on our [roadmap](/flashbots-core/overview#roadmap).
+As laid out in our [ETHResearch post](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251), we look at the development of Flashbots in phases. See the latest progress on our [roadmap](/flashbots-auction/overview#roadmap).
 
 ### Where can I submit a feature request?
 
@@ -38,20 +38,20 @@ In the Flashbots Forums [Discussions section](https://flashbots.com/pm/discussio
 * Only when the a searcher's bundle is included in a block is the tip associated with their bundle paid.
   * If a bundle is not included it does not cost the searcher anything (i.e. no gas fees are paid for failed transactions)
 
-### Why use Flashbots Core?
+### Why use Flashbots Auction?
 
 * It allows searchers to bypass the Ethereum mempool and avoid their strategy leaking before it is mined on-chain (e.g. being frontrun by generalized frontrunners).
 * It allows searchers to save money from avoiding paying gas fees for failed transactions.
 * It allows miners to receive additional revenue in the form of the bundle tip in exchange for including the most profitable bundle in the block they mined.
 * It reduces Ethereum network congestion and lowers Ethereum network transaction fees.
 
-### How much hashrate is currently on Flashbots Core?
+### How much hashrate is currently on Flashbots Auction?
 
 The mining pools running MEV-geth collectively account for over 85.5% of total Ethereum hashrate.
 
 ### Can I send bundles directly to miners without going through the Relay?
 
-Using the Flashbots Relay is required during the alpha to aggregate bundle requests from all users, prevent spam and DOS attacks on participating miner(s)/mining pool(s), and collect necessary system health metrics. We are working to remove this requirement in future releases of Flashbots Core. See the trust assumptions of the [Flashbots Alpha](/flashbots-core/overview#trust-assumptions).
+Using the Flashbots Relay is required during the alpha to aggregate bundle requests from all users, prevent spam and DOS attacks on participating miner(s)/mining pool(s), and collect necessary system health metrics. We are working to remove this requirement in future releases of Flashbots Auction. See the trust assumptions of the [Flashbots Alpha](/flashbots-auction/overview#trust-assumptions).
 
 ### Where are the Relay servers located?
 
@@ -76,17 +76,17 @@ MEV-Geth, MEV-Relay and all the code searchers interact with is open-source and 
 
 We've also released a publicly accessible API [blocks.flashbots.net](https://blocks.flashbots.net) for displaying Flashbots blocks and txs, and will be releasing live data visualizations useful in the coming weeks.
 
-### Can Flashbots Core be used concurrently with the regular Ethereum tx pool?
+### Can Flashbots Auction be used concurrently with the regular Ethereum tx pool?
 
 Yes! As a searcher you want to maximize the hashrate you're exposed to and there is no reason you can't submit your trades to Flashbots and another system in parallel. One could also imagine a dual system that submits txs to both the traditional Ethereum mempool and Flashbots, with bot logic conditional on one or the other landing.
 
-### Is Flashbots Core a race to maximize miners profits and minimize searcher profits?
+### Is Flashbots Auction a race to maximize miners profits and minimize searcher profits?
 
-Flashbots Core uses a first-price sealed-bid auction mechanism for allocating blockspace. This mechanism is designed to perform price discovery for an oportunity with minimal negative externalities.
+Flashbots Auction uses a first-price sealed-bid auction mechanism for allocating blockspace. This mechanism is designed to perform price discovery for an oportunity with minimal negative externalities.
 
 We expect searcher who focus on finding "new alpha" to be able to keep the majority of the profits, while searchers who target competitive opportunities will need to give the majority of profits to miners in order to win the auction.
 
-See the overview for more information on the [auction mechanism](/flashbots-core/overview#how-does-it-work).
+See the overview for more information on the [auction mechanism](/flashbots-auction/overview#how-does-it-work).
 
 ### What will happen when EIP1559 is released?
 
@@ -112,7 +112,7 @@ You can query the relay to obtain an understanding of your [reputation score](ht
 
 ### Are you on any testnets?
 
-Yes, we are on Goerli. See this [guide](/flashbots-core/searchers/advanced/goerli-testnet) for more information.
+Yes, we are on Goerli. See this [guide](/flashbots-auction/searchers/advanced/goerli-testnet) for more information.
 
 ### How do I target a timestamp range instead of a block number when submitting a bundle?
 
@@ -144,11 +144,11 @@ Unfortunately not at the current moment.
 
 The lower bound on a successfully mined Flashbots bundle is the block tail gas price since the 'tail' of the block, and its transactions, will be pushed out to make room for a Flashbots bundle of transactions. This is what the miner's software will compare against when deciding whether to mine a Flashbots block or the vanilla Geth block.
 
-If you have no competition for that block, then any tip above the lower bound will get you included (modulo hashrate). If other searchers are going for the same block, you have to pay the highest tip of conflicting bundles for your bundle to be selected. We suggest you look at past data for other bids to get an idea of the average bid sizes and encourage you to check the [bundle pricing section](/flashbots-core/searchers/advanced/bundle-pricing) in advanced concepts.
+If you have no competition for that block, then any tip above the lower bound will get you included (modulo hashrate). If other searchers are going for the same block, you have to pay the highest tip of conflicting bundles for your bundle to be selected. We suggest you look at past data for other bids to get an idea of the average bid sizes and encourage you to check the [bundle pricing section](/flashbots-auction/searchers/advanced/bundle-pricing) in advanced concepts.
 
 ### Will you implement a way for several non-overlapping bundles to be accepted within the same block?
 
-Yes, bundle merging is introduced in the [alpha-v0.2 release](/flashbots-core/releases/alpha-v0.2).
+Yes, bundle merging is introduced in the [alpha-v0.2 release](/flashbots-auction/releases/alpha-v0.2).
 
 ### Where can I get data on past auctions and past blocks?
 

@@ -6,11 +6,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-This quickstart guide contains all the information necessary to get up and running as a searcher on Flashbots Core. If you have any questions, do not hesitate to ask in the [#searchers discord channel](https://discord.gg/GezzK33W).
+This quickstart guide contains all the information necessary to get up and running as a searcher on Flashbots Auction. If you have any questions, do not hesitate to ask in the [#searchers discord channel](https://discord.gg/GezzK33W).
 
 See you on-chain! ⚡🤖
 
-### Who should use Flashbots Core?
+### Who should use Flashbots Auction?
 1. Ethereum bot operators (we call them "searchers") looking for fast, and risk free access to blockspace (for example, arbitrage and liquidation bots)
 2. Ethereum users looking for frontrunning protection on their transactions (for example, Uniswap traders)
 3. Ethereum Dapps with advanced use cases like account abstraction or gasless transactions (for example, tornado.cash and mistX)
@@ -107,6 +107,6 @@ That's it!
 
 Congrats! You should now have everything you need to start sending transactions to the Flashbots network.
 
-- If you are looking to interact with the Flashbots Relay without using one of the libraries, check out the [RPC endpoint documentation](/flashbots-core/searchers/advanced/rpc-endpoint) and other advanced concepts.
-- For examples of advanced usage of Flashbots, check out the [example searchers](/flashbots-core/searchers/example-searchers/simple-arbitrage-bot)
-- For additional tools, check out the [searcher libraries](/flashbots-core/searchers/libraries/ethers-js-provider)
+- If you are looking to interact with the Flashbots Relay without using one of the libraries, check out the [RPC endpoint documentation](/flashbots-auction/searchers/advanced/rpc-endpoint) and other advanced concepts.
+- For examples of advanced usage of Flashbots, check out the [example searchers](/flashbots-auction/searchers/example-searchers/simple-arbitrage-bot)
+- For additional tools, check out the [searcher libraries](/flashbots-auction/searchers/libraries/ethers-js-provider)
