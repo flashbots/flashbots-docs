@@ -85,4 +85,3 @@ module.exports = {
     }
   ],
 };
-auction
