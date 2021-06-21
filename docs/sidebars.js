@@ -2,52 +2,52 @@ module.exports = {
   docs: [
     'welcome',
     {
-      'flashbots core': [
-        'flashbots-core/overview',
-        'flashbots-core/upgrade-process',
+      'flashbots auction': [
+        'flashbots-auction/overview',
+        'flashbots-auction/upgrade-process',
         {
           "for searchers": [
-            'flashbots-core/searchers/quick-start',
-            'flashbots-core/searchers/faq',
+            'flashbots-auction/searchers/quick-start',
+            'flashbots-auction/searchers/faq',
             {
               "advanced concepts": [
-                'flashbots-core/searchers/advanced/understanding-bundles',
-                'flashbots-core/searchers/advanced/coinbase-payment',
-                'flashbots-core/searchers/advanced/bundle-pricing',
-                'flashbots-core/searchers/advanced/rpc-endpoint',
-                'flashbots-core/searchers/advanced/goerli-testnet',
+                'flashbots-auction/searchers/advanced/understanding-bundles',
+                'flashbots-auction/searchers/advanced/coinbase-payment',
+                'flashbots-auction/searchers/advanced/bundle-pricing',
+                'flashbots-auction/searchers/advanced/rpc-endpoint',
+                'flashbots-auction/searchers/advanced/goerli-testnet',
               ],
               "example searchers": [
-                'flashbots-core/searchers/example-searchers/simple-arbitrage-bot',
-                'flashbots-core/searchers/example-searchers/searcher-sponsored-tx',
+                'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
+                'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
               ],
               "libraries": [
-                'flashbots-core/searchers/libraries/ethers-js-provider',
-                'flashbots-core/searchers/libraries/web3py-provider',
+                'flashbots-auction/searchers/libraries/ethers-js-provider',
+                'flashbots-auction/searchers/libraries/web3py-provider',
               ]
             },
-            'flashbots-core/other-resources'
+            'flashbots-auction/other-resources'
           ],
           'for miners & mining pools': [
-            'flashbots-core/miners/quick-start',
-            'flashbots-core/miners/how-it-works',
-            'flashbots-core/miners/discord-setup',
-            'flashbots-core/miners/faq',
+            'flashbots-auction/miners/quick-start',
+            'flashbots-auction/miners/how-it-works',
+            'flashbots-auction/miners/discord-setup',
+            'flashbots-auction/miners/faq',
             {
               "advanced concepts": [
-                'flashbots-core/miners/advanced/source-code',
-                'flashbots-core/miners/advanced/interacting-with-relay',
+                'flashbots-auction/miners/advanced/source-code',
+                'flashbots-auction/miners/advanced/interacting-with-relay',
                 {'mev-geth spec': [
-                  'flashbots-core/miners/mev-geth-spec/v02',
-                  'flashbots-core/miners/mev-geth-spec/v02-rpc',
-                  'flashbots-core/miners/mev-geth-spec/v01',
-                  'flashbots-core/miners/mev-geth-spec/v01-rpc',
+                  'flashbots-auction/miners/mev-geth-spec/v02',
+                  'flashbots-auction/miners/mev-geth-spec/v02-rpc',
+                  'flashbots-auction/miners/mev-geth-spec/v01',
+                  'flashbots-auction/miners/mev-geth-spec/v01-rpc',
                 ]},
               ],
             },
           ],
           'releases': [
-            'flashbots-core/releases/alpha-v0.2',
+            'flashbots-auction/releases/alpha-v0.2',
           ],
         },
       ]

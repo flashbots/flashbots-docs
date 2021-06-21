@@ -10,7 +10,7 @@ keywords:
 Flashbots is a research and development organization working on mitigating the negative externalities of current MEV extraction techniques and avoiding the existential risks MEV could cause to state-rich blockchains like Ethereum. Our primary focus is to enable a permissionless, transparent, and fair ecosystem for MEV extraction. It falls under three goals: Democratizing Access to MEV Revenue, Bringing Transparency to MEV Activity, and Redistributing MEV Revenue.
 
 Our efforts are focused on three verticals:
-- **Flashbots Core**: a private communication channel between miners and searchers for transparent and efficient MEV extraction.
+- **Flashbots Auction**: a private communication channel between miners and searchers for transparent and efficient MEV extraction.
 - **Flashbots Data**: a suite of tools for increasing MEV transparency and reducing information asymmetry.
 - **Flashbots Research**: an open, transparent, and collaborative research effort to tackle short and long term research questions relevant to MEV.
 

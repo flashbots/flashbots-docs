@@ -8,18 +8,18 @@ Fair Market Principles for MEV is required in the Flashbots Alpha due to the tec
 
 Block producers connected to the Flashbots Alpha are expected to act in the [best interest](https://www.investopedia.com/what-is-the-sec-s-regulation-bi-best-interest-rule-4689542) of the Flashbots network, the Ethereum network, and its various stakeholders. Namely, the Flashbots network aims to uphold the properties of fairness, efficiency, transparency, and permissionlessness. Block producers participating in the Flashbots Alpha are expected to collaborate in the development of an ecosystem for MEV extraction which reinforces the security and stability of the Ethereum network.
 
-In the event of a breach of these principles by one of the block producers, the Flashbots core devs may act on behalf of stakeholders in disabling the access to the Flashbots network until the breach is rectified. The Flashbots core devs aim to provide technical support to block producers on a best effort basis to help resolve any technical issues.
+In the event of a breach of these principles by one of the block producers, the Flashbots Auction devs may act on behalf of stakeholders in disabling the access to the Flashbots network until the breach is rectified. The Flashbots Auction devs aim to provide technical support to block producers on a best effort basis to help resolve any technical issues.
 
 
 ## Principles
 
 ### Correctness
 
-Block producers are expected to operate an Ethereum node which complies with the latest version of the Ethereum specification and the latest version of the Flashbots core specification. Block producers are expected to follow the Flashbots core upgrade process and swiftly upgrade their nodes to meet latest requirements.
+Block producers are expected to operate an Ethereum node which complies with the latest version of the Ethereum specification and the latest version of the Flashbots Auction specification. Block producers are expected to follow the Flashbots Auction upgrade process and swiftly upgrade their nodes to meet latest requirements.
 
 Bad behavior includes any deviation from the specified node behavior. This includes, but is not limited to, implementation errors, intended omissions, and new "features" which change how the system operates.
 
-[Flashbots core specification](../mev-geth-spec/v02.md)
+[Flashbots Auction specification](../mev-geth-spec/v02.md)
 
 ### Fairness
 
@@ -65,7 +65,7 @@ Block producers report the amount of revenue they received from the Flashbots ne
 
 ### Professionalism
 
-Block producers are diligent in swiftly and correctly implementing the latest versions of Flashbots core and Ethereum without unjustified delay.
+Block producers are diligent in swiftly and correctly implementing the latest versions of Flashbots Auction and Ethereum without unjustified delay.
 
 Block producers properly secure their node infrastructure to protect the integrity of their system. This includes, but is not limited to, making use of reverse proxies, firewalls, and strict access control to prevent information leaks.
 
@@ -75,16 +75,16 @@ Block producers quickly respond, mitigate, and remediate incidents causing unexp
 
 ### Communication
 
-Block producers actively monitor the Flashbots Discord and mev-geth Github repository to remain up to date with latest Flashbots core releases and core dev communication.
+Block producers actively monitor the Flashbots Discord and mev-geth Github repository to remain up to date with latest Flashbots Auction releases and core dev communication.
 
 ## Penalty & Remediation
 
 Penalties for violating the Flashbots Fair Market Principles and Best Practices can range from a simple warning to being removed from the Flashbots relay until the violations are resolved.
 Warnings will be communicated to the offending block producer through the dedicated Flashbots Discord channel and are expected to be acknowledged within 24h.
 
-Block producers are expected to collaborate with Flashbots core devs to promptly resolve any issue as they arise.
+Block producers are expected to collaborate with Flashbots Auction devs to promptly resolve any issue as they arise.
 
-Flashbots core devs will provide technical support on a "best effort" basis in order to help bring the offending block producer back into compliance with the FFMP.
+Flashbots Auction devs will provide technical support on a "best effort" basis in order to help bring the offending block producer back into compliance with the FFMP.
 
 ## Feedback & Discussion
 
@@ -92,4 +92,4 @@ Please provide feedback on the FFMPs and engage in discussion in the [Flashbots 
 
 ## Disclaimer
 
-Flashbots core and Flashbots alpha is an open-source software stack, while we will attempt to provide support for any issues or test infrastructure we run, we cannot provide any guarantees associated with the use of Flashbots tools and encourage a miner-side diligence process for all network participants.
+Flashbots Auction and Flashbots alpha is an open-source software stack, while we will attempt to provide support for any issues or test infrastructure we run, we cannot provide any guarantees associated with the use of Flashbots tools and encourage a miner-side diligence process for all network participants.
