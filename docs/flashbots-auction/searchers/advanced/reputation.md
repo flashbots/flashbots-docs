@@ -12,11 +12,11 @@ The current reputation system is designed to classify searchers into a high repu
 
 To determine in which queue a searcher belongs, Flashbots looks at their history of submissions to the relay. Specifically, Flashbots uses the following scoring function:
 
-$$r(U) = \frac{\sum_{T\in H}\Delta_{coinbase_T} + g_Tp_T}{\sum_{T\in S}g_T}$$
+$$r(U) = \frac{\sum_{T\in H_U}\Delta_{coinbase_T} + g_Tp_T}{\sum_{T\in S_U}g_T}$$
 
-$r$: searcher $U$ reputation score.  
-$H$: set of all transactions $T$ submitted to the flashbots relay `eth_sendBundle` RPC and successfully landed on chain.  
-$S$: set of all transactions $T$ submitted to the flashbots relay `eth_sendBundle` RPC.  
+$r$: searcher reputation score.  
+$H_U$: set of all transactions $T$ submitted by searcher $U$ to the flashbots relay `eth_sendBundle` RPC and successfully landed on chain.  
+$S_U$: set of all transactions $T$ submitted by searcher $U$ to the flashbots relay `eth_sendBundle` RPC.  
 $g_{T}$: _gas used_ by transaction $T$.  
 $p_{T}$: _gas price_ of transaction $T$.  
 $\Delta_{coinbase_T}$: coinbase difference from direct payment in transaction $T$.  
