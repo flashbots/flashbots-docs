@@ -2,7 +2,7 @@
 title: searcher reputation
 ---
 
-In order to maintain reliable relay performance, Flashbots introduced searcher reputation to help provide consistent access during periods of heavy load to searcher with a good performance track record. Reputation is one of many solutions currently being explored to make the Flashbots relay robust against sophisticated level 7 attacks. The system described on this page is likely to change and we encourage you to participate in defining the direction taken by engaging in the [discussion board](https://github.com/flashbots/pm/discussions/79).
+In order to ensure reliable relay performance, Flashbots introduced searcher reputation to help provide consistent access during periods of heavy load to searcher with a good performance track record. Reputation is one of many solutions currently being explored to make the Flashbots relay robust against sophisticated level 7 attacks. The system described on this page is likely to change and we encourage you to participate in defining the direction taken by engaging in the [discussion board](https://github.com/flashbots/pm/discussions/79).
 
 ## Reputation queues
 
