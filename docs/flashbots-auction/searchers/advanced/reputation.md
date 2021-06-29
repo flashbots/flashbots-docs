@@ -19,7 +19,7 @@ $H$: set of all transactions $T$ submitted to the flashbots relay `eth_sendBundl
 $S$: set of all transactions $T$ submitted to the flashbots relay `eth_sendBundle` RPC.  
 $g_{T}$: _gas used_ by transaction $T$.  
 $p_{T}$: _gas price_ of transaction $T$.  
-$\Delta_{coinbase}$: coinbase difference from direct payment.  
+$\Delta_{coinbase_T}$: coinbase difference from direct payment in transaction $T$.  
 
 ## Querying reputation
 
