@@ -31,4 +31,4 @@ A searcher can query their current reputation status using the [`flashbots_getUs
 
 Searcher reputation is associated with the signing key used to authenticate with the relay. That is, the ethereum address associated with the `X-Flashbots-Signature` field of your bundle submission.
 
-As a searcher, the best way to improve your score is to only submit transactions to the relay which have a high likelyhood of landing on chain.
+As a searcher, the best way to improve your score is to only submit transactions to the relay which have a high likelihood of landing on chain.
