@@ -59,9 +59,10 @@ After retrieving the block specified in the `blockNrOrHash` it takes the same `b
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| encodedTxs | `Array<Data>` | Array of signed transactions (`eth_sendRawTransaction` style, signed and RLP-encoded) |
-| blockNrOrHash	| `Quantity\|string\|Block Identifier` | Block number, or one of "latest", "earliest" or "pending", or a block identifier as described in {Block Identifier} |
-| blockTimestamp	|`Quantity`	|Block timestamp to be used in replacement of the timestamp taken from the parent block. |
+| txs | `Array<Data>` | Array of signed transactions (`eth_sendRawTransaction` style, signed and RLP-encoded) |
+| blockNumber	| `Quantity` | A hex encoded block number for which this bundle is valid on |
+| stateBlockNumber | `Quantity\|string\|Block Identifier` | Either a hex encoded number or a {Block Identifier} for which state to base this simulation on.
+| timestamp	|`Quantity`	|Block timestamp to be used in replacement of the timestamp taken from the parent block. |
 
 ### Returns
 
@@ -81,7 +82,8 @@ curl -X POST -H 'Content-Type: application/json' --data '{
                 "f9014946843b9aca00830493e094a011e5f4ea471ee4341a135bb1a4af368155d7a280b8e40d5f2659000000000000000000000000fdd45a22dd1d606b3782f2119621e928e32743000000000000000000000000000000000000000000000000000000000077359400000000000000000000000000000000000000000000000",
                 "f86e8204d085012a05f200830c350094daf24c20717f428f00d8448d74d67a77f67ceb8287354a6ba7a18000802ea00e411bcb660dd8d47717df89078d2e8160c08e7f11cb7ad0ee935e7436eceb32a013ee00a21b7fa0a9f9c1224d11261648191875d4633aed6003543ea319f12b62"
             ],
-            "blockNumber": "0x12ab34"
+            "blockNumber": "0x12ab34",
+            "stateBlockNumber": "0x12ab33",
         }
     ]
 }' <url>

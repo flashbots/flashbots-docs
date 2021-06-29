@@ -18,7 +18,7 @@ The relay provides new JSON-RPC methods for interfacing with Flashbots. They are
   "jsonrpc": "2.0",
   "id": 1,
   "method": "eth_sendBundle",
-  "params": [txs, blockNumber, minTimestamp, maxTimestamp]
+  "params": [{ txs, blockNumber, minTimestamp, maxTimestamp, revertingTxHashes }]
 }
 ```
 
@@ -26,6 +26,7 @@ The relay provides new JSON-RPC methods for interfacing with Flashbots. They are
 - **blockNumber**: String, a hex encoded block number for which this bundle is valid on
 - **minTimestamp(Optional)**: Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
 - **maxTimestamp(Optional)**: Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
+- **revertingTxHashes(Optional)**: Array[String], list of tx hashes within the bundle that are allowed to revert
 
 Example:
 
@@ -34,7 +35,7 @@ Example:
   "jsonrpc": "2.0",
   "id": 1,
   "method": "eth_sendBundle",
-  "params": [["0x123abc...", "0x456def..."], "0xb63dcd", 0, 1615920932]
+  "params": [{["0x123abc...", "0x456def..."], "0xb63dcd", 0, 1615920932, []}]
 }
 ```
 
@@ -44,8 +45,8 @@ Example:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "method": "eth_sendBundle",
-  "params": [txs, targetBlockNumber, stateBlockNumber, timestamp]
+  "method": "eth_callBundle",
+  "params": [{ txs, blockNumber, stateBlockNumber, timestamp }]
 }
 ```
 
