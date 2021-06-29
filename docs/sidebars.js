@@ -15,6 +15,7 @@ module.exports = {
                 'flashbots-auction/searchers/advanced/coinbase-payment',
                 'flashbots-auction/searchers/advanced/bundle-pricing',
                 'flashbots-auction/searchers/advanced/rpc-endpoint',
+                'flashbots-auction/searchers/advanced/reputation',
                 'flashbots-auction/searchers/advanced/goerli-testnet',
               ],
               "example searchers": [
