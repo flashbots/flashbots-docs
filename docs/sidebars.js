@@ -39,6 +39,8 @@ module.exports = {
                 'flashbots-auction/miners/advanced/source-code',
                 'flashbots-auction/miners/advanced/interacting-with-relay',
                 {'mev-geth spec': [
+                  'flashbots-auction/miners/mev-geth-spec/v03',
+                  'flashbots-auction/miners/mev-geth-spec/v03-rpc',
                   'flashbots-auction/miners/mev-geth-spec/v02',
                   'flashbots-auction/miners/mev-geth-spec/v02-rpc',
                   'flashbots-auction/miners/mev-geth-spec/v01',
