@@ -1,5 +1,5 @@
 ---
-title: v0.3 RPC (to be released)
+title: v0.3 RPC
 ---
 
 ## eth_sendBundle
