@@ -2,23 +2,39 @@
 title: source code
 ---
 
-The entire patch can be broken down into 3 releases with a few commits in each:
+The entire changeset can be viewed inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master).
+
+The entire patch can be broken down into 3 major releases with a few commits in each:
 
 #### v0.1.0
 
-- commits [535a7834902f184813a6588c6d66175f9f633118](https://github.com/flashbots/mev-geth/commit/535a7834902f184813a6588c6d66175f9f633118) and [b48f1023eea934a14ca58052421036219f1ea3e3](https://github.com/flashbots/mev-geth/commit/b48f1023eea934a14ca58052421036219f1ea3e3) bundle worker and `eth_sendBundle` rpc
-- commit [920af5c609b14c28283b9b7ce1e14dab0d7ebf3b](https://github.com/flashbots/mev-geth/commit/920af5c609b14c28283b9b7ce1e14dab0d7ebf3b) profit switcher
-- commit [26e12228bfcd046e0112fecd7f0a57e93b515bab](https://github.com/flashbots/mev-geth/commit/26e12228bfcd046e0112fecd7f0a57e93b515bab) Documentation (this file) and CI/infrastructure configuration
+- commits [d86f1a64416c3e6b50c333c6fd2c5f7ec58bdf5e](https://github.com/flashbots/mev-geth/commit/d86f1a64416c3e6b50c333c6fd2c5f7ec58bdf5e) and [fcc3b6d2973e5905651f66dbab99b9f790059f6f](https://github.com/flashbots/mev-geth/commit/fcc3b6d2973e5905651f66dbab99b9f790059f6f) bundle worker and `eth_sendBundle` rpc
+- commit [34d4b559a24f8c43e1d4354a73bbba91b6b6b9e7](https://github.com/flashbots/mev-geth/commit/34d4b559a24f8c43e1d4354a73bbba91b6b6b9e7) profit switcher
+- commit [959394df8b6b0ce868c2231e74f47bfdf89e0f72](https://github.com/flashbots/mev-geth/commit/959394df8b6b0ce868c2231e74f47bfdf89e0f72) Documentation (this file) and CI/infrastructure configuration
+
+#### v0.1.1
+
+- commit [88247f37b97efff7da0ff722c00a8370f2b1ba95](https://github.com/flashbots/mev-geth/commit/88247f37b97efff7da0ff722c00a8370f2b1ba95) correct handling or reorgs
 
 #### v0.2.0-pre
 
-- commit [fabb91ede326d352f4f211d4d2a4f0dfb46ad2b2](https://github.com/flashbots/mev-geth/commit/fabb91ede326d352f4f211d4d2a4f0dfb46ad2b2) Change flashbots bundle pricing formula to ignore gas fees
-- commit [f933b038a5915c07d65d5c97ca92acf499e7e475](https://github.com/flashbots/mev-geth/commit/f933b038a5915c07d65d5c97ca92acf499e7e475) Discard bundles with reverting txs
+- commit [b94943ecb2e85f720a5675a6d2f95a6b96870ec0](https://github.com/flashbots/mev-geth/commit/b94943ecb2e85f720a5675a6d2f95a6b96870ec0) Change flashbots bundle pricing formula to ignore gas fees
+- commit [4b7668d4d7579eecc15be65c9c7902ff7e3ad341](https://github.com/flashbots/mev-geth/commit/4b7668d4d7579eecc15be65c9c7902ff7e3ad341) Discard bundles with reverting txs
 
 #### v0.2.0
 
-- commit [688206c400de253e293a6fdc1e9dc14fbbbfa903](https://github.com/flashbots/mev-geth/commit/688206c400de253e293a6fdc1e9dc14fbbbfa903) Change pricing formula to ignore gas from txs in the txpool
-- commit [044469b6577478b6b2f028dd5ec0a9cebc4f00d9](https://github.com/flashbots/mev-geth/commit/044469b6577478b6b2f028dd5ec0a9cebc4f00d9) Use object in eth_sendBundle params and add revertingTxHashes param
-- commit [b36e0f0d58ee5222244450ab50345c91194fc065](https://github.com/flashbots/mev-geth/commit/b36e0f0d58ee5222244450ab50345c91194fc065) Add bundle merging with multiple workers
+- commit [d823ec7133a0f0d21932b1d893d37ad80949819e](https://github.com/flashbots/mev-geth/commit/d823ec7133a0f0d21932b1d893d37ad80949819e) Change pricing formula to ignore gas from txs in the txpool
+- commit [92463dc9c3b95a58991c36be9fddd1340b32eeb5](https://github.com/flashbots/mev-geth/commit/92463dc9c3b95a58991c36be9fddd1340b32eeb5) Use object in eth_sendBundle params and add revertingTxHashes param
+- commit [5a30f876ba9725554eb8609e8f60cada5b961e57](https://github.com/flashbots/mev-geth/commit/5a30f876ba9725554eb8609e8f60cada5b961e57) Add bundle merging with multiple workers
 
-The entire changeset can be viewed inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master).
+#### v0.2.1
+
+- commit [a172ca123a3c2534573779008fbf8b3c853b4e57](https://github.com/flashbots/mev-geth/commit/a172ca123a3c2534573779008fbf8b3c853b4e57) Add floor gas price for bundle inclusion
+
+#### v0.2.2
+
+- commit [2d05e741d42f795eecfa2f8185f1575e8e5cc1dc](https://github.com/flashbots/mev-geth/commit/2d05e741d42f795eecfa2f8185f1575e8e5cc1dc) count eth payments for txs whose nonce is in the mempool
+
+#### v0.3
+
+- commit [68f7addad7ba100a59a280bfbdef2f556bcf8401](https://github.com/flashbots/mev-geth/commit/68f7addad7ba100a59a280bfbdef2f556bcf8401) Add flashbots support for eip-1559
