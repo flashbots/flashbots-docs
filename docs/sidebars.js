@@ -17,6 +17,7 @@ module.exports = {
                 'flashbots-auction/searchers/advanced/rpc-endpoint',
                 'flashbots-auction/searchers/advanced/reputation',
                 'flashbots-auction/searchers/advanced/goerli-testnet',
+                'flashbots-auction/searchers/advanced/eip1559',
               ],
               "example searchers": [
                 'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
