@@ -24,6 +24,7 @@ module.exports = {
                 'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
               ],
               "libraries": [
+                'flashbots-auction/searchers/libraries/golang',
                 'flashbots-auction/searchers/libraries/ethers-js-provider',
                 'flashbots-auction/searchers/libraries/web3py-provider',
               ]
@@ -39,14 +40,16 @@ module.exports = {
               "advanced concepts": [
                 'flashbots-auction/miners/advanced/source-code',
                 'flashbots-auction/miners/advanced/interacting-with-relay',
-                {'mev-geth spec': [
-                  'flashbots-auction/miners/mev-geth-spec/v03',
-                  'flashbots-auction/miners/mev-geth-spec/v03-rpc',
-                  'flashbots-auction/miners/mev-geth-spec/v02',
-                  'flashbots-auction/miners/mev-geth-spec/v02-rpc',
-                  'flashbots-auction/miners/mev-geth-spec/v01',
-                  'flashbots-auction/miners/mev-geth-spec/v01-rpc',
-                ]},
+                {
+                  'mev-geth spec': [
+                    'flashbots-auction/miners/mev-geth-spec/v03',
+                    'flashbots-auction/miners/mev-geth-spec/v03-rpc',
+                    'flashbots-auction/miners/mev-geth-spec/v02',
+                    'flashbots-auction/miners/mev-geth-spec/v02-rpc',
+                    'flashbots-auction/miners/mev-geth-spec/v01',
+                    'flashbots-auction/miners/mev-geth-spec/v01-rpc',
+                  ]
+                },
               ],
             },
           ],
@@ -75,7 +78,7 @@ module.exports = {
     'community-tools',
     {
       "contribute": [
-        'contribution-guide','cheatsheet',
+        'contribution-guide', 'cheatsheet',
       ],
     },
     {
