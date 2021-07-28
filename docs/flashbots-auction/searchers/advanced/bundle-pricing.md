@@ -1,10 +1,6 @@
 ---
 title: bundle pricing
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 ### Understanding bundle pricing
 
 Searchers submit a huge amount of bundles every block, but the amount of blockspace is limited. So what decides what can be included in a block or not? To understand the answer we will first review some context.
