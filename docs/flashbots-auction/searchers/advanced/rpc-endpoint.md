@@ -38,6 +38,17 @@ example:
 }
 ```
 
+example response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "123",
+  "result": {
+    "bundleHash": "0x2228f5d8954ce31dc1601a8ba264dbd401bf1428388ce88238932815c5d6f23f"
+  }
+}
+```
+
 ### eth_callBundle
 `eth_callBundle` can be used to simulate a bundle against a specific block number, including simulating a bundle at the top of the next block. The `eth_callBundle` RPC has the following payload format:
 
@@ -64,6 +75,47 @@ example:
   "id": 1,
   "method": "eth_callBundle",
   "params": [{ "txs": ["0x123abc...", "0x456def..."], "blockNumber": "0xb63dcd", "stateBlockNumber": "latest", "timestamp": 1615920932 }]
+}
+```
+
+example response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "123",
+  "result": {
+    "bundleGasPrice": "476190476193",
+    "bundleHash": "0x73b1e258c7a42fd0230b2fd05529c5d4b6fcb66c227783f8bece8aeacdd1db2e",
+    "coinbaseDiff": "20000000000126000",
+    "ethSentToCoinbase": "20000000000000000",
+    "gasFees": "126000",
+    "results": [
+      {
+        "coinbaseDiff": "10000000000063000",
+        "ethSentToCoinbase": "10000000000000000",
+        "fromAddress": "0x02A727155aeF8609c9f7F2179b2a1f560B39F5A0",
+        "gasFees": "63000",
+        "gasPrice": "476190476193",
+        "gasUsed": 21000,
+        "toAddress": "0x73625f59CAdc5009Cb458B751b3E7b6b48C06f2C",
+        "txHash": "0x669b4704a7d993a946cdd6e2f95233f308ce0c4649d2e04944e8299efcaa098a",
+        "value": "0x"
+      },
+      {
+        "coinbaseDiff": "10000000000063000",
+        "ethSentToCoinbase": "10000000000000000",
+        "fromAddress": "0x02A727155aeF8609c9f7F2179b2a1f560B39F5A0",
+        "gasFees": "63000",
+        "gasPrice": "476190476193",
+        "gasUsed": 21000,
+        "toAddress": "0x73625f59CAdc5009Cb458B751b3E7b6b48C06f2C",
+        "txHash": "0xa839ee83465657cac01adc1d50d96c1b586ed498120a84a64749c0034b4f19fa",
+        "value": "0x"
+      }
+    ],
+    "stateBlockNumber": 5221585,
+    "totalGasUsed": 42000
+  }
 }
 ```
 
