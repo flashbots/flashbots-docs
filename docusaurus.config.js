@@ -29,6 +29,9 @@ module.exports = {
       // Optional: see doc section below
       appId: 'BH4D9OD16A',
     },
+    prism: {
+      additionalLanguages: ['solidity']
+    },
     navbar: {
       title: 'Flashbots Docs',
       logo: {
@@ -65,7 +68,6 @@ module.exports = {
   //   },
   },
   presets: [
-   
     [
       '@docusaurus/preset-classic',
       {

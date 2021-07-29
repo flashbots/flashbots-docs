@@ -2,9 +2,6 @@
 title: goerli testnet
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Flashbots operates a Goerli validator and searchers can test Flashbots by using it. Here's how to setup the Flashbots Bundle Provider in Ethers to use Goerli:
 
 ```js
