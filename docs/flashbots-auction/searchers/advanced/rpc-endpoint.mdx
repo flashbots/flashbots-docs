@@ -232,8 +232,8 @@ signature = Account.from_key(private_key).address + ':' + Account.sign_message(m
 ```go
 body := `{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}`
 hashedBody := crypto.Keccak256Hash([]byte(body)).Hex()
-sig, err := crypto.Sign(crypto.Keccak256([]byte("\x19Ethereum Signed Message:\n"+strconv.Itoa(len(hashedBody))+hashedBody)), pk)
-signature := addr.Hex() + ":" + hexutil.Encode(sig)
+sig, err := crypto.Sign(accounts.TextHash([]byte(hashedBody)), privKey)
+signature := crypto.PubkeyToAddress(privKey.PublicKey).Hex() + ":" + hexutil.Encode(sig)
 ```
 
 </TabItem>
