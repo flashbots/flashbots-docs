@@ -153,6 +153,36 @@ where
 * `all_time_miner_payments`: the total amount paid to miners over all time
 * `all_time_gas_simulated`: the total amount of gas simulated across all bundles submitted to the relay. This is the actual gas used in simulations, not gas limit
 
+### flashbots_getBundleStats
+
+The `flashbots_getBundleStats` JSON-RPC method returns stats for a single bundle. You must provide a blockNumber and the bundleHash, and the signing address must be the same as the one who submitted the bundle.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "flashbots_getBundleStats",
+  "params": [
+    {
+      bundleHash,       // String, returned by the flashbots api when calling eth_sendBundle
+      blockNumber,       // String, a hex encoded block number
+    }
+  ]
+}
+```
+
+example response:
+```json
+{
+  "isSimulated": true,
+  "isSentToMiners": true,
+  "isHighPriority": true,
+  "simulatedAt": "2021-08-06T21:36:06.317Z",
+  "submittedAt": "2021-08-06T21:36:06.250Z",
+  "sentToMinersAt": "2021-08-06T21:36:06.343Z"
+}
+```
+
 ### Authentication
 
 To authenticate your request, the relay requires you sign the payload and include the signed payload in the `X-Flashbots-Signature` header of your request.
