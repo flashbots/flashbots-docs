@@ -36,7 +36,8 @@ curl -X POST -H 'Content-Type: application/json' --data '{
           ],
           "blockNumber" : "0x12ab34",
           "minTimestamp" : "0x0",
-          "minTimestamp" :"0x0"
+          "minTimestamp" :"0x0",
+          "revertingTxHashes": []
         }
     ]
 }' <url>
@@ -74,7 +75,7 @@ relaySignature	|Array<`Data`>	|An secp256k1 signature signed with an address fro
 curl -X POST -H 'Content-Type: application/json' --data '{
     "id": 1337,
     "jsonrpc": "2.0",
-    "method": "eth_sendBundle",
+    "method": "eth_sendMegaBundle",
     "params": [
         {
           "txs" : [
@@ -83,7 +84,9 @@ curl -X POST -H 'Content-Type: application/json' --data '{
           ],
           "blockNumber" : "0x12ab34",
           "minTimestamp" : "0x0",
-          "minTimestamp" :"0x0"
+          "minTimestamp" :"0x0",
+          "revertingTxHashes": [],
+          "relaySignature" :[update docs with a valid sig so people can use it for testing],
         }
     ]
 }' <url>
@@ -130,7 +133,7 @@ curl -X POST -H 'Content-Type: application/json' --data '{
                 "f86e8204d085012a05f200830c350094daf24c20717f428f00d8448d74d67a77f67ceb8287354a6ba7a18000802ea00e411bcb660dd8d47717df89078d2e8160c08e7f11cb7ad0ee935e7436eceb32a013ee00a21b7fa0a9f9c1224d11261648191875d4633aed6003543ea319f12b62"
             ],
             "blockNumber": "0x12ab34",
-            "stateBlockNumber": "0x12ab33",
+            "stateBlockNumber": "0x12ab33"
         }
     ]
 }' <url>
