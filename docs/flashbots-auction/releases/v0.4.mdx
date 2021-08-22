@@ -1,5 +1,5 @@
 ---
-title: v0.3
+title: v0.4
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,10 +7,10 @@ import TabItem from '@theme/TabItem';
 
 ## Changelog
 
-#### EIP-1559 support added
-Bundle scoring takes into account BASEFEE mechanisms to calculate miner's revenue from bundles.
+#### Megabundles support added
+Relays can merge bundles and suggest them for profit switching.
 
-Here is the formal definition of these scoring functions:
+Scoring function does not change between v0.3 and v0.4:
 
 <Tabs
   defaultValue="v0.3"
@@ -19,6 +19,7 @@ Here is the formal definition of these scoring functions:
     { label: 'v0.2-pre', value: 'v0.2-pre' },
     { label: 'v0.2', value: 'v0.2' },
     { label: 'v0.3', value: 'v0.3' }
+    { label: 'v0.4', value: 'v0.4' }
   ]}
 >
 <TabItem value="v0.1">
@@ -45,6 +46,12 @@ $$
 s_{v0.3} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}
 $$
 </TabItem>
+<TabItem value="v0.4">
+
+$$
+s_{v0.4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}
+$$
+</TabItem>
 
 </Tabs>
 
@@ -58,3 +65,7 @@ $\delta_T$: _priority fee per gas_ of transaction $T$.
 $e_{T}$: _effective fee per gas_ of transaction $T$ equal $\min$($c_{T}$, BASEFEE + $\delta_T$).  
 $m_{T}$: _miner fee per gas_ of transaction $T$ equal $e_{T}$ - BASEFEE.  
 $\Delta_{coinbase}$: coinbase difference from direct payment.  
+
+## Timeline
+
+v0.4 has no release schedule yet
