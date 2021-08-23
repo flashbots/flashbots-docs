@@ -38,3 +38,7 @@ The entire patch can be broken down into 3 major releases with a few commits in 
 #### v0.3
 
 - commit [68f7addad7ba100a59a280bfbdef2f556bcf8401](https://github.com/flashbots/mev-geth/commit/68f7addad7ba100a59a280bfbdef2f556bcf8401) Add flashbots support for eip-1559
+
+#### v0.4
+
+- commit [00e687cca6c3db5dc85cc88b0dc13985b6a5c577](https://github.com/flashbots/mev-geth/commit/00e687cca6c3db5dc85cc88b0dc13985b6a5c577) Add megabundles

@@ -54,7 +54,8 @@ module.exports = {
             },
           ],
           'releases': [
-            'flashbots-auction/releases/v0.3',
+            'flashbots-auction/releases/alpha-v0.4',
+            'flashbots-auction/releases/alpha-v0.3',
             'flashbots-auction/releases/alpha-v0.2',
           ],
         },
