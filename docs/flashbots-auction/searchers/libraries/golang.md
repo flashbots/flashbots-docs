@@ -1,5 +1,5 @@
 ---
-title: Golang library
+title: golang provider
 ---
 _This library is provided and maintained by a third-party rather than Flashbots. Please exercise caution._
 Golang library is a repository that provides a high-level access to the `eth_sendBundle` and `eth_callBundle` rpc endpoint on [mev-relay](https://github.com/flashbots/mev-relay-js).
