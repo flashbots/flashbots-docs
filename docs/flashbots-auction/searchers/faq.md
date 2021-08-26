@@ -23,7 +23,7 @@ As laid out in our [ETHResearch post](https://ethresear.ch/t/flashbots-frontrunn
 
 ### Where can I submit a feature request?
 
-In the Flashbots Forums [Discussions section](https://flashbots.com/pm/discussions).
+In the Flashbots Forums [Discussions section](https://github.com/flashbots/pm/discussions).
 
 ### Can you give a step by step description of how Flashbots works for a searcher today?
 
