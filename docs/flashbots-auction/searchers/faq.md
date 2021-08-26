@@ -72,7 +72,7 @@ https://etherscan.io/tx/0x5e1657ef0e9be9bc72efefe59a2528d0d730d478cfc9e6cdd09af9
 *Red line indicates where the bundle is*
 
 ### What level of transparency do you provide into how this infrastructure works?
-MEV-Geth, MEV-Relay and all the code searchers interact with is open-source and documented on our [Github repo](https://flashbots.com). In addition, we publish monthly [transparency reports](https://medium.com/flashbots/tagged/transparency-report).
+MEV-Geth, MEV-Relay and all the code searchers interact with is open-source and documented on our [Github repos](https://github.com/flashbots). In addition, we publish monthly [transparency reports](https://medium.com/flashbots/tagged/transparency-report).
 
 We've also released a publicly accessible API [blocks.flashbots.net](https://blocks.flashbots.net) for displaying Flashbots blocks and txs, and will be releasing live data visualizations useful in the coming weeks.
 
