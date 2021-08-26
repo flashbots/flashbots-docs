@@ -58,21 +58,22 @@ const flashbotsProvider = await FlashbotsBundleProvider.create(provider, authSig
 <TabItem value="web3.py">
 
 ```python
-from eth_account.signers.local import LocalAccount
-from web3 import Web3, HTTPProvider
-from flashbots import flashbot
-from eth_account.account import Account
 import os
 
-w3 = Web3(HTTPProvider("http://localhost:8545"))
-# Create a web3 object with a standard json rpc provider, such as Infura, Alchemy, or your own node.
+from eth_account.account import Account
+from eth_account.signers.local import LocalAccount
+from flashbots import flashbot
+  from web3 import Web3, HTTPProvider
 
-ETH_ACCOUNT_SIGNATURE: LocalAccount = Account.from_key(os.environ.get("ETH_SIGNATURE_KEY"))
+# Create a web3 object with a standard json rpc provider, such as Infura, Alchemy, or your own node.
+w3 = Web3(HTTPProvider("http://localhost:8545"))
+
 # ETH_ACCOUNT_SIGNATURE is an Ethereum private key that does NOT store funds and is NOT your bot's primary key.
 # This is an identifying key for signing payloads to establish reputation and whitelisting
+ETH_ACCOUNT_SIGNATURE: LocalAccount = Account.from_key(os.environ.get("ETH_SIGNATURE_KEY"))
 
-flashbot(w3, ETH_ACCOUNT_SIGNATURE)
 # Flashbots providers require both a standard provider and ETH_ACCOUNT_SIGNATURE (to establish reputation)
+flashbot(w3, ETH_ACCOUNT_SIGNATURE)
 ```
 
 </TabItem>
