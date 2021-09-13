@@ -1,5 +1,5 @@
 ---
-title: alpha-v0.4 (WIP)
+title: alpha-v0.4 (testing)
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,8 +19,7 @@ Scoring function does not change between v0.3 and v0.4:
     { label: 'v0.1', value: 'v0.1', },
     { label: 'v0.2-pre', value: 'v0.2-pre' },
     { label: 'v0.2', value: 'v0.2' },
-    { label: 'v0.3', value: 'v0.3' },
-    { label: 'v0.4', value: 'v0.4' }
+    { label: 'v0.3 & v0.4', value: 'v0.3 & v0.4' }
   ]}
 >
 <TabItem value="v0.1">
@@ -41,16 +40,10 @@ $$
 s_{v0.2} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tp_T - \sum_{T\in M \cap U}g_Tp_T}{\sum_{T\in U}g_T}
 $$
 </TabItem>
-<TabItem value="v0.3">
+<TabItem value="v0.3 & v0.4">
 
 $$
-s_{v0.3} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}
-$$
-</TabItem>
-<TabItem value="v0.4">
-
-$$
-s_{v0.4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}
+s_{v0.3-4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}
 $$
 </TabItem>
 
@@ -69,4 +62,19 @@ $\Delta_{coinbase}$: coinbase difference from direct payment.
 
 ## Timeline
 
-v0.4 has no release schedule yet
+### September, 10th 2021
+Final spec of version alpha-v0.4 ready
+
+Flashbots reference implementation ready
+
+Flashbots Goerli running on version alpha-v0.4
+
+Start of miners custom implementations and testing
+
+### September, 22nd 2021
+End of miners custom implementation and testing
+
+### September, 27th 2021
+All miners running on v0.4
+
+Flashbots mainnet relay switching to alpha-v0.4
