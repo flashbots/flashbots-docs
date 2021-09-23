@@ -78,3 +78,24 @@ End of miners custom implementation and testing
 All miners running on v0.4
 
 Flashbots mainnet relay switching to alpha-v0.4
+
+## Upgrade Steps
+
+- Miners asked to upgrade to v1.10.8-mev0.4.0
+- Miners can update 100% of capacity to this new version
+- Miners will need to upgrade to the [newest version of mev-proxy](https://github.com/flashbots/mev-proxy) or whitelist the RPC call `eth_sendMegabundle` for your specific environment.
+- Miners must add a new command line parameter for Megabundle Relays (see below)
+
+## Node configuration
+
+Miners must configure a new command line paramter to specify which relays megabundles will be accepted. The parameter is set as follows for a list of 3 relayers.
+
+```bash
+-miner.megabundlebundlerelays=0xADDR1,0xADDR2,0xADDR3
+```
+
+The default Mega Bundle Relayer is set to the Flashbots Relayer `0x870e2734DdBe2Fba9864f33f3420d59Bc641f2be`. If you only want to receive bundles from this default relayer no configuration is necessary. For configurations which allow more relayers, be sure to also include the Flashbots relayer in your configuration.
+
+```bash
+-miner.megabundlebundlerelays=0x870e2734DdBe2Fba9864f33f3420d59Bc641f2be,0xADDR2,0xADDR3
+```
