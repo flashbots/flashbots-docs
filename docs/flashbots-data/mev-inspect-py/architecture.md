@@ -1,33 +1,10 @@
 ---
-title: architecture overview
+title: architecture
 ---
 
-### Overview
-MEV-inspect-py is made up of three major components: 
-- trace classifiers: tries to classify the traces of a transaction by looking at the ABI, functions being called, and the address a trace is interacting with. For example, we might classify something as a "Swap" if it called `swap` on an address that had the same ABI as a Uniswap v2 pair. *Trace classifiers are designed to be as simple as possible to add support for a new protocol.* 
-- strategy inspectors: uses classified traces to infer the MEV strategy, if any, of a transaction. Also will get relevant information about that MEV strategy if possible. For example, a strategy inspector might classify a transaction as an arbitrage.
-- summarizers: a group of utilities that are useful across inspectors. For example, token flow is a protocol agnostic profit estimator.
-
-The easiest way to contribute to MEV-inspect-py is by helping to support more protocols in our trace classifiers.
-
-
-#### Trace classifiers
-For each block we intend to inspect, we first fetch all of its traces. The raw traces are then processed by the trace classifier into classified traces. This is done by looking at the:
-1. ABI at the address being interacted with
-2. OPTIONAL: The address being interacted with
-3. OPTIONAL: The function being called 
-
-For example, here is the Uniswap v2 pair classifier:
-```UNISWAPPY_V2_PAIR_SPEC = ClassifierSpec(
-    abi_name="UniswapV2Pair",
-    classifications={
-        "swap(uint256,uint256,address,bytes)": Classification.swap,
-    },
-)```
-
-The above will identify all 
 #### Classified Traces
 
+For each block we intend to inspect, we first fetch all of its traces, transaction receipts, and other additional information. The raw traces are then processed into classified traces (with protocol name, relevant function signature, relevant call inputs, strategy classification and other information) before being passed onto individual inspectors. 
 
 If we notice these classified traces to only contain liquidation related functions, we can only pass them off to aave/comp inspectors. Similarly, arbitrage profits are reduced by running them through protocol inspectors tagged in this stage (swap/liquidate/buy tx followed by addLiquidity etc). 
 
@@ -56,3 +33,4 @@ Stablecoins inflow/outflow: [0, 0]
 Net ETH profit, Wei 22357881284770142 
 
 More examples can be found under `./tests/tokenflow_test.py`
+
