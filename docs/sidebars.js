@@ -74,7 +74,9 @@ module.exports = {
             'flashbots-data/mev-inspect-py/quick-start',
             'flashbots-data/mev-inspect-py/inspecting',
             'flashbots-data/mev-inspect-py/exploring',
+            'flashbots-data/mev-inspect-py/tables',
             'flashbots-data/mev-inspect-py/architecture',
+            'flashbots-data/mev-inspect-py/contributing',
           ]
         }
       ],
