@@ -1,8 +1,7 @@
 ---
-title: tables
+title: classified_traces
 ---
-
-## classified_traces
+### description
 
 a **classified trace** represents a single trace
 

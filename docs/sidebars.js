@@ -74,7 +74,15 @@ module.exports = {
             'flashbots-data/mev-inspect-py/quick-start',
             'flashbots-data/mev-inspect-py/inspecting',
             'flashbots-data/mev-inspect-py/exploring',
-            'flashbots-data/mev-inspect-py/tables',
+            {
+                "data": [
+                    'flashbots-data/mev-inspect-py/data/classified_traces',
+                    'flashbots-data/mev-inspect-py/data/transfers',
+                    'flashbots-data/mev-inspect-py/data/swaps',
+                    'flashbots-data/mev-inspect-py/data/arbitrages',
+                    'flashbots-data/mev-inspect-py/data/miner_payments',
+                ],
+            },
             'flashbots-data/mev-inspect-py/architecture',
             'flashbots-data/mev-inspect-py/contributing',
           ]
