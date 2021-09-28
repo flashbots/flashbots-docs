@@ -19,7 +19,7 @@ kubectl exec deploy/mev-inspect-deployment -- poetry run inspect-block 12914944
 
 ### Connect to Postgres
 
-We'll connect to the Postgres database to query for the data found by that block
+We'll connect to the Postgres database to see the data inspect found in that block
 
 Let's start up a client container:
 ```
