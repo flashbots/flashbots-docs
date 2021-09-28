@@ -71,6 +71,7 @@ module.exports = {
         {
           'mev-inspect': [
             'flashbots-data/mev-inspect-py/overview',
+            'flashbots-data/mev-inspect-py/install',
             'flashbots-data/mev-inspect-py/quick-start',
             'flashbots-data/mev-inspect-py/inspecting',
             'flashbots-data/mev-inspect-py/exploring',
@@ -83,8 +84,6 @@ module.exports = {
                     'flashbots-data/mev-inspect-py/data/miner_payments',
                 ],
             },
-            'flashbots-data/mev-inspect-py/architecture',
-            'flashbots-data/mev-inspect-py/contributing',
           ]
         }
       ],

@@ -2,21 +2,27 @@
 title: inspecting
 ---
 
-### Inspect a single block
+running inspect for a block will:
+- pull down traces, receipts, and block data from the RPC endpoint
+- decode the traces using known ABIs
+- pull out structured objects like transfers and swaps
+- and save them all to the database for querying
+
+### Inspecting a single block
 
 Inspecting block [12914944](https://twitter.com/mevalphaleak/status/1420416437575901185)
 ```
 kubectl exec deploy/mev-inspect-deployment -- poetry run inspect-block 12914944
 ```
 
-### Inspect many blocks
+### Inspecting many blocks
 
 Inspecting blocks 12914944 to 12914954
 ```
 kubectl exec deploy/mev-inspect-deployment -- poetry run inspect-many-blocks 12914944 12914954
 ```
 
-### Inspect all incoming blocks
+### Inspecting all incoming blocks
 
 Start a block listener with
 ```

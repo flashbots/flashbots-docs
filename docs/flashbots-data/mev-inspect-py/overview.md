@@ -10,4 +10,8 @@ Given a block, mev-inspect finds:
 - swaps and [arbitrages](https://twitter.com/bertcmiller/status/142763202826305946://twitter.com/bertcmiller/status/1427632028263059462)
 - ...and more
 
-Data is stored in Postgres for analysis
+All data is stored in Postgres for querying and analysis
+
+To get started, check out the [quick start](/docs/flashbots-data/mev-inspect-py/quick_start)
+
+To see which data inspect produces, check out the [data](/docs/flashbots-data/mev-inspect-py/data/classified_traces) section

@@ -30,4 +30,4 @@ ORDER BY profit_amount DESC
 LIMIT 10;
 ```
 
-Postgres tip: Enter `\x` to enter "Explanded display" mode which looks nicer for results with many columns
+Postgres tip: Enter `\x` to enter "Expanded display" mode which looks nicer for results with many columns
