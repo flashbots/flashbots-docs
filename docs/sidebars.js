@@ -70,10 +70,20 @@ module.exports = {
         'flashbots-data/dashboard',
         {
           'mev-inspect': [
-            'flashbots-data/mev-inspect-rs/inspect-quick-start',
-            'flashbots-data/mev-inspect-rs/inspect-codebase-design',
-            'flashbots-data/mev-inspect-rs/inspect-codebase-deep-dive',
-            'flashbots-data/mev-inspect-rs/inspect-inspector-example',
+            'flashbots-data/mev-inspect-py/overview',
+            'flashbots-data/mev-inspect-py/install',
+            'flashbots-data/mev-inspect-py/quick-start',
+            'flashbots-data/mev-inspect-py/inspecting',
+            'flashbots-data/mev-inspect-py/exploring',
+            {
+                "data": [
+                    'flashbots-data/mev-inspect-py/data/classified_traces',
+                    'flashbots-data/mev-inspect-py/data/transfers',
+                    'flashbots-data/mev-inspect-py/data/swaps',
+                    'flashbots-data/mev-inspect-py/data/arbitrages',
+                    'flashbots-data/mev-inspect-py/data/miner_payments',
+                ],
+            },
           ]
         }
       ],
