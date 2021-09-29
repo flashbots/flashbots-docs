@@ -16,9 +16,11 @@ We do not make any commitments around how frequently / quickly these upgrades wi
 ![Flashbots Auction Upgrades](/img/gant-chart-upgrade.png)
 
 ## Feature selection process
+
 The goal of the feature selection process is to surface feature requests from the community and collaborate on implementation.
 
 Product Manager (PM): @thegostep
+
 1. Feature requests are submitted by anyone to the [flashbots forum](https://github.com/flashbots/pm/discussions) and titled 'Feature request:'
 2. The PM is responsible for engaging and moderating the forums
 3. The PM updates the ['core releases' project board](https://github.com/orgs/flashbots/projects/6) to keep track of feature requests and assigns them to target releases
@@ -27,11 +29,13 @@ Product Manager (PM): @thegostep
 6. Feedback is incorporated into the formal specification
 
 ## Formal specification and reference implementation
+
 We've learned that despite maintaining a reference implementation of mev-geth, miners tend to re-implement our feature set on their own custom nodes. This has lead to some confusion around what are "required" vs "nice to have" features as well as bugs which have lead to unexpected behaviors like mining unprofitable / reverting bundles.
 
 By producing a formal specification and updating it on each release, we aim to provide a document that clearly outlines the expected behavior of the node implementation and use it to grant / withhold access to the relay.
 
 ## Versioned deployment and testing
+
 To provide the best possible availability and correctness guarantees to the Flashbots Network, we aim to perform upgrades in a way that minimizes disruptions. This involves a 'rolling' upgrade process where searchers can define which version of Flashbots Auction they are targeting.
 
 At a selected block height, the relay will route all searcher bundles exclusively to the nodes that have implemented the new specification. A searcher desiring to remain on a previous version may do so by [specifying the target version](https://github.com/flashbots/mev-relay-js/issues/37) until a predetermined deprecation block height where the old version will no longer be supported by the relay.
@@ -41,13 +45,13 @@ Miners will want to begin implementing the changes required as soon as the updat
 These tests involve receiving and mining a series of bundles on a test environment which can be analyzed by the flashbots team. The tests will cover a range of known edge cases including but not limited to:
 
 - logic testing
-    - block formation / ordering
-    - bundle prioritization
-    - bundle atomicity
+  - block formation / ordering
+  - bundle prioritization
+  - bundle atomicity
 - probabilistic testing
-    - custom profit switcher
-    - latency and delays
-    - mempool volume
+  - custom profit switcher
+  - latency and delays
+  - mempool volume
 
 ## Monitoring continuing performance
 
