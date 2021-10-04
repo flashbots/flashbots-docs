@@ -12,6 +12,6 @@ Given a block, mev-inspect finds:
 
 All data is stored in Postgres for querying and analysis
 
-To get started, check out the [quick start](/docs/flashbots-data/mev-inspect-py/quick-start)
+To get started, check out the [quick start](/flashbots-data/mev-inspect-py/quick-start)
 
-To see which data inspect produces, check out the [data](/docs/flashbots-data/mev-inspect-py/data/classified_traces) section
+To see which data inspect produces, check out the [data](/flashbots-data/mev-inspect-py/data/classified_traces) section

@@ -6,7 +6,7 @@ Let's use mev-inspect to find the same arbitrage as [MEV Alpha Leak](https://twi
 
 ### Install
 
-Get mev-inspect running by going through the [install section](/docs/flashbots-data/mev-inspect-py/install)
+Get mev-inspect running by going through the [install section](/flashbots-data/mev-inspect-py/install)
 
 ### Inspect a block
 
@@ -136,6 +136,6 @@ So in total, this searcher paid 48.2 ETH to make 53.5 ETH for a net profit of 5.
 
 ### Next steps
 
-To see what other data is available for querying, check out the [data](/docs/flashbots-data/mev-inspect-py/data/classified_traces) section
+To see what other data is available for querying, check out the [data](/flashbots-data/mev-inspect-py/data/classified_traces) section
 
-To learn about inspecting blocks in bulk or listening for new blocks as they come in, check out the [inspecting](/docs/flashbots-data/mev-inspect-py/inspecting) section
+To learn about inspecting blocks in bulk or listening for new blocks as they come in, check out the [inspecting](/flashbots-data/mev-inspect-py/inspecting) section
