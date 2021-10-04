@@ -88,6 +88,13 @@ module.exports = {
         }
       ],
     },
+    {
+      "flashbots protect": [
+        'flashbots-protect/overview',
+        'flashbots-protect/json-rpc',
+        'flashbots-protect/websockets-sdk',
+      ],
+    },
     'community-tools',
     {
       "contribute": [
