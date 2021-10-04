@@ -11,7 +11,7 @@ For advanced users, you can interact with the relay's RPC endpoint at `relay.fla
 ### eth_sendBundle
 `ethSendBundle` can be used to send your bundles to the relay. The `eth_sendBundle` RPC has the following payload format:
 
-```json
+```jsonc
 {
   "jsonrpc": "2.0",
   "id": 1,
@@ -52,7 +52,7 @@ example response:
 ### eth_callBundle
 `eth_callBundle` can be used to simulate a bundle against a specific block number, including simulating a bundle at the top of the next block. The `eth_callBundle` RPC has the following payload format:
 
-```json
+```jsonc
 {
   "jsonrpc": "2.0",
   "id": 1,
@@ -123,15 +123,13 @@ example response:
 
 The `flashbots_getUserStats` JSON-RPC method returns a quick summary of how a searcher is performing in the relay. It is currently updated once every hour and has the following payload format:
 
-```json
+```jsonc
 {
   "jsonrpc": "2.0",
   "id": 1,
   "method": "flashbots_getUserStats",
   "params": [
-    {
       blockNumber,       // String, a hex encoded recent block number, in order to prevent replay attacks. Must be within 20 blocks of the current chain tip.
-    }
   ]
 }
 ```
@@ -157,7 +155,7 @@ where
 
 The `flashbots_getBundleStats` JSON-RPC method returns stats for a single bundle. You must provide a blockNumber and the bundleHash, and the signing address must be the same as the one who submitted the bundle.
 
-```json
+```jsonc
 {
   "jsonrpc": "2.0",
   "id": 1,
