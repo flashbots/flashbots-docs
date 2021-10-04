@@ -51,74 +51,33 @@ To help on that matter, the API provides a method that will send back **mistX re
 
 Creates new message call transaction or a contract creation for signed transactions.
 
-```Parameters json_schema
+```json
 {
-  "type": "object",
-  "properties": {
-    "method": {
-      "type": "string",
-      "default": "eth_sendRawTransaction",
-      "description": "Method name"
-    },
-    "id": {
-      "type": "integer",
-      "default": 1,
-      "format": "int32",
-      "description": "Request ID"
-    },
-    "jsonrpc": {
-      "type": "string",
-      "default": "2.0",
-      "description": "JSON-RPC Version (2.0)"
-    },
-    "params": {
-      "title": "Parameters",
-      "description": "Array of serialized raw transaction",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^0x([a-fA-F0-9]?)+$",
-      }
-    }
-  }
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_sendRawTransaction",
+  "params": [] // Array[String], A list of signed transactions
 }
 ```
 
-```Response json_schema
+example:
+
+```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "integer",
-      "default": 1,
-      "format": "int32",
-      "description": "Request ID"
-    },
-    "jsonrpc": {
-      "type": "string",
-      "default": "2.0",
-      "description": "JSON-RPC Version (2.0)"
-    },
-    "result": {
-      "title": "Parameters",
-      "description": "Reference id for bundle containing the transaction",
-      "type": "string",
-      "pattern": "^0x[a-fA-F\\d]{64}(-[\\d])?$",
-    }
-  }
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_sendRawTransaction",
+  "params": ["0x123abc..."]
 }
 ```
 
-```Example http
+example response:
+
+```json
 {
-  "method": "post",
-  "body": {
-    "method": "eth_sendRawTransaction",
-    "id": 1,
-    "jsonrpc": "2.0",
-    "params": ["0x02f901b60181a88085142678bbe48305b8d894a58f22e0766b3764376c92915ba545d583c19dbc870e35fa931a0000b90144982ea02000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000001916ad623cbd9000000000000000000000000000000000000000000000000000e35fa931a0000000000000000000000000000000000000000000000000000017160b5b1a44cac00000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000d849ebe3855fd7db8d45873cae010233f50e290400000000000000000000000000000000000000000000000000000000613ca39b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000088acdd2a6425c3faae4bc9650fd7e27e0bebb7abc080a0d5b572525def045409d488f2ab0023a06971c499720dce413ce07f581129f620a07d671e3e51441831db4a350c47a62bea0ec8d53c418c8ebab7e0e244add4a42a"]
-  },
-  "url": "https://protection-staging.flashbots.net/v1/rpc"
+  "jsonrpc": "2.0",
+  "id": "1",
+  "result": "0x2228f5d8954ce31dc1601a8ba264dbd401bf1428388ce88238932815c5d6f23f" // id of the bundle
 }
 ```
 
@@ -126,159 +85,72 @@ Creates new message call transaction or a contract creation for signed transacti
 
 Get the status of a bundle
 
-```Parameters json_schema
+```json
 {
-  "type": "object",
-  "properties": {
-    "method": {
-      "type": "string",
-      "default": "eth_getBundleStatusById",
-      "description": "Method name"
-    },
-    "id": {
-      "type": "integer",
-      "default": 1,
-      "format": "int32",
-      "description": "Request ID"
-    },
-    "jsonrpc": {
-      "type": "string",
-      "default": "2.0",
-      "description": "JSON-RPC Version (2.0)"
-    },
-    "params": {
-      "title": "Parameters",
-      "description": "Array containing one bundle id",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^0x[a-fA-F\\d]{64}(-[\\d])?$",
-      }
-    }
-  }
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_getBundleStatusById",
+  "params": [] // Array[String], An array containing a single bundle id returned from eth_sendRawTransaction
 }
 ```
 
-```Response json_schema
+example:
+
+```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "integer",
-      "default": 1,
-      "format": "int32",
-      "description": "Request ID"
-    },
-    "jsonrpc": {
-      "type": "string",
-      "default": "2.0",
-      "description": "JSON-RPC Version (2.0)"
-    },
-    "result": {
-      "title": "Parameters",
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "error": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        }
-      }
-    }
-  }
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_getBundleStatusById",
+  "params": ["0x2228f5d8954ce31dc1601a8ba264dbd401bf1428388ce88238932815c5d6f23f"]
 }
 ```
 
-```Example http
+example response:
+
+```json
 {
-  "method": "post",
-  "body": {
-    "method": "eth_getBundleStatusById",
-    "id": 1,
-    "jsonrpc": "2.0",
-    "params": ["0xe88b39741cb18885c3365ad908077740d3b85644c60daec6123becf47617a761"]
-  },
-  "url": "https://protection-staging.flashbots.net/v1/rpc"
+  "jsonrpc": "2.0",
+  "id": "1",
+  "result": {
+    status,  // String, status of the bundle
+    error,   // String, error message
+    message, // String, details about the status or error 
+    id       // String, id of the bundle
+  }
 }
 ```
 
 ### eth_cancelBundleById
 
-Cancel a bundle
+Cancel a bundle. Requests a cancellation of a bundle if it is still processing. This does not guarantee that the bundle will be cancelled.
 
-```Parameters json_schema
+```json
 {
-  "type": "object",
-  "properties": {
-    "method": {
-      "type": "string",
-      "default": "eth_cancelBundleById",
-      "description": "Method name"
-    },
-    "id": {
-      "type": "integer",
-      "default": 1,
-      "format": "int32",
-      "description": "Request ID"
-    },
-    "jsonrpc": {
-      "type": "string",
-      "default": "2.0",
-      "description": "JSON-RPC Version (2.0)"
-    },
-    "params": {
-      "title": "Parameters",
-      "description": "Array containing one bundle id",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^0x[a-fA-F\\d]{64}(-[\\d])?$",
-      }
-    }
-  }
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_cancelBundleById",
+  "params": [] // Array[String], An array containing a single bundle id returned from eth_sendRawTransaction
 }
 ```
 
-```Response json_schema
+example:
+
+```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "integer",
-      "default": 1,
-      "format": "int32",
-      "description": "Request ID"
-    },
-    "jsonrpc": {
-      "type": "string",
-      "default": "2.0",
-      "description": "JSON-RPC Version (2.0)"
-    },
-    "result": {
-      "title": "Parameters",
-      "type": "boolean",
-    }
-  }
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_cancelBundleById",
+  "params": ["0x2228f5d8954ce31dc1601a8ba264dbd401bf1428388ce88238932815c5d6f23f"]
 }
 ```
 
-```Example http
+example response:
+
+```json
 {
-  "method": "post",
-  "body": {
-    "method": "eth_cancelBundleById",
-    "id": 1,
-    "jsonrpc": "2.0",
-    "params": ["0xe88b39741cb18885c3365ad908077740d3b85644c60daec6123becf47617a761"]
-  },
-  "url": "https://protection-staging.flashbots.net/v1/rpc"
+  "jsonrpc": "2.0",
+  "id": "1",
+  "result": true // Boolean, whether the request was sent successfully
 }
 ```
 
@@ -286,121 +158,51 @@ Cancel a bundle
 
 Get current gas fees
 
-```Parameters json_schema
+```json
 {
-  "type": "object",
-  "properties": {
-    "method": {
-      "type": "string",
-      "default": "eth_gasFees",
-      "description": "Method name"
-    },
-    "id": {
-      "type": "integer",
-      "default": 1,
-      "format": "int32",
-      "description": "Request ID"
-    },
-    "jsonrpc": {
-      "type": "string",
-      "default": "2.0",
-      "description": "JSON-RPC Version (2.0)"
-    },
-    "params": {
-      "title": "Parameters",
-      "description": "Empty array",
-      "type": "array",
-      "minItems": 0,
-      "maxItems": 0
-    }
-  }
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_gasFees",
+  "params": [] // Array[], An empty array
 }
 ```
 
-```Response json_schema
+example:
+
+```json
 {
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "integer",
-      "default": 1,
-      "format": "int32",
-      "description": "Request ID"
-    },
-    "jsonrpc": {
-      "type": "string",
-      "default": "2.0",
-      "description": "JSON-RPC Version (2.0)"
-    },
-    "result": {
-      "title": "Parameters",
-      "type": "object",
-      "properties": {
-        "block": {
-          "type": "number"
-        },
-        "baseFeePerGas": {
-          "type": "string"
-        },
-        "default": {
-          "type": "object",
-          "properties": {
-            "maxFeePerGas": {
-              "type": "string"
-            },
-            "maxPriorityFeePerGas": {
-              "type": "string"
-            }
-          }
-        },
-        "low": {
-          "type": "object",
-          "properties": {
-            "maxFeePerGas": {
-              "type": "string"
-            },
-            "maxPriorityFeePerGas": {
-              "type": "string"
-            }
-          }
-        },
-        "med": {
-          "type": "object",
-          "properties": {
-            "maxFeePerGas": {
-              "type": "string"
-            },
-            "maxPriorityFeePerGas": {
-              "type": "string"
-            }
-          }
-        },
-        "high": {
-          "type": "object",
-          "properties": {
-            "maxFeePerGas": {
-              "type": "string"
-            },
-            "maxPriorityFeePerGas": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    }
-  }
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_gasFees",
+  "params: []
 }
 ```
 
-```Example http
+example response:
+
+```json
 {
-  "method": "post",
-  "body": {
-    "method": "eth_gasFees",
-    "id": 1,
-    "jsonrpc": "2.0",
-    "params": []
-  },
-  "url": "https://protection-staging.flashbots.net/v1/rpc"
+  "jsonrpc": "2.0",
+  "id": "1",
+  "result": {
+    block,                     // Number, current block number
+    baseFeePerGas,             // String, a hex number for the baseFee at the current block
+    default: {
+      maxFeePerGas,            // String, a hex number for the recommended default maxFeePerGas
+      maxPriorityFeePerGas,    // String, a hex number for the recommended default maxPriorityFeePerGas
+    },
+    low: {
+      maxFeePerGas,            // String, a hex number for the recommended low maxFeePerGas
+      maxPriorityFeePerGas,    // String, a hex number for the recommended low maxPriorityFeePerGas
+    },
+    med: {
+      maxFeePerGas,            // String, a hex number for the recommended med maxFeePerGas
+      maxPriorityFeePerGas,    // String, a hex number for the recommended med maxPriorityFeePerGas
+    },
+    high: {
+      maxFeePerGas,            // String, a hex number for the recommended high maxFeePerGas
+      maxPriorityFeePerGas,    // String, a hex number for the recommended high maxPriorityFeePerGas
+    },
+  }
 }
 ```
