@@ -103,127 +103,48 @@ socket.emitTransactionCancellation(id)
 
 ### Fees {}
 
-```Parameters json_schema
-{
-  "type": "object",
-  "properties": {
-    "block": {
-      "type": "number",
-      "description": "The block number in which the fees were calculated"
-    },
-    "baseFeePerGas": {
-      "type": "string",
-      "description": "BigNumberish: hex string. The baseFeePerGas for the block"
-    },
-    "default": {
-      "type": "object",
-      "properties": {
-        "maxFeePerGas": {
-          "type": "string"
-        },
-        "maxPriorityFeePerGas": {
-          "type": "string"
-        }
-      },
-      "description": "The default recommended fee"
-    },
-    "low": {
-      "type": "object",
-      "properties": {
-        "maxFeePerGas": {
-          "type": "string"
-        },
-        "maxPriorityFeePerGas": {
-          "type": "string"
-        }
-      },
-      "description": "The low recommended fee"
-    },
-    "med": {
-      "type": "object",
-      "properties": {
-        "maxFeePerGas": {
-          "type": "string"
-        },
-        "maxPriorityFeePerGas": {
-          "type": "string"
-        }
-      },
-      "description": "The medium recommended fee"
-    },
-    "high": {
-      "type": "object",
-      "properties": {
-        "maxFeePerGas": {
-          "type": "string"
-        },
-        "maxPriorityFeePerGas": {
-          "type": "string"
-        }
-      },
-      "description": "The high recommended fee"
-    }
-  }
+```typescript
+export interface Fee {
+  maxFeePerGas: BigNumberish
+  maxPriorityFeePerGas: BigNumberish
+}
+export interface Fees {
+  block: number
+  baseFeePerGas: BigNumberish
+  default: Fee
+  low: Fee
+  med: Fee
+  high: Fee
 }
 ```
 
 ### BundleReq {}
 
-```Parameters json_schema
-{
-  "type": "object",
-  "properties": {
-    "transactions": {
-      "type": "array",
-      "description": "Array of signed serialized raw transactions. See docs for signing transactions."
-    }
-  }
+```typescript
+export interface BundleReq {
+  transactions: string[]
 }
 ```
 
 ### BundleResApi {}
 
-```Parameters json_schema
-{
-  "type": "object",
-  "properties": {
-    "bundle": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "transactions": {
-          "type": "array"
-        }
-      },
-      "description": "Bundle object with an identifier and an array of transactions"
-    },
-    "status": {
-      "type": "string",
-      "description": "Status enum"
-    },
-    "message": {
-      "type": "string",
-    },
-    "error": {
-      "type": "string",
-    }
-  }
+```typescript
+export interface BundleResApi {
+  bundle: {
+    id: string;
+    transactions: string[];
+  };
+  status: string;
+  message: string;
+  error: string;
 }
 ```
 
 ### Err {}
 
-```Parameters json_schema
-{
-  "type": "object",
-  "properties": {
-    "event": {
-      "type": "object",
-      "description": "Event enum"
-    }
-  }
+```typescript
+export interface err {
+  event: Event
 }
 ```
 
