@@ -91,9 +91,14 @@ module.exports = {
     {
       "flashbots protect": [
         'flashbots-protect/overview',
-        'flashbots-protect/json-rpc',
-        'flashbots-protect/websockets-sdk',
-        'flashbots-protect/signing-transactions',
+        {
+          'api': [
+            'flashbots-protect/api/quick-start',
+            'flashbots-protect/api/json-rpc',
+            'flashbots-protect/api/websockets-sdk',
+            'flashbots-protect/api/signing-transactions',
+          ]
+        }
       ],
     },
     'community-tools',

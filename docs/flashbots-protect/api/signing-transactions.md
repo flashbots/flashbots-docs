@@ -2,25 +2,11 @@
 title: Signing Transactions
 ---
 
-To swap on mistX through websockets or the http endpoint, you must submit a bundle containing the signed transactions. MistX then uses FlashBots to submit the bundle privately for inclusion on chain. For that reason, transactions are signed using `eth_sign` or `eth_signTransaction`, depending on the wallet used (more on that below), then submitted in a `BundleReq` object.
+To use the Flashbots Protect API you must submit signed transactions. The Protect API then submits those transactions as bundles to Flashbots for inclusion on-chain. If you are building a user facing application the flow for generating signed transactions is different from how you usually prompt users to execute transations. In particular, we use `eth_sign` or `eth_signTransaction`, depending on the wallet (more on that below) to build signed transactions that are then submitted in a `BundleReq` object to the Flashbots Protect API websocket.
 
-We assume you know what digital signatures are and why there a key part of the blockchain. To learn more about digital signatures, check out this article by MyCrypto, [The Magic of Digital Signatures on Ethereum](https://medium.com/mycrypto/the-magic-of-digital-signatures-on-ethereum-98fe184dc9c7).
+As a part of this guide we assume you know what digital signatures are and why they are a key part of blockchains. To learn more about digital signatures, check out this article by MyCrypto, [The Magic of Digital Signatures on Ethereum](https://medium.com/mycrypto/the-magic-of-digital-signatures-on-ethereum-98fe184dc9c7).
 
 > All examples use ethers.js and/or web3-react
-
----
-
-## Signed Approvals
-
-`Token -> Token` and `Token -> ETH` swaps require an additional signed approval by the user. When creating the bundle in this case, two transactions are sent, with the signed approval first.
-
-```typescript
-// BundleReq
-{
-  transactions: [approvalTxReq, txReq], // [txReq] for ETH -> Token transactions
-  ...
-}
-```
 
 ---
 
@@ -28,7 +14,7 @@ We assume you know what digital signatures are and why there a key part of the b
 
 ### eth_sign
 
-eth_sign is an arbitrary signing method and can be used when signing transactions for metamask. After a signature is returned from eth_sign, the signed tx can be created with the signature and populatedTx.
+eth_sign is an arbitrary signing method and can be used when signing transactions for metamask. After a signature is returned from eth_sign, the signed transaction can be created with the user's signature and populate transaction object.
 
 ***Parameters:***
 
@@ -277,5 +263,19 @@ try {
     web3Provider.provider.isMetaMask = isMetamask
   }
   throw new Error(`Approval Failed: ${error.message}`)
+}
+```
+
+---
+
+## Signed Approvals
+
+`Token -> Token` and `Token -> ETH` swaps require an additional signed approval by the user. When creating the bundle in this case, two transactions are sent, with the signed approval first.
+
+```typescript
+// BundleReq
+{
+  transactions: [approvalTxReq, txReq], // [txReq] for ETH -> Token transactions
+  ...
 }
 ```
