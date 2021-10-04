@@ -1,6 +1,9 @@
 ---
 title: Websockets SDK
 ---
+
+The javascript websockets SDK is a package that makes sending transactions to the Flashbots Protect API simple. Simply include the package in your Web3 frontend, initialize the socket connection, and emit transactions. See details below.
+
 ## Installation
 
 ```json
