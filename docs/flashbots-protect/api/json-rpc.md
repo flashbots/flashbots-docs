@@ -1,7 +1,7 @@
 ---
 title: JSON RPC
 ---
-mistX exposes a [JSON-RPC](https://www.jsonrpc.org/specification) protocol to send transactions/bundles, get transaction status updates, cancel transactions, and retrieve ETH network gas fees.
+The Flashbots Protect API exposes a [JSON-RPC](https://www.jsonrpc.org/specification) protocol to send transactions/bundles, get transaction status updates, cancel transactions, and retrieve ETH network gas fees.
 
 ## Endpoints
 
@@ -39,7 +39,7 @@ mistX exposes a [JSON-RPC](https://www.jsonrpc.org/specification) protocol to se
 
 To build a successful transaction, it is important to include enough fees to cover both the Ethereum **baseFee** as well as the **miner tip** (incentive for a miner to include your transaction in a block). It may be complex to estimate what the fees should be, especially when the network is heavily used and more transactions are competing with each other.
 
-To help on that matter, the API provides a method that will send back **mistX recommended fees**. Those have been adjusted to ensure a good chance of inclusion while minimizing the miner payment to avoid overpayment. The method **eth_gasFees** will send back fees organized in three tiers, so you can choose which one fits best your use case
+To help on that matter, the API provides a method that will send back **recommended fees**. Those have been adjusted to ensure a good chance of inclusion while avoiding overpayment. The method **eth_gasFees** will send back fees organized in three tiers, so you can choose which one fits best your use case
 
 - **low**: lowest chance of inclusion, it will take more time to get included. Higher risk of not covering the baseFee in times of heavy traffic
 - **medium**: good chance of inclusion, it will be faster to get included. Medium risk of not covering the baseFee in times of heavy traffic
@@ -49,7 +49,7 @@ To help on that matter, the API provides a method that will send back **mistX re
 
 ### eth_sendRawTransaction
 
-Creates new message call transaction or a contract creation for signed transactions.
+Sends a raw transaction.
 
 ```json
 {
@@ -77,7 +77,7 @@ example response:
 {
   "jsonrpc": "2.0",
   "id": "1",
-  "result": "0x2228f5d8954ce31dc1601a8ba264dbd401bf1428388ce88238932815c5d6f23f" // id of the bundle
+  "result": "0x2228f5d8954ce31dc1601a8ba264dbd401bf1428388ce88238932815c5d6f23f" // NOTE: this is the Flashbots Protect bundle id
 }
 ```
 
