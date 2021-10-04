@@ -93,6 +93,7 @@ module.exports = {
         'flashbots-protect/overview',
         'flashbots-protect/json-rpc',
         'flashbots-protect/websockets-sdk',
+        'flashbots-protect/signing-transactions',
       ],
     },
     'community-tools',
