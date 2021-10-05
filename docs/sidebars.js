@@ -88,6 +88,25 @@ module.exports = {
         }
       ],
     },
+    {
+      "flashbots protect": [
+        'flashbots-protect/overview',
+        {
+          'api': [
+            'flashbots-protect/api/quick-start',
+            'flashbots-protect/api/json-rpc',
+            'flashbots-protect/api/websockets',
+            'flashbots-protect/api/signing-transactions',
+            'flashbots-protect/api/uncle-bandits'
+          ]
+        },
+        {
+          'rpc': [
+            'flashbots-protect/rpc/quick-start',
+          ]
+        }
+      ],
+    },
     'community-tools',
     {
       "contribute": [
