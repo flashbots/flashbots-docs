@@ -3,12 +3,13 @@ title: Quick start
 ---
 
 ## Flashbots Protect API
+
 The Flashbots Protect API provides a simple way for developers to integrate Flashbots into their dApps.
 
 Currently the API supports two ways to connect and send transactions:
 
 - **JSON RPC**: HTTP requests sent to the Protect API JSON RPC endpoint at `https://protection.flashbots.net/v1/rpc`
-- **Websockets SDK**: use an SDK to send transactions to the Protect API websocket endpoints at `wss://protection.flashbots.net/v1/ws`
+- **Websockets**: use socket.io to send transactions to the Protect API websocket endpoints at `wss://protection.flashbots.net/v1/ws`
 
 In either case the Flashbots Protect API will take your transactions and handle their submission to Flashbots, repeatedly submitting each block and monitoring for their inclusion.
 

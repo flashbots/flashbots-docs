@@ -5,7 +5,7 @@ The Flashbots Protect API exposes a [JSON-RPC](https://www.jsonrpc.org/specifica
 
 ## Endpoints
 
-### Staging
+**Staging**:
 
 - Current version: v1.8.0
 - `https://protection-staging.flashbots.net/v1/rpc`

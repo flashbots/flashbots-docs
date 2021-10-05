@@ -95,7 +95,7 @@ module.exports = {
           'api': [
             'flashbots-protect/api/quick-start',
             'flashbots-protect/api/json-rpc',
-            'flashbots-protect/api/websockets-sdk',
+            'flashbots-protect/api/websockets',
             'flashbots-protect/api/signing-transactions',
           ]
         }
