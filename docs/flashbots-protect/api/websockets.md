@@ -1,5 +1,5 @@
 ---
-title: Websockets
+title: WebSockets
 ---
 
 The WebSockets integration of the Flashbots Protect API is built for Web3 Javascript/Typescript frontends. Frontend clients can use the `socket.io-client` library to send transactions, cancel transactions, retrieve transaction status updates, and retrieve recommeneded fees (optional).
@@ -103,6 +103,13 @@ export interface Fees {
   low: Fee
   med: Fee
   high: Fee
+}
+
+// Error payload
+export interface SocketErr {
+  event: Event;
+  message: string;
+  data?: any;
 }
 
 ```
@@ -213,5 +220,17 @@ To help on that matter, the WebSockets provides an event that will send back **r
 ```typescript
 socket.on(Event.FEES_CHANGE, (response: Fees) => {
   console.log('Recommended Fees: ', response)
+})
+```
+
+## Errors
+
+`Event.SOCKET_ERR` is used to listen to error events on the client. The `SocketErr` contains an event name for which the error occured as well as a message describing the error. The `SocketErr` may also contain `SocketErr.data` which included additional data pertaining to the event such as a bundle id.
+
+```typescript
+socket.on(Event.SOCKET_ERR, (err: SocketErr) => {
+  console.log('Error with socket event:', err.event)
+  console.log('Error message: ', err.message)
+  console.log('Error data: ', err.data)
 })
 ```
