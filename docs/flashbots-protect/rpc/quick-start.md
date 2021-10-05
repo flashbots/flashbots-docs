@@ -1,5 +1,5 @@
 ---
-title: Quick start
+title: quick start
 ---
 **Please note that the Flashbots Protect RPC is currently in public beta. Your transactions may occasionally time out and not be mined!**
 
@@ -32,4 +32,4 @@ To add the Flashbots endpoint follow these steps:
 ![second metamask onboarding image](/img/flashbotsRPC-metamask2.png)
 
 ## Acknowledgements
-Thank you to the mistX, Nethermind, and MiningDAO teams for their contributions to Flashbots Protect RPC.
+Thank you to the [mistX](https://mistx.io/), [Nethermind](https://nethermind.io/), and [MiningDAO](https://miningdao.io/) teams for their contributions to Flashbots Protect RPC.

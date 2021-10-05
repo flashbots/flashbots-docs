@@ -1,5 +1,5 @@
 ---
-title: WebSockets
+title: websockets
 ---
 
 The WebSockets integration of the Flashbots Protect API is built for Web3 Javascript/Typescript frontends. Frontend clients can use the `socket.io-client` library to send transactions, cancel transactions, retrieve transaction status updates, and retrieve recommeneded fees (optional).

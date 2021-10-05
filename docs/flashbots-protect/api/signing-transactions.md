@@ -1,14 +1,16 @@
 ---
-title: Signing Transactions
+title: signing transactions
 ---
 
 To use the Flashbots Protect API you must submit signed transactions. The Protect API then submits those transactions as bundles to Flashbots for inclusion on-chain. If you are building a user facing application the flow for generating signed transactions is different from how you usually prompt users to execute transations. In particular, we use `eth_sign` or `eth_signTransaction`, depending on the wallet (more on that below) to build signed transactions that are then submitted in a `BundleReq` object to the Flashbots Protect API websocket.
 
 As a part of this guide we assume you know what digital signatures are and why they are a key part of blockchains. To learn more about digital signatures, check out this article by MyCrypto, [The Magic of Digital Signatures on Ethereum](https://medium.com/mycrypto/the-magic-of-digital-signatures-on-ethereum-98fe184dc9c7).
 
-> All examples use ethers.js and/or web3-react
+:::info
 
----
+All examples use ethers.js and/or web3-react
+
+:::
 
 ## Signing Methods
 
@@ -36,10 +38,12 @@ const signedTx = ethers.utils.serializeTransaction(populatedTx, signature)
 ***Supported Wallets:***
 
 - MetaMask
-  
-> **If you are using web3-react**: You must set `library.provider.isMetamask = false` before signing
 
----
+:::tip
+
+If you are using web3-react you must set `library.provider.isMetamask = false` before signing.
+
+:::
 
 ### eth_signTransaction
 
@@ -110,7 +114,7 @@ import { abi as MISTX_ROUTER_ABI } from './mistx-router-abi.json'
 
 const { account, chainId, library } = useActiveWeb3React()
 const MISTX_DEFAULT_GAS_LIMIT = 375000 // enough gas to cover most (>90%) swaps
-const CURRENT_BASE_FEE = 
+const CURRENT_BASE_FEE =
 const mistXRouterAddress = '0xA58f22e0766B3764376c92915BA545d583c19DBc' // Uni v2 - Mainnet
 const contract = new Contract(
   address,
@@ -124,7 +128,7 @@ const { methodName, args, value } = Router.swapCallParameters(trade, {
   recipient: account, // account or recipient address
   ttl: 5 * 60, // 5 minutes (seconds)
 })
-const maxBaseFeePerGas = BigNumber.from(CURRENT_BASE_FEE * (1.125**4)) // 
+const maxBaseFeePerGas = BigNumber.from(CURRENT_BASE_FEE * (1.125**4)) //
 
 if (!(contract.signer instanceof JsonRpcSigner)) {
   throw new Error(`Cannot sign transactions with this wallet type`)

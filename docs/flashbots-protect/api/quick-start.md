@@ -1,5 +1,5 @@
 ---
-title: Quick start
+title: quick start
 ---
 
 ## Flashbots Protect API

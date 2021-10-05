@@ -1,5 +1,5 @@
 ---
-title: JSON RPC
+title: json rpc
 ---
 The Flashbots Protect API exposes a [JSON-RPC](https://www.jsonrpc.org/specification) protocol to send transactions or bundles, get status updates, cancel transactions or bundles, and optionally retrieve recommended ETH network gas fees.
 
@@ -116,7 +116,7 @@ example response:
   "result": {
     status,  // String, status of the bundle
     error,   // String, error message
-    message, // String, details about the status or error 
+    message, // String, details about the status or error
     id       // String, id of the bundle
   }
 }
