@@ -169,7 +169,7 @@ There are three types of bundle events sent by the client, `Event.BUNDLE_REQUEST
 
 #### Sending a bundle
 
-`Event.BUNDLE_REQUEST` is used to send a bundle of transactions to the Flashbots Protect API. The transactions array contained in the `BundleReq` is a list of raw signed transactions. [Learn more about signing transactions](/docs/flashbots-protect/api/signing-transactions)
+`Event.BUNDLE_REQUEST` is used to send a bundle of transactions to the Flashbots Protect API. The transactions array contained in the `BundleReq` is a list of raw signed transactions. [Learn more about signing transactions](/flashbots-protect/api/signing-transactions)
 
 ```typescript
 
