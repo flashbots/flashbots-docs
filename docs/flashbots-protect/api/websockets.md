@@ -237,7 +237,7 @@ socket.on(Event.FEES_CHANGE, (response: Fees) => {
 
 ### Errors
 
-`Event.SOCKET_ERR` is used to listen to error events on the client. The `SocketErr` contains an event name for which the error occured as well as a message describing the error. The `SocketErr` may also contain `SocketErr.data` which included additional data pertaining to the event such as a bundle id.
+`Event.SOCKET_ERR` is used to listen to error events on the client. The `SocketErr` contains an event name for which the error occured as well as a message describing the error. The `SocketErr` may also contain `SocketErr.data` which includes additional data pertaining to the event such as a bundle id.
 
 ```typescript
 socket.on(Event.SOCKET_ERR, (err: SocketErr) => {
