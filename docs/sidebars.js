@@ -97,6 +97,12 @@ module.exports = {
             'flashbots-protect/api/json-rpc',
             'flashbots-protect/api/websockets',
             'flashbots-protect/api/signing-transactions',
+            'flashbots-protect/api/uncle-bandits'
+          ]
+        },
+        {
+          'rpc': [
+            'flashbots-protect/rpc/quick-start',
           ]
         }
       ],
