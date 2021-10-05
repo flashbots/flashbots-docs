@@ -1,7 +1,9 @@
 ---
 title: JSON RPC
 ---
-The Flashbots Protect API exposes a [JSON-RPC](https://www.jsonrpc.org/specification) protocol to send transactions/bundles, get transaction status updates, cancel transactions, and retrieve ETH network gas fees.
+The Flashbots Protect API exposes a [JSON-RPC](https://www.jsonrpc.org/specification) protocol to send transactions or bundles, get status updates, cancel transactions or bundles, and optionally retrieve recommended ETH network gas fees.
+
+Note that bundle ID here refers to a unique identifier of bundles for the Flashbots Protect API, not the bundle hash. In a future release we intend to move to use the bundle hash as the unique identifier.
 
 ## Endpoints
 

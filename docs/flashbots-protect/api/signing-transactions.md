@@ -99,7 +99,7 @@ const signedTx = signedTxRes.raw
 
 ## Examples
 
-### Prepare a Signed Transaction & Submit Bundle with mistx-connect
+### Prepare a Signed Transaction & Submit Bundle with mistx-connect, a community library that makes it easier to interact with the Flashbots Protect API
 
 ```typescript
 import { Contract } from '@ethersproject/contracts'

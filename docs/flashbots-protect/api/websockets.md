@@ -209,11 +209,11 @@ function emitStatusRequest(id: string) {
 
 To build a successful transaction, it is important to include enough fees to cover both the Ethereum **baseFee** as well as the **miner tip** (incentive for a miner to include your transaction in a block). It may be complex to estimate what the fees should be, especially when the network is heavily used and more transactions are competing with each other.
 
-To help on that matter, the WebSockets provides an event that will send back **recommended fees**. Those have been adjusted to ensure a good chance of inclusion while avoiding overpayment. The method **eth_gasFees** will send back fees organized in three tiers, so you can choose which one fits best your use case
+To help properly estimate miner fees, the Flashbots Protect API can optionally provide you **recommended fees**. These have been adjusted to ensure a good chance of inclusion while avoiding overpayment. The method **eth_gasFees** will return fees organized in three tiers, and you can choose which to surface to your users depending on their use case.
 
-- **low**: lowest chance of inclusion, it will take more time to get included. Higher risk of not covering the baseFee in times of heavy traffic
-- **medium**: good chance of inclusion, it will be faster to get included. Medium risk of not covering the baseFee in times of heavy traffic
-- **high**: highest chance and fastest inclusion. Lowest risk of not covering the baseFee in times of heavy traffic
+- **low**: lowest chance of inclusion. It will take more time to get included. Higher risk of not covering the baseFee in times of heavy traffic.
+- **medium**: good chance of inclusion. It will be faster to get included. Medium risk of not covering the baseFee in times of heavy traffic.
+- **high**: highest chance of inclusion and fastest time to inclusion. Lowest risk of not covering the baseFee in times of heavy traffic.
 
 ### Receiving fees
 
