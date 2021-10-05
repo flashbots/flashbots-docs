@@ -13,13 +13,11 @@ Alternatively, the mistX team at Alchemist has provided an easy to use WebSocket
 **Staging**:
 
 - Current version: v1.8.0
-- `wss://protection-staging.flashbots.net/v1/ws`
 - `https://protection-staging.flashbots.net`
 
 **Production**:
 
 - Current version: v1.8.0
-- `wss://protection.flashbots.net/v1/ws`
 - `https://protection.flashbots.net`
 
 ## Installation
@@ -28,7 +26,21 @@ Alternatively, the mistX team at Alchemist has provided an easy to use WebSocket
 npm i --save socket.io-client
 ```
 
-## Interfaces & Enums
+## Events
+
+| Event Name     | Type | Description | Example |
+| -----------    | ----------- | ----------- | ----------- |
+| BUNDLE_REQUEST         | Publish | Submit a bundle of transactions | `socket.emit(Event.BUNDLE_REQUEST, ...)` |
+| BUNDLE_STATUS_REQUEST      | Publish | Manually request the last status of a bundle | `socket.emit(Event.BUNDLE_STATUS_REQUEST, ...)` |
+| BUNDLE_CANCEL_REQUEST | Publish | Cancel a bundle | `socket.emit(Event.BUNDLE_CANCEL_REQUEST, ...)` |
+| BUNDLE_RESPONSE | Subscribe | Subscribe to bundle status changes | `socket.on(Event.BUNDLE_RESPONSE, ...)` |
+| SOCKET_SESSION | Subscribe | Retrive the token for the socket session | `socket.on(Event.SOCKET_SESSION, ...)` |
+| FEES_CHANGE | Subscribe | Subscribe to the recommended fees for the latest block| `socket.on(Event.FEES_CHANGE, ...)` |
+| SOCKET_ERR | Subscribe | Subscribe to errors| `socket.on(Event.SOCKET_ERR, ...)` |
+
+## Implementation
+
+### Interfaces and Enums
 
 The Interfaces and Enums used throughout this documentation.
 
@@ -114,7 +126,7 @@ export interface SocketErr {
 
 ```
 
-## Initializing The Client
+### Initializing The Client
 
 ```typescript
 
@@ -140,7 +152,7 @@ const socket = Socket<QuoteEventsMap, QuoteEventsMap> = io(defaultServerUrl, {
 
 ```
 
-## Socket Session
+### Socket Session
 
 After initializing the client, the first event received will be `Event.SOCKET_SESSION` which returns a token. Store the token in local storage and use as the `auth.token` in subseqent client initializations.
 
@@ -151,11 +163,11 @@ socket.on(Event.SOCKET_SESSION, (session: SocketSession) => {
 
 ```
 
-## Sending & Receiving Bundle Events
+### Sending & Receiving Bundle Events
 
 There are three types of bundle events sent by the client, `Event.BUNDLE_REQUEST`, `Event.BUNDLE_STATUS_REQUEST`, and `Event.BUNDLE_CANCEL_REQUEST`. Only one type of bundle event is received by the client, `Event.BUNDLE_RESPONSE`. These events allow the client and Flashbots Protect API to communicate over the lifecycle of a bundle.
 
-### Sending a bundle
+#### Sending a bundle
 
 `Event.BUNDLE_REQUEST` is used to send a bundle of transactions to the Flashbots Protect API. The transactions array contained in the `BundleReq` is a list of raw signed transactions. [Learn more about signing transactions](/docs/flashbots-protect/api/signing-transactions)
 
@@ -169,7 +181,7 @@ function emitBundleRequest(bundle: BundleReq) {
 }
 ```
 
-### Receiving a bundle response
+#### Receiving a bundle response
 
 Once a bundle has been sent by the client, the socket should listen for `Event.BUNDLE_RESPONSE` to receive the id of the bundle and updates when the bundle status changes.
 
@@ -183,7 +195,7 @@ socket.on(Event.BUNDLE_RESPONSE, (response: BundleRes) => {
 })
 ```
 
-### Cancelling a bundle
+#### Cancelling a bundle
 
 The bundle id can be used to cancel a bundle using `Event.BUNDLE_CANCEL_REQUEST`. The Flashbots Protect API will attempt to cancel the bundle before it is included on-chain by a miner. Cancellation is not guaranteed as the cancellation event may be received after a miner has already included the bundle.
 
@@ -194,7 +206,7 @@ function emitBundleCancellation(id: string) {
 }
 ```
 
-### Manually request a bundle status
+#### Manually request a bundle status
 
 While a bundle response is provided when the status of a bundle changes, the `Event.BUNDLE_STATUS_REQUEST` can be used to manually trigger a `Event.BUNDLE_RESPONSE` to retrieve the last status of a bundle. The main usecase of this event is to provide a way of retrieving the status of a bundle which may have changed while the client was disconnected.
 
@@ -205,7 +217,7 @@ function emitStatusRequest(id: string) {
 }
 ```
 
-## Recommended fees (optional)
+### Recommended fees (optional)
 
 To build a successful transaction, it is important to include enough fees to cover both the Ethereum **baseFee** as well as the **miner tip** (incentive for a miner to include your transaction in a block). It may be complex to estimate what the fees should be, especially when the network is heavily used and more transactions are competing with each other.
 
@@ -215,7 +227,7 @@ To help on that matter, the WebSockets provides an event that will send back **r
 - **medium**: good chance of inclusion, it will be faster to get included. Medium risk of not covering the baseFee in times of heavy traffic
 - **high**: highest chance and fastest inclusion. Lowest risk of not covering the baseFee in times of heavy traffic
 
-### Receiving fees
+#### Receiving fees
 
 ```typescript
 socket.on(Event.FEES_CHANGE, (response: Fees) => {
@@ -223,7 +235,7 @@ socket.on(Event.FEES_CHANGE, (response: Fees) => {
 })
 ```
 
-## Errors
+### Errors
 
 `Event.SOCKET_ERR` is used to listen to error events on the client. The `SocketErr` contains an event name for which the error occured as well as a message describing the error. The `SocketErr` may also contain `SocketErr.data` which included additional data pertaining to the event such as a bundle id.
 
