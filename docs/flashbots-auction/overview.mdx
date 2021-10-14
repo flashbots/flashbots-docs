@@ -16,12 +16,13 @@ The incentives around MEV extraction pose an existential risk to Ethereum consen
 We have observed and are concerned about the active development of permissioned and exclusive transaction routing infrastructure as it holds the potential to erode the neutrality, transparency, decentralization, and fairness of Ethereum today. Flashbots Auction is an open-sourced, democratic, and credibly neutral alternative which aims to mitigate the aforementioned negative externalities and existential risks.
 
 ## Timeline
-- July 2020: Formation of MEV-Ship Research Collective.  
-- November 2020: Formation of Flashbots Research Organization and proposal of [Flashbots Auction architecture](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251).  
-- January 2021: Flashbots Auction Alpha (v0.1) made available for miners and searchers to adopt.  
+- July 2020: Formation of MEV-Ship Research Collective.
+- November 2020: Formation of Flashbots Research Organization and proposal of [Flashbots Auction architecture](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251).
+- January 2021: Flashbots Auction Alpha (v0.1) made available for miners and searchers to adopt.
 - May 2021: [Flashbots Auction Alpha (v0.2)](/flashbots-auction/releases/alpha-v0.2) made available for miners and searchers to adopt.
+- August 2021: [Flashbots Auction Alpha (v0.3)](/flashbots-auction/releases/alpha-v0.3) made available for miners and searchers to adopt.
+- September 2021: [Flashbots Auction Alpha (v0.4)](/flashbots-auction/releases/alpha-v0.4) made available for miners and searchers to adopt.
 
-You can find our monthly-ish transparency reports on the [Flashbots medium publication](https://medium.com/flashbots/tagged/transparency-report).
 
 ## How does it work?
 Flashbots Auction provides a private transaction pool + a sealed bid blockspace auction mechanism which allows block producers to trustlessly outsource the work of finding optimal block construction.
@@ -34,8 +35,6 @@ Here are the key issues with this mechanism:
 3. the reliance on gasPrice makes it impossible for bidders to express granular ordering preferences as they are restricted to bidding for the top position in the block, this leads to alternative strategies like spam to increase likelihood of winning thus further increasing deadweight loss
 
 Instead, the Flashbots Auction infrastructure uses a [first-price sealed-bid auction](https://en.wikipedia.org/wiki/First-price_sealed-bid_auction) which allows users to privately communicate their bid and granular transaction order preference without paying for failed bids. This mechanism maximizes miner payoffs, while providing an efficient venue for price discovery on the value of a given MEV opportunity. Crucially, this mechanism eliminates frontrunning vulnerabilities.
-
-For more information on efficient MEV auctions, see the Flashbots auction mechanism [research](https://github.com/flashbots/mev-research/blob/main/FRPs/FRP-7.md) and [presentation](https://docs.google.com/presentation/d/1tlyuom4tSU8ROb6NsbyTRZiilwygky94eFjfMC7vQvE/edit?usp=sharing).
 
 ## Roadmap
 The Flashbots team is taking an iterative approach to decentralizing the Flashbots Auction architecture. As mentioned in our initial [ethresearch post](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251), there remain some key research questions to be answered.
@@ -50,16 +49,15 @@ Ultimately, the design goals are the following:
 - **Complete privacy**: implies intermediaries like relayers and miners cannot observe the content of transactions until mined on chain.
 - **Permissionless**: implies there are no trusted intermediaries which can censor transactions.
 
-| Stage                | PGA | DarkPool | ⚡🤖 v0.1 | ⚡🤖 v0.2 | ⚡🤖 v0.x | ⚡🤖 v1.0 |
-| -------------------- |:---:|:--------:|:---------:|:---------:|:---------:|:---------:|
-| Pre-trade privacy    | ❌  |    ✅    |    ✅     |    ✅     |    ✅     |    ✅     |
-| Failed trade privacy | ❌  |    ❌    |    ✅     |    ✅     |    ✅     |    ✅     |
-| Efficiency           | ❌  |    ❌    |    ✅     |    ✅     |    ✅     |    ✅     |
-| Bundle merging       | ❌  |    ❌    |    ❌     |    ✅     |    ✅     |    ✅     |
-| Finality protection  | ❌  |    ❌    |    ❌     |    ❌     |    ✅     |    ✅     |
-| Complete privacy     | ❌  |    ❌    |    ❌     |    ❌     |    ❌     |    ✅     |
-| Permissionless       | ✅  |    ❌    |    ❌     |    ❌     |    ❌     |    ✅     |
-
+| Stage                | PGA | DarkPool | ⚡🤖 v0.1 | ⚡🤖 v0.2 | ⚡🤖 v0.3 | ⚡🤖 v0.4 | ⚡🤖 v1.0 |
+| -------------------- |:---:|:--------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+| Pre-trade privacy    | ❌  |    ✅    |    ✅     |    ✅     |    ✅     |    ✅     |    ✅     |
+| Failed trade privacy | ❌  |    ❌    |    ✅     |    ✅     |    ✅     |    ✅     |    ✅     |
+| Efficiency           | ❌  |    ❌    |    ✅     |    ✅     |    ✅     |    ✅     |    ✅     |
+| Bundle merging       | ❌  |    ❌    |    ❌     |    ✅     |    ✅     |    ✅     |    ✅     |
+| Finality protection  | ❌  |    ❌    |    ❌     |    ❌     |    ✅     |    ✅     |    ✅     |
+| Complete privacy     | ❌  |    ❌    |    ❌     |    ❌     |    ❌     |    ✅     |    ✅     |
+| Permissionless       | ✅  |    ❌    |    ❌     |    ❌     |    ❌     |    ✅     |    ✅     |
 ## Technical Architecture
 
 The Flashbots Auction architecture proposes a network with three distinct parties who specialize in performing a subset of the work required for sustaining this communication channel.
@@ -122,7 +120,7 @@ A relayer is in charge of validating and routing Flashbots bundles. Since search
 
 Solving for spam protection and relayer privacy are the two main challenges the Flashbots Auction architecture must solve in order to become fully permissionless / decentralized.
 
-For the time being, the Flashbots organization operates an [open-source relayer called mev-relay](https://github.com/flashbots/mev-relay-js) which follows the [Flashbots Fair Market Principles](https://hackmd.io/@flashbots/fair-market-principles).
+For the time being, the Flashbots organization operate a relay called mev-relay which follows the [Flashbots Fair Market Principles](https://hackmd.io/@flashbots/fair-market-principles).
 
 ⚠️ Not all relayers can be trusted ⚠️
 
@@ -154,4 +152,4 @@ Learn more about the [trust assumptions of the Flashbots Alpha](#trust-assumptio
 ## Trust Assumptions
 The current version of Flashbots Auction contains technical limitations which prevent the network from operating in a fully trustless manner. Specifically, the properties of complete privacy and permissionlessness are required for Flashbots to be fully decentralized.
 
-In the future, the [Flashbots Auction roadmap](#roadmap) aims to replace these trust guarantees with cryptographic guarantees of full privacy. We invite privacy researchers and interested community members to review our proposed architecture and contribute to building a more robust and decentralized system.
+In the future, the [Flashbots Auction roadmap](#roadmap) aims to replace these trust guarantees with cryptographic and cryptoeconomic guarantees of full privacy. We invite privacy researchers and interested community members to review our proposed architecture and contribute to building a more robust and decentralized system.
