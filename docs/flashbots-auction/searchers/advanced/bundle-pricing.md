@@ -14,7 +14,7 @@ It is important to remember that searchers can pay miners through normal gas fee
 
 Here is the formula for how bundle gas pricing is calculated:
 
-$$ s_{v0.3-4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T} $$ 
+$$s_{v0.3-4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}$$ 
 
 $s$: bundle $U$ _score_ used to sort bundles.  
 $U$: ordered list of transactions $T$ in a bundle.  
