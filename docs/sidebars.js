@@ -1,6 +1,10 @@
 module.exports = {
   docs: [
-    'welcome',
+    {
+      "welcome": [
+        'welcome','new-to-mev',
+      ],
+    },
     {
       'flashbots auction': [
         'flashbots-auction/overview',
@@ -110,7 +114,7 @@ module.exports = {
     'community-tools',
     {
       "contribute": [
-        'contribution-guide', 'cheatsheet',
+        'joining-flashbots','contribution-guide', 'cheatsheet',
       ],
     },
     {
