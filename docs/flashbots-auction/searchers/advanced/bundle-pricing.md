@@ -14,13 +14,17 @@ It is important to remember that searchers can pay miners through normal gas fee
 
 Here is the formula for how bundle gas pricing is calculated:
 
-$$ s_{v0.3-4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T} $$ 
+$$s_{v0.3-4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}$$ 
 
 $s$: bundle $U$ _score_ used to sort bundles.  
 $U$: ordered list of transactions $T$ in a bundle.  
 $M$: set of transactions $T$ in the mempool.  
 $g_{T}$: _gas used_ by transaction $T$.  
 $p_{T}$: _gas price_ of transaction $T$.  
+$c_{T}$: _fee cap per gas_ of transaction $T$.  
+$\delta_T$: _priority fee per gas_ of transaction $T$.  
+$e_{T}$: _effective fee per gas_ of transaction $T$ equal $\min$($c_{T}$, BASEFEE + $\delta_T$).  
+$m_{T}$: _miner fee per gas_ of transaction $T$ equal $e_{T}$ - BASEFEE.  
 $\Delta_{coinbase}$: coinbase difference from direct payment.  
 
 ### Explanation
