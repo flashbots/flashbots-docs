@@ -175,7 +175,7 @@ Yes. You'll want to simulate with a 'fake' tip, like 1 wei, then see how much ga
 ### What are mega bundles?
 [to update]
 
-### 35. Can I use a contract to tip ETH to the miner?
+### Can I use a contract to tip ETH to the miner?
 
 You can pay miners either via gas or by sending ETH to their coinbase.
 It's best to pay via block.coinbase transfer to prevent the inclusion of your bundle when you miss (i.e. you remove the miner incentive of inclusion on a miss) and to protect yourself from re-orgs.
