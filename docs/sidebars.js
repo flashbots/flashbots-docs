@@ -69,9 +69,6 @@ module.exports = {
     },
     {
       "flashbots data": [
-        'flashbots-data/blockapi',
-        'flashbots-data/mev-explore',
-        'flashbots-data/dashboard',
         {
           'mev-inspect': [
             'flashbots-data/mev-inspect-py/overview',
@@ -89,7 +86,10 @@ module.exports = {
                 ],
             },
           ]
-        }
+        },
+        'flashbots-data/blockapi',
+        'flashbots-data/mev-explore',
+        'flashbots-data/dashboard',
       ],
     },
     {
