@@ -20,6 +20,17 @@ Before you get started here are a few things to be mindful of
 - There is a risk that your transactions are included in uncled blocks and then emitted to the public mempool. Please read [here](/flashbots-protect/api/uncle-bandits) to learn more about uncle bandits and how to mitigate this risk.
 - Your transactions can be emitted to the public mempool if you switch RPC endpoints from the Flashbots Protect RPC to another RPC while your transactions are pending.
 
+## Fixing stuck transactions
+
+Follow the steps below to remove MetaMask transactions that are stuck in a "pending" state. Transactions may be stuck if they are in a "pending" state for more than 20 minutes.
+
+To resolve this, you need to reset your Metamask account, which will cause it to update the nonce and transaction history from the network. Don't worry, your funds and keys are safe during this process.
+
+1. Click the account icon on the top-right corner of MetaMask.
+2. Click "Settings".
+3. Click "Advanced".
+4. Scroll down and click Reset Account.
+
 ## How to use the Flashbots Protect RPC Endpoint in MetaMask
 To add the Flashbots endpoint follow these steps:
 
