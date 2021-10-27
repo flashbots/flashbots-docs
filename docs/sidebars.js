@@ -8,7 +8,6 @@ module.exports = {
     {
       'flashbots auction': [
         'flashbots-auction/overview',
-        'flashbots-auction/upgrade-process',
         {
           "for searchers": [
             'flashbots-auction/searchers/quick-start',
@@ -38,12 +37,14 @@ module.exports = {
           'for miners & mining pools': [
             'flashbots-auction/miners/quick-start',
             'flashbots-auction/miners/how-it-works',
-            'flashbots-auction/miners/discord-setup',
+            'flashbots-auction/miners/demo',
             'flashbots-auction/miners/faq',
             {
               "advanced concepts": [
                 'flashbots-auction/miners/advanced/source-code',
                 'flashbots-auction/miners/advanced/interacting-with-relay',
+                'flashbots-auction/miners/advanced/discord-setup',
+
                 {
                   'mev-geth spec': [
                     'flashbots-auction/miners/mev-geth-spec/v04',
@@ -63,6 +64,8 @@ module.exports = {
             'flashbots-auction/releases/alpha-v0.4',
             'flashbots-auction/releases/alpha-v0.3',
             'flashbots-auction/releases/alpha-v0.2',
+            'flashbots-auction/releases/upgrade-process',
+
           ],
         },
       ]
