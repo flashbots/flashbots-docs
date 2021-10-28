@@ -213,9 +213,15 @@ We recommend checking out this [great guide](https://fifikobayashi.medium.com/be
 
 ### What do I need to change in my bot aside from using the sendBundle to submit transactions?
 
-To get the full benefit of using flashbots, it is beneficial to transition from transaction fee payment (e.g. `gasPrice * gasUsed`) to coinbase payments. Since you can now submit 0-gas-price transactions, you will need to add functionality to your on-chain code to pay `block.coinbase.transfer()` based on the reward intended for the miner.
+To get the full benefit of using Flashbots, it is worth considering the benefits of transitioning from priority fee payment (e.g. `priorityFee * gasUsed`) to coinbase payments. As of EIP-1559, you can no longer use `0-gas-price` transactions, but you CAN use `0-priority-fee` transactions, combined with custom functionality to your on-chain code to pay `block.coinbase.transfer()` based on the reward intended for the miner.
 
-This can come from a calldata argument or some fixed percentage of the overall opportunity calculated on-chain. We recommend using calldata for specifying the reward in order to quickly react to fluctuations in flashbot bundle prices.
+Using `0-priority-fee` has several important benefits:
+ - Allows you to keep less ETH in your bot's `EOA` account (less at risk on a hot address, smaller capital requirements)
+ - Can pay miner out of proceeds of the opportunity, which could be more ETH than you have on hand!
+ - Can dynamically adjust to size of opportunity on-chain
+ - If your bot's transaction is leaked or `uncle`d, there is no incentive to a miner to include your transaction later unless it succeeds. `uncle`d transactions that use a priority fee will still land on chain and cost your `EOA` ETH, even when the opportunity was missed.
+
+This coinbase transfer amount can be determined in the middle of your contract logic or could come from a calldata argument or some  percentage of the overall opportunity calculated on-chain. We recommend using calldata for specifying the reward in order to quickly react to fluctuations in competing Flashbots bundle prices.
 
 ### Can I have a running bundle which I constantly update whenever I find a new trade? Essentially I want to continuously update my bunle until the next block arrives.
 
