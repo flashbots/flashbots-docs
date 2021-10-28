@@ -25,6 +25,8 @@ module.exports = {
               "example searchers": [
                 'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
                 'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
+                'flashbots-auction/searchers/example-searchers/searcher-minter',
+
               ],
               "libraries": [
                 'flashbots-auction/searchers/libraries/golang',
