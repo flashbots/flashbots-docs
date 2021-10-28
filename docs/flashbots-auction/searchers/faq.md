@@ -1,9 +1,9 @@
 ---
 title: FAQ
 ---
-*Check Flashbots Discord [#release](https://discord.gg/Z26a7e2x) channel for the latest releases.*
+*Check Flashbots Discord [#release](https://discord.com/invite/7hvTycdNcK) channel for the latest releases.*
 
-Don't see your question answered? Join our dedicated [#🤖searchers](https://discord.gg/KNFBvZzJyT) channel on Discord!
+Don't see your question answered? Join our dedicated [#🤖searchers](https://discord.com/invite/7hvTycdNcK) channel on Discord!
 
 ### What is Flashbots Auction?
 
@@ -19,7 +19,7 @@ The Flashbots organization is funded by long term capital partners with a track 
 
 ### What is the Flashbots Auction roadmap?
 
-As laid out in our [ETHResearch post](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251), we look at the development of Flashbots in phases. See the latest progress on our [roadmap](/flashbots-auction/overview#roadmap).
+See the latest progress on our [roadmap](/flashbots-auction/overview#roadmap).
 
 ### Where can I submit a feature request?
 
@@ -72,7 +72,7 @@ https://etherscan.io/tx/0x5e1657ef0e9be9bc72efefe59a2528d0d730d478cfc9e6cdd09af9
 *Red line indicates where the bundle is*
 
 ### What level of transparency do you provide into how this infrastructure works?
-MEV-Geth, MEV-Relay and all the code searchers interact with is open-source and documented on our [Github repos](https://github.com/flashbots). In addition, we publish monthly [transparency reports](https://medium.com/flashbots/tagged/transparency-report).
+With the exception of MEV-Relay which is now closed source, MEV-Geth and all the code searchers interact with is open-source and documented on our [Github repos](https://github.com/flashbots). In addition, we publish monthly [transparency reports](https://medium.com/flashbots/tagged/transparency-report).
 
 We've also released a publicly accessible API [blocks.flashbots.net](https://blocks.flashbots.net) for displaying Flashbots blocks and txs, and will be releasing live data visualizations useful in the coming weeks.
 
@@ -88,11 +88,9 @@ We expect searcher who focus on finding "new alpha" to be able to keep the major
 
 See the overview for more information on the [auction mechanism](/flashbots-auction/overview#how-does-it-work).
 
-### What will happen when EIP1559 is released?
+### What will happen to Flashbots after The Merge?
+[to update]
 
-The only change expected is for 0 gas transactions to be forced to pay the `base_fee`.
-
-We may build a BASEFEE provider to still allow empty EOA use of Flashbots vs having to pre-fill it with ETH to pay it.
 
 ### Do I need authentication to access the Flashbots Relay?
 
@@ -100,7 +98,7 @@ The Flashbots Relay expects payloads to be signed using a standard Ethereum priv
 
 The signature needs to be provided via the 'X-Flashbots-Signature' Header. Reference implementation can be found in the [Flashbots Ethers Provider](https://github.com/flashbots/ethers-provider-flashbots-bundle/blob/9e039cc92fcaa3d15e71f11faa7acf4f4f0674fa/src/index.ts#L307-L310)
 
-### Why am I getting rate limitted by the relay?
+### Why am I getting rate limited by the relay?
 
 Rate limiting is currently in place to protect the relay infrastructure from DOS attacks. Similar to how Infura has a gas limit on eth_call. Rate limiting may be removed in the future for searchers who have accumulated good reputation.
 
@@ -172,15 +170,10 @@ Yes. You'll want to simulate with a 'fake' tip, like 1 wei, then see how much ga
 
 ### How does MEV-Geth work when it receives bundles?
 
-Currently, MEV-Geth compares:
-1. A normally constructed block.
-2. Your bundle at the head of the block followed by a normally constructed everything else.
-3. Alice's bundle at the head of the block, followed by a normally constructed block.
-4. Bob's bundle at the head of the block, followed by a normally constructed block.
-6. Carol's bundle at the head of the block, followed by a normally constructed block.
-...
+[to update]
 
-It then picks the block that results in the miner's balance increasing the most.
+### What are mega bundles?
+[to update]
 
 ### Can I use a contract to tip ETH to the miner?
 
@@ -202,20 +195,17 @@ If using the library linked above, sending a bundle returns a promise that resol
 2. Your bundle became invalid due to one of the nonces inside the transaction becoming too low, either before or on the target block
 3. Your bundle was not included, either because your coinbase payment was too low OR because the miner at the target block height was not a Flashbot miner
 
-We recommend checking out this [great guide](https://fifikobayashi.medium.com/beginners-guide-to-troubleshooting-mev-on-flashbots-aee175048858) by Flashbots community member [Fiona Kobayashi](https://twitter.com/fifikobayashi) on issues searchers would have as they start sending Flashbots bundles. Fiona goes over a few reasons why your bundle might not be picked by miners:
-* Noncompetitive gwei price
-* Incorrect gas estimates
-* Miner luck
-* Outcompeted by another searcher
-* Failing transaction
-* Rate limiting
-* Transaction nonce is too low
-
 ### What do I need to change in my bot aside from using the sendBundle to submit transactions?
 
-To get the full benefit of using flashbots, it is beneficial to transition from transaction fee payment (e.g. `gasPrice * gasUsed`) to coinbase payments. Since you can now submit 0-gas-price transactions, you will need to add functionality to your on-chain code to pay `block.coinbase.transfer()` based on the reward intended for the miner.
+To get the full benefit of using Flashbots, it is worth considering the benefits of transitioning from priority fee payment (e.g. `priorityFee * gasUsed`) to coinbase payments. As of EIP-1559, you can no longer use `0-gas-price` transactions, but you CAN use `0-priority-fee` transactions, combined with custom functionality to your on-chain code to pay `block.coinbase.transfer()` based on the reward intended for the miner.
 
-This can come from a calldata argument or some fixed percentage of the overall opportunity calculated on-chain. We recommend using calldata for specifying the reward in order to quickly react to fluctuations in flashbot bundle prices.
+Using `0-priority-fee` has several important benefits:
+ - Allows you to keep less ETH in your bot's `EOA` account (less at risk on a hot address, smaller capital requirements)
+ - Can pay miner out of proceeds of the opportunity, which could be more ETH than you have on hand!
+ - Can dynamically adjust to size of opportunity on-chain
+ - If your bot's transaction is leaked or `uncle`d, there is no incentive to a miner to include your transaction later unless it succeeds. `uncle`d transactions that use a priority fee will still land on chain and cost your `EOA` ETH, even when the opportunity was missed.
+
+This coinbase transfer amount can be determined in the middle of your contract logic or could come from a calldata argument or some  percentage of the overall opportunity calculated on-chain. We recommend using calldata for specifying the reward in order to quickly react to fluctuations in competing Flashbots bundle prices.
 
 ### Can I have a running bundle which I constantly update whenever I find a new trade? Essentially I want to continuously update my bunle until the next block arrives.
 
