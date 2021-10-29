@@ -194,22 +194,7 @@ Crucially, you don't need to deploy a new contract to include block.coinbase.tra
 
 ### Why didn't my transaction get included?
 
-Unlike broadcasting a transaction and landing on-chain, even if the transaction fails, troubleshooting Flashbot bundles can be challenging, since transaction failure, incentives not being high enough, and a non-flashbot-miner all look the same: your transactions do not show up.
-
-If using the library linked above, sending a bundle returns a promise that resolves to one of three outcomes:
-
-1. Your bundle was included successfully on the target block
-2. Your bundle became invalid due to one of the nonces inside the transaction becoming too low, either before or on the target block
-3. Your bundle was not included, either because your coinbase payment was too low OR because the miner at the target block height was not a Flashbot miner
-
-We recommend checking out this [great guide](https://fifikobayashi.medium.com/beginners-guide-to-troubleshooting-mev-on-flashbots-aee175048858) by Flashbots community member [Fiona Kobayashi](https://twitter.com/fifikobayashi) on issues searchers would have as they start sending Flashbots bundles. Fiona goes over a few reasons why your bundle might not be picked by miners:
-* Noncompetitive gwei price
-* Incorrect gas estimates
-* Miner luck
-* Outcompeted by another searcher
-* Failing transaction
-* Rate limiting
-* Transaction nonce is too low
+See our [Searcher Troubleshooting Guide](/flashbots-auction/searchers/advanced/troubleshooting)
 
 ### What do I need to change in my bot aside from using the sendBundle to submit transactions?
 
