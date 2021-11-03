@@ -139,7 +139,7 @@ A miner is the party who ultimately collects all the bundles and produces a bloc
 
 The mev-geth nodes evaluate incoming bundles using the first-price sealed-bid auction and pick the most profitable ones to place at the top of the block. The node then compares the Flashbots block with a vanilla block and begins mining on the most profitable.
 
-The information contained in the Flashbots bundle allows the searcher to express their blockspace preference relative to the state of the chain as well as the state of the transaction pool. This enables price discovery for discrete MEV opportunities instead of competition for priority along a single dimention. The miner can evaluate all the bundles received and combine those which do not conflict in order to produce the most profitable block possible.
+The information contained in the Flashbots bundle allows the searcher to express their blockspace preference relative to the state of the chain as well as the state of the transaction pool. This enables price discovery for discrete MEV opportunities instead of competition for priority along a single dimension. The miner can evaluate all the bundles received and combine those which do not conflict in order to produce the most profitable block possible.
 
 The ability for searchers to clearly express preferences is what enables an efficient auction which avoids negative externalities on the rest of the network.
 
