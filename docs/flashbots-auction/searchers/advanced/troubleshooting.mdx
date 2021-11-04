@@ -17,8 +17,8 @@ The above possibilities are specified in the order they should be considered, so
 
 ## Does your transaction work and pay enough?
 Covers:
-- Transaction failure (ANY within the bundle)
-- Incentives (gas price/coinbase transfers) not high enough to
+1. Transaction failure (ANY within the bundle)
+2. Incentives (gas price/coinbase transfers) not high enough to offset value of block space
 
 These two issues are lumped together since their cause, investigation, and resolutions are very similar. Flashbots will not include a bundle with
 1. A reverting transaction (unless specified via [optional argument revertingTxHashes](https://docs.flashbots.net/flashbots-auction/miners/mev-relay/#eth_sendbundle) or uncle'd)
@@ -68,7 +68,7 @@ To resolve, ensure the response from eth_callBundle does not revert and matches 
 
 ## Is you bundle paying enough to be competitive?
 Covers:
-- Competitors paying more
+3. Competitors paying more
 
 [Flashbots bundles adhere to a "blind" auction](https://docs.flashbots.net/flashbots-auction/overview), where bundle pricing is not released by Flashbots prior to landing in a block. Only after the block containing winning bundles is propagated are the winning "bids" are revealed (via the transactions themselves and blocks-api for recognizing which set of transactions belong to a bundle).
 
