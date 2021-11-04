@@ -5,11 +5,13 @@ title: Bundle Inclusion Troubleshooting
 ## How to troubleshoot your Flashbots bundle not landing on-chain
 
 Unlike broadcasting a transaction which lands on-chain (even if the transaction fails), troubleshooting Flashbots bundles is considerably more challenging, since any of the following circumstances will prevent your bundle from landing on chain:
+```
 1. Transaction failure (ANY within the bundle)
 2. Incentives (gas price + coinbase transfers) not high enough to offset value of block space
 3. Competitors paying more for same opportunity
 4. Bundle received too late to appear in target block
 5. A miner for target block not running Flashbots
+```
 
 While you might normally rely on [Etherscan](https://etherscan.io) to investigate how your transaction executed, landed on-chain, and compared to competitors, that won't work with Flashbots, a system that keeps your [losing] transactions from hitting the chain.
 
@@ -17,8 +19,10 @@ The above possibilities are specified in the order they should be considered, so
 
 ## Does your transaction work and pay enough?
 Covers:
+```
 1. Transaction failure (ANY within the bundle)
 2. Incentives (gas price/coinbase transfers) not high enough to offset value of block space
+```
 
 These two issues are lumped together since their cause, investigation, and resolutions are very similar. Flashbots will not include a bundle with
 1. A reverting transaction (unless specified via [optional argument revertingTxHashes](https://docs.flashbots.net/flashbots-auction/miners/mev-relay/#eth_sendbundle) or uncle'd)
@@ -68,8 +72,9 @@ To resolve, ensure the response from eth_callBundle does not revert and matches 
 
 ## Is you bundle paying enough to be competitive?
 Covers:
-{:start="3"}
+```
 3. Competitors paying more
+```
 
 [Flashbots bundles adhere to a "blind" auction](https://docs.flashbots.net/flashbots-auction/overview), where bundle pricing is not released by Flashbots prior to landing in a block. Only after the block containing winning bundles is propagated are the winning "bids" are revealed (via the transactions themselves and blocks-api for recognizing which set of transactions belong to a bundle).
 
@@ -160,6 +165,11 @@ To resolve, first determine if you have an issue of competitors paying more and,
 If your bundles are not outbid by a conflicting bundle, check to see if your bundles are being received too late:
 
 ## Is your bundle received too late?
+Covers:
+```
+4. Bundle received too late to appear in target block
+```
+
 Each bundle submission targets only a specific block number, so it is important that the bundle is received as early as possible to ensure the bundle has time to:
 1. Hit the relay
 2. Pass relay simulation
@@ -196,6 +206,10 @@ Compare the above times to the times you witness the targeted block propagated t
 - If the amount of time between `sentToMinersAt` and witnessing the target block is large, continue to the next section
 
 ## Is the miner for a particular block running Flashbots?
+```
+5. A miner for target block not running Flashbots
+```
+
 Flashbots is a system that requires miner active participation, running a custom ethereum node and choosing to receive bundles from the Flashbots relay. While most Ethereum hash rate is currently running Flashbots (as of late 2021), not all blocks are mined with Flashbots bundles.
 
 If no bundles are detected in the blocks-api response, check if other blocks from the same miner ever have Flashbots bundles. If no blocks from a particular miner contain Flashbots bundles, it is possible your bundle was not seen by the miner who created the block at the target block height.
