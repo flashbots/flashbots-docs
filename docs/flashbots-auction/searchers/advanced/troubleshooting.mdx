@@ -13,7 +13,7 @@ Unlike broadcasting a transaction which lands on-chain (even if the transaction 
 5. A miner for target block not running Flashbots
 ```
 
-While you might normally rely on [Etherscan](https://etherscan.io) to investigate how your transaction executed, landed on-chain, and compared to competitors, that won't work with Flashbots, a system that keeps your [losing] transactions from hitting the chain. As a part of debugging we _strongly_ recommend that you simulate your transactions, log the output, as well as keep a record of each transaction you submit including your entire bundle and its contents (e.g. keep the signed transactions in your bundles).
+While you might normally rely on [Etherscan](https://etherscan.io) to investigate how your transaction executed, landed on-chain, and compared to competitors, that won't work with Flashbots, a system that keeps your [losing] transactions from hitting the chain. As a part of debugging we _strongly_ recommend that you simulate your transactions, log the output, as well as keep a record of all the data you submit including your entire bundle and its signed transactions.
 
 The above possibilities are specified in the order they should be considered, so let's walk through each issue and demonstrate how one might discover and resolve each one. The following assumes you are using the [Flashbots Ethers Provider](https://github.com/flashbots/ethers-provider-flashbots-bundle), but the [RPC calls are standard](https://docs.flashbots.net/flashbots-auction/searchers/advanced/rpc-endpoint) and the strategies should be easy to implement in [other providers](https://docs.flashbots.net/flashbots-auction/searchers/libraries/golang).
 
@@ -76,7 +76,7 @@ Covers:
 3. Competitors paying more
 ```
 
-[Flashbots bundles adhere to a "blind" auction](https://docs.flashbots.net/flashbots-auction/overview), where bundle pricing is not released by Flashbots prior to landing in a block. Only after the block containing winning bundles is propagated are the winning "bids" are revealed (via the transactions themselves and blocks-api for recognizing which set of transactions belong to a bundle).
+[Flashbots bundles adhere to a "blind" auction](https://docs.flashbots.net/flashbots-auction/overview), where bundle pricing is not released by Flashbots prior to landing in a block. Only after the block containing winning bundles is propagated the winning "bids" are revealed (via the transactions themselves and blocks-api for recognizing which set of transactions belong to a bundle).
 
 While you cannot see a competitor's bid in real time, it is possible to look AFTER the fact to:
 1. Identify the exact bundle (if any) that conflicted with yours
