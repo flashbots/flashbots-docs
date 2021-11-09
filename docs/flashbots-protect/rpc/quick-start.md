@@ -12,13 +12,17 @@ There are a few key benefits to using the Flashbots RPC endpoint:
 
 ## Key considerations
 Before you get started here are a few things to be mindful of
-- **Use a high gas price!** Getting included in a block through Flashbots is harder than getting included in a block normally because you’re competing with MEV bots for priority blockspace in an auction. To maximize your chance of getting included use a high gas price.
 - **Your transactions will not display on Etherscan unless and until they are mined.** This is because Etherscan will not be able to see your transaction in the public mempool, and as such doesn't know that it exists. We are working on ways for users to query the status of their transactions.
 - We will try to resubmit your transaction for 25 blocks after which point it is considered “expired” and will be dropped.
 - Transactions under 42,000 gas, such as simple ether transfers, are rejected by the Flashbots relay. As a result, we will forward these to the public mempool instead.
 - Transactions that perform simple actions - such as token approvals or transfers - will be sent to the public mempool as these do not need frontrunning protection.
 - There is a risk that your transactions are included in uncled blocks and then emitted to the public mempool. Please read [here](/flashbots-protect/api/uncle-bandits) to learn more about uncle bandits and how to mitigate this risk.
 - Your transactions can be emitted to the public mempool if you switch RPC endpoints from the Flashbots Protect RPC to another RPC while your transactions are pending.
+
+## Choosing the right gas price
+In most cases sending a transaction through the Flashbots Protect RPC should not require a higher gas price than normal. However, in periods of high load, you may want to increase gas prices to ensure your transaction is mined quickly. If the network is congested and you need your transaction quickly you could up your max fee to adjust for fluctations in base fee and set your priority fee to be 3 - 5 gwei.
+
+Note also that the money saved from keeping reverts from landing on-chain means you will save money *even if you occasionally need to pay higher fees during periods of congestion*.
 
 ## Fixing stuck transactions
 

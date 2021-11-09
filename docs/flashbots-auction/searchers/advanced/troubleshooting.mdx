@@ -1,0 +1,227 @@
+---
+title: Bundle Inclusion Troubleshooting
+---
+
+## How to troubleshoot your Flashbots bundle not landing on-chain
+
+Unlike broadcasting a transaction which lands on-chain (even if the transaction fails), troubleshooting Flashbots bundles is considerably more challenging, since any of the following circumstances will prevent your bundle from landing on chain:
+```
+1. Transaction failure (ANY within the bundle)
+2. Incentives (gas price + coinbase transfers) not high enough to offset value of block space
+3. Competitors paying more for same opportunity
+4. Bundle received too late to appear in target block
+5. A miner for target block not running Flashbots
+```
+
+While you might normally rely on [Etherscan](https://etherscan.io) to investigate how your transaction executed, landed on-chain, and compared to competitors, that won't work with Flashbots, a system that keeps your [losing] transactions from hitting the chain. As a part of debugging we _strongly_ recommend that you simulate your transactions, log the output, as well as keep a record of each transaction you submit including your entire bundle and its contents (e.g. keep the signed transactions in your bundles).
+
+The above possibilities are specified in the order they should be considered, so let's walk through each issue and demonstrate how one might discover and resolve each one. The following assumes you are using the [Flashbots Ethers Provider](https://github.com/flashbots/ethers-provider-flashbots-bundle), but the [RPC calls are standard](https://docs.flashbots.net/flashbots-auction/searchers/advanced/rpc-endpoint) and the strategies should be easy to implement in [other providers](https://docs.flashbots.net/flashbots-auction/searchers/libraries/golang).
+
+## Does your transaction work and pay enough?
+Covers:
+```
+1. Transaction failure (ANY within the bundle)
+2. Incentives (gas price/coinbase transfers) not high enough to offset value of block space
+```
+
+These two issues are lumped together since their cause, investigation, and resolutions are very similar. Flashbots will not include a bundle with
+1. A reverting transaction (unless specified via [optional argument revertingTxHashes](https://docs.flashbots.net/flashbots-auction/miners/mev-relay/#eth_sendbundle) or uncle'd)
+2. [Gas price below base fee](https://docs.flashbots.net/flashbots-auction/searchers/advanced/eip1559#faq) (would create an invalid block if included)
+3. Effective priority fee not high enough to offset opportunity cost of using that block space for other unrelated transactions _(e.g. your bundle is paying 1 Gwei priority fee, while the cheapest transaction in the block is paying 2 Gwei, it is in the miner's best interest to discard your bundle in favor of standard pending transactions)_
+
+As any of these conditions result in your bundle not appearing in a block, troubleshooting these issues requires `simulation` using `eth_callBundle` RPC call. `eth_callBundle` is similar to an `eth_call` you might already be familiar with, but offers these key benefits:
+1. Operates on an array of *signed* transactions, instead of a single [unsigned] transaction description. These transactions are executed in sequence starting at the top of the specified block. Simulating with signed transactions leaves very little difference between how your system creates transactions and how they will be processed on-chain (e.g. you can never use an incorrect `from` field when simulating a signed transaction)
+2. Returns gas used and coinbase transfer, per transaction. (Coinbase transfer factors into effective gas price)
+3. Allows specifying the exact values for the following values, allowing more accurate simulation:
+   - State block number (what values are read from SLOADs)
+   - EVM block number (what value is returned from `block.number`)
+   - EVM timestamp (what value is returned from `block.timestamp`)
+
+Flashbots ethers.js provider exposes `eth_callBundle` via the [simulate() method](https://github.com/flashbots/ethers-provider-flashbots-bundle#simulate-and-send). This only operates on a pre-signed bundle, so you must sign your bundle transactions manually.
+```
+  const signedTransactions = await flashbotsProvider.signBundle(transactionBundle)
+  const simulation = await flashbotsProvider.simulate(signedTransactions, targetBlockNumber, targetBlockNumber + 1)
+  console.log(JSON.stringify(simulation, null, 2))
+```
+
+Output:
+```
+{
+  "totalGasUsed": 98564,
+  "bundleHash": "0x9a6a9fa038343fe3c57260fb7bdb2c79ebadb3088656300d8a494123ebda6d85",
+  "coinbaseDiff": BigNumber(0x034dc9949767a4),
+  },
+  "results": [
+    {
+      "coinbaseDiff": "929953106847652",
+      "ethSentToCoinbase": "0",
+      "fromAddress": "0x9874Ef8519a0Fc7a6B553aad92fDF0E469488931",
+      "gasFees": "929953106847652",
+      "gasPrice": "35008022393",
+      "gasUsed": 29964,
+      "toAddress": "0x48B2dD9CEFbA73c60882478a16BC3428Aceed2B9",
+      "txHash": "0xee3f6f22bf3b4740b36833d41d4872f48f98c6328fa04b3679558e482ba0e328",
+      "value": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    ...
+  ],
+}
+```
+
+To resolve, ensure the response from eth_callBundle does not revert and matches your expectations for bundle profitability. Compare your bundle's effective gas price against the profit of the conflicting bundle.
+
+## Is you bundle paying enough to be competitive?
+Covers:
+```
+3. Competitors paying more
+```
+
+[Flashbots bundles adhere to a "blind" auction](https://docs.flashbots.net/flashbots-auction/overview), where bundle pricing is not released by Flashbots prior to landing in a block. Only after the block containing winning bundles is propagated are the winning "bids" are revealed (via the transactions themselves and blocks-api for recognizing which set of transactions belong to a bundle).
+
+While you cannot see a competitor's bid in real time, it is possible to look AFTER the fact to:
+1. Identify the exact bundle (if any) that conflicted with yours
+2. Compare the conflicting bundle's `effective priority fee` with your own (to see if you should be bidding more to remain competitive)
+
+### Types of conflicts
+There are numerous reasons why two bundles might conflict. Consider that the basic algorithm for merging bundles is:
+1. Simulate each bundle at the top of the block
+2. Sort bundles by `effective priority fee`, highest first
+3. In descending order, try each bundle **that does not error or lower its effective priority fee from top-of-block simulation** until you reach a maximum bundle inclusion count or you run out of profitable bundles
+
+A conflict occurs when a bundle simulates one way at the top of the block, and a different [worse] way when placed after another bundle. Here is a list of the ways a bundle could conflict:
+1. **Nonce collision** - The target bundle includes a transaction from account `A` and nonce `B`. The conflicting bundle also includes a transaction from account `A` and nonce `B`. The most common case for nonce collision is from including the exact same transaction, but it doesn't have to be; the conflicting bundle only needs to increment an account's nonce via any transaction.
+2. **Revert** - The target bundle has no reverting transactions when simulated at the top of the block, but reverts when placed after a conflicting bundle that appears first
+3. **Effective Priority Fee** - A bundle cannot significantly reduce its priority fee between simulating at the top of the block and when it is selected for inclusion. This commonly occurs when a bundle is operating on an arbitrage for which it pays a % of the profit to the miner, with an earlier bundle taking part, but not all, of the arbitrage opportunity.
+
+### Detecting
+If a block you targeted contained Flashbots bundles, but yours did not appear, the next step is to determine which bundles conflicted with yours and, if present, calculate their `effective priority fee`. This can be accomplished through several iterations of simulations, using this strategy:
+
+1. Simulate your bundle at the head of the target block, note its revert states and `effective priority fee`
+2. Fetch all bundles found in the target block
+3. Simulate [bundle1 + your bundle] as a single bundle, check the behavior of your bundle
+4. Simulate [bundle1 + bundle2 + your bundle] as a single bundle, see the behavior of your bundle
+5. Simulate [bundle1 + bundle2 + ...bundleN + your bundle] as a single bundle, see the behavior of your bundle
+6. And so on...
+
+Using this method, we can identify the conflicting bundle that caused your target bundle to change behavior. The `Flashbots ethers.js provider` has a built-in helper function for running this strategy called `getConflictingBundle()`:
+
+```
+const signedTransactions = await flashbotsProvider.signBundle(transactionBundle)
+console.log(await flashbotsProvider.getConflictingBundle(
+      signedTransactions,
+      13140328 // blockNumber
+  ))
+```
+
+Output:
+```
+{
+  "conflictType": FlashbotsBundleConflictType.NonceCollision,
+  "initialSimulation": {
+    "totalGasUsed": 205860,
+    "bundleHash": "0x1720ea33d96dca026dddd5689f8cad21966988348ced04e9054a0dca5d60f1d4",
+    "coinbaseDiff": BigNumber(0x0176750858d000),
+    },
+    "results": [...]
+  },
+  "targetBundleGasPricing": {
+    "gasUsed": 205860,
+    "txCount": 1,
+    "gasFeesPaidBySearcher": BigNumber(0x0176750858d000),
+    "priorityFeesReceivedByMiner": BigNumber(0x52efd8d80dbc24),
+    "ethSentToCoinbase": BigNumber.from(0x00),
+    "effectiveGasPriceToSearcher": BigNumber(0x77359400),
+    "effectivePriorityFeeToMiner": BigNumber(0x1a6734f601)
+  },
+  "conflictingBundleGasPricing": {
+    "gasUsed": 396462,
+    "txCount": 3,
+    "gasFeesPaidBySearcher": BigNumber(0xc4c3c97ce1bff8b4),
+    "priorityFeesReceivedByMiner": BigNumber(0xc4213e4d7ad82006),
+    "ethSentToCoinbase": BigNumber(0xc4c2663d3b804731),
+    "effectiveGasPriceToSearcher": BigNumber(0x410ce509aa1e),
+    "effectivePriorityFeeToMiner": BigNumber(0x40f2069f201d)
+  },
+  "conflictingBundle": [
+    {
+      "transaction_hash": "0x23a33038289dda1b6e722835d2b9388cb41d96d085c19ca6b71bb3e9697e6692",
+      "tx_index": 0,
+      "bundle_type": "flashbots",
+      "bundle_index": 0,
+      "block_number": 13140328,
+      "eoa_address": "0x38563699560e4512c7574C8cC5Cf89fd43923BcA",
+      "to_address": "0x000000000035B5e5ad9019092C665357240f594e",
+      "gas_used": 100893,
+      "gas_price": "0",
+      "coinbase_transfer": "0",
+      "total_miner_reward": "0"
+    },
+   ...
+  ]
+}
+```
+
+To resolve, first determine if you have an issue of competitors paying more and, if so, increase your `effective priority fee`. This can be accomplished either by paying more to the miner _or_ using less gas to accomplish the same opportunity.
+If your bundles are not outbid by a conflicting bundle, check to see if your bundles are being received too late:
+
+## Is your bundle received too late?
+Covers:
+```
+4. Bundle received too late to appear in target block
+```
+
+Each bundle submission targets only a specific block number, so it is important that the bundle is received as early as possible to ensure the bundle has time to:
+1. Hit the relay
+2. Pass relay simulation
+3. Reach miners
+4. Be present during the miner's next block re-formation
+
+All this must occur prior to the targeted block being mined. If you are targeting `blockNumber +1`, as most bundles do, it is important to get your bundle to the relay (step 1) as fast as possible.
+
+Keep in mind there is a period of time, for every block, when your local perspective of block height is `X`, while `X+1` has already been found and propagated to part of the network, without reaching your local node yet. During this period of partial propagation, submitting a bundle targeting `X+1`, while seemingly valid from your perspective of the network, is futile as miners have already begun work on solving X+2. This is the most extreme case, but the same logic also holds true of targeting `X+1` moments BEFORE it is found as steps 1 through 5 all take time (on the order of about 1-2 seconds).
+
+To see how much time elapsed between your bundle being submitted to relay, forwarded to miners, and the next block being found, Flashbots offers an RPC endpoint `eth_getBundleStats` which will return timing to you, based on a previously-submitted bundle. All submitted bundles have a bundleHash [which is easy to calculate](https://github.com/flashbots/ethers-provider-flashbots-bundle/blob/0d404bb041b82c12789bd62b18e218304a095b6f/src/index.ts#L266-L269) and target block number which uniquely identify them for later retrieval.
+
+```
+console.log(
+  await flashbotsProvider.getBundleStats("0x123456789abcdef123456789abcdef123456789abcdef123456789abcdef1234", 13509887)
+  )
+
+```
+
+Output:
+```
+{
+  "isSimulated": true,
+  "isSentToMiners": true,
+  "isHighPriority": true,
+  "simulatedAt": "2021-10-29T04:00:50.526Z",
+  "submittedAt": "2021-10-29T04:00:50.472Z",
+  "sentToMinersAt": "2021-10-29T04:00:50.546Z"
+}
+```
+
+Compare the above times to the times you witness the targeted block propagated to your node.
+- If the amount of time is short, get your processing time and network latency down.
+- If the amount of time between `sentToMinersAt` and witnessing the target block is large, continue to the next section
+
+## Is the miner for a particular block running Flashbots?
+```
+5. A miner for target block not running Flashbots
+```
+
+Flashbots is a system that requires miner active participation, running a custom ethereum node and choosing to receive bundles from the Flashbots relay. While most Ethereum hash rate is currently running Flashbots (as of late 2021), not all blocks are mined with Flashbots bundles.
+
+If no bundles are detected in the blocks-api response, check if other blocks from the same miner ever have Flashbots bundles. If no blocks from a particular miner contain Flashbots bundles, it is possible your bundle was not seen by the miner who created the block at the target block height.
+
+## Everything check's out, what next?
+Once you have validated the above issues are not affecting your bundle submission, consider filling out the Flashbots searcher support form:
+
+[Fill out our Searcher Issue Reporting Form](https://www.notion.so/flashbots/Searcher-Issue-Reporting-Form-700a5ff3843a443c993912099b4c1b56)
+
+Be sure to include the output from the above RPC calls:
+- eth_callBundle / simulate
+- eth_getBundleStats
+- getConflictingBundle
+
+in the form submission.
