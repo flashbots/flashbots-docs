@@ -46,7 +46,7 @@ curl -X POST -H 'Content-Type: application/json' --data '{
 {
     "id": 1337,
     "jsonrpc": "2.0",
-    "result": "true"
+    "result": true
 }
 ```
 
@@ -95,7 +95,7 @@ curl -X POST -H 'Content-Type: application/json' --data '{
 {
     "id": 1337,
     "jsonrpc": "2.0",
-    "result": "true"
+    "result": true
 }
 ```
 
