@@ -1,10 +1,13 @@
 ---
 title: golang provider
 ---
-_This library is provided and maintained by a third-party rather than Flashbots. Please exercise caution._
+_These libraries are provided and maintained by third-parties rather than Flashbots. Please exercise caution._
 
-Golang library is a repository that provides a high-level access to the `eth_sendBundle` and `eth_callBundle` rpc endpoint on mev-relay.
+The Golang libraries provide high-level access to the `eth_sendBundle` and `eth_callBundle` rpc endpoints on mev-relay.
 
-Flashbots-enabled relays and miners expose two new jsonrpc endpoint: `eth_sendBundle` and `eth_callBundle`. Since these are brand-new, non-standard endpoints, ethers.js and other libraries do not natively support these requests (like `getTransactionCount`). In order to interact with these endpoints, you will also need access to another full-featured (non-Flashbots) endpoint for nonce-calculation, gas estimation, and transaction status.
+Flashbots-enabled relays and miners expose several new jsonrpc endpoints, such as [`eth_sendBundle`](https://docs.flashbots.net/flashbots-auction/searchers/advanced/rpc-endpoint/#eth_sendbundle) and [`eth_callBundle`](https://docs.flashbots.net/flashbots-auction/searchers/advanced/rpc-endpoint/#eth_callbundle). Since these are non-standard endpoints, ethers.js and other libraries do not natively support these requests (like `getTransactionCount`). 
 
-Access the Golang library repository [here](https://github.com/cryptoriums/flashbot).
+Golang libraries:
+
+* [github.com/metachris/flashbotsrpc](https://github.com/metachris/flashbotsrpc)
+* [github.com/cryptoriums/flashbot](https://github.com/cryptoriums/flashbot)
