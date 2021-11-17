@@ -25,6 +25,17 @@ In most cases sending a transaction through the Flashbots Protect RPC should not
 
 Note also that the money saved from keeping reverts from landing on-chain means you will save money *even if you occasionally need to pay higher fees during periods of congestion*.
 
+## How to use the Flashbots Protect RPC Endpoint in MetaMask
+To add the Flashbots endpoint follow these steps:
+
+1. Enter your MetaMask and click on your RPC endpoint at the top of your MetaMask. By default it says “Ethereum mainnet.”
+2. Click “Custom RPC”
+3. Add `https://rpc.flashbots.net` with a chainID of `1` and currency of `ETH`.
+4. Scroll to the bottom and click “Save”
+
+![first metamask onboarding image](/img/flashbotsRPC-metamask1.png)
+![second metamask onboarding image](/img/flashbotsRPC-metamask2.png)
+
 ## Fixing stuck transactions
 
 Follow the steps below to remove MetaMask transactions that are stuck in a "pending" state. Transactions may be stuck if they are in a "pending" state for more than 20 minutes.
@@ -37,17 +48,6 @@ To resolve this, you need to reset your Metamask account, which will cause it to
 4. Scroll down and click Reset Account.
 
 In the future we will offer more tooling to cancel transactions.
-
-## How to use the Flashbots Protect RPC Endpoint in MetaMask
-To add the Flashbots endpoint follow these steps:
-
-1. Enter your MetaMask and click on your RPC endpoint at the top of your MetaMask. By default it says “Ethereum mainnet.”
-2. Click “Custom RPC”
-3. Add `https://rpc.flashbots.net` with a chainID of `1` and currency of `ETH`.
-4. Scroll to the bottom and click “Save”
-
-![first metamask onboarding image](/img/flashbotsRPC-metamask1.png)
-![second metamask onboarding image](/img/flashbotsRPC-metamask2.png)
 
 ## Acknowledgements
 Thank you to the [mistX](https://mistx.io/), [Nethermind](https://nethermind.io/), and [MiningDAO](https://miningdao.io/) teams for their contributions to Flashbots Protect RPC.
