@@ -4,7 +4,7 @@ title: overview
 
 Flashbots Protect makes it easy for everyday users and developers to use Flashbots for frontrunning protection. We abstract away the complexity of submitting bundles to the Flashbots Auction and make integrating as simple as adding a URL to your MetaMask.
 
-Flashbots Protect RPC is an RPC endpoint that users can add to their wallets which sends their transactions to Flashbots. Learn more [here](/flashbots-protect/rpc/quick-start).
+Flashbots Protect RPC is an RPC endpoint that users can add to their wallets which sends their transactions to Flashbots. Learn more [in our quick start guide](/flashbots-protect/rpc/quick-start).
 
 At a high level these are some of the major benefits of integrating Flashbots Protect:
 - **Frontrunning protection:** transactions will not be seen by hungry sandwich bots in the public mempool.
