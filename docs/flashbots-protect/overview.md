@@ -14,4 +14,4 @@ At a high level these are some of the major benefits of integrating Flashbots Pr
 We intend to release more features on top of Flashbots Protect in the future, offering even more powerful functionality.
 
 ## Community integrations
-The mistX team has developed a web SDK for integrating Flashbots that compliments the RPC endpoint. If you are a dApp that wants to offer easy support for Flashbots from your website, we recommend using the [mistX SDK](LINK HERE).
+The mistX team has developed a web SDK for integrating Flashbots that compliments the RPC endpoint. If you are a dApp that wants to offer easy support for Flashbots from your website, we recommend using the [mistX SDK](https://mistx.stoplight.io/docs/mistx).
