@@ -2,7 +2,7 @@ module.exports = {
   docs: [
     {
       "welcome": [
-        'welcome','new-to-mev',
+        'welcome', 'new-to-mev',
       ],
     },
     {
@@ -84,13 +84,13 @@ module.exports = {
             'flashbots-data/mev-inspect-py/inspecting',
             'flashbots-data/mev-inspect-py/exploring',
             {
-                "data": [
-                    'flashbots-data/mev-inspect-py/data/classified_traces',
-                    'flashbots-data/mev-inspect-py/data/transfers',
-                    'flashbots-data/mev-inspect-py/data/swaps',
-                    'flashbots-data/mev-inspect-py/data/arbitrages',
-                    'flashbots-data/mev-inspect-py/data/miner_payments',
-                ],
+              "data": [
+                'flashbots-data/mev-inspect-py/data/classified_traces',
+                'flashbots-data/mev-inspect-py/data/transfers',
+                'flashbots-data/mev-inspect-py/data/swaps',
+                'flashbots-data/mev-inspect-py/data/arbitrages',
+                'flashbots-data/mev-inspect-py/data/miner_payments',
+              ],
             },
           ]
         },
@@ -103,17 +103,11 @@ module.exports = {
       "flashbots protect": [
         'flashbots-protect/overview',
         {
-          'api': [
-            'flashbots-protect/api/quick-start',
-            'flashbots-protect/api/json-rpc',
-            'flashbots-protect/api/websockets',
-            'flashbots-protect/api/signing-transactions',
-            'flashbots-protect/api/uncle-bandits'
-          ]
-        },
-        {
           'rpc': [
             'flashbots-protect/rpc/quick-start',
+            'flashbots-protect/rpc/uncle-bandits',
+            'flashbots-protect/rpc/status-api',
+            'flashbots-protect/rpc/releases',
           ]
         }
       ],
@@ -121,7 +115,7 @@ module.exports = {
     'community-tools',
     {
       "contribute": [
-        'joining-flashbots','contribution-guide', 'cheatsheet',
+        'joining-flashbots', 'contribution-guide', 'cheatsheet',
       ],
     },
     {
