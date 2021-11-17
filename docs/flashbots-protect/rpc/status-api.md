@@ -31,4 +31,4 @@ In turn you will receive a JSON response that looks like the following:
 * `unknown` - The transaction was not received
 
 ## Privacy
-In order to receive a response from the status API then you must know and provide a transaction hash to look up. As a result, you are only able to look up transactions which you know about.
+In order to receive a response from the status API you must know and provide a transaction hash to look up. As a result, you are only able to look up transactions which you know about.
