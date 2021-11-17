@@ -37,12 +37,10 @@ To add the Flashbots Protect RPC endpoint follow these steps:
 ![first metamask onboarding image](/img/flashbotsRPC-metamask1.png)
 ![second metamask onboarding image](/img/flashbotsRPC-metamask2.png)
 
-## Fixing stuck transactions
+## Fixing stuck transactions or fixing nonce errors
+In the case that your transaction is stuck in a "pending" state or you have an extremely high nonce, you will need to 'reset' your MetaMask account. This will cause it to update the nonce and transaction history from the network. Don't worry, your funds and keys are safe during this process.
 
-Follow the steps below to remove MetaMask transactions that are stuck in a "pending" state. Transactions may be stuck if they are in a "pending" state for more than 20 minutes.
-
-To resolve this, you need to reset your Metamask account, which will cause it to update the nonce and transaction history from the network. Don't worry, your funds and keys are safe during this process.
-
+Follow these steps:
 1. Click the account icon on the top-right corner of MetaMask.
 2. Click "Settings".
 3. Click "Advanced".
