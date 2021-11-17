@@ -27,7 +27,7 @@ Note also that the money saved from keeping reverts from landing on-chain means 
 
 ## How to use Flashbots Protect RPC in MetaMask
 
-To add the Flashbots Protect RPC endpoint follow these steps:
+To add Flashbots Protect RPC endpoint follow these steps:
 
 1. Enter your MetaMask and click on your RPC endpoint at the top of your MetaMask. By default it says “Ethereum mainnet.”
 2. Click “Custom RPC”
