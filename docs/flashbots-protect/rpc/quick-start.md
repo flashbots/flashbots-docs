@@ -13,11 +13,11 @@ There are a few key benefits to using the Flashbots RPC endpoint:
 ## Key considerations
 Before you get started here are a few things to be mindful of
 - **Your transactions will not display on Etherscan unless and until they are mined.** This is because Etherscan will not be able to see your transaction in the public mempool, and as such doesn't know that it exists. We are working on ways for users to query the status of their transactions.
-- **We offer a status API to check on the status of your transaction.** Please see the [status API](/docs/flashbots-protect/rpc/status-api) docs for more information.
+- **We offer a status API to check on the status of your transaction.** Please see the [status API documentation](/docs/flashbots-protect/rpc/status-api) for more information.
 - We will try to resubmit your transaction for 25 blocks after which point it is considered “expired” and will be dropped.
 - Transactions under 42,000 gas, such as simple ether transfers, are rejected by the Flashbots relay. As a result, we will forward these to the public mempool instead.
 - Transactions that perform simple actions - such as token approvals or transfers - will be sent to the public mempool as these do not need frontrunning protection.
-- **There is a risk that your transactions are included in uncled blocks** and then emitted to the public mempool. Please read [here](/flashbots-protect/rpc/uncle-bandits) to learn more about uncle bandits and how to mitigate this risk.
+- **There is a risk that your transactions are included in uncled blocks** and then emitted to the public mempool. Please read [the uncle bandits article](/flashbots-protect/rpc/uncle-bandits) to learn more about uncle bandits and how to mitigate this risk.
 - Your transactions can be emitted to the public mempool if you switch RPC endpoints from Flashbots Protect RPC to another RPC while your transactions are pending.
 
 ## Choosing the right gas price
