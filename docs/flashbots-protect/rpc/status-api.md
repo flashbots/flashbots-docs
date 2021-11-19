@@ -2,7 +2,7 @@
 title: Pending transaction status API
 ---
 
-Transactions that you submit to Flashbots Protect won't be shown on Etherscan because Etherscan won't be able to observe them in the public mempool. However, you can use our status API to check the status of your transactions. The URL for doing so is: `https://protect.flashbots.net/tx/YOUR_TX_HASH_HERE`
+Transactions that you submit to Flashbots Protect won't be observable in the public mempool. However, you can use our status API to check the status of your transactions. The URL for doing so is: `https://protect.flashbots.net/tx/YOUR_TX_HASH_HERE`, and you can also use Etherscan as you normally would for transactions. They will show the status of your transaction from the status API as well.
 
 In turn you will receive a JSON response that looks like the following:
 

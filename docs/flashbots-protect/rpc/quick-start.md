@@ -12,8 +12,7 @@ There are a few key benefits to using the Flashbots RPC endpoint:
 
 ## Key considerations
 Before you get started here are a few things to be mindful of
-- **Your transactions will not display on Etherscan unless and until they are mined.** This is because Etherscan will not be able to see your transaction in the public mempool, and as such doesn't know that it exists. We are working on ways for users to query the status of their transactions.
-- **We offer a status API to check on the status of your transaction.** Please see the [status API documentation](/flashbots-protect/rpc/status-api) for more information.
+- **You can find the status of your transaction on Etherscan.** Etherscan has a nice interface for viewing the status of your transaction from our [status API](/flashbots-protect/rpc/status-api).
 - We will try to resubmit your transaction for 25 blocks after which point it is considered “expired” and will be dropped.
 - Transactions under 42,000 gas, such as simple ether transfers, are rejected by the Flashbots relay. As a result, we will forward these to the public mempool instead.
 - Transactions that perform simple actions - such as token approvals or transfers - will be sent to the public mempool as these do not need frontrunning protection.
