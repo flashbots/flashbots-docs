@@ -10,6 +10,7 @@ At a high level these are some of the major benefits of integrating Flashbots Pr
 - **Frontrunning protection:** transactions will not be seen by hungry sandwich bots in the public mempool.
 - **No failed transactions:** transactions will only be mined if it doesn't include any reverts, so users don't pay for failed transactions. Note:  transactions could be included in uncled blocks, emitted to the mempool, and then included on-chain.
 - **Priority in blocks:** transactions sent via Flashbots are mined at the top of blocks, giving them priority.
+- **Etherscan integration:** users can see the status of their transactions on Etherscan.
 
 We intend to release more features on top of Flashbots Protect in the future, offering even more powerful functionality.
 
