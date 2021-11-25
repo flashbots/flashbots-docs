@@ -10,7 +10,6 @@ To do so please submit a cancellation transaction to the Flashbots Protect RPC. 
 - Has the same from and to address
 - Has an empty data field
 
-You can see our code for this in [the RPC Endpoint](https://github.com/flashbots/rpc-endpoint/blob/bf986c7f105182855d52e2f73b932d12ecc4f8b5/server/request.go#L235). 
 
 The RPC uses this transaction to authenticate that you control the account of a transaction previously submitted to us which we are cancelling submission of. This method allows for easy cancellation of transactions from retail wallets like MetaMask.
 
