@@ -11,6 +11,6 @@ To do so please submit a cancellation transaction to the Flashbots Protect RPC. 
 - Has an empty data field
 
 
-The RPC uses this transaction to authenticate that you control the account of a transaction previously submitted to us which we are cancelling submission of. This method allows for easy cancellation of transactions from retail wallets like MetaMask.
+This transaction is only used for authentication, to ensure that you control the account that sent the transaction you want to cancel. This method allows for easy cancellation of transactions from retail wallets like MetaMask. The cancellation transaction will *not* be sent to the relay nor the miners.
 
 **Note** the cancellation transaction we require will *not* be sent on to miners or the relay. It is only used for authentication.
