@@ -112,7 +112,11 @@ module.exports = {
         }
       ],
     },
-    'community-tools',
+    {
+      "community": [
+        'community-tools', 'whitehat',
+      ],
+    },
     {
       "contribute": [
         'joining-flashbots', 'contribution-guide', 'cheatsheet',
