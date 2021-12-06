@@ -1,5 +1,5 @@
 ---
-title: Release notes
+title: release notes
 ---
 
 ## Initial Release
