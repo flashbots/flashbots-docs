@@ -6,7 +6,7 @@ We have rate limits on the number of requests that can be made to Flashbots Prot
 
 Note that this is *requests* per second and not *transactions* submitted per second. The number of transactions in a request is not limited. 
 
-Note that you are not required to read json rpc requests to send transactions to Flashbots Protect RPC.
+Note that you are not required to read JSON RPC requests to send transactions to Flashbots Protect RPC.
 
 ## Rate limiting exceptions
 If you are a wallet or application integrating with protect and you require a higher rate limit please reach out to [bertcmiller](https://twitter.com/bertcmiller).
