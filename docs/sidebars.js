@@ -53,6 +53,7 @@ module.exports = {
         'flashbots-protect/mev-share',
         'flashbots-protect/cancellations',
         'flashbots-protect/stuck_transactions',
+        'flashbots-protect/large-transactions',
         {
           'Additional Documentation': [
             'flashbots-protect/additional-documentation/eth-sendPrivateTransaction',
@@ -113,7 +114,7 @@ module.exports = {
           'flashbots-mev-boost/FAQ',
           'flashbots-mev-boost/glossary',
           'flashbots-mev-boost/resources',
-          'flashbots-mev-boost/community-tools',          
+          'flashbots-mev-boost/community-tools',
       ],
     },
     {
