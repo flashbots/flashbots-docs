@@ -1,10 +1,13 @@
 module.exports = {
   docs: [
-    'welcome',
+    {
+      "welcome": [
+        'welcome', 'new-to-mev',
+      ],
+    },
     {
       'flashbots auction': [
         'flashbots-auction/overview',
-        'flashbots-auction/upgrade-process',
         {
           "for searchers": [
             'flashbots-auction/searchers/quick-start',
@@ -18,10 +21,14 @@ module.exports = {
                 'flashbots-auction/searchers/advanced/reputation',
                 'flashbots-auction/searchers/advanced/goerli-testnet',
                 'flashbots-auction/searchers/advanced/eip1559',
+                'flashbots-auction/searchers/advanced/troubleshooting',
+
               ],
               "example searchers": [
                 'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
                 'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
+                'flashbots-auction/searchers/example-searchers/searcher-minter',
+
               ],
               "libraries": [
                 'flashbots-auction/searchers/libraries/golang',
@@ -34,14 +41,18 @@ module.exports = {
           'for miners & mining pools': [
             'flashbots-auction/miners/quick-start',
             'flashbots-auction/miners/how-it-works',
-            'flashbots-auction/miners/discord-setup',
+            'flashbots-auction/miners/demo',
             'flashbots-auction/miners/faq',
             {
               "advanced concepts": [
                 'flashbots-auction/miners/advanced/source-code',
                 'flashbots-auction/miners/advanced/interacting-with-relay',
+                'flashbots-auction/miners/advanced/discord-setup',
+
                 {
                   'mev-geth spec': [
+                    'flashbots-auction/miners/mev-geth-spec/v04',
+                    'flashbots-auction/miners/mev-geth-spec/v04-rpc',
                     'flashbots-auction/miners/mev-geth-spec/v03',
                     'flashbots-auction/miners/mev-geth-spec/v03-rpc',
                     'flashbots-auction/miners/mev-geth-spec/v02',
@@ -57,29 +68,60 @@ module.exports = {
             'flashbots-auction/releases/alpha-v0.4',
             'flashbots-auction/releases/alpha-v0.3',
             'flashbots-auction/releases/alpha-v0.2',
+            'flashbots-auction/releases/upgrade-process',
+
           ],
         },
       ]
     },
     {
       "flashbots data": [
+        {
+          'mev-inspect': [
+            'flashbots-data/mev-inspect-py/overview',
+            'flashbots-data/mev-inspect-py/install',
+            'flashbots-data/mev-inspect-py/quick-start',
+            'flashbots-data/mev-inspect-py/inspecting',
+            'flashbots-data/mev-inspect-py/exploring',
+            {
+              "data": [
+                'flashbots-data/mev-inspect-py/data/classified_traces',
+                'flashbots-data/mev-inspect-py/data/transfers',
+                'flashbots-data/mev-inspect-py/data/swaps',
+                'flashbots-data/mev-inspect-py/data/arbitrages',
+                'flashbots-data/mev-inspect-py/data/miner_payments',
+              ],
+            },
+          ]
+        },
         'flashbots-data/blockapi',
         'flashbots-data/mev-explore',
         'flashbots-data/dashboard',
+      ],
+    },
+    {
+      "flashbots protect": [
+        'flashbots-protect/overview',
         {
-          'mev-inspect': [
-            'flashbots-data/mev-inspect-rs/inspect-quick-start',
-            'flashbots-data/mev-inspect-rs/inspect-codebase-design',
-            'flashbots-data/mev-inspect-rs/inspect-codebase-deep-dive',
-            'flashbots-data/mev-inspect-rs/inspect-inspector-example',
+          'rpc': [
+            'flashbots-protect/rpc/quick-start',
+            'flashbots-protect/rpc/uncle-bandits',
+            'flashbots-protect/rpc/status-api',
+            'flashbots-protect/rpc/ratelimiting',
+            'flashbots-protect/rpc/cancellations',
+            'flashbots-protect/rpc/releases',
           ]
         }
       ],
     },
-    'community-tools',
+    {
+      "community": [
+        'community-tools', 'whitehat',
+      ],
+    },
     {
       "contribute": [
-        'contribution-guide', 'cheatsheet',
+        'joining-flashbots', 'contribution-guide', 'cheatsheet',
       ],
     },
     {

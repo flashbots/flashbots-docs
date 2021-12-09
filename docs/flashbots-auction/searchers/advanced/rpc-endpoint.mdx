@@ -62,7 +62,7 @@ example response:
       txs,               // Array[String], A list of signed transactions to execute in an atomic bundle
       blockNumber,       // String, a hex encoded block number for which this bundle is valid on
       stateBlockNumber,  // String, either a hex encoded number or a block tag for which state to base this simulation on. Can use "latest"
-      timestamp,      // Number, the timestamp to use for this bundle simulation, in seconds since the unix epoch
+      timestamp,         // (Optional) Number, the timestamp to use for this bundle simulation, in seconds since the unix epoch
     }
   ]
 }
@@ -121,7 +121,7 @@ example response:
 
 ### flashbots_getUserStats
 
-The `flashbots_getUserStats` JSON-RPC method returns a quick summary of how a searcher is performing in the relay. It is currently updated once every hour and has the following payload format:
+The `flashbots_getUserStats` JSON-RPC method returns a quick summary of how a searcher is performing in the relay, including their [reputation-based priority](/flashbots-auction/searchers/advanced/reputation). It is currently updated once every hour and has the following payload format:
 
 ```json
 {
@@ -129,9 +129,7 @@ The `flashbots_getUserStats` JSON-RPC method returns a quick summary of how a se
   "id": 1,
   "method": "flashbots_getUserStats",
   "params": [
-    {
       blockNumber,       // String, a hex encoded recent block number, in order to prevent replay attacks. Must be within 20 blocks of the current chain tip.
-    }
   ]
 }
 ```

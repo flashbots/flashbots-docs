@@ -6,7 +6,7 @@ title: bundle pricing
 
 Searchers submit a huge amount of bundles every block, but the amount of blockspace is limited. So what decides what can be included in a block or not? To understand the answer we will first review some context.
 
-At a high level Flashbots is designed such that miners include the most profitable transactions possible in their blocks, and it achieves that by inserting searcher's bundles at the *top of block* and removing transactions at the *tail of the block*. Measured by gas price, these transactions at the tail of a block are the the *least profitable* for a miner to mine. That means that for a Flashbots bundle to be considered profitable it must have a higher effective gas price than the transactions it displaces at the tail of the block.
+At a high level Flashbots is designed such that miners include the most profitable transactions possible in their blocks, and it achieves that by inserting searcher's bundles at the *top of block* and removing transactions at the *tail of the block*. Measured by gas price, these transactions at the tail of a block are the *least profitable* for a miner to mine. That means that for a Flashbots bundle to be considered profitable it must have a higher effective gas price than the transactions it displaces at the tail of the block.
 
 It is important to remember that searchers can pay miners through normal gas fees or directly to the block's coinbase address (the miner). When calculating the *effective* gas price of a bundle, Flashbots takes into account both payments directly to coinbase as well as gas fees.
 
@@ -14,13 +14,17 @@ It is important to remember that searchers can pay miners through normal gas fee
 
 Here is the formula for how bundle gas pricing is calculated:
 
-$$s_{v0.2} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tp_T - \sum_{T\in M \cap U}g_Tp_T}{\sum_{T\in U}g_T}$$
+$$s_{v0.3-4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}$$ 
 
 $s$: bundle $U$ _score_ used to sort bundles.  
 $U$: ordered list of transactions $T$ in a bundle.  
 $M$: set of transactions $T$ in the mempool.  
 $g_{T}$: _gas used_ by transaction $T$.  
 $p_{T}$: _gas price_ of transaction $T$.  
+$c_{T}$: _fee cap per gas_ of transaction $T$.  
+$\delta_T$: _priority fee per gas_ of transaction $T$.  
+$e_{T}$: _effective fee per gas_ of transaction $T$ equal $\min$($c_{T}$, BASEFEE + $\delta_T$).  
+$m_{T}$: _miner fee per gas_ of transaction $T$ equal $e_{T}$ - BASEFEE.  
 $\Delta_{coinbase}$: coinbase difference from direct payment.  
 
 ### Explanation

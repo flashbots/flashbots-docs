@@ -1,9 +1,12 @@
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
 require('dotenv').config()
 const math = require('remark-math');
 const katex = require('rehype-katex');
+const lightCodeTheme = require("prism-react-renderer/themes/github")
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-module.exports = {
+// With JSDoc @type annotations, IDEs can provide config autocompletion
+/** @type {import('@docusaurus/types').DocusaurusConfig} */
+(module.exports = {
   title: 'Flashbots Docs',
   tagline: 'Flashbots repository of knowledge',
   baseUrl: process.env.BASE_URL,
@@ -22,55 +25,42 @@ module.exports = {
       crossorigin: 'anonymous',
     },
   ],
-  themeConfig: {
-    algolia: {
-      apiKey: '693df7609c6aeaac03b78418095b79c4',
-      indexName: 'flashbots',
-      // Optional: see doc section below
-      appId: 'BH4D9OD16A',
-    },
-    prism: {
-      additionalLanguages: ['solidity']
-    },
-    navbar: {
-      title: 'Flashbots Docs',
-      logo: {
-        alt: 'Flashbots Logo',
-        src: 'img/logo.png',
+  themeConfig: 
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      algolia: {
+        apiKey: '693df7609c6aeaac03b78418095b79c4',
+        indexName: 'flashbots',
+        // Optional: see doc section below
+        appId: 'BH4D9OD16A',
       },
-      items: [
-        {
-          href: 'https://github.com/flashbots/docs',
-          label: 'GitHub',
-          position: 'right',
+      prism: {
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
+        additionalLanguages: ['solidity']
+      },
+      hideableSidebar: true,
+      navbar: {
+        title: 'Flashbots Docs',
+        logo: {
+          alt: 'Flashbots Logo',
+          src: 'img/logo.png',
         },
-      ],
-     
-    },
-  //   footer: {
-  //     style: 'dark',
-  //     links: [
-  //       {
-  //         title: 'Community',
-  //         items: [
-  //           {
-  //             label: 'Discord',
-  //             href: 'https://discord.gg/7hvTycdNcK',
-  //           },
-  //           // {
-  //           //   label: 'Twitter',
-  //           //   href: 'https://twitter.com/docusaurus',
-  //           // },
-  //         ],
-  //       },
-  //     ],
-  //     copyright: `Copyright © ${new Date().getFullYear()} Flashbots. Built with Docusaurus.`,
-  //   },
-  },
+        items: [
+          {
+            href: 'https://github.com/flashbots/docs',
+            label: 'GitHub',
+            position: 'right',
+          },
+        ],
+      }
+      
+    }),
   presets: [
     [
       '@docusaurus/preset-classic',
-      {
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
         docs: {
           sidebarPath: require.resolve('./docs/sidebars.js'),
           // Please change this to your repo.
@@ -83,10 +73,10 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
-      },
+      }),
     ],
   ],
-    plugins: [
+  plugins: [
     [
       "docusaurus2-dotenv",
       {
@@ -94,4 +84,4 @@ module.exports = {
       },
     ],
   ],
-}
+})
