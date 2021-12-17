@@ -44,6 +44,8 @@ This will return a JSON object with your signed transactions:
 }
 ```
 
+Note: The transaction sent last is the first in the `rawTxs` array.
+
 ## Send Bundle
 
 Once all the transactions you want to include in your bundle are added to the queue, send the signed transactions to the flashbots relay.
