@@ -53,3 +53,8 @@ Once all the transactions you want to include in your bundle are added to the qu
 If you're being helped with a whitehat recovery, we will provide a web interface for you to do this.
 
 If you want to send a bundle directly, check out the [Flashbots Auction Docs](https://docs.flashbots.net/flashbots-auction/searchers/quick-start#how-to-send-your-first-flashbots-bundle) for instructions on how to do this.
+
+## Fake Funds
+
+Querying the balance of an address (using the `?bundle=` argument) will return a fake balance of 100 ETH, to allow crafting transactions even without actual funds.
+
