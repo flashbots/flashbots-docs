@@ -8,7 +8,7 @@ This will be used for whitehat recoveries. By enabling users to sign transaction
 
 ## Create a Bundle ID
 
-To submit a transaction and add it to a cached bundle, first create a bundle ID. We recommend using a UUID (v4). You can generate a UUID at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with any uuid library.
+To start addding transactions to a bundle, first create a bundle ID. We recommend using a UUID (v4). You can generate a UUID at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with any uuid library.
 
 ## Connect to Flashbots Protect with Bundle ID
 
