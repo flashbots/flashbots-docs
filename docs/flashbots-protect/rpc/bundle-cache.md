@@ -2,7 +2,7 @@
 title: bundle cache API
 ---
 
-To create a bundle iteratively (e.g. by signing & sending transactions one at a time with Metamask), you can use the bundle cache API to cache bundle transactions and retrieve them with a bundle ID.
+To create a bundle iteratively (e.g. by signing & sending transactions one at a time with Metamask), you can use the bundle cache API to cache signed transactions and retrieve them with a bundle ID.
 
 This will be used for whitehat recoveries. By enabling users to sign transactions on their own machines and send them privately to Flashbots, we remove the need to ask for the compromised private key.
 
