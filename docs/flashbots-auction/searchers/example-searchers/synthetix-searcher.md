@@ -5,4 +5,4 @@ This repo by [Bert Miller](https://twitter.com/bertcmiller) contains a searcher 
 
 An accompanying blog post talking through the process of writing this bot and its strategy can be found [here](https://bertcmiller.com/2021/09/05/mev-synthetix.html). This is highly recommended to understand the thought process and design decisions behind this repo.
 
-Access the synthetix searcher repository [here](https://github.com/bertmiller/sMEV)
+Access the [synthetix searcher repository here](https://github.com/bertmiller/sMEV).
