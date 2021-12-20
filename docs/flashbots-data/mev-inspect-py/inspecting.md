@@ -8,36 +8,62 @@ running inspect for a block will:
 - pull out structured objects like transfers and swaps
 - and save them all to the database for querying
 
-### Inspecting a single block
+### Inspect a single block
 
-Inspecting block [12914944](https://twitter.com/mevalphaleak/status/1420416437575901185)
-```
-kubectl exec deploy/mev-inspect-deployment -- poetry run inspect-block 12914944
-```
+Inspecting block [12914944](https://twitter.com/mevalphaleak/status/1420416437575901185):
 
-### Inspecting many blocks
-
-Inspecting blocks 12914944 to 12914954
 ```
-kubectl exec deploy/mev-inspect-deployment -- poetry run inspect-many-blocks 12914944 12914954
+./mev inspect 12914944
 ```
 
-### Inspecting all incoming blocks
+### Inspect many blocks
 
-Start a block listener with
+Inspecting blocks 12914944 to 12914954:
+
 ```
-kubectl exec deploy/mev-inspect-deployment -- /app/listener start
+./mev inspect-many 12914944 12914954
+```
+
+### Inspect all incoming blocks
+
+Start a block listener with:
+
+```
+./mev listener start
 ```
 
 By default, it will pick up wherever you left off.
-If running for the first time, listener starts at the latest block
+If running for the first time, listener starts at the latest block.
 
-See logs for the listener with
+Tail logs for the listener with:
+
 ```
-kubectl exec deploy/mev-inspect-deployment -- tail -f listener.log
+./mev listener tail
 ```
 
-And stop the listener with
+And stop the listener with:
+
 ```
-kubectl exec deploy/mev-inspect-deployment -- /app/listener stop
+./mev listener stop
 ```
+
+### Backfilling
+
+For larger backfills, you can inspect many blocks in parallel using kubernetes
+
+To inspect blocks 12914944 to 12915044 divided across 10 worker pods:
+```
+./mev backfill 12914944 12915044 10
+```
+
+You can see worker pods spin up then complete by watching the status of all pods
+```
+watch kubectl get pods
+```
+
+To watch the logs for a given pod, take its pod name using the above, then run:
+```
+kubectl logs -f pod/mev-inspect-backfill-abcdefg
+```
+
+(where `mev-inspect-backfill-abcdefg` is your actual pod name)

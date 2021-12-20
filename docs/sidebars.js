@@ -28,6 +28,8 @@ module.exports = {
                 'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
                 'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
                 'flashbots-auction/searchers/example-searchers/searcher-minter',
+                'flashbots-auction/searchers/example-searchers/synthetix-searcher',
+
 
               ],
               "libraries": [
@@ -133,6 +135,7 @@ module.exports = {
       type: 'link',
       href: 'https://github.com/flashbots/docs',
       label: 'GitHub',
-    }
+    },
+        'policies/privacy',
   ],
 };
