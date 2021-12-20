@@ -38,7 +38,7 @@ Press "space" to see a browser of the services starting up
 
 On first startup, you'll need to apply database migrations. Apply with:
 ```
-kubectl exec deploy/mev-inspect-deployment -- alembic upgrade head
+./mev exec alembic upgrade head
 ```
 
 ### Tear down
