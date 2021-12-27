@@ -136,6 +136,6 @@ module.exports = {
       href: 'https://github.com/flashbots/docs',
       label: 'GitHub',
     },
-        'policies/privacy',
+        'policies/privacy','policies/terms-of-service'
   ],
 };
