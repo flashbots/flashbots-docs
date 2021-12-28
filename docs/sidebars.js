@@ -133,9 +133,9 @@ module.exports = {
     },
     {
       type: 'link',
-      href: 'https://github.com/flashbots/docs',
+      href: 'https://github.com/flashbots/pm',
       label: 'GitHub',
     },
-        'policies/privacy',
+        'policies/privacy','policies/terms-of-service',
   ],
 };
