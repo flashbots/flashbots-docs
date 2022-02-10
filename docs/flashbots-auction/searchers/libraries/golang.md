@@ -11,3 +11,4 @@ Golang libraries:
 
 * [github.com/metachris/flashbotsrpc](https://github.com/metachris/flashbotsrpc)
 * [github.com/cryptoriums/flashbot](https://github.com/cryptoriums/flashbot)
+* [github.com/lmittmann/flashbots](https://github.com/lmittmann/flashbots)
