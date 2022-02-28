@@ -4,7 +4,7 @@ title: source code
 
 The entire changeset can be viewed inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master).
 
-The entire patch can be broken down into 3 major releases with a few commits in each:
+The entire patch can be broken down into major releases with a few commits in each:
 
 #### v0.1.0
 
@@ -41,4 +41,14 @@ The entire patch can be broken down into 3 major releases with a few commits in 
 
 #### v0.4
 
-- commit [00e687cca6c3db5dc85cc88b0dc13985b6a5c577](https://github.com/flashbots/mev-geth/commit/00e687cca6c3db5dc85cc88b0dc13985b6a5c577) Add megabundles
+- commit [8677391535b221b6d129332d1adcbe3184dfc97f](https://github.com/flashbots/mev-geth/commit/8677391535b221b6d129332d1adcbe3184dfc97f) Add megabundles
+
+#### v0.5
+
+- commit [f66aad30bcdcae3cf03d4970bc3581bd9b82caa7](https://github.com/flashbots/mev-geth/commit/f66aad30bcdcae3cf03d4970bc3581bd9b82caa7) Calculate megabundles as soon as they are received
+
+#### v0.6
+
+- commit [16f9b7c2a9ddb70fa875a654da6c23c2e620981f](https://github.com/flashbots/mev-geth/commit/16f9b7c2a9ddb70fa875a654da6c23c2e620981f) Private transactions API
+
+- commit [71ab3bd774cea63f7cbd1a5b55a11b15f1aabdaf](https://github.com/flashbots/mev-geth/commit/71ab3bd774cea63f7cbd1a5b55a11b15f1aabdaf) Remove private transactions confirmed in a block
