@@ -1,11 +1,14 @@
 ---
-title: alpha-v0.5
+title: alpha-v0.6 (current)
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Changelog
+
+#### v0.6 Private transactions support
+Added eth_sendPrivateTransaction support. Private transactions can be now accepted and included in the blocks. Such transactions are not distributed to any other nodes in the network and only taken into account when a block is constructed locally. 
 
 #### v0.5 Immediate megabundle processing
 Miners pick up megabundles immediately if they are better than the best known block so far.
@@ -29,7 +32,7 @@ Scoring function does not change between v0.4 and v0.5:
     { label: 'v0.1', value: 'v0.1', },
     { label: 'v0.2-pre', value: 'v0.2-pre' },
     { label: 'v0.2', value: 'v0.2' },
-    { label: 'v0.3 - v0.5', value: 'v0.3' }
+    { label: 'v0.3 - v0.6', value: 'v0.3' }
   ]}
 >
 <TabItem value="v0.1">
@@ -53,7 +56,7 @@ $$
 <TabItem value="v0.3">
 
 $$
-s_{v0.3-5} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}
+s_{v0.3-6} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}
 $$
 </TabItem>
 
@@ -72,11 +75,11 @@ $\Delta_{coinbase}$: coinbase difference from direct payment.
 
 ## Timeline
 
-### February, 15th 2022 - v0.5 spec and MEV-Geth-v0.5 release ready
+### February, 28th 2022 - v0.6 spec and MEV-Geth-v0.6 release ready
 
 ## Upgrade Steps
 
-- Miners asked to upgrade to v[geth_version]-mev0.5.0
+- Miners asked to upgrade to v[geth_version]-mev0.6.0
 - Miners can update 100% of capacity to this new version
 
 ## Node configuration

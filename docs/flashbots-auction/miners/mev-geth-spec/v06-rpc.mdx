@@ -1,5 +1,5 @@
 ---
-title: v0.5 RPC
+title: v0.6 RPC (current)
 ---
 
 ## eth_sendBundle
@@ -98,6 +98,42 @@ curl -X POST -H 'Content-Type: application/json' --data '{
     "result": true
 }
 ```
+
+## eth_sendPrivateRawTransaction
+
+### Description
+
+Sends a raw transaction to be included for block construction. Transaction is marked as private which means that it will not be broadcast to any other node for as long as the configured `txpool.privatetxlifespan` in hours. Except for the no broadcast rule the transaction should be treated equally with all the public transaction pool transactions.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| input | `Array<Data>` | Signed transaction (`eth_sendRawTransaction` style, signed and RLP-encoded) |
+
+### Returns
+
+"error|value" : `Data` - txhash or error
+
+### Example
+
+```bash
+# Request
+curl -X POST -H 'Content-Type: application/json' --data '{
+    "id": 1337,
+    "jsonrpc": "2.0",
+    "method": "eth_sendPrivateRawTransaction",
+    "params": [
+        "0x02f8b30181b18502cb417800853a352944008307a12094b893a8049f250b57efa8c62d51527a22404d7c9a80b844095ea7b300000000000000000000000093e17e368e82dd24bed931091f831b5bed3f711effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc080a027148354c23bb016147ed68014b2aa13c43a4feef36274be88ef58d25f91e20fa05ccc423d4e9e1de88515adf3245df69db8c05b1ce345a738c75b06c87a96f878"
+    ]
+}' <url>
+
+# Response
+{
+    "id": 1337,
+    "jsonrpc": "2.0",
+    "result": "0xdeadbeef883764809a94a5320e4557102f5a3fdd98dabd8cd48773b0eca00666"
+}
+```
+
 
 ## eth_callBundle
 

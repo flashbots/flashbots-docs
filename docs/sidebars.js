@@ -53,6 +53,8 @@ module.exports = {
 
                 {
                   'mev-geth spec': [
+                    'flashbots-auction/miners/mev-geth-spec/v06',
+                    'flashbots-auction/miners/mev-geth-spec/v06-rpc',
                     'flashbots-auction/miners/mev-geth-spec/v05',
                     'flashbots-auction/miners/mev-geth-spec/v05-rpc',
                     'flashbots-auction/miners/mev-geth-spec/v04',
@@ -69,6 +71,7 @@ module.exports = {
             },
           ],
           'releases': [
+            'flashbots-auction/releases/alpha-v0.6',
             'flashbots-auction/releases/alpha-v0.5',
             'flashbots-auction/releases/alpha-v0.4',
             'flashbots-auction/releases/alpha-v0.3',
