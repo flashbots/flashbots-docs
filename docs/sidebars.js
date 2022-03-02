@@ -2,7 +2,7 @@ module.exports = {
   docs: [
     {
       "welcome": [
-        'welcome', 'new-to-mev',
+        'welcome', 'new-to-mev', 'code-of-conduct'
       ],
     },
     {
