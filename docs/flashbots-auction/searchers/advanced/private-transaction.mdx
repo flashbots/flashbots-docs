@@ -9,11 +9,9 @@ import TabItem from '@theme/TabItem';
 
 If you want to send a single transaction to flashbots, without sending it as a bundle, you can use the `sendPrivateTransaction` method.
 
-This method has a few key advantages:
+This method attempts to send your transaction to miners on every block for a maximum of 25 blocks. No need to listen for the next block and re-send yourself. 
 
-1. This method attempts to send your transaction to miners on every block for a maximum of 25 blocks. No need to listen for the next block and re-send yourself. Just call `result.wait()` and check the result.
-2. Sending single transactions via this method is faster and more efficient than `sendBundle`. Transactions sent via this method are sent to our _bundler_, which creates bundles out of private transactions and sends them to miners. Ultimately, this means that your transaction will be mined sooner than if you were to send a single-transaction bundle with `sendBundle`.
-3. Private transactions can be cancelled easily.
+Private transactions can be cancelled with the `cancelPrivateTransaction` method. Once a transaction is submitted from the relay to a miner we cannot "recall" it. However, we can cancel submitting transactions for future blocks.
 
 See [RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint) for JSON-RPC definitions of the methods.
 
