@@ -1,0 +1,59 @@
+---
+title: private transactions
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## How to send a single transaction to Flashbots
+
+If you want to send a single transaction to flashbots, without sending it as a bundle, you can use the `sendPrivateTransaction` method.
+
+This method has a few key advantages:
+
+1. This method attempts to send your transaction to miners on every block for a maximum of 25 blocks. No need to listen for the next block and re-send yourself. Just call `result.wait()` and check the result.
+2. Sending single transactions via this method is faster and more efficient than `sendBundle`. Transactions sent via this method are sent to our _bundler_, which creates bundles out of private transactions and sends them to miners. Ultimately, this means that your transaction will be mined sooner than if you were to send a single-transaction bundle with `sendBundle`.
+3. Private transactions can be cancelled easily.
+
+See [RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint) for JSON-RPC definitions of the methods.
+
+These methods are currently implemented in the [ethers-provider-flashbots-bundle](/flashbots-auction/searchers/libraries/ethers-js-provider) library. More languages coming soon.
+
+<Tabs 
+    defaultValue="ethers.js"
+    values={[
+        { label: "ethers.js", value: "ethers.js" },
+    ]}
+>
+<TabItem value="ethers.js">
+
+```ts
+const signer = Wallet.createRandom()
+const provider = new providers.JsonRpcProvider("http://localhost:8545")
+const flashbotsProvider = await FlashbotsBundleProvider.create(provider, signer)
+
+const transaction = {
+    from: signer.address,
+    to: signer.address,
+    value: "0x42",
+    gasPrice: BigNumber.from(99).mul(1e9),
+    gasLimit: BigNumber.from(21000),
+}
+
+const res = await flashbotsProvider.sendPrivateTransaction({
+    transaction,
+    signer,
+}, {
+    maxBlockNumber: (await provider.getBlockNumber()) + 5, // only allow tx to be mined for the next 5 blocks
+});
+
+const waitRes = await res.wait();
+if (waitRes === FlashbotsTransactionResolution.TransactionIncluded) {
+    console.log("Private transaction successfully mined.")
+} else if (waitRes === FlashbotsTransactionResolution.TransactionDropped) {
+    console.log("Private transaction was not mined and has been removed from the system.")
+}
+```
+
+</TabItem>
+</Tabs>
