@@ -23,13 +23,25 @@ const flashbotsProvider = await flashbots.FlashbotsBundleProvider.create(
 Sending bundles works the same as sending bundles on the mainnet. For example this will simulate a bundle and if it is successful then send a batch of 10:
 
 ```js
+const wallet = new ethers.Wallet(SOME_PRIVATE_KEY);
 const signedTransactions = await flashbotsProvider.signBundle([
     {
-      signer: authSigner,
+      signer: wallet,
       transaction: {
         to: "0xf1a54b075fb71768ac31b33fd7c61ad8f9f7dd18",
         gasPrice: 10,
-        gasLimit: 33000,
+        gasLimit: 21000,
+        chainId: 5,
+        value: 0,
+      },
+    },
+    // we need this second tx because flashbots only accept bundles that use at least 42000 gas.
+    {
+      signer: wallet,
+      transaction: {
+        to: "0xf1a54b075fb71768ac31b33fd7c61ad8f9f7dd18",
+        gasPrice: 10,
+        gasLimit: 21000,
         chainId: 5,
         value: 0,
       },

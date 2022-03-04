@@ -14,16 +14,16 @@ Using the [linked etherscan transaction](https://etherscan.io/tx/0xfcf4558f64326
 
 To inspect this block, run
 ```
-kubectl exec deploy/mev-inspect-deployment -- poetry run inspect-block 12914944
+./mev inspect 12914944
 ```
 
 ### Connect to Postgres
 
 We'll connect to the Postgres database to see the data inspect found in that block
 
-Let's start up a client container:
+Let's start up a client container connected to the DB:
 ```
-kubectl run -i --rm --tty postgres-client --env="PGPASSWORD=password" --image=jbergknoff/postgresql-client -- mev_inspect --host=postgresql --user=postgres
+./mev db
 ```
 
 When you see the prompt

@@ -6,7 +6,7 @@ All inspect output data is stored in Postgres.
 
 To connect to the local Postgres database for querying, launch a client container with:
 ```
-kubectl run -i --rm --tty postgres-client --env="PGPASSWORD=password" --image=jbergknoff/postgresql-client -- mev_inspect --host=postgresql --user=postgres
+./mev db
 ```
 
 When you see the prompt
