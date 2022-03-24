@@ -35,7 +35,7 @@ In the Flashbots Forums [Discussions section](https://github.com/flashbots/pm/di
 * Miners receive Flashbots bundles from MEV-Relay and process them in MEV-Geth
 * MEV-Geth picks the most profitable combination of bundles out of all bundles it is sent.
 * MEV-Geth then compares the block that includes these bundles with a vanilla block that does not include any bundles. If it is more profitable to include a bundle, or multiple ones, MEV-Geth will do so, but otherwise it will default back to a vanilla Geth block.
-* Only when the a searcher's bundle is included in a block is the tip associated with their bundle paid.
+* Only when the searcher's bundle is included in a block then the tip associated with their bundle is paid.
   * If a bundle is not included it does not cost the searcher anything (i.e. no gas fees are paid for failed transactions)
 
 ### Why use Flashbots Auction?
