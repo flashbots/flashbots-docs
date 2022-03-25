@@ -113,6 +113,7 @@ module.exports = {
         {
           'rpc': [
             'flashbots-protect/rpc/quick-start',
+            'flashbots-protect/rpc/fast',
             'flashbots-protect/rpc/uncle-bandits',
             'flashbots-protect/rpc/status-api',
             'flashbots-protect/rpc/bundle-cache',
