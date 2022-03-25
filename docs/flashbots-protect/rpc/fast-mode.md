@@ -18,7 +18,7 @@ Here is a table that summarizes the differences between Flashbots Protect and Fl
 - *More blockspace*: private transactions have more blockspace available to them, which means they will be included faster if there are a lot of bundles.
 
 ## Using fast mode
-To use Flashbots Protect Fast add `https://rpc.flashbots.net/fast` with a chainID of `1` and currency of `ETH` as a new network in your MetaMask.
+To use Flashbots Protect with fast mode add `https://rpc.flashbots.net/fast` with a chainID of `1` and currency of `ETH` as a new network in your MetaMask.
 
 ## When should I use fast mode?
 You should use fast mode if you want to be included in blocks as soon as possible and if your transactions are unlikely to revert. For example, if you are trading on a DEX that doesn't see much volume.
