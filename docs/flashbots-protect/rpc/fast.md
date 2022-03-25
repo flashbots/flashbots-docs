@@ -1,10 +1,10 @@
 ---
-title: Flashbots Protect Fast
+title: Flashbots Protect with fast mode
 ---
 
-Flashbots Protect offers two ways to send your transaction: Flashbots Protect and Flashbots Protect Fast. Standard Flashbots Protect uses Flashbots bundles, whereas Flashbots Protect Fast uses a new transaction type called "private transactions." Flashbots Protect Fast transactions are more likely to be included fast, but they don't have protection against reverts and don't get priority at the top of the block.
+Flashbots Protect offers a fast mode which may be better for some use cases. Without fast mode Protect uses Flashbots bundles, but by enabling fast mode Protect uses a new transaction type called "private transactions." By sending transactions using Flashbots Protect with fast mode your transactions are more likely to be included as soon as possible. But, transactions sent with fast mode won't have all the benefits of bundles such as protection against reverts and don't get priority at the top of the block.
 
-Here is a table that summarizes the differences between Flashbots Protect and Flashbots Protect Fast:
+Here is a table that summarizes the differences between Flashbots Protect and Flashbots Protect with fast mode:
 
 |                        | Frontrunning protection | Priority at top of the block | No reverts | More blockspace |
 |------------------------|-------------------------|------------------------------|------------|-----------------|
