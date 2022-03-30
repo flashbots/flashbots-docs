@@ -181,6 +181,34 @@ example response:
 }
 ```
 
+### eth_sendPrivateTransaction
+
+The `eth_sendPrivateTransaction` JSON-RPC method is used to send a single transaction for inclusion while staying private. See https://docs.flashbots.net/flashbots-protect/overview for more information.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_sendPrivateTransaction",
+  "params": [
+    {
+      "tx": "0x123...",                // raw signed tx
+      "maxBlockNumber": "0xcd23a0",    // optional, after this block, the tx is thrown away. If greater than 25 blocks in the future, then it will be silently clamped to current+25.
+      "preferences": { "fast": true }  // optional, see https://docs.flashbots.net/flashbots-protect/rpc/fast-mode
+    }
+  ]
+}
+```
+
+example response:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "123",
+  "result": "0x111..."  // tx-hash
+}
+```
+
 ### Authentication
 
 To authenticate your request, the relay requires you sign the payload and include the signed payload in the `X-Flashbots-Signature` header of your request.
