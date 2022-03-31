@@ -165,7 +165,9 @@ example response:
 
 ### eth_cancelPrivateTransaction
 
-The `eth_cancelPrivateTransaction` method stops private transactions from being submitted for future blocks. This method has the following JSON-RPC format:
+The `eth_cancelPrivateTransaction` method stops private transactions from being submitted for future blocks. A transaction can only be cancelled if the request is signed by the same key as the `eth_sendPrivateTransaction` call submitting the transaction in first place. 
+
+This method has the following JSON-RPC format:
 
 ```json
 {
