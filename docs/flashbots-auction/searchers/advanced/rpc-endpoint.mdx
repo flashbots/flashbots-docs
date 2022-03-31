@@ -132,7 +132,8 @@ This method has the following JSON-RPC format:
   "method": "eth_sendPrivateTransaction",
   "params": [{
     tx,               // String, raw signed transaction
-    maxBlockNumber,   // Number, optional. Highest block number in which the transaction should be included.
+    maxBlockNumber,   // Hex-encoded number string, optional. Highest block number in which the transaction should be included.
+    preferences: { fast: boolean } // optional, see https://docs.flashbots.net/flashbots-protect/rpc/fast-mode
   }]
 }
 ```
@@ -147,6 +148,7 @@ example:
   "params": [{
     "tx": "0x123abc...",
     "maxBlockNumber": 14322777,
+    "preferences": { "fast": true } // optional, see https://docs.flashbots.net/flashbots-protect/rpc/fast-mode
   }]
 }
 ```
