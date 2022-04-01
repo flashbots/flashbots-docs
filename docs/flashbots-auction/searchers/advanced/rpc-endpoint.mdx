@@ -305,7 +305,7 @@ from eth_account import Account, messages
 
 body = '{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}'
 message = messages.encode_defunct(text=Web3.keccak(text=body).hex())
-signature = Account.from_key(private_key).address + ':' + Account.sign_message(message, private_key)
+signature = Account.from_key(private_key).address + ':' + Account.sign_message(message, private_key).signature.hex()
 ```
 
 </TabItem>
