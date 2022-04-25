@@ -106,7 +106,7 @@ Rate limiting is currently in place to protect the relay infrastructure from DOS
 
 By signing payloads with your own relay signing key, this will enable building a reputation for high-priority delivery of your bundles to miners. The Flashbots Relay simulates bundles before sending to miners which can take a small amount of time. The relay cannot determine which bundles are profitable without performing a full simulation. This signing key allows the relay to infer which bundles are likely profitable, based on historical performance. Using a reputation system allows reliable searchers to be rewarded for good performance while still allowing new searchers to participate.
 
-You can query the relay to obtain an understanding of your [reputation score](https://github.com/flashbots/mev-relay-js#flashbots_getuserstats).
+You can query the relay to obtain an understanding of your [reputation score](https://docs.flashbots.net/flashbots-auction/miners/mev-relay#flashbots_getuserstats).
 
 ### Are you on any testnets?
 
