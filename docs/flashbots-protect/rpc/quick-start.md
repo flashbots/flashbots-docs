@@ -37,7 +37,6 @@ To add Flashbots Protect RPC endpoint follow these steps:
 ![second metamask onboarding image](/img/flashbotsRPC-metamask2.png)
 
 ## How to use Flashbots Protect RPC in Metamask (Goerli Test Network)
-Flashbots provided a way to test the transaction in Goerli Test network.
 
 Follow these steps to add Flashbots Protect RPC endpoint for Goerli:
 
