@@ -36,6 +36,15 @@ To add Flashbots Protect RPC endpoint follow these steps:
 ![first metamask onboarding image](/img/flashbotsRPC-metamask1.png)
 ![second metamask onboarding image](/img/flashbotsRPC-metamask2.png)
 
+## How to use Flashbots Protect RPC in Metamask (Goerli Test Network)
+
+Follow these steps to add Flashbots Protect RPC endpoint for Goerli:
+
+1. Enter your MetaMask and click on your RPC endpoint at the top of your MetaMask. By default it says “Ethereum mainnet.”
+2. Click “Custom RPC”
+3. Add `https://rpc-goerli.flashbots.net` with a chainID of `5` and currency of `ETH`.
+4. Scroll to the bottom and click “Save”
+
 ## Fixing stuck transactions or fixing nonce errors
 In the case that your transaction is stuck in a "pending" state or you have an extremely high nonce, you will need to 'reset' your MetaMask account. This will cause it to update the nonce and transaction history from the network. Don't worry, your funds and keys are safe during this process.
 
