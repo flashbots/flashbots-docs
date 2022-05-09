@@ -205,3 +205,7 @@ This coinbase transfer amount can be determined in the middle of your contract l
 ### Can I have a running bundle which I constantly update whenever I find a new trade? Essentially I want to continuously update my bunle until the next block arrives.
 
 Your previous bundle is dropped if the new bundle is more valuable.
+
+### Where can I view the health status of Flashbots' infrastructure?
+
+Status is reported at https://status.flashbots.net/. Please check this link for any network outages or downtime.
