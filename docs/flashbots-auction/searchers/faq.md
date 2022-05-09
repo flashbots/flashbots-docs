@@ -208,4 +208,4 @@ Your previous bundle is dropped if the new bundle is more valuable.
 
 ### Where can I view the health status of Flashbots' infrastructure?
 
-Status is reported at https://status.flashbots.net/
+Status is reported at https://status.flashbots.net/. Please check this link for any network outages or downtime.
