@@ -2,7 +2,7 @@
 title: large transaction allowlist
 ---
 
-Some projects need to post transactions that are larger in size (e.g. measured by bytes) than the txpool traditionally allows. Flashbots bundles are not subject to the same constraints. However, at the RPC level only transactions to certain contracts are allowed to be over 128kb.
+Some projects need to post transactions that are larger in size (measured in bytes) than the txpool traditionally allows. Flashbots bundles are not subject to the same constraints. However, at the RPC level only transactions to certain contracts are allowed to be over 128kb.
 
 Currently these contracts are:
 - Aztec Rollup Contract: `0x737901bea3eeb88459df9ef1be8ff3ae1b42a2ba`
