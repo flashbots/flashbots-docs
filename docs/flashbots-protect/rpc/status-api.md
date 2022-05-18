@@ -21,7 +21,9 @@ In turn you will receive a JSON response that looks like the following:
         "maxPriorityFeePerGas": "10",
         "nonce": "41",
         "value": "10000000000"
-    }
+    },
+    "fastMode": false,
+    "seenInMempool": false
 }
 ```
 
@@ -31,6 +33,10 @@ In turn you will receive a JSON response that looks like the following:
 * `FAILED` - The transaction was submitted for 25 blocks and failed to be included on-chain
 * `CANCELLED` - The transaction was cancelled by the user and not included on-chain
 * `UNKNOWN` - The transaction was not received
+
+## Failed transactions
+
+If a transaction failed (not included after 25 blocks) and it had a simulation error, there will be an additional `simError` field in the payload. Possible `simError` values: `MaxFeePerGasTooLow`, `NonceTooHigh`, `NonceTooLow`, `InsufficientFunds`, `Other`.
 
 ## Privacy
 In order to receive a response from the status API you must know and provide a transaction hash to look up. As a result, you are only able to look up transactions which you know about.
