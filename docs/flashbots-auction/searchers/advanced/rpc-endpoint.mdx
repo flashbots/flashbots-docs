@@ -2,13 +2,15 @@
 title: RPC endpoint
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 ## How to interact directly with the Flashbots RPC endpoint
+
 For advanced users, you can interact with the relay's RPC endpoint at `relay.flashbots.net`. The relay provides new JSON-RPC methods for interfacing with Flashbots which are documented below:
 
 ### eth_sendBundle
+
 `eth_sendBundle` can be used to send your bundles to the relay. The `eth_sendBundle` RPC has the following payload format:
 
 ```json
@@ -29,16 +31,25 @@ For advanced users, you can interact with the relay's RPC endpoint at `relay.fla
 ```
 
 example:
+
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1,
   "method": "eth_sendBundle",
-  "params": [{ "txs": ["0x123abc...", "0x456def..."], "blockNumber": "0xb63dcd", "minTimestamp": 0, "maxTimestamp": 1615920932 }]
+  "params": [
+    {
+      "txs": ["0x123abc...", "0x456def..."],
+      "blockNumber": "0xb63dcd",
+      "minTimestamp": 0,
+      "maxTimestamp": 1615920932
+    }
+  ]
 }
 ```
 
 example response:
+
 ```json
 {
   "jsonrpc": "2.0",
@@ -50,6 +61,7 @@ example response:
 ```
 
 ### eth_callBundle
+
 `eth_callBundle` can be used to simulate a bundle against a specific block number, including simulating a bundle at the top of the next block. The `eth_callBundle` RPC has the following payload format:
 
 ```json
@@ -69,16 +81,25 @@ example response:
 ```
 
 example:
+
 ```json
 {
   "jsonrpc": "2.0",
   "id": 1,
   "method": "eth_callBundle",
-  "params": [{ "txs": ["0x123abc...", "0x456def..."], "blockNumber": "0xb63dcd", "stateBlockNumber": "latest", "timestamp": 1615920932 }]
+  "params": [
+    {
+      "txs": ["0x123abc...", "0x456def..."],
+      "blockNumber": "0xb63dcd",
+      "stateBlockNumber": "latest",
+      "timestamp": 1615920932
+    }
+  ]
 }
 ```
 
 example response:
+
 ```json
 {
   "jsonrpc": "2.0",
@@ -123,6 +144,8 @@ example response:
 
 `eth_sendPrivateTransaction` is used to send a single transaction to Flashbots. Flashbots will attempt to send the transaction to miners for the next 25 blocks. See [Private Transactions](/flashbots-auction/searchers/advanced/private-transaction.mdx) for more info.
 
+[`eth_sendPrivateTransaction`](https://docs.alchemy.com/alchemy/apis/ethereum/eth-sendPrivateTransaction/?a=fb) is also supported for free on [Alchemy](https://alchemy.com/?a=fb).
+
 This method has the following JSON-RPC format:
 
 ```json
@@ -145,11 +168,13 @@ example request:
   "jsonrpc": "2.0",
   "id": 1,
   "method": "eth_sendPrivateTransaction",
-  "params": [{
-    "tx": "0x123abc...",
-    "maxBlockNumber": "0xcd23a0",
-    "preferences": { "fast": true } // optional, see https://docs.flashbots.net/flashbots-protect/rpc/fast-mode
-  }]
+  "params": [
+    {
+      "tx": "0x123abc...",
+      "maxBlockNumber": "0xcd23a0",
+      "preferences": { "fast": true } // optional, see https://docs.flashbots.net/flashbots-protect/rpc/fast-mode
+    }
+  ]
 }
 ```
 
@@ -165,7 +190,7 @@ example response:
 
 ### eth_cancelPrivateTransaction
 
-The `eth_cancelPrivateTransaction` method stops private transactions from being submitted for future blocks. A transaction can only be cancelled if the request is signed by the same key as the `eth_sendPrivateTransaction` call submitting the transaction in first place. 
+The `eth_cancelPrivateTransaction` method stops private transactions from being submitted for future blocks. A transaction can only be cancelled if the request is signed by the same key as the `eth_sendPrivateTransaction` call submitting the transaction in first place.
 
 This method has the following JSON-RPC format:
 
@@ -187,9 +212,11 @@ example request:
   "jsonrpc": "2.0",
   "id": 1,
   "method": "eth_cancelPrivateTransaction",
-  "params": [{
-    "txHash": "0x45df1bc3de765927b053ec029fc9d15d6321945b23cac0614eb0b5e61f3a2f2a"
-  }]
+  "params": [
+    {
+      "txHash": "0x45df1bc3de765927b053ec029fc9d15d6321945b23cac0614eb0b5e61f3a2f2a"
+    }
+  ]
 }
 ```
 
@@ -219,6 +246,7 @@ The `flashbots_getUserStats` JSON-RPC method returns a quick summary of how a se
 ```
 
 example response:
+
 ```json
 {
   "is_high_priority": true,
@@ -230,10 +258,12 @@ example response:
   "last_1d_gas_simulated": "2731770076"
 }
 ```
+
 where
-* `is_high_priority`: boolean representing if this searcher has a high enough reputation to be in the high priority queue
-* `all_time_miner_payments`: the total amount paid to miners over all time
-* `all_time_gas_simulated`: the total amount of gas simulated across all bundles submitted to the relay. This is the actual gas used in simulations, not gas limit
+
+- `is_high_priority`: boolean representing if this searcher has a high enough reputation to be in the high priority queue
+- `all_time_miner_payments`: the total amount paid to miners over all time
+- `all_time_gas_simulated`: the total amount of gas simulated across all bundles submitted to the relay. This is the actual gas used in simulations, not gas limit
 
 ### flashbots_getBundleStats
 
@@ -254,6 +284,7 @@ The `flashbots_getBundleStats` JSON-RPC method returns stats for a single bundle
 ```
 
 example response:
+
 ```json
 {
   "isSimulated": true,
@@ -288,12 +319,13 @@ The signature is calculated by taking the [EIP-191](https://eips.ethereum.org/EI
 <TabItem value="ethers.js">
 
 ```ts
-import { Wallet, utils } from 'ethers'
+import { Wallet, utils } from "ethers";
 
-const privateKey = '0x1234'
-const wallet = new Wallet(privateKey)
-const body = '{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}'
-const signature = wallet.address + ':' + wallet.signMessage(utils.id(body))
+const privateKey = "0x1234";
+const wallet = new Wallet(privateKey);
+const body =
+  '{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}';
+const signature = wallet.address + ":" + wallet.signMessage(utils.id(body));
 ```
 
 </TabItem>
