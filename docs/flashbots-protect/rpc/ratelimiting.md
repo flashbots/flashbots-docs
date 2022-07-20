@@ -13,3 +13,5 @@ Note that you are not required to read JSON RPC requests to send transactions to
 
 If you are a wallet or application integrating with protect and you require a higher rate limit please reach out to [bertcmiller](https://twitter.com/bertcmiller).
 
+## Batch request support
+Flashbots Protect RPC is not supporting batch JSON-RPC requests.
