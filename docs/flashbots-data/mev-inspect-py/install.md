@@ -1,5 +1,5 @@
 ---
-title: install
+title: Install
 ---
 
 mev-inspect-py is built to run on kubernetes locally and in production

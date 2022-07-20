@@ -1,5 +1,5 @@
 ---
-title: rate limiting
+title: Rate limiting
 ---
 
 We have rate limits on the number of requests that can be made to Flashbots Protect RPC in order to protect our service from abuse. Currently you can only make 80 requests per second with a burst limit of up to 100 requests.

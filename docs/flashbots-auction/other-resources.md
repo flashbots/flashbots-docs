@@ -1,5 +1,5 @@
 ---
-title: other resources
+title: Other resources
 ---
 
 Remember you can ask any questions in the [#🤖searchers](https://discord.com/invite/7hvTycdNcK) channel on our Discord, below are a list of useful resources for searchers to wrap their heads around running Flashbots:

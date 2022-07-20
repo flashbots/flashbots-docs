@@ -1,5 +1,5 @@
 ---
-title: inspecting
+title: Inspecting
 ---
 
 running inspect for a block will:

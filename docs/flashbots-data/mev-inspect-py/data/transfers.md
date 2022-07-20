@@ -1,5 +1,5 @@
 ---
-title: transfers
+title: Transfers
 ---
 ### description
 

@@ -1,5 +1,5 @@
 ---
-title: exploring
+title: Exploring
 ---
 
 All inspect output data is stored in Postgres.

@@ -1,8 +1,8 @@
 ---
-title: how it works
+title: How it works
 ---
 
-### MEV-Geth: a proof of concept
+### MEV-Geth: A proof of concept
 
 We have designed and implemented a proof of concept for permissionless MEV extraction called MEV-Geth. It is a sealed-bid block space auction mechanism for communicating transaction order preference. While our proof of concept has incomplete trust guarantees, we believe it's a significant improvement over the status quo. The adoption of MEV-Geth should relieve a lot of the network and chain congestion caused by frontrunning and backrunning bots.
 

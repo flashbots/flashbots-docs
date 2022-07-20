@@ -1,5 +1,5 @@
 ---
-title: quick start
+title: Quick start
 ---
 
 Let's use mev-inspect to find the same arbitrage as [MEV Alpha Leak](https://twitter.com/mevalphaleak/status/1420416437575901185)

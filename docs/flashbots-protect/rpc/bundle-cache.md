@@ -1,5 +1,5 @@
 ---
-title: bundle cache API
+title: Bundle cache API
 ---
 
 To create a bundle iteratively (e.g. by signing & sending transactions one at a time with Metamask), you can use the bundle cache API to cache signed transactions and retrieve them with a bundle ID.
