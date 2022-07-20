@@ -1,5 +1,5 @@
 ---
-title: private transactions
+title: Private transactions
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 If you want to send a single transaction to Flashbots, without sending it as a bundle, you can use the `eth_sendPrivateTransaction` method.
 
-This method attempts to send your transaction to miners on every block for a maximum of 25 blocks. No need to listen for the next block and re-send yourself. 
+This method attempts to send your transaction to miners on every block for a maximum of 25 blocks. No need to listen for the next block and re-send yourself.
 
 Private transactions can be cancelled with the `eth_cancelPrivateTransaction` method. Once a transaction is submitted from the relay to a miner we cannot "recall" it. However, we can cancel submitting transactions for future blocks.
 
@@ -17,7 +17,7 @@ See [RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint) for JSON-
 
 These methods are currently implemented in the [ethers-provider-flashbots-bundle](/flashbots-auction/searchers/libraries/ethers-js-provider) library. More languages coming soon.
 
-<Tabs 
+<Tabs
     defaultValue="ethers.js"
     values={[
         { label: "ethers.js", value: "ethers.js" },

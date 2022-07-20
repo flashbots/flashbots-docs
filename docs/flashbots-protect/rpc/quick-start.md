@@ -1,5 +1,5 @@
 ---
-title: quick start
+title: Quick start
 ---
 **Please note that Flashbots Protect RPC is currently in public beta. Your transactions may occasionally time out and not be mined!**
 

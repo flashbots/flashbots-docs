@@ -1,5 +1,5 @@
 ---
-title: arbitrages
+title: Arbitrages
 ---
 ### description
 

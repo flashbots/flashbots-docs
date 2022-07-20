@@ -1,5 +1,5 @@
 ---
-title: flashbots fair market principles
+title: Flashbots fair market principles
 ---
 
 This document aims to define a set of key principles and best practices upon which stakeholders of the Flashbots network can hold block producers (miners in ETH 1.0) accountable for their continued participation in the Flashbots Alpha.

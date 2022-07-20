@@ -1,5 +1,5 @@
 ---
-title: miner_payments
+title: Miner_payments
 ---
 ### description
 

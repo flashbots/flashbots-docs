@@ -1,5 +1,5 @@
 ---
-title: mev-blocks API
+title: MEV-Blocks API
 ---
 mev-blocks is a a public API for displaying flashbots blocks and transactions.
 

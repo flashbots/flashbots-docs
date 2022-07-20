@@ -1,5 +1,5 @@
 ---
-title: classified_traces
+title: Classified_traces
 ---
 ### description
 

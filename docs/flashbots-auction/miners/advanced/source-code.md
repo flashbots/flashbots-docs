@@ -1,5 +1,5 @@
 ---
-title: source code
+title: Source code
 ---
 
 The entire changeset can be viewed inspecting the [diff](https://github.com/ethereum/go-ethereum/compare/master...flashbots:master).

@@ -1,5 +1,5 @@
 ---
-title: mev-explore
+title: MEV-Explore
 ---
 MEV-Explore v0 is a live dashboard of MEV activity on the Ethereum network and MEV transactions explorer.
 
