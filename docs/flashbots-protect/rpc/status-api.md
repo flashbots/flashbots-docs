@@ -18,8 +18,11 @@ In turn you will receive a JSON response that looks like the following:
         "maxFeePerGas": "300",
         "maxPriorityFeePerGas": "10",
         "nonce": "41",
-        "value": "10000000000",
-    }
+        "value": "10000000000"
+    },
+  "fastMode": false,
+  "seenInMempool": false,
+  "simError": "MaxFeePerGasTooLow"
 }
 ```
 
