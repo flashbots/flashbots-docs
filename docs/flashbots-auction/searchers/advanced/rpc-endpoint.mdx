@@ -144,7 +144,7 @@ example response:
 
 `eth_sendPrivateTransaction` is used to send a single transaction to Flashbots. Flashbots will attempt to send the transaction to miners for the next 25 blocks. See [Private Transactions](/flashbots-auction/searchers/advanced/private-transaction.mdx) for more info.
 
-[`eth_sendPrivateTransaction`](https://docs.alchemy.com/alchemy/apis/ethereum/eth-sendPrivateTransaction/?a=fb) is also supported for free on [Alchemy](https://alchemy.com/?a=fb).
+[`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendprivatetransaction?a=fb) is also supported for free on [Alchemy](https://alchemy.com?a=fb).
 
 This method has the following JSON-RPC format:
 
@@ -191,6 +191,8 @@ example response:
 ### eth_cancelPrivateTransaction
 
 The `eth_cancelPrivateTransaction` method stops private transactions from being submitted for future blocks. A transaction can only be cancelled if the request is signed by the same key as the `eth_sendPrivateTransaction` call submitting the transaction in first place.
+
+[`eth_cancelPrivateTransaction`](https://docs.alchemy.com/reference/eth-cancelprivatetransaction?a=fb) is also supported for free on [Alchemy](https://alchemy.com?a=fb).
 
 This method has the following JSON-RPC format:
 
