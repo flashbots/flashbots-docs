@@ -33,3 +33,6 @@ Please note that fast mode transactions *cannot* be cancelled using the [`eth_ca
 You should use fast mode if you want to be included in blocks as soon as possible and if your transactions are unlikely to revert. For example, if you are trading on a DEX that doesn't see much volume.
 
 If you think your transaction might revert, or if being at the top of the block matters a lot to you, you should use Flashbots Protect without fast mode.
+
+## Note
+Fast mode transaction does not have 25 blocks limit, It will be sent to miner's private transaction mempool. Transaction remains there until either included or evicted, Default eviction period is 3 days but miners might have their own eviction period.
