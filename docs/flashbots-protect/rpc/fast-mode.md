@@ -35,4 +35,4 @@ You should use fast mode if you want to be included in blocks as soon as possibl
 If you think your transaction might revert, or if being at the top of the block matters a lot to you, you should use Flashbots Protect without fast mode.
 
 ## Note
-Fast mode transaction does not have 25 blocks limit, It will be sent to miner's private transaction mempool. Transaction remains there until either included or evicted.Miners might have their own eviction period.
+Fast mode transaction does not have 25 blocks limit, It will be sent to miner's private transaction mempool. Transaction remains there until either included or evicted, Default eviction period is 3 days but miners might have their own eviction period.
