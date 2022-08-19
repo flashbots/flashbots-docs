@@ -9,6 +9,5 @@ Flashbots-enabled relays and miners expose several new jsonrpc endpoints, such a
 
 Golang libraries:
 
-* [https://github.com/alchemyplatform/alchemy-sdk-js](https://github.com/alchemyplatform/alchemy-sdk-js)
 * [github.com/metachris/flashbotsrpc](https://github.com/metachris/flashbotsrpc)
 * [github.com/cryptoriums/flashbot](https://github.com/cryptoriums/flashbot)
