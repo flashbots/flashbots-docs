@@ -46,7 +46,7 @@ Follow these steps to add Flashbots Protect RPC endpoint for Goerli:
 
 1. Enter your MetaMask and click on your RPC endpoint at the top of your MetaMask. By default it says “Ethereum mainnet.”
 2. Click “Custom RPC”
-3. Add `https://rpc-goerli.flashbots.net` with a chainID of `5` and currency of `ETH`.
+3. Add `https://protect-goerli.flashbots.net` with a chainID of `5` and currency of `ETH`.
 4. Scroll to the bottom and click “Save”
 
 ## Fixing stuck transactions or fixing nonce errors
