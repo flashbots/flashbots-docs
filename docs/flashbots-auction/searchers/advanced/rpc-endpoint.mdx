@@ -156,7 +156,7 @@ This method has the following JSON-RPC format:
   "params": [{
     tx,               // String, raw signed transaction
     maxBlockNumber,   // Hex-encoded number string, optional. Highest block number in which the transaction should be included.
-    preferences: { fast: boolean } // "fast" left for backwards compatibility; may be removed in a future version
+    preferences: { fast: boolean } // optional. "fast" left for backwards compatibility; may be removed in a future version
   }]
 }
 ```
