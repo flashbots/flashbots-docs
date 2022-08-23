@@ -20,7 +20,7 @@ In turn you will receive a JSON response that looks like the following:
         "nonce": "41",
         "value": "10000000000"
     },
-  "fastMode": false, // TODO: deprecate?
+  "fastMode": true, // for backwards compatibility; may be removed in a future version
   "seenInMempool": false,
   "simError": "MaxFeePerGasTooLow"
 }
