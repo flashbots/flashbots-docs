@@ -6,7 +6,7 @@ Transactions using Flashbots for frontrunning protection in theory never reach t
 
 In order to protect against uncle bandits, users looking for frontrunning protection should include a check on the parent hash in their transaction:
 
-```
+```solidity
 require(blockhash(block.number - 1) == expectedParentHash, "block was uncled");
 ```
 
