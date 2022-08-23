@@ -17,8 +17,8 @@ Before you get started here are a few things to be mindful of:
 
 - **You can find the status of your transaction on Etherscan.** Etherscan has a nice interface for viewing the status of your transaction from our [status API](/flashbots-protect/rpc/status-api).
 - We will try to include your transaction for 3 days, after which point it is considered “expired” and will be dropped.
-- Transactions under 42,000 gas, such as simple ether transfers, do not need front-running or revert protection. We will forward these to the public mempool instead.
-- Transactions that perform simple actions - such as token approvals or transfers - will be sent to the public mempool as these do not need frontrunning protection.
+- Transactions under 42,000 gas, such as simple ether transfers, do not need front-running protection, so they are sent to the public mempool to provide the fastest execution possible.
+- Transactions that perform simple actions - such as token approvals or transfers - will also be sent to the public mempool as these do not need frontrunning protection.
 - **There is a risk that your transactions are included in uncled blocks** and then emitted to the public mempool. Please read [the uncle bandits article](/flashbots-protect/rpc/uncle-bandits) to learn more about uncle bandits and how to mitigate this risk.
 - Your transactions can be emitted to the public mempool if you switch RPC endpoints from Flashbots Protect RPC to another RPC while your transactions are pending.
 
