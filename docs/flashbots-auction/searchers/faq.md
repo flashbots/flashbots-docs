@@ -3,7 +3,7 @@ title: FAQ
 ---
 *Check Flashbots Discord [#release](https://discord.com/invite/7hvTycdNcK) channel for the latest releases.*
 
-Don't see your question answered? Join our dedicated [#🤖searchers](https://discord.com/invite/7hvTycdNcK) channel on Discord!
+Don't see your question answered? Join our dedicated [#🤖searchers](https://discord.com/invite/7hvTycdNcK) channel on Discord and be sure to check out our [Searchers Self Support Group](https://collective.flashbots.net/c/searchers/12)!
 
 ### What is Flashbots Auction?
 
@@ -209,3 +209,82 @@ Your previous bundle is dropped if the new bundle is more valuable.
 ### Where can I view the health status of Flashbots' infrastructure?
 
 Status is reported at https://status.flashbots.net/. Please check this link for any network outages or downtime.
+
+### How will sending bundles change in PoS Ethereum?
+
+Sending bundles will feel very much the same as it does with Flashbots PoW Ethereum infrastructure. You’ll still be able to send & simulate atomic bundles, and use the same bidding strategies in the blockspace/MEV auction.
+
+The real difference is in the backend architecture.
+
+`relay.flashbots.net` (where bundles are sent in PoW Ethereum) will send bundles to the Flashbots builder after the merge. On the searcher side, the method for sending bundles to flashbots doesn’t change at all. All Flashbots relay endpoints from PoW Ethereum will be the same post-merge.
+
+With PBS, you may want to send bundles to more builders than just Flashbots. Other builders will need to implement their own version of this bundle relay to accept bundles, but as long as other builders adhere to the same API specification as Flashbots, you can use existing Flashbots client libraries to interact with these builders.
+
+### How do I choose a good block builder?
+
+There are a few criteria to look for in a block builder:
+
+* Are they committed to fair and unbiased execution?
+  * A good builder will not front-run, sandwich or censor bundles, or otherwise engage in activities that abuse privileged data access.
+* Do they connect to a trusted relay?
+  * Keep in mind that the relay can also see raw transactions, which gives them the ability to front-run, censor, etc.
+* Does their relay connect to enough validators?
+  * The more validators a relay connects to, the more slots will generally be available for builders connected to that relay. When you’re targeting a specific block/slot, it’s imperative that you send your transactions to a builder which is connected to the validator responsible for proposing a block in that slot. More validators ⇒ better inclusion rates.
+  * Note: Any validator can [use mev-boost to connect to the Flashbots relay and other relays](https://github.com/flashbots/mev-boost#usage).
+  * It’s also worth considering how much collective stake the validators connected to a relay have. Generally speaking, if more than one block is proposed to the network (unusual but possible), the block with the most collective stake attesting to it will be included. This scenario is explained in greater detail in the [Ethereum docs](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/#fork-choice).
+
+Also note that block builders have the freedom to specialize. You may find that one builder is more or less friendly to your strategy than others. Builders are competing with each other, so they are all incentivized to include your bundles in their blocks, but you may find that some builders will prioritize certain strategies over others regardless of potential profits. Builders might also censor certain bundles due to local regulations or corporate strategies and policies. There are a lot of variables in play here, so I recommend trying a few trusted builders and seeing how your mileage varies first-hand.
+
+Flashbots will run a builder that follows the same principles we’ve adhered to in PoW Ethereum: democratized access to MEV, fair & reliable execution, and privacy.
+
+### How are “relays” defined in PoS Ethereum?
+
+Before the merge, mev-relay (commonly referred to as "the relay")  was responsible for accepting bundles from searchers and relaying them to miners.
+
+After the merge, the term "relay" will mean something entirely different. *These* relays are a component of PBS -- they're responsible for escrowing blocks from builders for validators. With mev-boost, validators choose the most profitable block from a number of relays. Each relay keeps the contents of a block private until the validator commits to proposing it to the network for inclusion.
+
+Specifically, relays do the following:
+
+* accept new blocks from builders
+* send header of most profitable block to a validator upon request
+  * *the validator locks in their commitment to propose the full block by signing this header*
+* send full block to validator after receiving block header signed by the validator
+* perform all of this quickly and reliably, so that validators don’t miss proposal deadlines
+
+For a deeper explanation of mev-boost and relays, Check out @thegostep’s *[ethresear.ch post](https://ethresear.ch/t/mev-boost-merge-ready-flashbots-architecture/11177)*.
+
+For more information about how bundles are sent post-merge, see [this forum post](https://collective.flashbots.net/t/how-will-sending-bundles-change-in-pos-ethereum/147).
+
+### Can I be a block builder? How?
+
+mev-boost provides the foundation for a competitive market of block builders, each trying to provide the most profitable block to validators. Naturally, some searchers should want to become builders themselves. We expect there to be multiple relays in the future with varying requirements on who can submit blocks to them and how those blocks can be submitted. We are currently working on the rules for how the Flashbots Relay for mev-boost will accept blocks from builders.
+
+If you are interested in becoming a builder or just want to learn more, check out [this issue on mev-boost](https://github.com/flashbots/mev-boost/issues/145).
+
+### What trust assumptions exist in proposer-builder separation (PBS)?
+
+In this initial implementation of PBS (mev-boost), to prevent things like front-running, censorship, and unauthorized data sharing, each party has to trust the parties to which they connect. When PBS is [built natively](https://ethresear.ch/t/two-slot-proposer-builder-separation/10980) into the Ethereum protocol, these trust assumptions will be reduced by eliminating the need for relays.
+
+* Searchers have to trust the builder(s) to which they send bundles.
+  
+  Builders may be the most incentivized to ~~use~~ abuse your transactions to extract additional MEV. As a searcher, you must find a builder with reputation at stake, so you can trust that they won’t take short-term profits in favor of your continued bundle submissions.
+
+* Builders have to trust the relay to which they send blocks.
+  
+  For background on relays, see [this post](https://collective.flashbots.net/t/how-are-relays-defined-in-pos-ethereum/148).
+
+  Of course, block builders have to trust that relays won’t leak transaction data or use it to extract additional MEV (secretly building blocks themselves). But the other major consideration is that the relay has to respond to the validator’s requests quickly, so that the validator does not miss the chance to propose a builder’s block. If the validator misses the slot, the builder of the most profitable block which would have been proposed loses out on their profits as well.
+
+* Validators have to trust the relay(s) from which they receive blocks.
+  
+  A strictly rational validator won’t care if a relay abuses their transaction view and extracts unfair MEV, as this is actually more profitable for the validator. That being said, if a relay abuses its power, it won’t last for long.
+  
+  For validators, the performance of the relay is paramount. Validators must trust that the relay(s) they connect to will respond to their requests quickly and reliably. If the relay does not respond in time, a validator may miss their window to include a block in the next slot, and will not earn any rewards for their participation.
+
+Read more about the trust assumptions of mev-boost-enabled PBS in [Stephane’s research post](https://ethresear.ch/t/mev-boost-merge-ready-flashbots-architecture/11177).
+
+### Will the mempool change in PoS Ethereum?
+
+The public mempool works the same in PoS as in PoW — anyone running an execution client (e.g. geth) can read transactions from the mempool.
+
+It should be noted, however, that the post-merge public mempool may not see as much activity as it does today. With PBS, users and wallets may choose to send all of their transactions to a specific builder (or builders) rather than to the public mempool.
