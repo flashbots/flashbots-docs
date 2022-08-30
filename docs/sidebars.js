@@ -126,12 +126,32 @@ module.exports = {
     },
     {
       "flashbots MEV-boost": [
-        'flashbots-mev-boost/overview',
+        'flashbots-mev-boost/introduction',
         {
           'architecture': [
-            'flashbots-mev-boost/architecture/architecture-overview',
+            'flashbots-mev-boost/architecture/MEV-boost-specifications',
+            'flashbots-mev-boost/architecture/MEV-boost-block-proposal',
+            'flashbots-mev-boost/architecture/relays',
+            'flashbots-mev-boost/architecture/block-builders',
+            'flashbots-mev-boost/architecture/block-proposers'
           ]
-        }
+        },
+        {
+          'getting started':[
+            'flashbots-mev-boost/getting-started/system-requirements',
+            'flashbots-mev-boost/getting-started/installation',
+            'flashbots-mev-boost/getting-started/usage',
+          ]
+        },
+          'flashbots-mev-boost/troubleshooting',
+          'flashbots-mev-boost/contributing',
+          'flashbots-mev-boost/security',
+          'flashbots-mev-boost/FAQ',
+          'flashbots-mev-boost/glossary',
+          'flashbots-mev-boost/resources',
+          'flashbots-mev-boost/community-tools',
+          'flashbots-mev-boost/license',
+          
       ],
     },
     {
