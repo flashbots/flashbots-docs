@@ -133,7 +133,8 @@ module.exports = {
             'flashbots-mev-boost/architecture/MEV-boost-block-proposal',
             'flashbots-mev-boost/architecture/relays',
             'flashbots-mev-boost/architecture/block-builders',
-            'flashbots-mev-boost/architecture/block-proposers'
+            'flashbots-mev-boost/architecture/block-proposers',
+            'flashbots-mev-boost/architecture/risks'
           ]
         },
         {
