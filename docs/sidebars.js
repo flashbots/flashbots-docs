@@ -125,6 +125,16 @@ module.exports = {
       ],
     },
     {
+      "flashbots MEV-boost": [
+        'flashbots-mev-boost/overview',
+        {
+          'architecture': [
+            'flashbots-mev-boost/architecture/architecture-overview',
+          ]
+        }
+      ],
+    },
+    {
       "community": [
         'community-tools', 'whitehat',
       ],
