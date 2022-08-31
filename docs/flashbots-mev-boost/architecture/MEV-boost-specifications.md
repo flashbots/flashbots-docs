@@ -9,7 +9,7 @@
 
 ## Fundamental Specifications
 
-[Ethereum Beacon APIs](https://www.notion.so/WIP-MEV-Boost-Docs-Revision-DRAFT-73ad491a1e5a492a9977b1070e37af39)
+[Ethereum Beacon APIs](https://github.com/ethereum/beacon-APIs)
 
 - Collection of RESTful APIs exposed by a beacon node aiming to facilitate [Phase 0](https://www.notion.so/WIP-MEV-Boost-Docs-Revision-DRAFT-73ad491a1e5a492a9977b1070e37af39) of Ethereum consensus.****
 

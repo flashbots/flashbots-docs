@@ -22,14 +22,3 @@ Block builders prepare full blocks, optimizing for MEV extraction and fair distr
 
 Relays aggregate blocks from **multiple** builders and identify the most profitable block to submit to the block proposer. The proposing validators’ consensus client then propagates the most profitable block received from MEV-boost to the Ethereum network for attestation and block inclusion.
 
-## The future of MEV-Boost
-
-PBS was initially proposed by Ethereum researchers as a response to the risk MEV poses to decentralized consensus networks. MEV-boost is a prototype that provides the necessary logic and middleware missing from PoS Ethereum to achieve proposer/builder separation. It is a temporary solution that requires higher trust assumptions than in-protocol PBS, but can be fully implemented without modification to the base protocol. 
-
-In the future, [proposer/builder separation](https://ethresear.ch/t/two-slot-proposer-builder-separation/10980) will be enshrined into the base Ethereum protocol to further harden its trust model.
-
-See also:
-
-- [MEV-Boost Landing Page](https://boost.flashbots.net/)
-- [MEV-Boost Wiki on Github](https://github.com/flashbots/mev-boost/wiki)
-- [About Flashbots](https://github.com/flashbots/pm)

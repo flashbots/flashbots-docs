@@ -27,5 +27,4 @@
 - [CoinCashew’s Client Usage Guide](https://eth-docker.net/docs/Usage/ResourceUsage)
 - [eth-docker: Docker automation for Ethereum consensus and execution clients.](https://github.com/eth-educators/eth-docker)
 - [Validator Slashing Prevention Tips - Prysmatic Labs](https://medium.com/prysmatic-labs/eth2-slashing-prevention-tips-f6faa5025f50)
-- [Rewards and Penalties on Ethereum 2.0 [Phase 0]](https://www.notion.so/Product-Sync-f216508e87674820b8d2012ecf0ca653)
 - [Understanding Eth2 Slashing Preventative Measures](https://www.bloxstaking.com/blog/ethereum-2-0/understanding-eth2-slashing-preventative-measures/)

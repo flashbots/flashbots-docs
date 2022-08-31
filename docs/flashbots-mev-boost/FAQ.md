@@ -14,16 +14,15 @@ Or to implement your own builder, which is a complicated task and still leaves y
 Yes. The `-relay-check` flag can be called to check the status of relays, will return an error if none of the configured relays are responsive. 
 
 ```json
-**#Example -relay-check call:**
+#Example -relay-check call:
 
 ./mev-boost -goerli -relays -relay-check https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net
 ```
 
-./mev-boost -goerli  -relay-check -relays [https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net](https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@builder-relay-goerli.flashbots.net/)
 
 **What is the difference between a beacon node, validator, and validator client?** 
 
-A "**node**" or “**beacon node**” follows and reads the beacon chain. **validator clients (VC)** are specialized software that stake 32 ETH as collateral within Ethereum's **consensus layer** in order to participate in consensus duties. Validator clients are responsible for executing duties, such as proposing blocks and signing of attestations within Ethereum's proof-of-stake consensus mechanism, and will fully replace proof-of-work miners after [The Merge](https://ethereum.org/en/upgrades/merge/). **validators** most often refers to a validator client instance, but can refer to an individual that physically manages a validator client. This is an optional role in which a user posts ETH as collateral to a validator client in order to verify and attest to blocks, and seek financial returns in exchange for building and securing the protocol. This is similar to proof-of-work networks in which miners provide collateral in the form of hardware/hash-power to seek returns in exchange for building and securing the protocol. [Read more here.](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/validator.md)****
+A "**node**" or “**beacon node**” follows and reads the beacon chain. **validator clients (VC)** are specialized software that stake 32 ETH as collateral within Ethereum's **consensus layer** in order to participate in consensus duties. Validator clients are responsible for executing duties, such as proposing blocks and signing of attestations within Ethereum's proof-of-stake consensus mechanism, and will fully replace proof-of-work miners after [The Merge](https://ethereum.org/en/upgrades/merge/). **validators** most often refers to a validator client instance, but can refer to an individual that physically manages a validator client. This is an optional role in which a user posts ETH as collateral to a validator client in order to verify and attest to blocks, and seek financial returns in exchange for building and securing the protocol. This is similar to proof-of-work networks in which miners provide collateral in the form of hardware/hash-power to seek returns in exchange for building and securing the protocol. [Read more here.](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/validator.md)
 
 **What prevents block proposers from stealing MEV from submitted builders’ blocks?**
 

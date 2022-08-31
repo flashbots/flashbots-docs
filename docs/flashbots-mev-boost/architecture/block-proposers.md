@@ -21,4 +21,4 @@ With MEV-Boost, the role of validator is simplified to **proposal** duties only,
 - Receive a block from their local execution client, i.e. their local block builder, and sign / ‘propose’ it, or
 - Receive an execution payload header from one or more relays and blindly sign a block without seeing the underlying execution payload (i.e. the blinded TXs escrowed by the relay).
 
-The Ethereum [consensus-specs](https://github.com/ethereum/consensus-specs) have well defined expectations of honest validators, the most recent standard is the **[Bellatrix -- Honest Validator](https://github.com/ethereum/consensus-specs/blob/dev/specs/bellatrix/validator.md#bellatrix----honest-validator)** specification.
+The Ethereum [consensus-specs](https://github.com/ethereum/consensus-specs) have well defined expectations of honest validators, the most recent standard is the [Bellatrix -- Honest Validator](https://github.com/ethereum/consensus-specs/blob/dev/specs/bellatrix/validator.md#bellatrix----honest-validator) specification.
