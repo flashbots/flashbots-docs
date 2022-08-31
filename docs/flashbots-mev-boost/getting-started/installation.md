@@ -37,3 +37,10 @@ We maintain a mev-boost Docker image at [https://hub.docker.com/r/flashbots/mev
 docker pull flashbots/mev-boost:latest
 docker run flashbots/mev-boost -help
 ```
+|  | MEV-Boost Client Guides |
+| --- | --- |
+| Teku | [Guide](https://hackmd.io/@StefanBratanov/BkMlo1RO9)|
+| Prysm | [Guide](https://hackmd.io/@prysmaticlabs/BJeinxFsq) |
+| Lighthouse | [Guide](https://lighthouse-book.sigmaprime.io/builders.html#mev-and-lighthouse) |
+| Lodestar | [Guide](https://github.com/ChainSafe/lodestar/blob/unstable/docs/usage/mev-integration.md) |
+| Nimbus | [Guide](https://github.com/status-im/nimbus-eth2/pull/3883) |
