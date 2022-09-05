@@ -24,7 +24,7 @@ A relay has several responsibilities:
 
 The current specification for the [open-source Flashbots relay](https://github.com/flashbots/mev-boost-relay). Diagram below displays the current architecture:
 
-![Flashbots Relay](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c4460f24-9643-470a-a956-d886bf92e354/Screenshot_2022-06-22_at_17.54.56.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220830%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220830T205729Z&X-Amz-Expires=86400&X-Amz-Signature=abc6d574c4cec35cbb7e970984b9014e26b27964d1ca7390d9d62fa566382f36&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screenshot%25202022-06-22%2520at%252017.54.56.png%22&x-id=GetObject)
+![Flashbots Relay](https://flashbots.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc4460f24-9643-470a-a956-d886bf92e354%2FScreenshot_2022-06-22_at_17.54.56.png?table=block&id=ed097235-1a1d-497f-b3a4-f2c4673ac26e&spaceId=df6156be-4a40-4dc3-9a41-d3def62df57a&width=2000&userId=&cache=v2)
 
 ### [Proposer API](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
 
