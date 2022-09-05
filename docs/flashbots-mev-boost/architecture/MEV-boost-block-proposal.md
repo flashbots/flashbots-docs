@@ -1,6 +1,6 @@
 ## MEV-Boost Block Proposal
 
-![MEV-Boost Block Proposal](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ba103f23-f255-4424-9efc-7229bc598243/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220830%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220830T205159Z&X-Amz-Expires=86400&X-Amz-Signature=3ec5ca772e1bdf55a4711056d34f7936fe92ff020aea4128a0e983c7e7a71336&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![MEV-Boost Block Proposal](https://raw.githubusercontent.com/flashbots/mev-boost/main/docs/block-proposal.png)
 
 As depicted above and described in the [Builder — Honest Validator](https://github.com/ethereum/builder-specs/blob/main/specs/validator.md#builder----honest-validator) repository, the MEV-Boost block proposal process begins with a [registration step](https://github.com/ethereum/builder-specs/blob/main/specs/validator.md#registration-dissemination) that validators must perform ahead of  proposal duties. Registration ensures builders can craft blocks for a given validator’ block proposal. Once registered, validators wait until selected to propose a block. Once selected, a block proposer building a block on top of a beacon `state` in a given `slot` must take the following actions to obtain an [execution payload](https://github.com/ethereum/consensus-specs/blob/a45ee9bf5b1fde766d69e551a6b1a21fe2531734/specs/merge/beacon-chain.md#executionpayload):
 
