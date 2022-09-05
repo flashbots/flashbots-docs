@@ -15,11 +15,11 @@
 
 - Current Ethereum PoS consensus specifications.
 
-## Tooling and Dependent Repositories
+## Tooling and Related Repositories
 
-- MEV-Boost Builder [https://github.com/flashbots/boost-geth-builder](https://github.com/flashbots/boost-geth-builder)
-- MEV-Boost Relay [https://github.com/flashbots/mev-boost-relay](https://github.com/flashbots/mev-boost-relay)
-- Go Utils [https://github.com/flashbots/go-boost-utils](https://github.com/flashbots/go-boost-utils)
-- MergeMock [https://github.com/protolambda/mergemock](https://github.com/protolambda/mergemock)
-- mev-rs [https://github.com/ralexstokes/mev-rs](https://github.com/ralexstokes/mev-rs)
+```suggestion
+- [MEV-Boost](https://github.com/flashbots/mev-boost)
+- [MEV-Boost Relay](https://github.com/flashbots/mev-boost-relay)
+- [Go Boost Utils](https://github.com/flashbots/go-boost-utils)
+- [MEV-Boost Builder](https://github.com/flashbots/boost-geth-builder)
 - Relay status page: [https://0xpanoramix.github.io/flashbots-boost-status/](https://0xpanoramix.github.io/flashbots-boost-status/)
