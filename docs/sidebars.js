@@ -150,9 +150,7 @@ module.exports = {
           'flashbots-mev-boost/FAQ',
           'flashbots-mev-boost/glossary',
           'flashbots-mev-boost/resources',
-          'flashbots-mev-boost/community-tools',
-          'flashbots-mev-boost/license',
-          
+          'flashbots-mev-boost/community-tools',          
       ],
     },
     {
