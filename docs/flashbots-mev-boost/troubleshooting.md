@@ -4,7 +4,7 @@
 
 Often shows up in MEV-boost logs as 502 errors in `registerValidator` request.
 
-### L**ogs contain `not a known validator`**
+### Logs contain `not a known validator`
 
 This means the relay doesn't know about this validator and thinks it is not active or pending based on what it received from the beacon node.
 
