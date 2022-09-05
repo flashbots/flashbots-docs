@@ -16,4 +16,4 @@ Builders run algorithms and simulations (e.g. First Come First Serve, First Pric
 
 ### Builder Proposer Payment
 
-Details about builder payments to block proposers [can be found here.](https://www.notion.so/flashbots/WIP-Builder-Payments-to-Block-Proposers-530eb36c60ad417a8702dd26da810b72)
+Details about builder payments to block proposers [can be found here.](https://flashbots.notion.site/WIP-Builder-Payments-to-Block-Proposers-530eb36c60ad417a8702dd26da810b72)
