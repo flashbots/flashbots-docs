@@ -10,7 +10,7 @@ A builder that dominates the market because of its outsized profitability gains 
 
 **Builder/Relay Collusion**
 
-Anyone can be a relay, and they will compete on reputation and service to both builders and validators. While this is a strict improvement to the trust model compared MEV extraction in PoW Ethereum, relays can still be a risk to both builders and validators. This risk will be addressed in Stage 3 PBS (enshrined), which is getting rid of the trusted relay altogether.****
+Anyone can be a relay, and they will compete on reputation and service to both builders and validators. While this is a strict improvement to the trust model compared MEV extraction in PoW Ethereum, relays can still be a risk to both builders and validators. This risk will be addressed in Stage 3 PBS (enshrined), which is getting rid of the trusted relay altogether.
 
 **Malicious Relays**
 
