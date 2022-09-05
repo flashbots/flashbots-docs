@@ -12,7 +12,7 @@ Builders run algorithms and simulations (e.g. First Come First Serve, First Pric
 
 ### Boost-Geth-Builder
 
-MEV-Boost Geth Builder is a testnet-ready open-source builder developed and used by Flashbots. The Builder API implements the [builder spec](https://github.com/ethereum/builder-specs), and can be run on preferred testnets, such as Kiln, Goerli, and local devnets.
+[MEV-Boost Geth Builder](https://github.com/flashbots/boost-geth-builder) is a testnet-ready open-source builder reference implementation (not meant for production). 
 
 ### Builder Proposer Payment
 
