@@ -2,6 +2,8 @@
 
 To connect to various networks, use the appropriate network flag for the specific network and relay URL, e.g. `-kiln`, `-ropsten`, `-sepolia`,  `-goerli` or `-mainnet`. You can add multiple relays comma-separated to the `-relays` flag, like this: `-relays https://relay1,https://relay2`
 
+You can find a comprehensive list of relays at https://boost.flashbots.net
+
 ### **Mainnet Relay**
 
 Run mev-boost pointed at our [Mainnet Relay:](https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net/)
@@ -42,8 +44,8 @@ Run mev-boost pointed at our [Sepolia Relay](https://builder-relay-sepolia.flas
 ./mev-boost -sepolia -relay-check -relays https://0x845bd072b7cd566f02faeb0a4033ce9399e42839ced64e8b2adcfc859ed1e8e1a5a293336a49feac6d9a5edb779be53a@builder-relay-sepolia.flashbots.net
 ```
 
-## CLI Commands - [Advanced]
+## Checking if everything works
 
-### **`test-cli`**
+You can check if you setup works by looking up the validator registration of your proposer using the Relay Data API: https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5#308368dd0b9d4eccaa1ffad1c9e68906
 
-`test-cli` is a utility to execute all proposer requests against mev-boost + relay. See also the [test-cli readme](https://github.com/flashbots/mev-boost/blob/main/cmd/test-cli/README.md).
+Example API URL: https://boost-relay.flashbots.net/relay/v1/data/validator_registration?pubkey=0xb606e206c2bf3b78f53ebff8be8e8d4af2f0da68646b5642c4d511b15ab5ddb122ae57b48eab614f8ca5bafbe75a5999
