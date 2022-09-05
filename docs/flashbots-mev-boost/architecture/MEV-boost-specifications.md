@@ -9,7 +9,7 @@
 
 [Ethereum Beacon APIs](https://github.com/ethereum/beacon-APIs)
 
-- Collection of RESTful APIs exposed by a beacon node aiming to facilitate [Phase 0](https://www.notion.so/WIP-MEV-Boost-Docs-Revision-DRAFT-73ad491a1e5a492a9977b1070e37af39) of Ethereum consensus.****
+- Collection of RESTful APIs exposed by a beacon node aiming to facilitate [Phase 0](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/validator.md) of Ethereum consensus.
 
 [Consensus Specs](https://github.com/ethereum/consensus-specs)
 
@@ -17,9 +17,8 @@
 
 ## Tooling and Related Repositories
 
-```suggestion
 - [MEV-Boost](https://github.com/flashbots/mev-boost)
 - [MEV-Boost Relay](https://github.com/flashbots/mev-boost-relay)
 - [Go Boost Utils](https://github.com/flashbots/go-boost-utils)
 - [MEV-Boost Builder](https://github.com/flashbots/boost-geth-builder)
-- Relay status page: [https://0xpanoramix.github.io/flashbots-boost-status/](https://0xpanoramix.github.io/flashbots-boost-status/)
+- [Relay Status Page ](https://0xpanoramix.github.io/flashbots-boost-status/)
