@@ -35,11 +35,11 @@ Standard [builder spec](https://ethereum.github.io/builder-specs/#/Builder) APIs
 - [submitBlindedBlock](https://ethereum.github.io/builder-specs/#/Builder/submitBlindedBlock): `POST /eth/v1/builder/blinded_blocks` - Submit a signed blinded block and get unblinded execution payload.
 - [status](https://ethereum.github.io/builder-specs/#/): `GET /eth/v1/builder/status`
 
-### [Block Builder API](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
+### [Block Builder API](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
 
 Get a list of validator registrations for the current and next epoch, submit a new block to the relay.
 
-### [Data API](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
+### [Data API](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
 
 Provides data about received blocks from builders and header/payload queries from proposers. 
 
@@ -47,7 +47,7 @@ note from chris: removed the data api, it’s not live and probably won’t be, 
 
 ## [Relay Monitor](https://hackmd.io/@ralexstokes/SynPJN_pq)
 
-While relays are trusted actors, the ability to run a relay is permissionless. To mitigate potential abuses of this role, Flashbots [has suggested](https://github.com/flashbots/mev-boost/issues/142) a “relay monitor,” which uses publicly available data to form a view on the behavior and performance of the set of relays it is monitoring. More details can be found in the [relay monitor design documentation](https://hackmd.io/@ralexstokes/SynPJN_pq), [keeping MEV-Boost relays honest](https://notes.ethereum.org/@yoav/BJeOQ8rI5), and [understanding liveness risks](https://www.notion.so/Understanding-liveness-risks-from-mev-boost-3b0c6399d803476dab686cb94a1e4dc5).
+While relays are trusted actors, the ability to run a relay is permissionless. To mitigate potential abuses of this role, Flashbots [has suggested](https://github.com/flashbots/mev-boost/issues/142) a “relay monitor,” which uses publicly available data to form a view on the behavior and performance of the set of relays it is monitoring. More details can be found in the [relay monitor design documentation](https://hackmd.io/@ralexstokes/SynPJN_pq), [keeping MEV-Boost relays honest](https://notes.ethereum.org/@yoav/BJeOQ8rI5), and [understanding liveness risks](https://writings.flashbots.net/writings/understanding-mev-boost-liveness-risks).
 
 ## [Circuit Breaker](https://hackmd.io/@ralexstokes/BJn9N6Thc)
 
