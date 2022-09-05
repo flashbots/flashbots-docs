@@ -13,7 +13,7 @@ This means the relay doesn't know about this validator and thinks it is not acti
 - Make sure you can find the validator like this on the beacon chain explorer: [https://prater.beaconcha.in/validator/0x982dd72a5e4fd203113e309dacd5268c3d84c4404425deec858e26dc2e982e3ff17f1f412881664fe0f18c9a0d17632f](https://prater.beaconcha.in/validator/0x982dd72a5e4fd203113e309dacd5268c3d84c4404425deec858e26dc2e982e3ff17f1f412881664fe0f18c9a0d17632f)
 - If the validator can be found in prater.beaconcha.in, then create a Github issue with the beaconcha.in link and the mev-boost logs
 
-### L**ogs contain `context deadline exceeded`**
+### Logs contain `context deadline exceeded`
 
 - This means that the the request didn't finish in time until the mev-boost request timeout expires.
 - Sending 1k validator registrations is about 500KB of data, to get an estimate.
