@@ -41,9 +41,7 @@ Get a list of validator registrations for the current and next epoch, submit a n
 
 ### [Data API](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
 
-Provides data about received blocks from builders and header/payload queries from proposers. 
-
-note from chris: removed the data api, it’s not live and probably won’t be, it was more a discussion in progress, but now deprecated by the other data apis
+Provides data about received blocks from builders, payloads delivered to proposers as well as insights into validator registrations.
 
 ## [Relay Monitor](https://hackmd.io/@ralexstokes/SynPJN_pq)
 
@@ -51,7 +49,7 @@ While relays are trusted actors, the ability to run a relay is permissionless. T
 
 ## [Circuit Breaker](https://hackmd.io/@ralexstokes/BJn9N6Thc)
 
-The circuit breaker is implemented by client software teams to define “circuit breaking” conditions using globally available inputs (simply, the chain) which determine whether clients should make a decision to terminate an external builder network in favor of local block production. Once the circuit breaker condition is met, the only way to reset the state is to restart the beacon node where the missing slots tally will be 0. 
+The circuit breaker is implemented by client software teams to define “circuit breaking” conditions using globally available inputs (simply, the chain) which determine whether clients should make a decision to terminate an external builder network in favor of local block production. Once the circuit breaker condition is met, the only way to reset the state is to restart the beacon node where the missing slots tally will be 0.
 
 Each consensus client implements different circuit breaker conditions, as an example:
 
