@@ -2,6 +2,12 @@
 
 To connect to various networks, use the appropriate network flag for the specific network and relay URL, e.g. `-kiln`, `-ropsten`, `-sepolia`,  `-goerli` or `-mainnet`. You can add multiple relays comma-separated to the `-relays` flag, like this: `-relays https://relay1,https://relay2`
 
+### **Mainnet Relay**
+
+Run mev-boost pointed at our [Mainnet Relay:](https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net/)
+
+ `./mev-boost -goerli -relay-check -relays https://0xac6e77dfe25ecd6110b8e780608cce0dab71fdd5ebea22a16c0205200f2f8e2e3ad3b71d3499c54ad14d6c21b41a37ae@boost-relay.flashbots.net`
+
 ### **Goerli testnet**
 
 Run mev-boost pointed at our [Goerli Relay](https://builder-relay-goerli.flashbots.net/):
