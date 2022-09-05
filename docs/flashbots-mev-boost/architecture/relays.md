@@ -20,7 +20,7 @@ A relay has several responsibilities:
     - the correct block attributes and transactions exist.
     - the block gas is within the gasLimit requested by validator.
 
-## [Relay API Specification](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
+## [Relay API Specification](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
 
 The current specification for the [open-source Flashbots relay](https://github.com/flashbots/mev-boost-relay). Diagram below displays the current architecture:
 
