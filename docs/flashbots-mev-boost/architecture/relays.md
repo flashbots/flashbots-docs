@@ -26,7 +26,7 @@ The current specification for the [open-source Flashbots relay](https://github.c
 
 ![Flashbots Relay](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c4460f24-9643-470a-a956-d886bf92e354/Screenshot_2022-06-22_at_17.54.56.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220830%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220830T205729Z&X-Amz-Expires=86400&X-Amz-Signature=abc6d574c4cec35cbb7e970984b9014e26b27964d1ca7390d9d62fa566382f36&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screenshot%25202022-06-22%2520at%252017.54.56.png%22&x-id=GetObject)
 
-### [Proposer API](https://www.notion.so/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
+### [Proposer API](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
 
 Standard [builder spec](https://ethereum.github.io/builder-specs/#/Builder) APIs
 
