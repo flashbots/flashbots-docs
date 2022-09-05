@@ -18,4 +18,4 @@ Nothing prevents malicious relays from submitting fraudulent bids, which affects
 
 **MEV Hiding**
 
-A risk that occurs when node operators (often managing the stake of third party customers) are incentivized to hide MEV-rewards earned in a given block for themselves.
+A risk that occurs when node operators (often managing the stake of third party customers) are incentivized to hide MEV-rewards earned in a given block.
