@@ -1,6 +1,6 @@
 ## Troubleshooting
 
-### **`registerValidator` errors**
+### `registerValidator` errors
 
 Often shows up in MEV-boost logs as 502 errors in `registerValidator` request.
 
