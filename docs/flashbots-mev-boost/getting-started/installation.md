@@ -1,6 +1,6 @@
 # Installation
 
-`mev-boost` can run in any machine, as long as it is reachable by the beacon client. The default port is **18550**. The most common setup is to install it in the **same machine as the beacon client.** 
+`mev-boost` can run in any machine, as long as it is reachable by the beacon client. The default port is **18550**. The most common setup is to install it in the **same machine as the beacon client.**
 
 ## Dependencies
 
@@ -32,6 +32,8 @@ We maintain a mev-boost Docker image at [https://hub.docker.com/r/flashbots/mev
 
 - [Install Docker Engine](https://docs.docker.com/engine/install/)
 - Pull & run the latest image:
+
+## Consensus client configuration guides
 
 ```bash
 docker pull flashbots/mev-boost:latest
