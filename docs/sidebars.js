@@ -36,6 +36,7 @@ module.exports = {
                 'flashbots-auction/searchers/libraries/golang',
                 'flashbots-auction/searchers/libraries/ethers-js-provider',
                 'flashbots-auction/searchers/libraries/web3py-provider',
+                'flashbots-auction/searchers/libraries/alchemyprovider',
               ]
             },
             'flashbots-auction/other-resources'
