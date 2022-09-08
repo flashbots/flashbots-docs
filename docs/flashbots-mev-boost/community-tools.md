@@ -1,5 +1,12 @@
-## Flashbots Relayer Status
+## Flashbots Relays Status
 
 [Monitor Flashbots Relays](https://0xpanoramix.github.io/flashbots-boost-status/) status on various timescales, by 0xpanoramix.
 
-![Untitled](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4c213924-8672-4c83-9e9f-605c5399503d%2FUntitled.png?table=block&id=5fce516f-d542-4ff1-8f46-a2f127897e49&spaceId=075d04b3-e5c0-4a97-8020-80f2e2b2206e&width=2000&userId=5d4ec963-edaf-46de-9bbd-bec711cebde4&cache=v2)
+![Untitled](../../static/img/flashbots-relays-status.png)
+
+## Flashbots Relay Data
+
+As official Flashbots Relays expose data according to the [Data Transparency API](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5#38a21c8a40e64970904500eb7b373ea5),
+here is a client to query this API in your own solutions:
+
+- [Golang Client](https://github.com/0xpanoramix/frd-go), by 0xpanoramix

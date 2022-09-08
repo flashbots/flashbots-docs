@@ -13,8 +13,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'flashbots', 
-  projectName: 'docs', 
+  organizationName: 'flashbots',
+  projectName: 'docs',
   url: process.env.TARGET_URL,
   stylesheets: [
     {
@@ -25,7 +25,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
       crossorigin: 'anonymous',
     },
   ],
-  themeConfig: 
+  themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       algolia: {
@@ -54,7 +54,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           },
         ],
       }
-      
+
     }),
   presets: [
     [
