@@ -8,7 +8,8 @@ Flashbots Protect RPC allows regular users to easily submit their transactions t
 There are a few key benefits to using the Flashbots RPC endpoint:
 
 - **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
-- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions. Note: your transaction could be uncled, emitted to the mempool, and then included on-chain.
+- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
+    > Note: your transaction could be uncled, emitted to the mempool, and then included on-chain.
 - **Priority in blocks:** transactions sent via Flashbots are mined at the top of blocks, giving them priority.
 
 ## Key considerations
@@ -16,7 +17,7 @@ There are a few key benefits to using the Flashbots RPC endpoint:
 Before you get started here are a few things to be mindful of:
 
 - **You can find the status of your transaction on Etherscan.** Etherscan has a nice interface for viewing the status of your transaction from our [status API](/flashbots-protect/rpc/status-api).
-- We will try to include your transaction for 3 days, after which point it is considered “expired” and will be dropped.
+- We will try to include your transaction for 6 minutes, after which point it is considered “expired” and will be dropped.
 - Transactions under 42,000 gas, such as simple ether transfers, do not need front-running protection, so they are sent to the public mempool to provide the fastest execution possible.
 - Transactions that perform simple actions - such as token approvals or transfers - will also be sent to the public mempool as these do not need frontrunning protection.
 - **There is a risk that your transactions are included in uncled blocks** and then emitted to the public mempool. Please read [the uncle bandits article](/flashbots-protect/rpc/uncle-bandits) to learn more about uncle bandits and how to mitigate this risk.
