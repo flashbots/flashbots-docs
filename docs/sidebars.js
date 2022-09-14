@@ -41,7 +41,7 @@ module.exports = {
             },
             'flashbots-auction/other-resources'
           ],
-          'releases': [
+          'mev-geth releases': [
             'flashbots-auction/releases/alpha-v0.6',
             'flashbots-auction/releases/alpha-v0.5',
             'flashbots-auction/releases/alpha-v0.4',
