@@ -36,6 +36,7 @@ module.exports = {
                 'flashbots-auction/searchers/libraries/golang',
                 'flashbots-auction/searchers/libraries/ethers-js-provider',
                 'flashbots-auction/searchers/libraries/web3py-provider',
+                'flashbots-auction/searchers/libraries/alchemyprovider',
               ]
             },
             'flashbots-auction/other-resources'
@@ -91,6 +92,35 @@ module.exports = {
             'flashbots-protect/rpc/releases',
           ]
         }
+      ],
+    },
+    {
+      "flashbots MEV-boost": [
+        'flashbots-mev-boost/introduction',
+        {
+          'architecture': [
+            'flashbots-mev-boost/architecture/MEV-boost-specifications',
+            'flashbots-mev-boost/architecture/MEV-boost-block-proposal',
+            'flashbots-mev-boost/architecture/relays',
+            'flashbots-mev-boost/architecture/block-builders',
+            'flashbots-mev-boost/architecture/block-proposers',
+            'flashbots-mev-boost/architecture/risks'
+          ]
+        },
+        {
+          'getting started':[
+            'flashbots-mev-boost/getting-started/system-requirements',
+            'flashbots-mev-boost/getting-started/installation',
+            'flashbots-mev-boost/getting-started/usage',
+          ]
+        },
+          'flashbots-mev-boost/troubleshooting',
+          'flashbots-mev-boost/contributing',
+          'flashbots-mev-boost/security',
+          'flashbots-mev-boost/FAQ',
+          'flashbots-mev-boost/glossary',
+          'flashbots-mev-boost/resources',
+          'flashbots-mev-boost/community-tools',          
       ],
     },
     {
