@@ -48,9 +48,9 @@ Note: The transaction sent last is the first in the `rawTxs` array.
 
 ## Send Bundle
 
-Once all the transactions you want to include in your bundle are added to the queue, send the signed transactions to the flashbots relay.
+Once all the transactions you want to include in your bundle are added to the queue, query the bundle with `GET /bundle?id=<YOUR_BUNDLE_ID>` and send the returned signed transactions to Flashbots as a bundle.
 
-If you're being helped with a whitehat recovery, we will provide a web interface for you to do this.
+If you're being helped with a whitehat recovery, we may provide a web interface for you to do this.
 
 If you want to send a bundle directly, check out the [Flashbots Auction Docs](https://docs.flashbots.net/flashbots-auction/searchers/quick-start#how-to-send-your-first-flashbots-bundle) for instructions on how to do this.
 
