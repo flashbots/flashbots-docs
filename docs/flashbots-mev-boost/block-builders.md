@@ -48,16 +48,16 @@ As outlined in the original [MEV-boost architecture proposal,](https://ethresear
 
 In this article, we outline our preferred solution for builders to make payments to proposers, and provide a release update for payments in the Flashbots reference [boost-geth-builder](https://github.com/flashbots/boost-geth-builder) for further testing.
 
-## Framing the problem
+### Framing the problem
 
 In the [Identifier for builder to proposer transaction #220 issue](https://github.com/flashbots/mev-boost/issues/220), staking providers and node operators outlined a need for an accounting mechanism for MEV payments. This mechanism unlocks a number of necessary operations, such as proving receipt of MEV rewards, fair distribution of rewards to staking customers, and preventing malicious activities, such as [MEV hiding](https://dao.rocketpool.net/t/mev-and-penalty-system/772), among others.
 
 To enable these operations, Flashbots proposes a standardized specification for how payments are made from builders to block proposers through the following process:
 
 1. The builder sets their own address as `feeRecipient` of the payload header they are constructing.
-2. The builder includes a transaction which pays ETH to the proposer’s `feeRecipient` **address at the end of their proposed block. 
+2. The builder includes a transaction which pays ETH to the proposer’s `feeRecipient` address at the end of their proposed block. 
 
-## Further considerations
+### Further considerations
 
 **Withdrawals**
 
@@ -71,6 +71,8 @@ Additional payment methods using transfers to the validator account, or transfer
 
 Adding a transaction that calls a smart contract costs additional gas, and becomes an overhead expense on every block.
 
-## Seeking Feedback
+### Seeking Feedback
 
-We are actively seeking input from node operators and the broader community on implications of this proposed design. We are prepared to move forward with this implementation and continue to iterate as community input is received. **Please provide comments, feedback, or suggest alternatives directly on this forum thread: [https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202/5](https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202/5)**
+We are actively seeking input from node operators and the broader community on implications of this proposed design. We are prepared to move forward with this implementation and continue to iterate as community input is received. 
+
+**Please provide comments, feedback, or suggest alternatives directly on this forum thread: [https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202/5](https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202/5)**
