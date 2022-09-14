@@ -31,7 +31,7 @@ function uniswapWeth(uint256 _wethAmountToFirstMarket, uint256 _ethAmountToCoinb
 }
 ```
 
-The above smart contract code will attempt to capitalize on arbitrage opportunities. If it does not make money doing so then the transaction will fail. Moreover, since the searcher is paying the miner via `block.coinbase.transfer()` on the last line then the searcher won't pay any transaction fees.
+The above smart contract code will attempt to capitalize on arbitrage opportunities. If it does not make money doing so then the transaction will fail.
 
 For more information on how coinbase transfers are priced see the [bundle pricing page](/flashbots-auction/searchers/advanced/bundle-pricing).
 

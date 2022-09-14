@@ -11,7 +11,7 @@ If you want to send a single transaction to Flashbots without sending it as a bu
 
 This method sends your transaction to the Flashbots builder on every block for a maximum of 25 blocks. No need to listen for the next block and re-send yourself. 
 
-Private transactions can be cancelled with the `eth_cancelPrivateTransaction` method. Once a transaction is submitted from the relay to a miner we cannot "recall" it. However, we can cancel submitting transactions for future blocks.
+Private transactions can be cancelled with the `eth_cancelPrivateTransaction` method. Once a transaction is included in a block and received by proposers, we cannot "recall" it. However, we can stop including transactions in future blocks.
 
 See [RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint) for JSON-RPC definitions of the methods.
 

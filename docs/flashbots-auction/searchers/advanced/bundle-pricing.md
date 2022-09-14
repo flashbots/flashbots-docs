@@ -6,9 +6,13 @@ title: bundle pricing
 
 Searchers submit a huge amount of bundles every block, but the amount of blockspace is limited. So what decides what can be included in a block or not? To understand the answer we will first review some context.
 
-At a high level Flashbots is designed such that miners include the most profitable transactions possible in their blocks, and it achieves that by inserting searcher's bundles at the *top of block* and removing transactions at the *tail of the block*. Measured by gas price, these transactions at the tail of a block are the *least profitable* for a miner to mine. That means that for a Flashbots bundle to be considered profitable it must have a higher effective gas price than the transactions it displaces at the tail of the block.
+At a high level the Flashbots block builder is designed to include the most profitable transactions possible in their blocks.
 
-It is important to remember that searchers can pay miners through normal gas fees or directly to the block's coinbase address (the miner). When calculating the *effective* gas price of a bundle, Flashbots takes into account both payments directly to coinbase as well as gas fees.
+In PoW Ethereum, this was achieved by inserting searcher's bundles at the *top of block* and removing transactions at the *tail of the block*. Measured by gas price, these transactions at the tail of a block were the *least profitable* for a miner to mine. That meant that for a Flashbots bundle to be considered profitable it must have a higher effective gas price than the transactions it displaces at the tail of the block.
+
+In PoS Ethereum, the rule of thumb for bundle pricing on Flashbots is practically the same; more profitable transactions (higher gas cost + validator payments) will be favored by the block-building algorithm. The main difference in PoS is that instead of all bundles being placed at the top of the block, bundles may be placed anywhere in a block. This might mean that other transactions (e.g. from the mempool) are placed between bundles. Bundles are still atomic, though -- no transactions will be placed in-between bundle transactions, only in-between separate bundles.
+
+It is important to remember that searchers can bid for inclusion through normal gas fees or directly to the block's coinbase address (the validator). When calculating the *effective* gas price of a bundle, Flashbots takes into account both payments directly to coinbase as well as gas fees.
 
 ### Bundle pricing formula
 

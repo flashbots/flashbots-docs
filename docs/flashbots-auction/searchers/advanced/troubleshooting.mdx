@@ -25,7 +25,7 @@ Covers:
 ```
 
 These two issues are lumped together since their cause, investigation, and resolutions are very similar. Flashbots will not include a bundle with
-1. A reverting transaction (unless specified via [optional argument revertingTxHashes](https://docs.flashbots.net/flashbots-auction/miners/mev-relay/#eth_sendbundle) or uncled)
+1. A reverting transaction (unless specified via [optional argument `revertingTxHashes`](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendbundle) or uncled)
 2. [Gas price below base fee](https://docs.flashbots.net/flashbots-auction/searchers/advanced/eip1559#faq) (would create an invalid block if included)
 3. Effective priority fee not high enough to offset opportunity cost of using that block space for other unrelated transactions _(e.g. your bundle is paying 1 Gwei priority fee, while the cheapest transaction in the block is paying 2 Gwei, it is in the builder's best interest to discard your bundle in favor of standard pending transactions)_
 
@@ -91,7 +91,7 @@ There are numerous reasons why two bundles might conflict. Consider that the bas
 A conflict occurs when a bundle simulates one way at the top of the block, and a different [worse] way when placed after another bundle. Here is a list of the ways a bundle could conflict:
 1. **Nonce collision** - The target bundle includes a transaction from account `A` and nonce `B`. The conflicting bundle also includes a transaction from account `A` and nonce `B`. The most common case for nonce collision is from including the exact same transaction, but it doesn't have to be; the conflicting bundle only needs to increment an account's nonce via any transaction.
 2. **Revert** - The target bundle has no reverting transactions when simulated at the top of the block, but reverts when placed after a conflicting bundle that appears first
-3. **Effective Priority Fee** - A bundle cannot significantly reduce its priority fee between simulating at the top of the block and when it is selected for inclusion. This commonly occurs when a bundle is operating on an arbitrage for which it pays a % of the profit to the miner, with an earlier bundle taking part, but not all, of the arbitrage opportunity.
+3. **Effective Priority Fee** - A bundle cannot significantly reduce its priority fee between simulating at the top of the block and when it is selected for inclusion. This commonly occurs when a bundle is operating on an arbitrage for which it pays a % of the profit to the validator, with an earlier bundle taking part, but not all, of the arbitrage opportunity.
 
 ### Detecting
 If a block you targeted contained Flashbots bundles, but yours did not appear, the next step is to determine which bundles conflicted with yours and, if present, calculate their `effective priority fee`. This can be accomplished through several iterations of simulations, using this strategy:
@@ -178,16 +178,16 @@ Covers:
 ```
 
 Each bundle submission targets only a specific block number, so it is important that the bundle is received as early as possible to ensure the bundle has time to:
-1. Hit the relay
-2. Pass relay simulation
-3. Reach miners
-4. Be present during the miner's next block re-formation
+1. Reach the builder
+2. Pass simulation
+3. Get included in a block
+4. Reach the validator via an mev-boost relay
 
-All this must occur prior to the targeted block being mined. If you are targeting `blockNumber +1`, as most bundles do, it is important to get your bundle to the relay (step 1) as fast as possible.
+All this must occur prior to the targeted block being proposed. If you are targeting `blockNumber +1`, as most bundles do, it is important to get your bundle to your builder(s) as fast as possible.
 
 Keep in mind there is a period of time, for every block, when your local perspective of block height is `X`, while `X+1` has already been found and propagated to part of the network, without reaching your local node yet. During this period of partial propagation, submitting a bundle targeting `X+1`, while seemingly valid from your perspective of the network, can be futile as builders may have already begun work on solving X+2. This is the most extreme case, but the same logic also holds true of targeting `X+1` moments BEFORE it is found as steps 1 through 5 all take time (on the order of about 1-2 seconds).
 
-To see how much time elapsed between your bundle being submitted to Flashbots, forwarded to relays (previously bundles were sent directly to miners), and the next block being found, Flashbots offers an RPC endpoint `eth_getBundleStats` which will return timing to you, based on a previously-submitted bundle. All submitted bundles have a bundleHash [which is easy to calculate](https://github.com/flashbots/ethers-provider-flashbots-bundle/blob/0d404bb041b82c12789bd62b18e218304a095b6f/src/index.ts#L266-L269) and target block number which uniquely identify them for later retrieval.
+To see how much time elapsed between your bundle being submitted to Flashbots, forwarded to relays (previously bundles were sent directly to miners), and the next block being proposed, Flashbots offers an RPC endpoint `eth_getBundleStats` which will return timing to you, based on a previously-submitted bundle. All submitted bundles have a bundleHash [which is easy to calculate](https://github.com/flashbots/ethers-provider-flashbots-bundle/blob/0d404bb041b82c12789bd62b18e218304a095b6f/src/index.ts#L266-L269) and target block number which uniquely identify them for later retrieval.
 
 ```
 console.log(
@@ -218,12 +218,12 @@ Compare the above times to the times you witness the targeted block propagated t
 - If the amount of time is short, get your processing time and network latency down.
 - If the amount of time between `sentToMinersAt` and witnessing the target block is large, continue to the next section
 
-## Is the miner for a particular block/slot running mev-boost?
+## Is the validator for a particular block/slot running mev-boost?
 ```
 5. A validator for target slot not running mev-boost
 ```
 
-mev-boost is an opt-in system that runs alongside a validator's consensus client. Unless every validator on Ethereum runs mev-boost, some slots cannot be targeted with Flashbots.
+mev-boost is an opt-in system that runs alongside a validator's consensus client. Unless every validator on Ethereum runs mev-boost, some slots cannot be targeted with Flashbots. Additionally, your builder must be connected to the same relay as the proposer for the target slot.
 
 If no bundles are detected in the blocks-api response, check if other blocks from the same validator ever have Flashbots bundles. If no blocks from a particular validator contain Flashbots bundles, it is possible your bundle was not seen by the validator who proposed the block for the target block height.
 

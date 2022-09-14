@@ -7,12 +7,6 @@ a **miner payment** is how much was paid to a miner in a given transaction
 
 miner payment includes payment through gas and coinbase transfers
 
-:::note
-
-The "miner" nomenclature will be replaced in a future release to accurately reflect PoS Ethereum architecture.
-
-:::
-
 ### fields
 
 | Column                           | Type                        | Nullable | Description                                            |
@@ -29,3 +23,9 @@ The "miner" nomenclature will be replaced in a future release to accurately refl
 | gas_used                         | numeric                     | not null | total gas used by the transaction                      |
 | transaction_to_address           | character varying(256)      |          | to address of the transaction                          |
 | transaction_from_address         | character varying(256)      |          | from address of the transaction                        |
+
+:::note
+
+The "miner" nomenclature will be replaced in a future release to accurately reflect PoS Ethereum architecture.
+
+:::
