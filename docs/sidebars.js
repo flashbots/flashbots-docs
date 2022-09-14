@@ -40,36 +40,6 @@ module.exports = {
             },
             'flashbots-auction/other-resources'
           ],
-          'for miners & mining pools': [
-            'flashbots-auction/miners/quick-start',
-            'flashbots-auction/miners/how-it-works',
-            'flashbots-auction/miners/demo',
-            'flashbots-auction/miners/faq',
-            {
-              "advanced concepts": [
-                'flashbots-auction/miners/advanced/source-code',
-                'flashbots-auction/miners/advanced/interacting-with-relay',
-                'flashbots-auction/miners/advanced/discord-setup',
-
-                {
-                  'mev-geth spec': [
-                    'flashbots-auction/miners/mev-geth-spec/v06',
-                    'flashbots-auction/miners/mev-geth-spec/v06-rpc',
-                    'flashbots-auction/miners/mev-geth-spec/v05',
-                    'flashbots-auction/miners/mev-geth-spec/v05-rpc',
-                    'flashbots-auction/miners/mev-geth-spec/v04',
-                    'flashbots-auction/miners/mev-geth-spec/v04-rpc',
-                    'flashbots-auction/miners/mev-geth-spec/v03',
-                    'flashbots-auction/miners/mev-geth-spec/v03-rpc',
-                    'flashbots-auction/miners/mev-geth-spec/v02',
-                    'flashbots-auction/miners/mev-geth-spec/v02-rpc',
-                    'flashbots-auction/miners/mev-geth-spec/v01',
-                    'flashbots-auction/miners/mev-geth-spec/v01-rpc',
-                  ]
-                },
-              ],
-            },
-          ],
           'releases': [
             'flashbots-auction/releases/alpha-v0.6',
             'flashbots-auction/releases/alpha-v0.5',
