@@ -2,7 +2,7 @@
 title: searcher reputation
 ---
 
-In order to maintain reliable Flashbots relay performance, we've introduced searcher reputation to provide consistent access to the relay for searchers with a good performance track record during periods of heavy load. Reputation is one of many solutions currently being explored to make the relay robust against sophisticated Layer 7 attacks. The system described on this page is likely to change and we encourage you to participate in defining the direction it will take by engaging in the [discussion board](https://github.com/flashbots/pm/discussions/79).
+In order to maintain reliable performance, we've introduced searcher reputation to provide consistent access to the Flashbots block builder for searchers with a good performance track record during periods of heavy load. Reputation is one of many solutions currently being explored to make the relay robust against sophisticated Layer 7 attacks. The system described on this page is likely to change and we encourage you to participate in defining the direction it will take by engaging in the [discussion board](https://github.com/flashbots/pm/discussions/79).
 
 ## Reputation queues
 
@@ -25,7 +25,7 @@ $\Delta_{coinbase_T}$: coinbase difference from direct payment in transaction $T
 
 Flashbots uses a dynamic threshold to classify users between the high reputation and low reputation queue. The dynamic variables are: 1) the historical time period considered to calculate reputation, 2) the cutoff reputation score which classifies a searcher as "high reputation". Using a dynamic threshold allows the relay to adapt in periods of high demand and maintain high reliability for top searchers.
 
-A searcher can query their current reputation status using the [`flashbots_getUserStats` RPC method](https://docs.flashbots.net/flashbots-auction/miners/mev-relay#flashbots_getuserstats).
+A searcher can query their current reputation status using the [`flashbots_getUserStats` RPC method](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getuserstats).
 
 ## Building reputation
 

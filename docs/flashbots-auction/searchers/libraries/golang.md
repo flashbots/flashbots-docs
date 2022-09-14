@@ -5,7 +5,7 @@ _These libraries are provided and maintained by third-parties rather than Flashb
 
 The Golang libraries provide high-level access to the `eth_sendBundle` and `eth_callBundle` rpc endpoints on mev-relay.
 
-Flashbots-enabled relays and miners expose several new jsonrpc endpoints, such as [`eth_sendBundle`](https://docs.flashbots.net/flashbots-auction/searchers/advanced/rpc-endpoint/#eth_sendbundle) and [`eth_callBundle`](https://docs.flashbots.net/flashbots-auction/searchers/advanced/rpc-endpoint/#eth_callbundle). Since these are non-standard endpoints, ethers.js and other libraries do not natively support these requests (like `getTransactionCount`). 
+Flashbots exposes several new json-rpc endpoints, such as [`eth_sendBundle`](https://docs.flashbots.net/flashbots-auction/searchers/advanced/rpc-endpoint/#eth_sendbundle) and [`eth_callBundle`](https://docs.flashbots.net/flashbots-auction/searchers/advanced/rpc-endpoint/#eth_callbundle). Since these are non-standard endpoints, ethers.js and other libraries do not natively support these requests (like `getTransactionCount`).
 
 Golang libraries:
 

@@ -2,8 +2,9 @@
 title: other resources
 ---
 
-Remember you can ask any questions in the [#🤖searchers](https://discord.com/invite/7hvTycdNcK) channel on our Discord, below are a list of useful resources for searchers to wrap their heads around running Flashbots:
+Remember you can ask any questions in the [#🐣newcomers or #🤖searchers](https://discord.com/invite/7hvTycdNcK) channel on our Discord, or in one of the Self Support Groups on [our forum](https://collective.flashbots.net/).
 
+Below are a list of useful resources for searchers to wrap their heads around running Flashbots:
 
 * [Walking through simple-arbitrage](https://discord.com/channels/755466764501909692/855195699019644958/895642636206084116) by Robert Miller
 * [Finding & Capturing MEV 101](https://www.youtube.com/watch?v=70WtsHtFd8Y) by thegostep & Robert Miller
