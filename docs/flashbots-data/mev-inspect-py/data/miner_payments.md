@@ -7,6 +7,12 @@ a **miner payment** is how much was paid to a miner in a given transaction
 
 miner payment includes payment through gas and coinbase transfers
 
+:::note
+
+The "miner" nomenclature will be replaced in a future release to accurately reflect PoS Ethereum architecture.
+
+:::
+
 ### fields
 
 | Column                           | Type                        | Nullable | Description                                            |
