@@ -1,4 +1,4 @@
-# Vulnerabilities
+# vulnerabilities
 If you find a security vulnerability on this project or any other initiative related to Flashbots, please let us know sending an email to security@flashbots.net.
 # Security Audits
 
