@@ -16,7 +16,8 @@ We intend to release more features on top of Flashbots Protect in the future, of
 
 ## Flashbots Protect with fast mode
 
-On PoW Ethereum, **fast mode** offered front-running protection with no revert protection for a faster way to submit transactions to miners. Post-merge, _all transactions_ sent to the Flashbots Protect RPC get revert and front-running protection.
+On PoW Ethereum, **fast mode** offered front-running protection with no revert protection for a faster way to submit transactions to miners.
+In PoS Ethereum, _all transactions sent to the Flashbots Protect RPC get revert and front-running protection_.
 
 ## Community integrations
 

@@ -28,7 +28,7 @@ In turn you will receive a JSON response that looks like the following:
 
 ## Potential statuses
 
-* `PENDING` - The transaction was received and is currently being submitted to miners
+* `PENDING` - The transaction was received and is currently being processed by the block builder
 * `INCLUDED` - The transaction was included on-chain
 * `FAILED` - The transaction was submitted for 25 blocks and failed to be included on-chain
 * `CANCELLED` - The transaction was cancelled by the user and not included on-chain
