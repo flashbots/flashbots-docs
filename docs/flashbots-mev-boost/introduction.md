@@ -6,6 +6,13 @@
 
 With MEV-Boost, validators can access blocks from a marketplace of builders. Builders produce blocks containing transaction orderflow and a fee for the block proposing validator. Separating the role of proposers from block builders promotes greater competition, decentralization, and censorship-resistance for Ethereum.
 
+See also:
+* [boost.flashbots.net](https://boost.flashbots.net/)
+* [boost-relay.flashbots.net](https://boost-relay.flashbots.net/)
+* [github.com/flashbots/mev-boost](https://github.com/flashbots/mev-boost/)
+
+---
+
 ## Why MEV-Boost?
 
 MEV is a centralizing force on Ethereum. Unattended, the competition for MEV opportunities leads to consensus instability and permissioned communication infrastructure between searchers, block producers, and validators. Access to MEV is even more important in PoS Ethereum, as the planned [reduction in block subsidies](https://hackmd.io/@flashbots/mev-in-eth2) will make MEV an even [larger share of total staking revenue](https://github.com/flashbots/eth2-research/blob/main/notebooks/mev-in-eth2/eth2-mev-calc.ipynb).
