@@ -6,7 +6,7 @@ Remember you can ask any questions in the [#🐣newcomers or #🤖searchers](htt
 
 Below are a list of useful resources for searchers to wrap their heads around running Flashbots:
 
-* [Walking through simple-arbitrage](https://discord.com/channels/755466764501909692/855195699019644958/895642636206084116) by Robert Miller
+* [Walking through simple-arbitrage](https://www.youtube.com/watch?v=wn8r674U1B4) by Robert Miller
 * [Finding & Capturing MEV 101](https://www.youtube.com/watch?v=70WtsHtFd8Y) by thegostep & Robert Miller
 * [Using Flashbots to Mint NFTs on Ethereum - Part 1](https://youtu.be/1ve1YIpDs_I) by Scott Bigelow
 * [Anatomy of an MEV Strategy: Synthetix](https://www.bertcmiller.com/2021/09/05/mev-synthetix.html) by Robert Miller
