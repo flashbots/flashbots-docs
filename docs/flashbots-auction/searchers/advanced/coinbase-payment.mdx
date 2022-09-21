@@ -36,7 +36,7 @@ The above smart contract code will attempt to capitalize on arbitrage opportunit
 For more information on how coinbase transfers are priced see the [bundle pricing page](/flashbots-auction/searchers/advanced/bundle-pricing).
 
 ## Managing payments to coinbase.address when it is a contract
-Validators will occasionally have a smart contract listed as their block.coinbase address. This changes the expected behavior of the making payments to block.coinbase. Specifically it costs more gas to transfer ETH to block.coinbase if it is a contract than if it is an EOA, and as such many searchers will underestimate their gas consumption and their bundles will fail for validators who use contracts instead.
+Validators will occasionally have a smart contract listed as their block.coinbase address. This changes the expected behavior of making payments to block.coinbase. Specifically it costs more gas to transfer ETH to block.coinbase if it is a contract than if it is an EOA, and as such many searchers will underestimate their gas consumption and their bundles will fail for validators who use contracts instead.
 
 To handle this edge case searchers can up their gas limit to accomodate the additional payment to validators and call block.coinbase in the following way:
 
