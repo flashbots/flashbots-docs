@@ -6,7 +6,7 @@ module.exports = {
       ],
     },
     {
-      'flashbots auction': [
+      'Flashbots auction': [
         'flashbots-auction/overview',
         {
           "for searchers": [
@@ -54,7 +54,7 @@ module.exports = {
       ]
     },
     {
-      "flashbots data": [
+      "Flashbots data": [
         {
           'mev-inspect': [
             'flashbots-data/mev-inspect-py/overview',
@@ -79,7 +79,7 @@ module.exports = {
       ],
     },
     {
-      "flashbots protect": [
+      "Flashbots Protect": [
         'flashbots-protect/overview',
         {
           'rpc': [
