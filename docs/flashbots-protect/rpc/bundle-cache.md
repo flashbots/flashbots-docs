@@ -22,7 +22,7 @@ Chain ID should be set to `1`.
 
 ## Add Transaction to Bundle
 
-To add a transaction to the bundle, sign and send the transaction as you normally would (e.g. via Metamask). The transaction will stay pending until it's mined (after you send the bundle).
+To add a transaction to the bundle, sign and send the transaction as you normally would (e.g. via Metamask). The transaction will stay pending until it's included on-chain (after the bundle is sent).
 
 ## Get Bundle Transactions
 

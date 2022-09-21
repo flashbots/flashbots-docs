@@ -43,14 +43,14 @@ const res = await flashbotsProvider.sendPrivateTransaction({
     transaction,
     signer,
 }, {
-    maxBlockNumber: (await provider.getBlockNumber()) + 5, // only allow tx to be mined for the next 5 blocks
+    maxBlockNumber: (await provider.getBlockNumber()) + 5, // only allow tx to be included for the next 5 blocks
 });
 
 const waitRes = await res.wait();
 if (waitRes === FlashbotsTransactionResolution.TransactionIncluded) {
-    console.log("Private transaction successfully mined.")
+    console.log("Private transaction successfully included on-chain.")
 } else if (waitRes === FlashbotsTransactionResolution.TransactionDropped) {
-    console.log("Private transaction was not mined and has been removed from the system.")
+    console.log("Private transaction was not included in a block and has been removed from the system.")
 }
 ```
 
