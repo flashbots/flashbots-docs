@@ -7,20 +7,21 @@ import TabItem from '@theme/TabItem';
 
 ## How to send a single transaction to Flashbots
 
-If you want to send a single transaction to Flashbots, without sending it as a bundle, you can use the `eth_sendPrivateTransaction` method.
+If you want to send a single transaction to Flashbots without sending it as a bundle, you can use the `eth_sendPrivateTransaction` method.
 
-This method attempts to send your transaction to miners on every block for a maximum of 25 blocks. No need to listen for the next block and re-send yourself. 
+This method sends your transaction to the Flashbots builder on every block for a maximum of 25 blocks. No need to listen for the next block and re-send yourself. 
 
-Private transactions can be cancelled with the `eth_cancelPrivateTransaction` method. Once a transaction is submitted from the relay to a miner we cannot "recall" it. However, we can cancel submitting transactions for future blocks.
+Private transactions can be cancelled with the `eth_cancelPrivateTransaction` method. Once a transaction is included in a block and received by proposers, we cannot "recall" it. However, we can stop including transactions in future blocks.
 
 See [RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint) for JSON-RPC definitions of the methods.
 
-These methods are currently implemented in the [ethers-provider-flashbots-bundle](/flashbots-auction/searchers/libraries/ethers-js-provider) library. More languages coming soon.
+These methods are currently implemented in [ethers-provider-flashbots-bundle.js](/flashbots-auction/searchers/libraries/ethers-js-provider) and [web3-flashbots.py](/flashbots-auction/searchers/libraries/web3py-provider).
 
 <Tabs 
     defaultValue="ethers.js"
     values={[
         { label: "ethers.js", value: "ethers.js" },
+        { label: "web3-flashbots.py", value: "web3-flashbots.py" },
     ]}
 >
 <TabItem value="ethers.js">
@@ -42,15 +43,41 @@ const res = await flashbotsProvider.sendPrivateTransaction({
     transaction,
     signer,
 }, {
-    maxBlockNumber: (await provider.getBlockNumber()) + 5, // only allow tx to be mined for the next 5 blocks
+    maxBlockNumber: (await provider.getBlockNumber()) + 5, // only allow tx to be included for the next 5 blocks
 });
 
 const waitRes = await res.wait();
 if (waitRes === FlashbotsTransactionResolution.TransactionIncluded) {
-    console.log("Private transaction successfully mined.")
+    console.log("Private transaction successfully included on-chain.")
 } else if (waitRes === FlashbotsTransactionResolution.TransactionDropped) {
-    console.log("Private transaction was not mined and has been removed from the system.")
+    console.log("Private transaction was not included in a block and has been removed from the system.")
 }
+```
+
+</TabItem>
+<TabItem value="web3-flashbots.py">
+
+```python
+web3 = Web3(HTTPProvider("http://localhost:8545"))
+flashbot(w3, signer)
+signer: LocalAccount = Account.from_key("0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80")
+nonce = web3.eth.get_transaction_count(signer.address)
+
+tx1: TxParams = {
+    "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "value": Web3.toWei(1, "ether"),
+    "data": "0xd0e30db0",
+    "gas": 21000,
+    "maxFeePerGas": Web3.toWei(100, "gwei"),
+    "maxPriorityFeePerGas": Web3.toWei(10, "gwei"),
+    "nonce": nonce,
+    "chainId": 1,
+    "type": 2,
+}
+web3.flashbots.send_private_transaction({
+    "signer": signer,
+    "transaction": tx1,
+})
 ```
 
 </TabItem>

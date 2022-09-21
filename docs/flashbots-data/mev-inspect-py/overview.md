@@ -5,7 +5,8 @@ title: overview
 **mev-inspect-py** is an MEV inspector for Ethereum
 
 Given a block, mev-inspect finds:
-- miner payments (gas + coinbase)
+
+- validator payments (gas + coinbase)
 - tokens transfers and profit
 - swaps and [arbitrages](https://twitter.com/bertcmiller/status/1427632028263059462)
 - ...and more

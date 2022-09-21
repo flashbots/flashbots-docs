@@ -2,14 +2,16 @@
 title: overview
 ---
 
-Flashbots Auction is a permissionless, transparent, and fair ecosystem for efficient MEV extraction and frontrunning protection which preserves the ideals of Ethereum. Flashbots Auction provides a private communication channel between Ethereum users and miners for efficiently communicating preferred transaction order within a block.
+Flashbots Auction is a permissionless, transparent, and fair ecosystem for efficient MEV extraction and frontrunning protection which preserves the ideals of Ethereum. Flashbots Auction provides a private communication channel between Ethereum users and validators for efficiently communicating preferred transaction order within a block.
 
-Flashbots Auction consists of [mev-geth](https://github.com/flashbots/mev-geth), a patch on top of the go-ethereum client, along with the [mev-relay](https://github.com/flashbots/mev-relay-js), a transaction bundle relayer.
+Flashbots Auction started with [mev-geth](https://github.com/flashbots/mev-geth), a patch on top of the go-ethereum client, along with the [mev-relay](https://github.com/flashbots/mev-relay-js), a transaction bundle relayer.
+
+In PoS Ethereum, the Flashbots Auction is built on [mev-boost](https://boost.flashbots.net/), an implementation of proposer-builder separation for Ethereum.
 
 Flashbots Auction is currently in version alpha-v0.4 of the [roadmap](#roadmap).
 
 ## Why Flashbots Auction?
-Throughout the second half of 2020 and begining of 2021, a spike in Ethereum usage has revealed a set of negative externalities brought by MEV. These include network congestion (i.e. p2p network load) and chain congestion (i.e. block space usage) caused by inefficient communication between PGA bot operators and miners for transaction order preference. These negative externalities create a deadweight loss which is shouldered by regular Ethereum users though high gas price volatility and artificially scarce blockspace.
+Throughout the second half of 2020 and begining of 2021, a spike in Ethereum usage has revealed a set of negative externalities brought by MEV. These include network congestion (i.e. p2p network load) and chain congestion (i.e. block space usage) caused by inefficient communication between PGA bot operators and (PoW) miners for transaction order preference. These negative externalities create a deadweight loss which is shouldered by regular Ethereum users though high gas price volatility and artificially scarce blockspace.
 
 The incentives around MEV extraction pose an existential risk to Ethereum consensus security due to the incentivization of chain history re-orgs for extraction of past MEV (e.g. through [time-bandit attacks](https://arxiv.org/pdf/1904.05234.pdf)) and incentivization of transaction routing centralization for privacy, low latency, and ordering control. These risks are considered to be existential for Ethereum as they undermine the principles of finality and permissionlessness.
 
@@ -23,31 +25,31 @@ We have observed and are concerned about the active development of permissioned 
 - August 2021: [Flashbots Auction Alpha (v0.3)](/flashbots-auction/releases/alpha-v0.3) made available for miners and searchers to adopt.
 - September 2021: [Flashbots Auction Alpha (v0.4)](/flashbots-auction/releases/alpha-v0.4) made available for miners and searchers to adopt.
 - February 2022: [Flashbots Auction Alpha (v0.5)](/flashbots-auction/releases/alpha-v0.5) made available for miners and searchers to adopt.
-
+- February, 2022: [Flashbots Auction Alpha (v0.6)](/flashbots-auction/releases/alpha-v0.6) made available for miners and searchers to adopt.
 
 ## How does it work?
-Flashbots Auction provides a private transaction pool + a sealed bid blockspace auction mechanism which allows block producers to trustlessly outsource the work of finding optimal block construction.
+Flashbots Auction provides a private transaction pool + a sealed bid blockspace auction mechanism which allows block proposers (validators; previously "miners" in PoW) to trustlessly outsource the work of finding optimal block construction.
 
-In the regular Ethereum transaction pool, users broadcast transactions to the public peer-to-peer network and specify a gas price which indicates how much they are willing to pay for each unit of computation on the ethereum chain. Miners receive these transactions, order them by gas price, and use a greedy algorithm to produce a block which attempts to maximise the value received through transaction fees. This mechanism is a mix between an [English auction](https://en.wikipedia.org/wiki/English_auction) and an [all-pay auction](https://en.wikipedia.org/wiki/All-pay_auction) where bidding for blockspace is performed in the open, the top bidder captures the opportunity, and all participants incur a cost.
+In the regular Ethereum transaction pool, users broadcast transactions to the public peer-to-peer network and specify a gas price which indicates how much they are willing to pay for each unit of computation on the ethereum chain. Block builders receive these transactions, order them by gas price, and use a greedy algorithm to produce a block which attempts to maximise the value received through transaction fees. This mechanism is a mix between an [English auction](https://en.wikipedia.org/wiki/English_auction) and an [all-pay auction](https://en.wikipedia.org/wiki/All-pay_auction) where bidding for blockspace is performed in the open, the top bidder captures the opportunity, and all participants incur a cost.
 
 Here are the key issues with this mechanism:
 1. the open nature of the regular transaction pool causes bidding wars for blockspace which create unnecessary p2p network load and volatility in gas prices, as well as disadvantages less sophisticated network participants who do not have access to advanced bidding strategies
-2. the all-pay nature of the auction causes failed bids to revert on chain, thus unnecessarily consuming blockspace and causing bidders to underprice their bids due to execution risk, ultimately leading to artificial blockspace scarcity and lower miner revenues
+2. the all-pay nature of the auction causes failed bids to revert on chain, thus unnecessarily consuming blockspace and causing bidders to underprice their bids due to execution risk, ultimately leading to artificial blockspace scarcity and lower validator (previously "miner") revenues
 3. the reliance on gasPrice makes it impossible for bidders to express granular ordering preferences as they are restricted to bidding for the top position in the block, this leads to alternative strategies like spam to increase likelihood of winning thus further increasing deadweight loss
 
-Instead, the Flashbots Auction infrastructure uses a [first-price sealed-bid auction](https://en.wikipedia.org/wiki/First-price_sealed-bid_auction) which allows users to privately communicate their bid and granular transaction order preference without paying for failed bids. This mechanism maximizes miner payoffs, while providing an efficient venue for price discovery on the value of a given MEV opportunity. Crucially, this mechanism eliminates frontrunning vulnerabilities.
+Instead, the Flashbots Auction infrastructure uses a [first-price sealed-bid auction](https://en.wikipedia.org/wiki/First-price_sealed-bid_auction) which allows users to privately communicate their bid and granular transaction order preference without paying for failed bids. This mechanism maximizes validator payoffs, while providing an efficient venue for price discovery on the value of a given MEV opportunity. Crucially, this mechanism eliminates frontrunning vulnerabilities.
 
 ## Roadmap
 The Flashbots team is taking an iterative approach to decentralizing the Flashbots Auction architecture. As mentioned in our initial [ethresearch post](https://ethresear.ch/t/flashbots-frontrunning-the-mev-crisis/8251), there remain some key research questions to be answered.
 
 Ultimately, the design goals are the following:
 
-- **Pre-trade privacy**: implies transactions only become publicly known after they have been included in a block. This excludes intermediaries such as relayers / miners.
+- **Pre-trade privacy**: implies transactions only become publicly known after they have been included in a block. This excludes intermediaries such as relays & block builders.
 - **Failed trade privacy**: implies losing bids are never included in a block, thus never exposed to the public.
 - **Efficiency**: implies MEV extraction is performed without causing unnecessary network or chain congestion.
 - **Bundle merging**: implies it is possible to merge multiple incoming bundles without conflict.
 - **Finality protection**: implies it is impractical for Flashbots blocks containing Flashbots bundles to be modified once propagated to the network. This would protect against time-bandit chain re-org attacks.
-- **Complete privacy**: implies intermediaries like relayers and miners cannot observe the content of transactions until mined on chain.
+- **Complete privacy**: implies intermediaries like relays and validators cannot observe the content of transactions until included on chain.
 - **Permissionless**: implies there are no trusted intermediaries which can censor transactions.
 
 | Stage                | PGA | DarkPool | ⚡🤖 v0.1 | ⚡🤖 v0.2 | ⚡🤖 v0.3 | ⚡🤖 v0.4 | ⚡🤖 v1.0 |
@@ -59,13 +61,14 @@ Ultimately, the design goals are the following:
 | Finality protection  | ❌  |    ❌    |    ❌     |    ❌     |    ❌     |    ❌     |    ✅     |
 | Complete privacy     | ❌  |    ❌    |    ❌     |    ❌     |    ❌     |    ❌     |    ✅     |
 | Permissionless       | ✅  |    ❌    |    ❌     |    ❌     |    ❌     |    ❌     |    ✅     |
+
 ## Technical Architecture
 
-The Flashbots Auction architecture proposes a network with three distinct parties who specialize in performing a subset of the work required for sustaining this communication channel.
+The Flashbots Auction architecture proposes a network with three distinct parties who specialize in performing a subset of the work required for sustaining this communication channel. Block builders are responsible for building full blocks which validators will propose.
 
 <div style={{textAlign: 'center'}}>
 
-![Auction Architecture](/img/core-architecture.png)
+![Auction Architecture](/img/mevboost-searcher-bundle-flow.png)
 
 </div>
 
@@ -98,55 +101,88 @@ Typically, searchers will be one of the following types:
 2. Ethereum users looking for frontrunning protection on their transactions (for example, Uniswap traders)
 3. Ethereum Dapps with advanced use cases like account abstraction or gasless transactions (for example, tornado.cash and mistX)
 
-<div style={{textAlign: 'center'}}>
+<div className="med caption-img">
 
-![Searcher Architecture](/img/searcher-architecture.png)
+  ![Searcher Architecture](/img/searcher-architecture.png)
+
+  Searchers create bundles with information from various sources and send them to a block builder.
 
 </div>
 
-By submitting bundles directly to relayers instead of through the p2p network, searchers obtain `Pre-trade privacy` as their transactions cannot be seen by the rest of the network. The searchers express their bids for inclusion through their ethereum transactions as either gas price, or direct eth transfer to the coinbase address. Using direct payments instead of gas price allows users to make payments conditional on their transaction succeeding, thus avoiding having to pay for failed bids.
+By submitting bundles directly to block builders instead of through the p2p network, searchers obtain `Pre-trade privacy` as their transactions cannot be seen by the rest of the network. The searchers express their bids for inclusion through their Ethereum transactions as either gas price, or direct eth transfer to the coinbase address. Using direct payments instead of gas price allows users to make payments conditional on their transaction succeeding, thus avoiding having to pay for failed bids.
 
 See the [searcher quick-start guide](/flashbots-auction/searchers/quick-start) to learn how to get started.
 
-### Relayers
-A relayer is a bundle propagation service which receives bundles from searchers and forwards them to miners.
+### Block Builders
 
-<div style={{textAlign: 'center'}}>
+Block builders ("builders") are specialists who accept transactions from users and searchers, and try to build the most profitable block possible from those transactions. These blocks are then sent via an mev-boost relay to validators. See [Relays](#relays) for a deeper explanation of what relays do. Searchers send bundles to one or more builders.
 
-![Relay Architecture](/img/relay-architecture.png)
+<div className="med caption-img">
+
+  ![Block Builder Flow](/img/block-builder-flow.png)
+
+  Block builders create blocks using bundles from searchers and transactions (not shown here) from the mempool.
 
 </div>
 
-A relayer is in charge of validating and routing Flashbots bundles. Since searchers no longer need to pay for failed bids, this opens up the ability for them to spam the network with invalid bundles, thus creating a denial of service attack against other network participants. Since Ethereum nodes are ill-equiped to deal with this level of load on their own, relayers primarily serve as a mitigation to this DOS threat. Relayers may also provide additional services like bundle merging and execution services which allow searchers to specialize.
+⚠️ Not all builders can be trusted ⚠️
 
-Solving for spam protection and relayer privacy are the two main challenges the Flashbots Auction architecture must solve in order to become fully permissionless / decentralized.
+Builders have full view of incoming transactions, which gives them the power to frontrun, censor, etc. When choosing a builder, there are a few criteria to look for:
 
-For the time being, the Flashbots organization operate a relay called mev-relay which follows the [Flashbots Fair Market Principles](https://hackmd.io/@flashbots/fair-market-principles).
+* Are they committed to fair and unbiased execution?
+  * A good builder will not front-run, sandwich or censor bundles, or otherwise engage in activities that abuse privileged data access.
+* Do they connect to a trusted relay (or relays)?
+  * Keep in mind that the relay can also see raw transactions, which gives them the ability to front-run, censor, etc.
+* Do their relays connect to enough validators?
+  * The more validators a relay connects to, the more slots will generally be available for builders connected to that relay. When you're targeting a specific block/slot, it's imperative that you send your transactions to a builder which is connected to the validator responsible for proposing a block in that slot. More validators ⇒ better inclusion rates.
+  * Note: Any validator can [use mev-boost to connect to the Flashbots relay and other relays](https://github.com/flashbots/mev-boost#usage).
+  * It's also worth considering how much collective stake the validators connected to a relay have. Generally speaking, if more than one block is proposed to the network (unusual but possible), the block with the most collective stake attesting to it will be included. This scenario is explained in greater detail in the [Ethereum docs](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/#fork-choice).
 
-⚠️ Not all relayers can be trusted ⚠️
-
-Relayers have full access to bundle content and can arbitrarily reorder / steal / censor bundles sent to them by searchers and can DOS miners by sending invalid bundles. It is discouraged for searchers and miners to integrate with relayers other than Flashbots until the system is fully decentralized, as it introduces systemic risk and prevents Flashbots from being able to monitor network health.
+Also note that block builders have the freedom to specialize. You may find that one builder is more or less friendly to your strategy than others. Builders are competing with each other, so they are all incentivized to include your bundles in their blocks, but you may find that some builders will prioritize certain strategies over others regardless of potential profits. Builders might also censor certain bundles due to local regulations or corporate strategies and policies. There are a lot of variables in play here, so I recommend trying a few trustworthy builders and seeing how your mileage varies first-hand.
 
 Learn more about the [trust assumptions of the Flashbots Alpha](#trust-assumptions).
 
-### Miners
-A miner is the party who ultimately collects all the bundles and produces a block. Miners traditionally run the go-ethereum client and order transactions by gas price. However, miners connected to the Flashbots network run a version of the [mev-geth client](https://github.com/flashbots/mev-geth) maintained by Flashbots.
+### Relays
 
-<div style={{textAlign: 'center'}}>
+Relays are a component of PBS which are responsible for escrowing blocks from builders for validators. 
 
-![Miner Architecture](/img/miner-architecture.png)
+<div className="med caption-img">
+
+  ![Relay Flow](/img/relay-flow.png)
+
+  Relay selects most profitable block from its builders and escrows it for the validator.
 
 </div>
 
-The mev-geth nodes evaluate incoming bundles using the first-price sealed-bid auction and pick the most profitable ones to place at the top of the block. The node then compares the Flashbots block with a vanilla block and begins mining on the most profitable.
+With mev-boost, validators choose the most profitable block from a number of relays. Each relay keeps the contents of a block private until the validator commits to proposing it to the network for inclusion.
 
-The information contained in the Flashbots bundle allows the searcher to express their blockspace preference relative to the state of the chain as well as the state of the transaction pool. This enables price discovery for discrete MEV opportunities instead of competition for priority along a single dimension. The miner can evaluate all the bundles received and combine those which do not conflict in order to produce the most profitable block possible.
+Specifically, relays do the following:
 
-The ability for searchers to clearly express preferences is what enables an efficient auction which avoids negative externalities on the rest of the network.
+* accept new blocks from builders
+* send header of most profitable block to a validator upon request
+  * the validator locks in their commitment to propose the full block by signing this header
+* send full block to validator after receiving block header signed by the validator
+* perform all of this quickly and reliably, so that validators don't miss proposal deadlines
 
-⚠️ Not all miners can be trusted ⚠️
+For a deeper explanation of mev-boost and relays, Check out @thegostep's [ethresear.ch post](https://ethresear.ch/t/mev-boost-merge-ready-flashbots-architecture/11177).
 
-Miners have full access to bundle content and can arbitrarily reorder / steal / censor bundles sent to them by searchers and relayers. For the duration of the Alpha, it is discouraged for searchers to integrate directly with miners as Flashbots is unable to monitor their behavior.
+For more information about how bundles are sent post-merge, see [this forum post](https://collective.flashbots.net/t/how-will-sending-bundles-change-in-pos-ethereum/147).
+
+Learn more about the [trust assumptions of the Flashbots Alpha](#trust-assumptions).
+
+### Validators
+
+Validators (AKA "proposers") in PoS Ethereum are responsible for proposing blocks to the network, and appending blocks to the chain. You can learn more about validators in the [Ethereum docs](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/#validators).
+
+<div className="med caption-img">
+
+  ![Validator Flow](/img/validator-flow.png)
+
+  Validator uses mev-boost to choose the most profitable block to propose from multiple relays.
+
+</div>
+
+When builders include MEV-yielding transactions, the blocks they produce will be more profitable on average. By sourcing the most profitable blocks from these builders, validators earn more profit just by using mev-boost. You can learn more about mev-boost at [boost.flashbots.net](https://boost.flashbots.net).
 
 Learn more about the [trust assumptions of the Flashbots Alpha](#trust-assumptions).
 

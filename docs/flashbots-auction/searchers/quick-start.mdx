@@ -5,7 +5,7 @@ title: quick start
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-This quickstart guide contains all the information necessary to get up and running as a searcher on Flashbots Auction. If you have any questions, do not hesitate to ask in the ['#🤖 searchers' or '#🐣 newcomers' discord channels](https://discord.com/invite/7hvTycdNcK).
+This quickstart guide contains all the information necessary to get up and running as a searcher on Flashbots. If you have any questions, do not hesitate to ask in the ['#🐣 newcomers' or '#🤖 searchers' discord channels](https://discord.com/invite/7hvTycdNcK), or in the [Searcher Self-Support Forum](https://collective.flashbots.net/c/searchers/12).
 
 See you on-chain! ⚡🤖
 
@@ -17,7 +17,7 @@ See you on-chain! ⚡🤖
 
 ### How does Flashbots work for searchers?
 
-Flashbots connects searchers directly to miners and allows them to avoid the public tx pool. Searchers with transactions they would like to send miners first craft what we call "bundles" and send these to Flashbots' MEV-Relay. MEV-Relay is a gateway that Flashbots runs today which simulates searchers' bundles, and if there are no errors then forwards them on to miners. Miners then receive bundles and include them in blocks if it is profitable for them to do so.
+Flashbots connects searchers to validators (previously "miners") while allowing them to avoid the public tx pool. Searchers with transactions they would like to send first craft what we call "bundles" and send these to a block builder such as Flashbots. The builder simulates the bundles to ensure there are no reverts, and then builds a full block with the available bundles and transactions. Via mev-boost and the network of relays and builders, these blocks are received by validators while maintaining pre-trade privacy.
 
 Getting onboarded to Flashbots is easy for searchers; you simply need to update how you send transactions.
 
@@ -32,7 +32,7 @@ To access the Flashbots network you will need three things:
 
 Let's begin with the private key Flashbots uses for identity. When you send bundles to Flashbots you will sign them with a private key so that we can establish identity for searchers and establish reputation for them over time. This private key **does not** store funds and is **not** the primary private key you use for executing transactions. Again, it is only used for identity, and it can be any private key.
 
-Second, you'll need a way to interact with Flashbots. Flashbots runs a relay you will send bundles to at `relay.flashbots.net`, and we have specific RPC endpoints you'll need to use to send us transactions. We've integrated with a few popular developer tools like Ethers.js or web3.py to make interacting with MEV-Relay as easy as possible. Here are a few examples of how to set up a Flashbots provider:
+Second, you'll need a way to interact with Flashbots. The Flashbots builder receives bundles at `relay.flashbots.net`, and we have specific RPC endpoints you'll need to use to send us transactions. We've integrated with a few popular developer tools like Ethers.js or web3.py to make interacting with Flashbots as easy as possible. Here are a few examples of how to set up a Flashbots provider:
 
 <Tabs
   defaultValue="ethers.js"
@@ -199,7 +199,7 @@ That's it!
 
 Congrats! You should now have everything you need to start sending transactions to the Flashbots network.
 
-- If you are looking to interact with the Flashbots Relay without using one of the libraries, check out the [RPC endpoint documentation](/flashbots-auction/searchers/advanced/rpc-endpoint) and other advanced concepts.
+- If you are looking to interact with Flashbots without using one of the libraries, check out the [RPC endpoint documentation](/flashbots-auction/searchers/advanced/rpc-endpoint) and other advanced concepts.
 - For examples of advanced usage of Flashbots, check out the [example searchers](/flashbots-auction/searchers/example-searchers/simple-arbitrage-bot).
 - For additional tools, check out the [searcher libraries.](/flashbots-auction/searchers/libraries/ethers-js-provider)
 - For potential MEV opportunities, check out the [MEV job board](https://github.com/flashbots/mev-job-board) 🤠

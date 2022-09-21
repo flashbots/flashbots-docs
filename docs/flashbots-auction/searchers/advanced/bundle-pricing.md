@@ -6,32 +6,28 @@ title: bundle pricing
 
 Searchers submit a huge amount of bundles every block, but the amount of blockspace is limited. So what decides what can be included in a block or not? To understand the answer we will first review some context.
 
-At a high level Flashbots is designed such that miners include the most profitable transactions possible in their blocks, and it achieves that by inserting searcher's bundles at the *top of block* and removing transactions at the *tail of the block*. Measured by gas price, these transactions at the tail of a block are the *least profitable* for a miner to mine. That means that for a Flashbots bundle to be considered profitable it must have a higher effective gas price than the transactions it displaces at the tail of the block.
+At a high level _the Flashbots block builder is designed to include the most profitable transactions possible in the blocks it builds_.
 
-It is important to remember that searchers can pay miners through normal gas fees or directly to the block's coinbase address (the miner). When calculating the *effective* gas price of a bundle, Flashbots takes into account both payments directly to coinbase as well as gas fees.
+In **PoW Ethereum**, this was achieved by inserting searcher's bundles at the _top of block_ and removing transactions at the _tail of the block_. Measured by gas price, these transactions at the tail of a block were the _least profitable_ for a miner to mine. That meant that for a Flashbots bundle to be considered profitable it must have a higher effective gas price than the transactions it displaces at the tail of the block.
 
-### Bundle pricing formula
+In **PoS Ethereum**, the rule of thumb for bundle pricing on Flashbots is practically the same; more profitable transactions will generally be favored by the block-building algorithm. Bundle/transaction profitability is determined by fee per gas used, priority fee, and direct validator payments.
 
-Here is the formula for how bundle gas pricing is calculated:
+The most notable difference in PoS is that instead of all bundles being placed at the top of the block, bundles may be placed anywhere in a block. This might mean that other transactions (e.g. from the mempool) are placed between bundles. Bundles are still atomic, though -- no transactions will be placed in-between bundle transactions, only in-between separate bundles.
 
-$$s_{v0.3-4} = \frac{\Delta_{coinbase} + \sum_{T\in U}g_Tm_T - \sum_{T\in M \cap U}g_Tm_T}{\sum_{T\in U}g_T}$$ 
+### Bundle ordering formula
 
-$s$: bundle $U$ _score_ used to sort bundles.  
-$U$: ordered list of transactions $T$ in a bundle.  
-$M$: set of transactions $T$ in the mempool.  
-$g_{T}$: _gas used_ by transaction $T$.  
-$p_{T}$: _gas price_ of transaction $T$.  
-$c_{T}$: _fee cap per gas_ of transaction $T$.  
-$\delta_T$: _priority fee per gas_ of transaction $T$.  
-$e_{T}$: _effective fee per gas_ of transaction $T$ equal $\min$($c_{T}$, BASEFEE + $\delta_T$).  
-$m_{T}$: _miner fee per gas_ of transaction $T$ equal $e_{T}$ - BASEFEE.  
-$\Delta_{coinbase}$: coinbase difference from direct payment.  
+The Flashbots builder uses a new algorithm designed to produce the most profitable block possible. This design introduces some important changes for searchers to be aware of:
 
-### Explanation
-
-This formula derives the effective gas price of the bundle by summing up all payments to coinbase as well as gas fees *except* for the gas fees of transactions that have been seen in the mempool.
-
-The gas fees of mempool transactions are deducted to prevent "stuffing" bundles with high gas price transactions from the mempool to inflate the effective gas price.
+* Instead of ranking and including bundles based off of effective gas price the algorithm now optimizes for overall block profit.
+* Top-of-block execution is no longer a guarantee.
+* Bundle ordering by effective gas price is no longer a guarantee.
+* Other transactions (e.g. from the mempool) may land between bundles (not between transactions in bundles, but between two different bundles).
+  * For example:
+  * If you have a bundle comprised of transactions `[B1, B2]`
+  * and someone else has a bundle comprised of transactions `[C1, C2]`
+  * and there are transactions in the mempool `[t1, t2, ...]`,
+  * then the block may be built such that:
+  * `BLOCK_TXS = [..., B1, B2, t1, t2, C1, C2, ...]`.
 
 ### Why aren't my bundles being included?
 
@@ -39,4 +35,4 @@ There are three reasons to examine. First, your bundles may not be paying a high
 
 Second, you may be competing with other searchers to capture the same opportunities, and they may be paying a higher gas price than you. Again, check the gas price that your bundles are paying by simulating them first and logging how much you are paying for a particular opportunity in a particular block. Then if your bundle is not included you can use the [blocks API](https://blocks.flashbots.net/) to see what bundle was included in your target block and how much they paid.
 
-Third, bundles below 42,000 gas used are rejected by the relay. This is to mitigate spam bundles that do nothing meaningful on chain.
+Third, bundles below 42,000 gas used are rejected by the Flashbots builder. This is to mitigate spam bundles that do nothing meaningful on chain.

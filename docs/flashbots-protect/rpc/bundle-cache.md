@@ -15,21 +15,21 @@ To start addding transactions to a bundle, first create a bundle ID. We recommen
 Connecting to the Flashbots Protect RPC Endpoint with a bundle ID parameter will automatically add incoming transactions to a queue without sending them.
 
 ```txt
-https://rpc.flashbots.net?bundle=<YOUR_BUNDLE_ID>
+https://protect.flashbots.net?bundle=<YOUR_BUNDLE_ID>
 ```
 
 Chain ID should be set to `1`.
 
 ## Add Transaction to Bundle
 
-To add a transaction to the bundle, sign and send the transaction as you normally would (e.g. via Metamask). The transaction will stay pending until it's mined (after you send the bundle).
+To add a transaction to the bundle, sign and send the transaction as you normally would (e.g. via Metamask). The transaction will stay pending until it's included on-chain (after the bundle is sent).
 
 ## Get Bundle Transactions
 
 You can get the array of transactions included in your bundle using the `GET /bundle?id=<YOUR_BUNDLE_ID>` endpoint:
 
 ```sh
-curl https://rpc.flashbots.net/bundle?id=<YOUR_BUNDLE_ID>
+curl https://protect.flashbots.net/bundle?id=<YOUR_BUNDLE_ID>
 ```
 
 This will return a JSON object with your signed transactions:
@@ -48,13 +48,12 @@ Note: The transaction sent last is the first in the `rawTxs` array.
 
 ## Send Bundle
 
-Once all the transactions you want to include in your bundle are added to the queue, send the signed transactions to the flashbots relay.
+Once all the transactions you want to include in your bundle are added to the queue, query the bundle with `GET /bundle?id=<YOUR_BUNDLE_ID>` and send the returned signed transactions to Flashbots as a bundle.
 
-If you're being helped with a whitehat recovery, we will provide a web interface for you to do this.
+If you're being helped with a whitehat recovery, we may provide a web interface for you to do this.
 
 If you want to send a bundle directly, check out the [Flashbots Auction Docs](https://docs.flashbots.net/flashbots-auction/searchers/quick-start#how-to-send-your-first-flashbots-bundle) for instructions on how to do this.
 
 ## Fake Funds
 
-Querying the balance of an address (using the `?bundle=` argument) will return a fake balance of 100 ETH, to allow crafting transactions even without actual funds.
-
+Querying the balance of an address when using the `?bundle=` argument will return a fake balance of 100 ETH, to allow crafting transactions without the account having actual funds.

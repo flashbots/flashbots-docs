@@ -128,7 +128,7 @@ transaction_from_address         | 0xd80276cd0348e9b3c5d017e1f7529f0a785fec3a
 
 `gas_price` is the gas price paid directly as gas (it includes the EIP-1559 base fee)
 
-`coinbase_transfer` is the amount of ETH paid directly as a transfer to the miner's address
+`coinbase_transfer` is the amount of ETH paid directly as a transfer to the validator's address
 
 `gas_price_with_coinbase_transfer` is the gas price including both original gas and coinbase transfers
 
