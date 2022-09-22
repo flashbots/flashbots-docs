@@ -34,7 +34,7 @@ To add Flashbots Protect RPC endpoint follow these steps:
 
 1. Enter your MetaMask and click on your RPC endpoint at the top of your MetaMask. By default it says “Ethereum mainnet.”
 2. Click “Custom RPC”
-3. Add `https://protect.flashbots.net` with a chainID of `1` and currency of `ETH`.
+3. Add `https://rpc.flashbots.net` with a chainID of `1` and currency of `ETH`.
 4. Scroll to the bottom and click “Save”
 
 ![first metamask onboarding image](/img/flashbotsRPC-metamask1.png)
