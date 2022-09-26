@@ -6,14 +6,16 @@ Block builders are highly specialized actors who construct blocks from transacti
 
 **The Role of Builders**
 
-Builders run algorithms and simulations (e.g. First Come First Serve, First Price Auctions, etc.) to order bundles and TXs in a block template (technically: `execution payload`) that maximizes profit. They then bid for and buy the validators’ blockspace, with the help of one or more relays, so their execution payloads are proposed to the blockchain.
+Builders run algorithms and simulations (e.g. First Come First Serve, First Price Auctions, etc.) to order bundles and TXs in a block template (technically: `execution payload`) that maximizes profit. Builders then bid for and buy the validators’ blockspace, facilitated by one or more relays, so their execution payloads are proposed to the blockchain.
 
 ### How do builders pay block proposers?
 
 Flashbots proposed a standardized specification for how payments are made from builders to block proposers through the following process:
 
 1. The builder sets their own address as the `feeRecipient` of the payload block header they are constructing. 
-2. The builder includes a transaction which pays ETH to the proposer’s `feeRecipient` address at the end of their proposed block. 
+2. The builder includes a transaction which pays ETH to the proposer’s `feeRecipient` address at the end of their proposed block.
+
+
 
 ### Determining the value of blocks
 
@@ -21,19 +23,20 @@ A standard method for determining block value is crucial for multiple components
 
 Various methods for defining block value were [considered](https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202) by members of the community. It was determined that block level scoring was the most simple and intuitive method for scoring block value.
 
-Note that a “block score” is not meant to be a formal definition of realized extractable value since this is a difficult metric to quantify. For example, a validator payment that would fall outside the scope of a block score calculation would be a Layer 2 transfer to a validator’ fee recipient account.
 
 ### Block level scoring
 
 Block level scoring looks at the difference in the balance of the fee recipient account before and after the block execution.  
 
-Constructing a payment proof for this scoring method requires a Merkle Proof of the fee recipient balance in block *(n - 1)*, and a Merkle Proof of the fee recipient balance in block *n*. **Payment proofs have not yet been put into production.** Active discussion about payment proof implementation is still on-going. For more details or to participate in the discussion around payment proofs and block-level scoring, please check out to the following **forum thread: [https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202](https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202)**
+Note that a “block score” is not meant to be a formal definition of realized extractable value, since this is a difficult metric to quantify. For example, a Layer 2 transfer to a validator’ fee recipient address could be considered extractable value, but falls outside the scope of a block score calculation. 
+
+Constructing a payment proof for this scoring method requires a Merkle Proof of the fee recipient balance in block *(n - 1)*, and a Merkle Proof of the fee recipient balance in block *n*. **Payment proofs have not yet been put into production.** Active discussion about payment proof implementation is still on-going. For more details or to participate in the discussion around payment proofs and block-level scoring, please check out to the [block scoring](https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202) forum thread.
 
 ## External Builders
 
 External builders can submit blocks to Mainnet, Goerli and Sepolia Flashbots relays. The table below outlines Builder API methods available on each network.
 
-### **Relay Block Submission Endpoints by Network**
+### Relay Block Submission Endpoints by Network
 
 |  |  | Mainnet | Goerli | Sepolia |
 | --- | --- | --- | --- | --- |
