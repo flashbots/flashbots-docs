@@ -47,14 +47,12 @@ External builders can submit blocks to Mainnet, Goerli and Sepolia Flashbots rel
 
 Submissions to all relays are currently rate-limited to 60 blocks / minute.
 
-## Links & References
-
-- [MEV-Boost Geth Builder](https://github.com/flashbots/boost-geth-builder) - an example builder implementation
-- [Relay API documentation - Block Builder API](https://bit.ly/3BmGZ3T)
-- Block Builder Self-Help Group: [https://collective.flashbots.net/c/builders/14](https://collective.flashbots.net/c/builders/14)
-- Github issue about becoming block builder: [https://github.com/flashbots/mev-boost/issues/145](https://github.com/flashbots/mev-boost/issues/145).
 
 ## Flashbots Builders
+
+All Flashbots builders pay block proposers from the `[flashbots-builder.eth` ENS address](https://etherscan.io/address/0xdafea492d9c6733ae3d56b7ed1adb60692c98bc5). Each Flashbots builder uses a different public key (`builder_pubkey`) for relay identification and analytics purposes. 
+
+The various `builder_pubkeys` used to identify Flashbots builders to relays are listed below:
 
 | **Builder 'Name'** | **Builder Public Key** |
 | --- | --- |
@@ -63,7 +61,12 @@ Submissions to all relays are currently rate-limited to 60 blocks / minute.
 | **dead**| 0xa1**dead**1e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc |
 | **defa** *(mempool builder)* | 0xa1**defa**73d675983a6972e8686360022c1ebc73395067dd1908f7ac76a526a19ac75e4f03ccab6788c54fdb81ff84fc1b |
 
+## Additional Links & References
 
-All Flashbots builders pay block proposers from the `[flashbots-builder.eth` ENS address](https://etherscan.io/address/0xdafea492d9c6733ae3d56b7ed1adb60692c98bc5). Each Flashbots builder uses a different public key (`builder_pubkey`) for relay identification and analytics purposes. 
+- [MEV-Boost Geth Builder](https://github.com/flashbots/boost-geth-builder) - an example builder implementation
+- [Relay API documentation - Block Builder API](https://bit.ly/3BmGZ3T)
+- Block Builder Self-Help Group: [https://collective.flashbots.net/c/builders/14](https://collective.flashbots.net/c/builders/14)
+- Github issue about becoming block builder: [https://github.com/flashbots/mev-boost/issues/145](https://github.com/flashbots/mev-boost/issues/145).
+- [Mevboost.org*](https://www.mevboost.org/) - Tracking MEV-Boost relays and block builders. A quick hack by [Anish](https://anishagnihotri.com/). Design inspired by file.app.
 
-The various `builder_pubkeys`used to identify Flashbots builders to relays are listed below:
+*Note: Flashbots does not control and cannot verify the data coming from external people and organizations. Please direct questions or issues directly to the creators of external data sources.* 
