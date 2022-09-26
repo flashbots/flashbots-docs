@@ -35,6 +35,11 @@ External builders can submit blocks to Mainnet, Goerli and Sepolia Flashbots rel
 
 ### **Relay Block Submission Endpoints by Network**
 
+|  |  | Mainnet | Goerli | Sepolia |
+| --- | --- | --- | --- | --- |
+| `getValidators` | GET Request - Returns an array of validator registrations with assigned duties in the current and next epoch | https://boost-relay.flashbots.net/relay/v1/builder/validators  | https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators  | https://builder-relay-sepolia.flashbots.net/relay/v1/builder/validators |
+| `submitBlock` | POST Request - submits a block to the builder | https://boost-relay.flashbots.net/relay/v1/builder/blocks  | https://builder-relay-goerli.flashbots.net/relay/v1/builder/blocks | https://builder-relay-sepolia.flashbots.net/relay/v1/builder/blocks |
+
 - See also the [Relay API documentation - Block Builder API](https://bit.ly/3BmGZ3T) for more details on the API and payloads.
 - The example [Flashbots builder implementation](https://github.com/flashbots/boost-geth-builder) is a good external builder reference, and is currently used in production by several builders.
 
@@ -50,6 +55,14 @@ Submissions to all relays are currently rate-limited to 60 blocks / minute.
 - Github issue about becoming block builder: [https://github.com/flashbots/mev-boost/issues/145](https://github.com/flashbots/mev-boost/issues/145).
 
 ## Flashbots Builders
+
+| **Builder 'Name'** | **Builder Public Key** |
+| --- | --- |
+| **babe**| 0x81**babe**ec8c9f2bb9c329fd8a3b176032fe0ab5f3b92a3f44d4575a231c7bd9c31d10b6328ef68ed1e8c02a3dbc8e80f9 |
+| **beef**| 0x81**beef**03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f |
+| **dead**| 0xa1**dead**1e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc |
+| **defa** *(mempool builder)* | 0xa1**defa**73d675983a6972e8686360022c1ebc73395067dd1908f7ac76a526a19ac75e4f03ccab6788c54fdb81ff84fc1b |
+
 
 All Flashbots builders pay block proposers from the `[flashbots-builder.eth` ENS address](https://etherscan.io/address/0xdafea492d9c6733ae3d56b7ed1adb60692c98bc5). Each Flashbots builder uses a different public key (`builder_pubkey`) for relay identification and analytics purposes. 
 
