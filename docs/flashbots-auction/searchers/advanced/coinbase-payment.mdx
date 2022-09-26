@@ -2,8 +2,8 @@
 title: coinbase.transfer()
 ---
 
-Flashbots allows you to pay miners for your transactions through a smart contract by using `block.coinbase.transfer(AMOUNT_TO_TRANSFER)`. This smart contract function transfers Ethereum from the contract to the coinbase address of the miner who mines that block. Miners running MEV-Geth will treat fees through coinbase transfers in the same way they do normal transaction fees, which is to say that 1 wei of coinbase payments is equivalent to 1 wei paid through transaction fees. This provides significant benefits to Flashbots users:
-* You can condition payment to the miner on some criteria being met
+Flashbots allows you to pay validators for your transactions through a smart contract by using `block.coinbase.transfer(AMOUNT_TO_TRANSFER)`. This smart contract function transfers Ethereum from the contract to the address of the validator who proposes a block. The Flashbots builder will treat fees through coinbase transfers in the same way they do normal transaction fees, which is to say that 1 wei of coinbase payments is equivalent to 1 wei paid through transaction fees. This provides significant benefits to Flashbots users:
+* You can condition payment to the validator on some criteria being met
 * Related, you can only pay for successful transactions, not failures
 * You can pay for a transaction from account X with ETH from account Y (see: searcher sponsored transaction repo [here](https://github.com/flashbots/searcher-sponsored-tx))
 
@@ -31,14 +31,14 @@ function uniswapWeth(uint256 _wethAmountToFirstMarket, uint256 _ethAmountToCoinb
 }
 ```
 
-The above smart contract code will attempt to capitalize on arbitrage opportunities. If it does not make money doing so then the transaction will fail. Moreover, since the searcher is paying the miner via `block.coinbase.transfer()` on the last line then the searcher won't pay any transaction fees.
+The above smart contract code will attempt to capitalize on arbitrage opportunities. If it does not make money doing so then the transaction will fail.
 
 For more information on how coinbase transfers are priced see the [bundle pricing page](/flashbots-auction/searchers/advanced/bundle-pricing).
 
 ## Managing payments to coinbase.address when it is a contract
-Miners will occasionally have a smart contract listed as their block.coinbase address. This changes the expected behavior of the making payments to block.coinbase. Specifically it costs more gas to transfer ETH to block.coinbase if it is a contract than if it is an EOA, and as such many searchers will underestimate their gas consumption and their bundles will fail for miners who use contracts instead.
+Validators will occasionally have a smart contract listed as their block.coinbase address. This changes the expected behavior of making payments to block.coinbase. Specifically it costs more gas to transfer ETH to block.coinbase if it is a contract than if it is an EOA, and as such many searchers will underestimate their gas consumption and their bundles will fail for validators who use contracts instead.
 
-To handle this edge case searchers can up their gas limit to accomodate the additional payment to miners and call block.coinbase in the following way:
+To handle this edge case searchers can up their gas limit to accomodate the additional payment to validators and call block.coinbase in the following way:
 
 ```solidity
 block.coinbase.call{value: _ethAmountToCoinbase}(new bytes(0));

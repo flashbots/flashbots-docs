@@ -23,3 +23,9 @@ miner payment includes payment through gas and coinbase transfers
 | gas_used                         | numeric                     | not null | total gas used by the transaction                      |
 | transaction_to_address           | character varying(256)      |          | to address of the transaction                          |
 | transaction_from_address         | character varying(256)      |          | from address of the transaction                        |
+
+:::note
+
+The "miner" nomenclature will be replaced in a future release to accurately reflect PoS Ethereum architecture.
+
+:::
