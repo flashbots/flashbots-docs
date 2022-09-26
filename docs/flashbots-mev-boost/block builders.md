@@ -53,7 +53,7 @@ Submissions to all relays are currently rate-limited to 60 blocks / minute.
 
 ## Flashbots Builders
 
-All Flashbots builders pay block proposers from the `[flashbots-builder.eth` ENS address](https://etherscan.io/address/0xdafea492d9c6733ae3d56b7ed1adb60692c98bc5). Each Flashbots builder uses a different public key (`builder_pubkey`) for relay identification and analytics purposes. 
+All Flashbots builders pay block proposers from the [`flashbots-builder.eth` ENS address](https://etherscan.io/address/0xdafea492d9c6733ae3d56b7ed1adb60692c98bc5). Each Flashbots builder uses a different public key (`builder_pubkey`) for relay identification and analytics purposes. 
 
 The various `builder_pubkeys` used to identify Flashbots builders to relays are listed below:
 
