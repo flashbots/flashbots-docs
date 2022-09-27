@@ -136,8 +136,13 @@ module.exports = {
     },
     {
       type: 'link',
+      label: 'Forum',
+      href: 'https://collective.flashbots.net/',
+    },
+    {
+      type: 'link',
       label: 'Discord',
-      href: 'https://discord.gg/7hvTycdNcK',
+      href: 'https://discord.gg/flashbots',
     },
     {
       type: 'link',
