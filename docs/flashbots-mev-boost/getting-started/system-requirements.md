@@ -25,3 +25,13 @@ This guide assumes a pre-installed and hardened Ubuntu installation [as well as
 **MEV-Boost Requirements**
 
 - Can run on any beacon-node system, and requires almost no resources.
+
+## Consensus client configuration guides
+
+|  | MEV-Boost Client Guides |
+| --- | --- |
+| Teku | [Guide](https://hackmd.io/@StefanBratanov/BkMlo1RO9)|
+| Prysm | [Guide](https://hackmd.io/@prysmaticlabs/BJeinxFsq) |
+| Lighthouse | [Guide](https://lighthouse-book.sigmaprime.io/builders.html#mev-and-lighthouse) |
+| Lodestar | [Guide](https://github.com/ChainSafe/lodestar/blob/unstable/docs/usage/mev-integration.md) |
+| Nimbus | [Guide](https://nimbus.guide/external-block-builder.html) |
