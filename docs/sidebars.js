@@ -1,12 +1,12 @@
 module.exports = {
   docs: [
     {
-      "welcome": [
+      "Welcome": [
         'welcome', 'new-to-mev', 'code-of-conduct'
       ],
     },
     {
-      'Flashbots auction': [
+      'Flashbots Auction': [
         'flashbots-auction/overview',
         {
           "for searchers": [
@@ -54,7 +54,7 @@ module.exports = {
       ]
     },
     {
-      "Flashbots data": [
+      "Flashbots Data": [
         {
           'mev-inspect': [
             'flashbots-data/mev-inspect-py/overview',
@@ -95,7 +95,7 @@ module.exports = {
       ],
     },
     {
-      "flashbots MEV-boost": [
+      "Flashbots MEV-Boost": [
         'flashbots-mev-boost/introduction',
         {
           'architecture overview': [
@@ -125,12 +125,12 @@ module.exports = {
       ],
     },
     {
-      "community": [
+      "Community": [
         'community-tools', 'whitehat',
       ],
     },
     {
-      "contribute": [
+      "Contribute": [
         'joining-flashbots', 'contribution-guide', 'cheatsheet',
       ],
     },
@@ -154,6 +154,6 @@ module.exports = {
       href: 'https://status.flashbots.net/',
       label: 'Status',
     },
-        'policies/privacy','policies/terms-of-service',
+        'policies/Privacy','policies/Terms-of-Service',
   ],
 };
