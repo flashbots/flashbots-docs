@@ -154,6 +154,6 @@ module.exports = {
       href: 'https://status.flashbots.net/',
       label: 'Status',
     },
-        'policies/Privacy','policies/Terms-of-Service',
+        'policies/privacy','policies/terms-of-service',
   ],
 };
