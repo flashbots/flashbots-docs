@@ -4,6 +4,11 @@ title: "testnet (Sepolia & Goerli)"
 
 Flashbots operates validators on Sepolia & Goerli so searchers can test Flashbots without risking real funds. Here's how to setup the Flashbots Bundle Provider in Ethers to use a testnet:
 
+| Testnet | RPC URL |
+| --- | --- |
+| Sepolia | https://bundle-relay-sepolia.flashbots.net |
+| Goerli | https://relay-goerli.flashbots.net |
+
 ```js
 // goerli
 // const provider = new ethers.getDefaultProvider("goerli");
@@ -19,14 +24,14 @@ const flashbotsProvider = await flashbots.FlashbotsBundleProvider.create(
   provider,
   authSigner,
   // "https://relay-goerli.flashbots.net", // goerli
-  "https://relay-sepolia.flashbots.net", // sepolia
+  "https://bundle-relay-sepolia.flashbots.net", // sepolia
   // "goerli"
   "sepolia"
 );
 ```
 
 :::caution Testnet Inclusion
-**Sepolia is recommended for faster inclusion**, as Flashbots has more validators on Sepolia than on Goerli.
+**Sepolia is recommended for faster inclusion**, as Flashbots has more validators on Sepolia than Goerli.
 :::
 
 Sending bundles works the same as sending bundles on the mainnet. For example this will simulate a bundle and if it is successful then send a batch of 10:
