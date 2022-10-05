@@ -24,7 +24,7 @@ Before you get started here are a few things to be mindful of:
 
 ## Choosing the right gas price
 
-In most cases sending a transaction through Flashbots Protect RPC should not require a higher gas price than normal. However, in periods of high load, you may want to increase gas prices to ensure your transaction is included in a block quickly. If the network is congested and you need your transaction quickly you could up your max fee to adjust for fluctations in base fee and set your priority fee to be 3 - 5 gwei.
+In most cases sending a transaction through Flashbots Protect RPC should not require a higher gas price than normal. However, in periods of high load, you may want to increase gas prices to ensure your transaction is included in a block quickly. If the network is congested and you need your transaction quickly you could up your max fee to adjust for fluctations in base fee and increase your priority fee by 3 - 5 gwei.
 
 Note also that the money saved from keeping reverts from landing on-chain means you will save money *even if you occasionally need to pay higher fees during periods of congestion*.
 
@@ -40,14 +40,23 @@ To add Flashbots Protect RPC endpoint follow these steps:
 ![first metamask onboarding image](/img/flashbotsRPC-metamask1.png)
 ![second metamask onboarding image](/img/flashbotsRPC-metamask2.png)
 
-## How to use Flashbots Protect RPC in Metamask (Goerli Test Network)
+## How to use Flashbots Protect RPC in Metamask (Sepolia or Goerli Test Network)
 
-Follow these steps to add Flashbots Protect RPC endpoint for Goerli:
+Follow these steps to add Flashbots Protect RPC endpoint for Sepolia or Goerli:
 
 1. Enter your MetaMask and click on your RPC endpoint at the top of your MetaMask. By default it says “Ethereum mainnet.”
 2. Click “Custom RPC”
-3. Add `https://rpc-goerli.flashbots.net` with a chainID of `5` and currency of `ETH`.
+3. Add the testnet URL from the following table with a chainID of `5` and currency of `ETH`.
 4. Scroll to the bottom and click “Save”
+
+:::caution Testnet Inclusion
+**Sepolia is recommended for faster inclusion**, as Flashbots has more validators on Sepolia than on Goerli.
+:::
+
+| Testnet | URL |
+| ------- | --- |
+| Sepolia | `https://rpc-sepolia.flashbots.net` |
+| Goerli | `https://rpc-goerli.flashbots.net` |
 
 ## Fixing stuck transactions or fixing nonce errors
 
