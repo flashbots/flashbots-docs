@@ -40,23 +40,18 @@ To add Flashbots Protect RPC endpoint follow these steps:
 ![first metamask onboarding image](/img/flashbotsRPC-metamask1.png)
 ![second metamask onboarding image](/img/flashbotsRPC-metamask2.png)
 
-## How to use Flashbots Protect RPC in Metamask (Sepolia or Goerli Test Network)
+## How to use Flashbots Protect RPC in Metamask (Goerli Test Network)
 
-Follow these steps to add Flashbots Protect RPC endpoint for Sepolia or Goerli:
+Follow these steps to add Flashbots Protect RPC endpoint for Goerli:
 
 1. Enter your MetaMask and click on your RPC endpoint at the top of your MetaMask. By default it says “Ethereum mainnet.”
 2. Click “Custom RPC”
-3. Add the testnet URL from the following table with a chainID of `5` and currency of `ETH`.
+3. Use the RPC URL `https://rpc-goerli.flashbots.net` with a chainID of `5` and currency of `ETH`.
 4. Scroll to the bottom and click “Save”
 
-:::caution Testnet Inclusion
-**Sepolia is recommended for faster inclusion**, as Flashbots has more validators on Sepolia than on Goerli.
+:::note
+Protect is not offered on Sepolia.
 :::
-
-| Testnet | URL |
-| ------- | --- |
-| Sepolia | `https://rpc-sepolia.flashbots.net` |
-| Goerli | `https://rpc-goerli.flashbots.net` |
 
 ## Fixing stuck transactions or fixing nonce errors
 
