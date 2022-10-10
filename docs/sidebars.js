@@ -98,7 +98,7 @@ module.exports = {
       "Flashbots MEV-Boost": [
         'flashbots-mev-boost/Introduction',
         {
-          'architecture-overview': [
+          'Architecture Overview': [
             'flashbots-mev-boost/architecture-overview/MEV-Boost Specifications',
             'flashbots-mev-boost/architecture-overview/MEV-Boost Block Proposal',
             'flashbots-mev-boost/architecture-overview/Risks'
@@ -108,6 +108,8 @@ module.exports = {
           'flashbots-mev-boost/Block Builders',
           'flashbots-mev-boost/Block Proposers',
           'flashbots-mev-boost/Relays',
+          'flashbots-mev-boost/Relay API Specification',
+
         {
           'Getting Started':[
             'flashbots-mev-boost/getting-started/System-Requirements',

@@ -1,4 +1,4 @@
-# introduction
+# Introduction
 
 ## What is MEV-Boost?
 
