@@ -1,8 +1,10 @@
 # Relay API Specification
 
+The Flashbots [mev-boost-relay](https://github.com/flashbots/mev-boost-relay) is open source technology. The following document details Version 1 of the MEV-Boost Relay API Specification.
+
 ## Data types
 
-A reference implementation of the data types with correct SSZ encoding and signing routines can be found in this repository: [https://github.com/flashbots/go-boost-utils](https://github.com/flashbots/go-boost-utils)
+A reference implementation of the data types with correct SSZ encoding and signing routines can be found in the [go-boost-utils](https://github.com/flashbots/go-boost-utils) directory.
 
 ### [builder-specs](https://github.com/ethereum/builder-specs) and [beacon-APIs](https://github.com/ethereum/beacon-APIs)
 
@@ -17,7 +19,7 @@ Represents public information about a block sent by a builder to the relay, or f
 
 ```json
 {
-	"slot": "123",
+  "slot": "123",
   "parent_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
   "block_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
   "builder_pubkey": "0x7b2cb8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
@@ -25,24 +27,24 @@ Represents public information about a block sent by a builder to the relay, or f
   "proposer_fee_recipient": "0x2b7a7b8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
   "gas_used": "3371033",
   "gas_limit": "30000000",
-	"value": "1234567"
+  "value": "1234567"
 }
 ```
 
-See also the [reference implementation of `BidTrace`](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L217)
+See the [reference implementation of `BidTrace`](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L217) for more information.
 
 ### SignedBidTrace
 
 ```json
 {
-	"message": BidTrace
+  "message": BidTrace
   "signature": "0x..."
-}
+  }
 ```
 
 Note: BLS signature using the builder domain (relative to the genesis fork and with a zero genesis validators root).
 
-See also the [reference implementation of `SignedBidTrace`](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L230)
+See the [reference implementation of `SignedBidTrace`](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L230) for more information.
 
 ### ValidatorRegistration
 
@@ -50,17 +52,19 @@ See also the [reference implementation of `SignedBidTrace`](https://github.com/f
 {
   "message": {
     "fee_recipient": "0xabcf8e0d4e9587369b2301d0790347320302cc09",
-	  "gas_limit": "1",
+    "gas_limit": "1",
     "timestamp": "1",
     "pubkey": "0x93247f2209abcacf57b75a51dafae777f9dd38bc7053d1af526f220a7489a6d3a2753e5f3e8b1cfe39b56f43611df74a"
-  },
+    },
   "signature": "0x1b66ac1fb663c9bc59509846d6ec05345bd908eda73e670af888da41af171505cc411d61252fb6cb3fa0017b679f8bb2305b26a285fa2737f175668d0dff91cc1b66ac1fb663c9bc59509846d6ec05345bd908eda73e670af888da41af171505"
 }
 ```
 
-([reference implementation](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L170))
+See the [ValidatorRegistration](https://github.com/flashbots/go-boost-utils/blob/main/types/builder.go#L170) reference implementation.
 
 ### ErrorResponse
+
+All API errors follow the following schema:
 
 ```json
 {
@@ -68,9 +72,6 @@ See also the [reference implementation of `SignedBidTrace`](https://github.com/f
   "message": "description about the error"
 }
 ```
-
-All API errors follow this schema:
-
 ---
 
 ## Proposer API
@@ -94,6 +95,7 @@ Get a list of validator registrations for validators scheduled to propose in the
 
 `GET /relay/v1/builder/validators`
 
+
 **Success Response**
 
 Array of validatorRegistrations for the current and next epoch. Each entry includes a slot and the validator with assigned duty (if he submitted a registration previously). Slots without a registered validator are omitted.
@@ -102,13 +104,13 @@ Array of validatorRegistrations for the current and next epoch. Each entry inclu
 
 ```json
 [{
-	"slot": "123",
-	"entry": ValidatorRegistration
+  "slot": "123",
+  "entry": ValidatorRegistration
 }, 
 ...]
 ```
 
-Goerli Example) [https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators](https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators)
+API Example on Goerli) [https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators](https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators)
 
 ## submitBlock
 
@@ -130,41 +132,41 @@ Submit a new block to the relay, for a given `slot` + `parentHash` + `proposerPu
 ```json
 // Type:
 {
-  "signature": "0x8c795f751f812eabbabdee85100a06730a9904a4b53eedaa7f546fe0e23cd75125e293c6b0d007aa68a9da4441929d16072668abb4323bb04ac81862907357e09271fe414147b3669509d91d8ffae2ec9c789a5fcd4519629b8f2c7de8d0cce9"
-	"message": BidTrace
-  "execution_payload": ExecutionPayload
+"signature": "0x8c795f751f812eabbabdee85100a06730a9904a4b53eedaa7f546fe0e23cd75125e293c6b0d007aa68a9da4441929d16072668abb4323bb04ac81862907357e09271fe414147b3669509d91d8ffae2ec9c789a5fcd4519629b8f2c7de8d0cce9"
+"message": BidTrace
+"execution_payload": ExecutionPayload
 }
 
 // Example:
 {
-  "signature": "0x8c795f751f812eabbabdee85100a06730a9904a4b53eedaa7f546fe0e23cd75125e293c6b0d007aa68a9da4441929d16072668abb4323bb04ac81862907357e09271fe414147b3669509d91d8ffae2ec9c789a5fcd4519629b8f2c7de8d0cce9"
-	"message": {
-	  "slot": "123",
-    "parent_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-    "block_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-    "builder_pubkey": "0x7b2acb8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
-    "proposer_pubkey": "0x8a1d7b8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
-    "proposer_fee_recipient": "0xf1469083b2cbab4d1f648176bf8e26e581ebabd4",
-    "gas_used": "3371033",
-    "gas_limit": "30000000",
-		"value": "1234567",
-	},
-  "execution_payload": {
-    "parent_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-    "fee_recipient": "0xabcf8e0d4e9587369b2301d0790347320302cc09",
-    "state_root": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-    "receipts_root": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-    "logs_bloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-    "prev_randao": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-    "block_number": "1",
-    "gas_used": "3371033",
-    "gas_limit": "30000000",
-    "timestamp": "1",
-    "extra_data": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-    "base_fee_per_gas": "1",
-    "block_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
-    "transactions": [
-        "0x02f878831469668303f51d843b9ac9f9843b9aca0082520894c93269b73096998db66be0441e836d873535cb9c8894a19041886f000080c001a031cc29234036afbf9a1fb9476b463367cb1f957ac0b919b69bbc798436e604aaa018c4e9c3914eb27aadd0b91e10b18655739fcf8c1fc398763a9f1beecb8ddc86"
+"signature": "0x8c795f751f812eabbabdee85100a06730a9904a4b53eedaa7f546fe0e23cd75125e293c6b0d007aa68a9da4441929d16072668abb4323bb04ac81862907357e09271fe414147b3669509d91d8ffae2ec9c789a5fcd4519629b8f2c7de8d0cce9"
+"message": {
+  "slot": "123",
+  "parent_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+  "block_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+  "builder_pubkey": "0x7b2acb8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
+  "proposer_pubkey": "0x8a1d7b8dd64e0aafe7ea7b6c95065c9364cf99d38470c12ee807d55f7de1529ad29ce2c422e0b65e3d5a05c02caca249",
+  "proposer_fee_recipient": "0xf1469083b2cbab4d1f648176bf8e26e581ebabd4",
+  "gas_used": "3371033",
+  "gas_limit": "30000000",
+  "value": "1234567",
+},
+"execution_payload": {
+  "parent_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+  "fee_recipient": "0xabcf8e0d4e9587369b2301d0790347320302cc09",
+  "state_root": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+  "receipts_root": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+  "logs_bloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "prev_randao": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+  "block_number": "1",
+  "gas_used": "3371033",
+  "gas_limit": "30000000",
+  "timestamp": "1",
+  "extra_data": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+  "base_fee_per_gas": "1",
+  "block_hash": "0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2",
+  "transactions": [
+    "0x02f878831469668303f51d843b9ac9f9843b9aca0082520894c93269b73096998db66be0441e836d873535cb9c8894a19041886f000080c001a031cc29234036afbf9a1fb9476b463367cb1f957ac0b919b69bbc798436e604aaa018c4e9c3914eb27aadd0b91e10b18655739fcf8c1fc398763a9f1beecb8ddc86"
     ]
   }
 }
@@ -178,9 +180,10 @@ Success response (in discussion, not yet implemented):
 
 ```json
 {
-  "message": {
-    "receive_timestamp": "1655906415",
-    "bid_trace": [BidTrace](https://www.notion.so/Relay-API-Documentation-5fb0819366954962bc02e81cb33840f5) ,
+"message": {
+  "receive_timestamp": "1655906415",
+  "bid_trace": BidTrace,
+
   },
   "signature": "0x..."
 }
@@ -192,7 +195,7 @@ Status code ≥ 300
 
 ```bash
 {
-	"code": 400,
+  "code": 400,
   "message": "some human readable error message"
 }
 ```
@@ -228,17 +231,12 @@ Optional query arguments:
     - `-value` to sort result by descending value (highest value first)
     - `value` to sort result by ascending value (lowest value first)
 
-The response payload is an array of [BidTrace](https://www.notion.so/Relay-API-Documentation-5fb0819366954962bc02e81cb33840f5) objects :
+The response payload is an array of [BidTrace](https://www.notion.so/Relay-API-Documentation-5fb0819366954962bc02e81cb33840f5) objects.
 
-```json
-[BidTrace](https://www.notion.so/Relay-API-Documentation-5fb0819366954962bc02e81cb33840f5)]
-```
-
-Note: In case of reorgs there could be multiple bids per slot.
-
-This API is live on all our relays: [https://boost-relay.flashbots.net/relay/v1/data/bidtraces/proposer_payload_delivered?limit=10](https://boost-relay.flashbots.net/relay/v1/data/bidtraces/proposer_payload_delivered?limit=10) 
-
-(rate limit is 60 req/min/ip)
+**Notes:** 
+- In case of reorgs there could be multiple bids per slot.
+- This API is live on all our relays: [https://boost-relay.flashbots.net/relay/v1/data/bidtraces/proposer_payload_delivered?limit=10](https://boost-relay.flashbots.net/relay/v1/data/bidtraces/proposer_payload_delivered?limit=10) 
+- Rate limit is 60 Req/Min/IP
 
 ## BuilderBlocksReceived
 
@@ -253,18 +251,14 @@ Optional query arguments:
 - `block_hash`: search for a specific blockhash
 - `block_number`: search for a specific EL block number
 
-The response payload is an array of [BidTrace](https://www.notion.so/Relay-API-Documentation-5fb0819366954962bc02e81cb33840f5)WithTimestamp objects:
+**Response:**
+The response payload is an array of [BidTraceWithTimestamp](https://bit.ly/3UgzlyT) objects. 
 
-```json
-[BidTraceWithTimestamp](https://www.notion.so/Relay-API-Documentation-5fb0819366954962bc02e81cb33840f5)
-```
-
-This API is live on all our relays: [https://boost-relay.flashbots.net/relay/v1/data/bidtraces/builder_blocks_received?slot=4739651](https://boost-relay.flashbots.net/relay/v1/data/bidtraces/builder_blocks_received?slot=4739651)
-
-(rate limit is 60 req/min/ip)
-
-Note: there is currently no `cursor` argument, because with possibly *many* bids per slot, a cursor might omit some. Behavior here is up to discussion.
-
+**Notes:**
+- This API is live on all our relays: [https://boost-relay.flashbots.net/relay/v1/data/bidtraces/builder_blocks_received?slot=4739651](https://boost-relay.flashbots.net/relay/v1/data/bidtraces/builder_blocks_received?slot=4739651). 
+- Rate limit is 60 Req/Min/IP
+- There is currently no `cursor` argument, because with possibly *many* bids per slot, a cursor might omit some. Behavior here is up to discussion.
+  
 ## ValidatorRegistration
 
 Return the latest validator registration for a given pubkey. Useful to check whether your own registration was successful.
@@ -283,6 +277,11 @@ ValidatorRegistration
 
 Note: this API call is more strictly rate-limited.
 
+---
+
+## Relay Infrastructure
+
+This is a simplified infrastructure diagram:
 
 ![Flashbots Relay](https://flashbots.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc4460f24-9643-470a-a956-d886bf92e354%2FScreenshot_2022-06-22_at_17.54.56.png?table=block&id=ed097235-1a1d-497f-b3a4-f2c4673ac26e&spaceId=df6156be-4a40-4dc3-9a41-d3def62df57a&width=2000&userId=&cache=v2)
 

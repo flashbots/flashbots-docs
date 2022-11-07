@@ -1,6 +1,4 @@
-### Relay Fundamentals
-
-**What is a Relay?**
+## What is a Relay?
 
 Relays are a doubly-trusted data-availability layer and communication interface between builders and validators. Relays are trusted by builders for fair payload routing, and trusted by proposers for block validity, accuracy, and data availability. They are often specialized in Denial of Service (DoS) protection and networking.
 
@@ -8,7 +6,7 @@ Relays can connect to one or many builders, and we expect that there will be bot
 
 Before validators can receive any bids from relays, they need to [set up mev-boost](https://boost.flashbots.net/) and add relays to their mev-boost config. mev-boost is effectively just a relay aggregator or a local relay of relays. It will serve the validator the winning bid from all relays. A validator can connect to a small number of relays that aggregate all the builders, and many will probably do that. Other validators might connect to many relays.
 
-**The Role of Relays**
+## The Role of Relays
 
 A relay has several responsibilities:
 

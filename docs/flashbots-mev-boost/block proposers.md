@@ -1,14 +1,10 @@
-## Block Proposers
-
-### Block Proposer Fundamentals
-
-**What is a Block Proposer?**
+## What is a Block Proposer?
 
 A block proposer is a validator that has been pseudorandomly selected to build a block for a given slot in an epoch (there are 32 slots per epoch). Proposers are selected from the validator set using the standard RANDAO mechanism. 
 
 Validators not pseudo-randomly assigned to propose blocks are assigned to attest, or vote on block proposals. These assignments are known 2 epochs in advance for attesters and 1 for proposers. The block in each slot will have a single validator serving as the proposer and many validators serving as the attesters to all information in that block. Attesters get rewarded for accurately voting on current values of 3 aspects of the beacon chain: the head of the chain (LMD Ghost), the justified checkpoint and the finalized checkpoint (Casper FFG). 
 
-**The Role of Block Proposers**
+## The Role of Block Proposers
 
 Without MEV-Boost, the original role of block proposers consisted of two jobs: 
 

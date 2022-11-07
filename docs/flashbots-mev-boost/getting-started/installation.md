@@ -1,4 +1,4 @@
-# Installation
+# installation
 
 The most common setup is to install MEV-Boost on the same machine as the beacon client. Multiple beacon-clients can use a single MEV-Boost instance. The default port is 18550.
 

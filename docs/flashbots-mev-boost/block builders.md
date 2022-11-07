@@ -1,10 +1,8 @@
-### Builder Fundamentals
-
-**What is a Builder?**
+### What is a Builder?
 
 Block builders are highly specialized actors who construct blocks from transaction orderflow (public transactions, bundles, private transactions, etc).
 
-**The Role of Builders**
+### The Role of Builders
 
 Builders run algorithms and simulations (e.g. First Come First Serve, First Price Auctions, etc.) to order bundles and TXs in a block template (technically: `execution payload`) that maximizes profit. Builders then bid for and buy the validators’ blockspace, facilitated by one or more relays, so their execution payloads are proposed to the blockchain.
 
