@@ -32,3 +32,7 @@ Each consensus client implements different circuit breaker conditions, as an exa
 | Name | Value | Units |
 | --- | --- | --- |
 | MAX_ALLOWED_MISSING_SLOTS | 5 | slot(s) |
+
+---
+
+*Users of this informational material are responsible for determining any applicable legal restrictions on any direct or derivative use of this information, including complying with applicable economic sanctions laws within their home jurisdictions.  Please also see Github’s [Trade Controls](https://docs.github.com/en/site-policy/other-site-policies/github-and-trade-controls) page. Flashbots makes no representation or warranty as to any Relay Operator or other entity’s compliance with economic sanctions or other laws and regulations.*

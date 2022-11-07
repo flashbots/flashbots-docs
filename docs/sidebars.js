@@ -97,6 +97,8 @@ module.exports = {
     {
       "Flashbots MEV-Boost": [
         'flashbots-mev-boost/Introduction',
+        'flashbots-mev-boost/Quickstart',
+
         {
           'Overview': [
             'flashbots-mev-boost/architecture-overview/specifications',

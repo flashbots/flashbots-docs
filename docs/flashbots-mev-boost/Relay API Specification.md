@@ -290,3 +290,7 @@ This is a simplified infrastructure diagram:
 - Validator registrations need to be handled in a scalable fashion, independently of the other proposer APIs (`getHeader`, `submitBlindedBlock`). The burst of up to 1M validator registrations each epoch requires a lot of resources to process, verify and save to a database.
 - Block submissions need to be verified by simulating the full block, and the relay needs to be prepared to throttle any individual builder in case of spam or other issues (continuous invalid blocks or incorrect proposer payment).
 - Operating a relay is infrastructure-intensive, and bugs can negatively impact Eth2 consensus. One of the solutions Flashbots is working on is a service called [Relay Monitor](https://github.com/flashbots/mev-boost/issues/142), which tracks relay performance and helps proposers interact only with healthy relays.
+
+---
+
+*Users of this informational material are responsible for determining any applicable legal restrictions on any direct or derivative use of this information, including complying with applicable economic sanctions laws within their home jurisdictions.  Please also see Github’s [Trade Controls](https://docs.github.com/en/site-policy/other-site-policies/github-and-trade-controls) page. Flashbots makes no representation or warranty as to any Relay Operator or other entity’s compliance with economic sanctions or other laws and regulations.*
