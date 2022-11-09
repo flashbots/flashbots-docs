@@ -15,10 +15,10 @@ const Button = ({ children, href, action, inline = false }: IButton) => {
     action && action()
     if (href) {
       if (href.includes("http://") || href.includes("https://")) {
-        window.open(
-          href,
-          '_blank'
-        );
+        let a = document.createElement('a');
+        a.target = '_blank';
+        a.href= href;
+        a.click();
       } else {
         history.push(href)
       }
