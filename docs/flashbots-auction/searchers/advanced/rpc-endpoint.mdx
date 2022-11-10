@@ -275,7 +275,7 @@ Parameters with `miner` in the name are retrofitted with Flashbots block builder
 
 ### flashbots_getBundleStats
 
-The `flashbots_getBundleStats` JSON-RPC method returns stats for a single bundle. You must provide a blockNumber and the bundleHash, and the signing address must be the same as the one who submitted the bundle.
+The `flashbots_getBundleStats` JSON-RPC method returns stats for a single bundle. You must provide a bundleHash and the blockNumber, and the signing address must be the same as the one who submitted the bundle.
 
 ```json
 {
@@ -298,11 +298,40 @@ example response:
   "isSimulated": true,
   "isSentToMiners": true,
   "isHighPriority": true,
-  "simulatedAt": "2021-08-06T21:36:06.317Z",
-  "submittedAt": "2021-08-06T21:36:06.250Z",
-  "sentToMinersAt": "2021-08-06T21:36:06.343Z"
+  "sentToMinersAt": "2022-11-09T23:28:05.341Z",
+  "simulatedAt": "2022-11-09T23:28:05.110Z",
+  "submittedAt": "2022-11-09T23:28:05.103Z",
+  "consideredByBuildersAt": [ // v2 api
+    {
+      "pubkey": "0xa1dead01e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
+      "timestamp": "2022-11-09T23:28:05.341Z"
+    }, ...
+  ],
+  "sealedByBuildersAt": [ // v2 api
+    {
+      "pubkey": "0xa1dead01e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
+      "timestamp": "2022-11-09T23:28:08.095Z"
+    }, ...
+  ]
 }
 ```
+
+:::caution deprecation notice 
+The following fields from this endpoint will be deprecated in the upcoming v2 release:
+* `submittedAt`
+* `sentToMinersAt`
+* `isSimulated`
+* `isSentToMiners`
+
+`submittedAt` will simply be renamed to `receivedAt`, to clearly indicate when the request was received by the RPC endpoint.
+
+New v2 fields: 
+* `consideredByBuildersAt` contains timestamps indicating when a builder considered the bundle for the target block
+* `sealedByBuildersAt` contains timestamps indicating when a builder built a full block containing the bundle
+
+Up until the v2 RPC release, we will include the new v2 fields with the v1 response. Outdated clients will still work, but only updated clients will be able to readily access the new data. Flashbots client releases will coincide with mainnet RPC upgrade schedules.
+:::
+
 
 ### Authentication
 
