@@ -2,14 +2,14 @@
 title: bundle cancellations
 ---
 
-### Understanding bundle cancellations
-
-Bundles can be replaced and canceled using a unique identifier (`replacementUuid`) assigned to a bundle at the time of submission.
-
 Bundle cancellations are currently deployed to our mainnet staging environment: `https://relay-staging.flashbots.net`. You must send both bundles and cancellations to this endpoint for it to be successful.
 
 This staging environment is limited to sending and cancelling bundles, and
 will only simulate bundles targeting currently built and the next blocks. The bundles make it to our staging builder (`0x81babe`) and you should see the bundles landing on mainnet as you would be using the production endpoint.
+
+### Understanding bundle cancellations
+
+Bundles can be replaced and canceled using a unique identifier (`replacementUuid`) assigned to a bundle at the time of submission.
 
 ```json
 {
