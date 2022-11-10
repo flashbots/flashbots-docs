@@ -7,8 +7,6 @@ interface IGridBlock {
 }
 
 const GridBlock = ({ children, title }: IGridBlock) => {
-  console.log(children)
-
   return (<div className={styles.root}>
     {
       title && (

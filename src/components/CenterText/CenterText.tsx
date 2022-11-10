@@ -1,15 +1,15 @@
 import React, { ReactNode } from "react"
 import styles from  './styles.module.scss';
 
-interface ICenter {
+interface ICenterText {
   children: ReactNode | ReactNode[]
 }
 
-const Center = ({ children }: ICenter) => {
+const CenterText = ({ children }: ICenterText) => {
 
   return (<span className={styles.root}>
     {children}
   </span>)
 }
 
-export default Center
+export default CenterText

@@ -11,18 +11,19 @@ keywords:
 import Grid from "@site/src/components/Grid/Grid.tsx";
 import GridBlock from "@site/src/components/GridBlock/GridBlock.tsx";
 import Button from "@site/src/components/Button/Button.tsx";
-import Center from "@site/src/components/Center/Center.tsx";
+import CenterText from "@site/src/components/CenterText/CenterText.tsx";
+import AlignItems from "@site/src/components/AlignItems/AlignItems.tsx";
 
-<Center>
+<CenterText>
 
 # Welcome to Flashbots
 
 # Get started
 
-</Center>
+</CenterText>
 
 <Grid>
-  <GridBlock title="Searchers">
+<GridBlock title="Searchers">
 
 [Understanding bundle](#)<br/>
 [RPC docs](#)<br/>
@@ -52,16 +53,19 @@ import Center from "@site/src/components/Center/Center.tsx";
 </GridBlock>
 </Grid>
 
-<Center>
+<CenterText>
 
 # Flashbots data
 
-</Center>
+</CenterText>
 
-<Center>
+<AlignItems horizontal="center" vertical="center" direction="row" sideMargin={0.5}>
 
-[Relay monitor](#) [MEV-Inspect](#) [MEV-Explore](#) [MEV-Blocks](#)
+[Relay monitor](#) 
+[MEV-Inspect](#) 
+[MEV-Explore](#) 
+[MEV-Blocks](#)
 
-</Center>
+</AlignItems>
 
 [Mission](https://writings.flashbots.net/writings/frontrunning-mev-crisis) | [Discord](https://discord.gg/7hvTycdNcK) | [Discourse Forum](https://collective.flashbots.net/) | [Blog](https://writings.flashbots.net) | [Github](https://github.com/flashbots/pm) | [Transparency Reports](https://writings.flashbots.net/writings/tags/transparency-report) | [Status](https://status.flashbots.net)
