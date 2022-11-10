@@ -55,7 +55,6 @@ const AlignItems = ({
       let childrenParsed;
       Children.toArray(children).map((child)=> {
         if (!childrenParsed) { 
-          console.log((child as ReactElement).props.children)
           childrenParsed = (child as ReactElement).props.children
         }
       })
