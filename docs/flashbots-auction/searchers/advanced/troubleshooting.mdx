@@ -202,15 +202,26 @@ Output:
   "isSimulated": true,
   "isSentToMiners": true,
   "isHighPriority": true,
-  "simulatedAt": "2021-10-29T04:00:50.526Z",
-  "submittedAt": "2021-10-29T04:00:50.472Z",
-  "sentToMinersAt": "2021-10-29T04:00:50.546Z"
+  "sentToMinersAt": "2022-11-09T23:28:05.341Z",
+  "simulatedAt": "2022-11-09T23:28:05.110Z",
+  "submittedAt": "2022-11-09T23:28:05.103Z",
+  "consideredByBuildersAt": [ // v2 api
+    {
+      "pubkey": "0xa1dead01e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
+      "timestamp": "2022-11-09T23:28:05.341Z"
+    }, ...
+  ],
+  "sealedByBuildersAt": [ // v2 api
+    {
+      "pubkey": "0xa1dead01e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
+      "timestamp": "2022-11-09T23:28:08.095Z"
+    }, ...
 }
 ```
 
-:::note
+:::caution Deprecation Notice
 
-Parameters with `miner` in the name are retrofitted with Flashbots block builder data to maintain backwards compatibility. This nomenclature will be changed in a future release to accurately reflect PoS Ethereum architecture.
+Parameters with `miner` in the name are retrofitted with Flashbots block builder data to maintain backwards compatibility. This nomenclature will be changed in a future release to accurately reflect PoS Ethereum architecture. See the [`flashbots_getBundleStats` RPC docs](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getbundlestats) for more info.
 
 :::
 
