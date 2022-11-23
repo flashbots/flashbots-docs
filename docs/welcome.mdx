@@ -14,16 +14,14 @@ import Button from "@site/src/components/Button/Button.tsx";
 import CenterText from "@site/src/components/CenterText/CenterText.tsx";
 import AlignItems from "@site/src/components/AlignItems/AlignItems.tsx";
 
-<CenterText>
-
 # Welcome to Flashbots
 
 # Get started
 
-</CenterText>
-
 <Grid>
-<GridBlock title="Searchers">
+<GridBlock symbol="I." title="Searchers">
+
+Searchers would be looking for RPC & client docs, and debugging information first and foremost.
 
 [Understanding bundle](#)<br/>
 [RPC docs](#)<br/>
@@ -31,24 +29,20 @@ import AlignItems from "@site/src/components/AlignItems/AlignItems.tsx";
 [Help & FAQs](#)
 
 </GridBlock>
-<GridBlock title="Eth Users">
+<GridBlock symbol="II." title="Eth Users">
 
-<Button href="https://thecatapi.com/api/images/get?format=src&type=gif">
-  Connect to protect
-</Button>
+Scam victims would be looking for the nearest GET HELP button.
 
 [Help & FAQs](#)
 
 </GridBlock>
-<GridBlock title="Validators, Builders & Relayers">
+<GridBlock symbol="III." title="Validators, Builders & Relayers">
+
+Auction is built on mev-boost, an implementation of proposer-builder separation for Ethereum.
 
 [Mev boost docs](#)<br/>
 [Builder docs](#)<br/>
 [Relay docs](#)
-
-<Button action={() => alert("CTA triggered")}>
-  Some call to action
-</Button>
 
 </GridBlock>
 </Grid>

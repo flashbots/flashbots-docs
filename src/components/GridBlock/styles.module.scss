@@ -1,12 +1,61 @@
 .root {
-  border: 1px solid gray;
-  border-radius: 5px;
+  position: relative;
+  padding: 32px 16px 25px;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  & > * {
+    &:first-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc((100% - 25px) + 1px);
+      border-top: 1px solid rgba(219,221,225, 0.5);
+      border-left: 1px solid rgba(219,221,225, 0.5);
+      border-right: 1px solid rgba(219,221,225, 0.5);
+    }
+    &:nth-child(2) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: calc((100% - 25px) + 1px);
+      height: 25px;
+      border-bottom: 1px solid rgba(219,221,225, 0.5);
+      border-left: 1px solid rgba(219,221,225, 0.5);
+    }
+    &:last-child {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
 }
 
 .title {
   text-align: center;
-  border-bottom: 1px solid gray;
-  padding: 0.5rem;
+  
+  & p {
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  & span {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  & hr {
+    width: 48px;
+    margin: 16px auto;
+  }
 }
 
 .content {
