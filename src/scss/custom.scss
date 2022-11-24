@@ -5,16 +5,68 @@
  * work well for content-centric websites.
  */
 
+ @font-face {
+  font-family: CMU-Serif;
+  src: url('/fonts/cmunbx.ttf') format('truetype');
+  style: bold;
+  weight: bold; 
+  stretch: 100;
+}
+@font-face {
+  font-family: CMU-Serif;
+  src: url('/fonts/cmunci.ttf') format('truetype');
+  style: italic;
+  weight: 400; 
+  stretch: 100;
+}
+@font-face {
+  font-family: CMU-Serif;
+  src: url('/fonts/cmunrm.ttf') format('truetype');
+  style: normal;
+  weight: 400; 
+  stretch: 100;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+  weight: 400; 
+}
+@font-face {
+  font-family: Roboto;
+  src: url('/fonts/Roboto-Italic.ttf') format('truetype');
+  style: italic;
+  weight: 400; 
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+  weight: 700; 
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+  style: italic;
+  weight: 700; 
+}
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  // --ifm-link-color: #0044FF;
+  // --ifm-menu-color-active: #0044FF;
+  // --ifm-toc-link-color: #0044FF;
+  // --ifm-color-primary: #25c2a0;
+  --ifm-color-primary: #0044FF;
+  // --ifm-color-primary-dark: rgb(33, 175, 144);
+  // --ifm-color-primary-darker: rgb(31, 165, 136);
+  // --ifm-color-primary-darkest: rgb(26, 136, 112);
+  // --ifm-color-primary-light: rgb(70, 203, 174);
+  // --ifm-color-primary-lighter: rgb(102, 212, 189);
+  // --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+  --ifm-font-family-base: "Roboto", "Franklin Gothic Medium", Tahoma, sans-serif;
 }
 
 .docusaurus-highlight-code-line {
@@ -38,4 +90,20 @@
 .caption-img>p {
   padding-top: 0;
   margin-bottom: 4px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'CMU-Serif', system-ui, -apple-system, BlinkMacSystemFont,
+  'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', 'Noto Sans', sans-serif;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+h2 {
+  font-weight: 500;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(219,221,225, 0.5);
 }
