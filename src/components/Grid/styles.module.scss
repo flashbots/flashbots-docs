@@ -1,7 +1,7 @@
 .root {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 1rem;
   margin-bottom: 2rem;
   // @media (min-width: 600px) {
   //   grid-template-columns: repeat(2, 1fr); 
