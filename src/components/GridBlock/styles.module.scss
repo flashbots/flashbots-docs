@@ -40,7 +40,11 @@
 
 .title {
   text-align: center;
-  
+  height: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   & p {
     margin-bottom: 8px;
     font-size: 11px;
@@ -48,6 +52,7 @@
   }
 
   & span {
+    flex-grow: 2;
     font-size: 1.2rem;
     line-height: 1.25;
     font-weight: 500;
