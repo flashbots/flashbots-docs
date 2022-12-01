@@ -1,7 +1,6 @@
 ---
 title: quick start
 ---
-**Please note that Flashbots Protect RPC is currently in public beta. Your transactions may occasionally time out and not be included!**
 
 Flashbots Protect RPC allows regular users to easily submit their transactions to the Flashbots Auction by using a custom RPC endpoint in their wallet. Everything should be the same for users, except transactions are sent to the Flashbots builder instead of the public mempool.
 
@@ -10,6 +9,8 @@ Key benefits to using the Flashbots RPC endpoint:
 - **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
 - **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
     > Note: your transaction could be uncled, emitted to the mempool, and then included on-chain.
+
+Privacy notice: **Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
 
 ## Key considerations
 
