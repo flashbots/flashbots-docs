@@ -25,7 +25,7 @@ $\Delta_{coinbase_T}$: coinbase difference from direct payment in transaction $T
 
 Flashbots uses a dynamic threshold to classify users between the high reputation and low reputation queue. The dynamic variables are: 1) the historical time period considered to calculate reputation, 2) the cutoff reputation score which classifies a searcher as "high reputation". Using a dynamic threshold allows the builder to adapt in periods of high demand and maintain high reliability for top searchers.
 
-A searcher can query their current reputation status using the [`flashbots_getUserStats` RPC method](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getuserstats).
+A searcher can query their current reputation status using the [`flashbots_getUserStatsV2` RPC method](/flashbots-auction/searchers/advanced/rpc-endpoint-v2#flashbots_getuserstatsV2).
 
 ## Building reputation
 

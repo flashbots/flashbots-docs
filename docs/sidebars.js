@@ -17,7 +17,8 @@ module.exports = {
                 'flashbots-auction/searchers/advanced/understanding-bundles',
                 'flashbots-auction/searchers/advanced/coinbase-payment',
                 'flashbots-auction/searchers/advanced/bundle-pricing',
-                'flashbots-auction/searchers/advanced/rpc-endpoint',
+                'flashbots-auction/searchers/advanced/rpc-endpoint-v1',
+                'flashbots-auction/searchers/advanced/rpc-endpoint-v2',
                 'flashbots-auction/searchers/advanced/reputation',
                 'flashbots-auction/searchers/advanced/goerli-testnet',
                 'flashbots-auction/searchers/advanced/eip1559',
@@ -121,7 +122,7 @@ module.exports = {
           'flashbots-mev-boost/FAQ',
           'flashbots-mev-boost/glossary',
           'flashbots-mev-boost/resources',
-          'flashbots-mev-boost/community-tools',          
+          'flashbots-mev-boost/community-tools',
       ],
     },
     {
