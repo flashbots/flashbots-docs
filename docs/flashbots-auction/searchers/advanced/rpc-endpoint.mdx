@@ -7,7 +7,7 @@ import TabItem from "@theme/TabItem";
 
 :::danger
 
-flashbots_getUserStats and flashbots_getBundleStats methods will be deprecated soon, use V2 methods!
+flashbots_getUserStats and flashbots_getBundleStats methods will be deprecated on March 31, 2023, use V2 methods!
 
 :::
 
@@ -354,7 +354,9 @@ The `flashbots_getUserStatsV2` JSON-RPC method returns a quick summary of how a 
   "id": 1,
   "method": "flashbots_getUserStatsV2",
   "params": [
-      blockNumber,       // String, a hex encoded recent block number, in order to prevent replay attacks. Must be within 20 blocks of the current chain tip.
+    {
+      blockNumber       // String, a hex encoded recent block number, in order to prevent replay attacks. Must be within 20 blocks of the current chain tip.
+    }
   ]
 }
 ```
