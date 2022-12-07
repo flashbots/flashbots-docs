@@ -5,6 +5,12 @@ title: RPC endpoint
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+:::danger
+
+flashbots_getUserStats and flashbots_getBundleStats methods will be deprecated soon, use V2 methods!
+
+:::
+
 ## How to interact directly with the Flashbots RPC endpoint
 
 Advanced users can interact with the RPC endpoint at `relay.flashbots.net`. The API provides JSON-RPC methods for interfacing with Flashbots which are documented below:
@@ -234,6 +240,12 @@ example response:
 
 ### flashbots_getUserStats
 
+:::caution
+
+flashbots_getUserStats will be deprecated soon, use [flashbots_getUserStatsV2](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getuserstatsv2)
+
+:::
+
 The `flashbots_getUserStats` JSON-RPC method returns a quick summary of how a searcher is performing in the Flashbots ecosystem, including their [reputation-based priority](/flashbots-auction/searchers/advanced/reputation). It is currently updated once every hour and has the following payload format:
 
 ```json
@@ -267,13 +279,19 @@ where
 - `all_time_miner_payments`: the total amount paid to validators over all time
 - `all_time_gas_simulated`: the total amount of gas simulated across all bundles submitted to Flashbots. This is the actual gas used in simulations, not gas limit
 
-:::note 
+:::note
 
 Parameters with `miner` in the name are retrofitted with Flashbots block builder data to maintain backwards compatibility. This nomenclature will be changed in a future release to accurately reflect PoS Ethereum architecture.
 
 :::
 
 ### flashbots_getBundleStats
+
+:::caution
+
+flashbots_getBundleStats will be deprecated soon, use [flashbots_getBundleStatsV2](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getbundlestatsv2)
+
+:::
 
 The `flashbots_getBundleStats` JSON-RPC method returns stats for a single bundle. You must provide a blockNumber and the bundleHash, and the signing address must be the same as the one who submitted the bundle.
 
@@ -300,9 +318,129 @@ example response:
   "isHighPriority": true,
   "simulatedAt": "2021-08-06T21:36:06.317Z",
   "submittedAt": "2021-08-06T21:36:06.250Z",
-  "sentToMinersAt": "2021-08-06T21:36:06.343Z"
+  "sentToMinersAt": "2021-08-06T21:36:06.343Z",
+  "receivedAt": "2022-10-06T21:36:06.250Z", // Added for POS, will be included as part of V2
+  "consideredByBuildersAt": [
+		{
+			"pubkey": "0x81babeec8c9f2bb9c329fd8a3b176032fe0ab5f3b92a3f44d4575a231c7bd9c31d10b6328ef68ed1e8c02a3dbc8e80f9",
+			"timestamp": "2022-10-06T21:36:06.343Z"
+		},
+		{
+			"pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
+			"timestamp": "2022-10-06T21:36:06.394Z"
+		},
+		{
+			"pubkey": "0xa1dead1e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
+			"timestamp": "2022-10-06T21:36:06.322Z"
+		}
+	], // Added for POS, will be included as part of V2
+  "sealedByBuildersAt": [
+    {
+      "pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
+			"timestamp": "2022-10-06T21:36:07.742Z"
+		}
+  ] // Added for POS, will be included as part of V2
 }
 ```
+
+
+### flashbots_getUserStatsV2
+
+The `flashbots_getUserStatsV2` JSON-RPC method returns a quick summary of how a searcher is performing in the Flashbots ecosystem, including their [reputation-based priority](/flashbots-auction/searchers/advanced/reputation). It is currently updated once every hour and has the following payload format:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "flashbots_getUserStatsV2",
+  "params": [
+      blockNumber,       // String, a hex encoded recent block number, in order to prevent replay attacks. Must be within 20 blocks of the current chain tip.
+  ]
+}
+```
+
+example response:
+
+```json
+{
+  "isHighPriority": true,
+  "allTimeValidatorPayments": "1280749594841588639",
+  "allTimeGasSimulated": "30049470846",
+  "last7dValidatorPayments": "1280749594841588639",
+  "last7dGasSimulated": "30049470846",
+  "last1dValidatorPayments": "142305510537954293",
+  "last1dGasSimulated": "2731770076"
+}
+```
+
+where
+
+- `isHighPriority`: boolean representing if this searcher has a high enough reputation to be in the high priority queue
+- `allTimeValidatorPayments`: the total amount paid to validators over all time
+- `allTimeGasSimulated`: the total amount of gas simulated across all bundles submitted to Flashbots. This is the actual gas used in simulations, not gas limit
+
+
+### flashbots_getBundleStatsV2
+
+The `flashbots_getBundleStatsV2` JSON-RPC method returns stats for a single bundle. You must provide a blockNumber and the bundleHash, and the signing address must be the same as the one who submitted the bundle.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "flashbots_getBundleStatsV2",
+  "params": [
+    {
+      bundleHash,       // String, returned by the flashbots api when calling eth_sendBundle
+      blockNumber,       // String, the block number the bundle was targeting (hex encoded)
+    }
+  ]
+}
+```
+
+example response:
+
+```json
+{
+  "isHighPriority": true,
+  "isSimulated": true,
+  "simulatedAt": "2022-10-06T21:36:06.317Z",
+  "receivedAt": "2022-10-06T21:36:06.250Z",
+  "consideredByBuildersAt": [
+		{
+			"pubkey": "0x81babeec8c9f2bb9c329fd8a3b176032fe0ab5f3b92a3f44d4575a231c7bd9c31d10b6328ef68ed1e8c02a3dbc8e80f9",
+			"timestamp": "2022-10-06T21:36:06.343Z"
+		},
+		{
+			"pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
+			"timestamp": "2022-10-06T21:36:06.394Z"
+		},
+		{
+			"pubkey": "0xa1dead1e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
+			"timestamp": "2022-10-06T21:36:06.322Z"
+		}
+	],
+  "sealedByBuildersAt": [
+    {
+      "pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
+			"timestamp": "2022-10-06T21:36:07.742Z"
+		}
+  ]
+}
+```
+where
+
+- `isHighPriority`: boolean representing if this searcher has a high enough reputation to be in the high priority queue
+- `isSimulated`: boolean representing whether the bundle gets simulated. All other fields will be omitted except simulated field if API didn't receive bundle
+- `simulatedAt`: time at which the bundle gets simulated
+- `receivedAt`: time at which the bundle API received the bundle
+- `consideredByBuildersAt`: indicates time at which each builder selected the bundle to be included in the target block
+- `sealedByBuildersAt`: indicates time at which each builder sealed a block containing the bundle
+
+### API Response
+
+* All method supports JSON-RPC standards for success response and not supported for error response(V2 methods are exceptions).
+* V2 methods supports JSON-RPC standards for both success and error response.
 
 ### Authentication
 
