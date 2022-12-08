@@ -132,7 +132,7 @@ module.exports = {
     },
     {
       "Contribute": [
-        'joining-flashbots', 'contribution-guide', 'cheatsheet',
+        'Joining Flashbots', 'Contribution Guide', 'Cheatsheet',
       ],
     },
     {

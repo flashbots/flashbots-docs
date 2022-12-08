@@ -1,4 +1,6 @@
-## System Requirements
+---
+title: System Requirements
+---
 
 This guide assumes a pre-installed and hardened Ubuntu installation [as well as Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04). Excellent introductory resources to start with are: [eth-docker](https://eth-docker.net/docs/About/Overview#node-components), [Coincashew](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node), and [Rocketpool's Securing your Node](https://docs.rocketpool.net/guides/node/securing-your-node.html#securing-your-node)
 
