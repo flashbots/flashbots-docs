@@ -1,5 +1,5 @@
 ---
-title: other resources
+title: Other Resources
 ---
 
 Remember you can ask any questions in the [#🐣newcomers or #🤖searchers](https://discord.com/invite/7hvTycdNcK) channel on our Discord, or in one of the Self Support Groups on [our forum](https://collective.flashbots.net/).
