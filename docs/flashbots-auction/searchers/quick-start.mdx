@@ -195,7 +195,16 @@ async fn main() {
 </TabItem>
 </Tabs>
 
-Now that we have a private key to identify ourselves with and a Flashbots provider we can create and send a bundle. Here's an example in node.js
+Now that we have a private key to identify ourselves with and a Flashbots provider we can create and send a bundle. Here's how:
+
+<Tabs
+  defaultValue="ethers.js"
+  values={[
+    { label: 'ethers.js', value: 'ethers.js', },
+	{ label: 'rust', value: 'rust', },
+  ]}
+>
+<TabItem value="ethers.js">
 
 ```js
 const ethers = require("ethers.js");
@@ -226,6 +235,28 @@ const bundleReceipt = await flashbotsProvider.sendRawBundle(
   TARGET_BLOCK_NUMBER
 );
 ```
+
+</TabItem>
+<TabItem value="rust">
+
+See https://github.com/onbjerg/ethers-flashbots
+
+```
+let tx = TransactionRequest::pay("vitalik.eth", 100);
+let pending_tx = client.send_transaction(tx, None).await?;
+
+// Get the receipt
+let receipt = pending_tx
+	.await?
+	.ok_or_else(|| eyre::format_err!("tx not included"))?;
+let tx = client.get_transaction(receipt.transaction_hash).await?;
+
+println!("Sent transaction: {}\n", serde_json::to_string(&tx)?);
+println!("Receipt: {}\n", serde_json::to_string(&receipt)?);
+```
+
+</TabItem>
+</Tabs>
 
 That's it!
 
