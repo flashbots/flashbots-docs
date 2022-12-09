@@ -37,6 +37,7 @@ module.exports = {
                 'flashbots-auction/searchers/libraries/ethers-js-provider',
                 'flashbots-auction/searchers/libraries/web3py-provider',
                 'flashbots-auction/searchers/libraries/alchemyprovider',
+                'flashbots-auction/searchers/libraries/rust-provider',
               ]
             },
             'flashbots-auction/other-resources'
