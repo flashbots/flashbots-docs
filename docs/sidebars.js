@@ -119,7 +119,7 @@ module.exports = {
           'flashbots-mev-boost/troubleshooting',
           'flashbots-mev-boost/contributing',
           'flashbots-mev-boost/security',
-          'flashbots-mev-boost/faq',
+          'flashbots-mev-boost/FAQ',
           'flashbots-mev-boost/glossary',
           'flashbots-mev-boost/resources',
           'flashbots-mev-boost/community-tools',          
@@ -132,7 +132,7 @@ module.exports = {
     },
     {
       "Contribute": [
-        'joining-flashbots', 'contribution-guide', 'Cheatsheet',
+        'joining-flashbots', 'contribution-guide', 'cheatsheet',
       ],
     },
     {
