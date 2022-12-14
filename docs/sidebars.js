@@ -100,29 +100,29 @@ module.exports = {
         'flashbots-mev-boost/introduction',
         {
           'Architecture Overview': [
-            'flashbots-mev-boost/architecture-overview/MEV-Boost Specifications',
-            'flashbots-mev-boost/architecture-overview/MEV-Boost Block Proposal',
-            'flashbots-mev-boost/architecture-overview/Risks'
+            'flashbots-mev-boost/architecture-overview/specifications',
+            'flashbots-mev-boost/architecture-overview/block-proposal',
+            'flashbots-mev-boost/architecture-overview/risks'
           ]
         },
 
-          'flashbots-mev-boost/Block Builders',
-          'flashbots-mev-boost/Block Proposers',
-          'flashbots-mev-boost/Relays',
+          'flashbots-mev-boost/block-builders',
+          'flashbots-mev-boost/block-proposers',
+          'flashbots-mev-boost/relay',
         {
           'Getting Started':[
-            'flashbots-mev-boost/getting-started/System Requirements',
-            'flashbots-mev-boost/getting-started/Installation',
-            'flashbots-mev-boost/getting-started/Usage',
+            'flashbots-mev-boost/getting-started/system-requirements',
+            'flashbots-mev-boost/getting-started/installation',
+            'flashbots-mev-boost/getting-started/usage',
           ]
         },
-          'flashbots-mev-boost/Troubleshooting',
-          'flashbots-mev-boost/Contributing',
-          'flashbots-mev-boost/Security',
-          'flashbots-mev-boost/FAQ',
-          'flashbots-mev-boost/Glossary',
-          'flashbots-mev-boost/Resources',
-          'flashbots-mev-boost/Community Tools',          
+          'flashbots-mev-boost/troubleshooting',
+          'flashbots-mev-boost/contributing',
+          'flashbots-mev-boost/security',
+          'flashbots-mev-boost/faq',
+          'flashbots-mev-boost/glossary',
+          'flashbots-mev-boost/resources',
+          'flashbots-mev-boost/community-tools',          
       ],
     },
     {
@@ -132,7 +132,7 @@ module.exports = {
     },
     {
       "Contribute": [
-        'Joining Flashbots', 'Contribution Guide', 'Cheatsheet',
+        'joining-flashbots', 'contribution-guide', 'Cheatsheet',
       ],
     },
     {

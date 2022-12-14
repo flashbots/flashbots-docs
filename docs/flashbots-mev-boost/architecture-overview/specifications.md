@@ -1,4 +1,8 @@
-## MEV-Boost Specifications
+---
+title: MEV-Boost Specifications
+---
+
+
 
 `mev-boost` implements the latest versions of the [Ethereum Builder Specification](https://github.com/ethereum/builder-specs/blob/main/specs/builder.md).
 

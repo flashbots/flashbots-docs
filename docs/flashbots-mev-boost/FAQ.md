@@ -1,3 +1,8 @@
+---
+title: FAQ
+---
+
+
 **Can I connect to multiple relays with MEV-Boost?**
 
 Yes. You can add multiple relays comma-separated to the `-relays` flag,
