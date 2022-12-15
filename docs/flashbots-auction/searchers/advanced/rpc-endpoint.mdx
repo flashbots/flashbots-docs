@@ -31,6 +31,7 @@ Advanced users can interact with the RPC endpoint at `relay.flashbots.net`. The 
       minTimestamp,      // (Optional) Number, the minimum timestamp for which this bundle is valid, in seconds since the unix epoch
       maxTimestamp,      // (Optional) Number, the maximum timestamp for which this bundle is valid, in seconds since the unix epoch
       revertingTxHashes, // (Optional) Array[String], A list of tx hashes that are allowed to revert
+      replacementUuid,   // (Optional) String, UUID that can be used to cancel/replace this bundle
     }
   ]
 }
@@ -143,6 +144,26 @@ example response:
     "stateBlockNumber": 5221585,
     "totalGasUsed": 42000
   }
+}
+```
+
+### eth_cancelBundle
+
+`eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain. 
+See [bundle cancellations](/flashbots-auction/searchers/advanced/bundle-cancellations) for more information.
+
+> :information_source: `replacementUuid` must have been set when bundle was submitted.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_cancelBundle",
+  "params": [
+    {
+      replacementUuid, // UUIDv4 to uniquely identify submission
+    }
+  ]
 }
 ```
 

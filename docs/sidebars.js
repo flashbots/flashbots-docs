@@ -22,7 +22,8 @@ module.exports = {
                 'flashbots-auction/searchers/advanced/goerli-testnet',
                 'flashbots-auction/searchers/advanced/eip1559',
                 'flashbots-auction/searchers/advanced/troubleshooting',
-                'flashbots-auction/searchers/advanced/private-transaction'
+                'flashbots-auction/searchers/advanced/private-transaction',
+                'flashbots-auction/searchers/advanced/bundle-cancellations',
               ],
               "example searchers": [
                 'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
