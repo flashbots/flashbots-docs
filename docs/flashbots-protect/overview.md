@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: overview
 ---
 
 Flashbots Protect makes it easy for everyday users and developers to use Flashbots for frontrunning protection. We abstract away the complexity of submitting bundles to the Flashbots Auction and make integrating as simple as adding a URL to MetaMask.

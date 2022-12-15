@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: overview
 ---
 
 **mev-inspect-py** is an MEV inspector for Ethereum

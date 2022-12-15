@@ -1,5 +1,5 @@
 ---
-title: Searcher Minter
+title: searcher minter
 ---
 searcher-minter is a repository that contains a very simple demo application which allows arbitrary submission of a single transaction to Flashbots. This could be used for many simple purposes, but in the demonstration, the goal was to mint an NFT.
 

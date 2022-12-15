@@ -1,5 +1,5 @@
 ---
-title: Upgrade Process
+title: upgrade process
 ---
 
 Flashbots Auction project encompasses the suite of user facing products used for democratizing MEV extraction outlined in the overview section.

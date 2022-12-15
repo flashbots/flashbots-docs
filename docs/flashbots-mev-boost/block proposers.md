@@ -1,6 +1,6 @@
----
-title: Block Proposers
----
+## Block Proposers
+
+### Block Proposer Fundamentals
 
 **What is a Block Proposer?**
 

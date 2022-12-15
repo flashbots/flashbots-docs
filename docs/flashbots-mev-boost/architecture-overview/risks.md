@@ -1,7 +1,4 @@
----
-title: MEV-Boost Risks and Considerations
----
-
+### MEV-Boost Risks and Considerations
 
 **Liveness and Local Fallback**
 

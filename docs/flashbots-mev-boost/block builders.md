@@ -1,6 +1,4 @@
----
-title: Block Builders
----
+### Builder Fundamentals
 
 **What is a Builder?**
 

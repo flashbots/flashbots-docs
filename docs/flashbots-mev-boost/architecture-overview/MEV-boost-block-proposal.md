@@ -1,6 +1,4 @@
----
-title: MEV-Boost Block Proposal
----
+## MEV-Boost Block Proposal
 
 ![MEV-Boost Block Proposal](https://raw.githubusercontent.com/flashbots/mev-boost/main/docs/block-proposal.png)
 

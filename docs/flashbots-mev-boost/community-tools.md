@@ -1,7 +1,3 @@
----
-title: Community Tools
----
-
 ## Flashbots Relayer Status
 
 [Monitor Flashbots Relays](https://0xpanoramix.github.io/flashbots-boost-status/) status on various timescales, by 0xpanoramix.
