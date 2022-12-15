@@ -1,5 +1,5 @@
 ---
-title: golang provider
+title: Golang Provider
 ---
 _These libraries are provided and maintained by third-parties rather than Flashbots. Please exercise caution._
 

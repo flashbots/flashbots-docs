@@ -51,3 +51,6 @@ Note: below is an artifact, should probably not be done this way:
 GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
+## Todo
+
+* Cleanup Github Actions (yaml files in `.github/workflows` could be more up-to-date)

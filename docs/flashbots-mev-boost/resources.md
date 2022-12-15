@@ -1,3 +1,7 @@
+---
+title: Resources
+---
+
 **Proof-of-Stake Ethereum**
 
 - [The Hitchhiker's Guide to Ethereum](https://members.delphidigital.io/reports/the-hitchhikers-guide-to-ethereum/)
