@@ -24,7 +24,11 @@ yarn install
 yarn start
 ```
 
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server (and may open up a browser window). Some changes are reflected live without having to restart the server.
+
+You can open the local docs at http://localhost:3000/docs
+
+
 
 ## Build
 
@@ -36,8 +40,14 @@ This command generates static content into the `build` directory and can be serv
 
 ## Deployment
 
+
+Create a PR and once merged, Github actions automatically deploy it.
+
+The docs use GitHub pages for hosting, and deployment is done by building the website and pushing to the `gh-pages` branch.
+
+Note: below is an artifact, should probably not be done this way:
+
 ```console
 GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

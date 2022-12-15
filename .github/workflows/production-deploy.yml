@@ -3,7 +3,7 @@ name: Production Deploy
 on:
   push:
     branches: [main]
-    
+
 jobs:
   checks:
     if: github.event_name != 'push'
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '16.x'
       - name: Test Build
         run: |
           if [ -e yarn.lock ]; then
@@ -27,14 +27,14 @@ jobs:
   gh-release:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: production
       url: docs.flashbots.net
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '16.x'
       - uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
