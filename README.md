@@ -4,10 +4,12 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 
 ## Installation
 
+Use Node.js v18+
+
 Note: if you want to install the node packages from within a Docker container (recommended for security), then you can start it like this:
 
 ```
-docker run -p 3000:3000 --rm -it -w /mnt -v $(pwd):/mnt node:16 /bin/bash
+docker run -p 3000:3000 --rm -it -w /mnt -v $(pwd):/mnt node:18 /bin/bash
 ```
 
 First create a copy of the environment file `.env.template` in the root of the codebase and rename it to `.env`
