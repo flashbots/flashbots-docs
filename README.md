@@ -46,5 +46,3 @@ This command generates static content into the `build` directory and can be serv
 Create a PR and once merged, Github actions automatically deploy it.
 
 The docs use Vercel for hosting, and deployment is done by Vercel on any merge into the master branch.
-
-Note: below is an artifact, should probably not be done this way:
