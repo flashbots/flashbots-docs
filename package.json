@@ -8,7 +8,6 @@
     "start": "docusaurus start --port 3000 --host 0.0.0.0",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "npm run setup-cname && docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",

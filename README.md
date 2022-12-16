@@ -45,14 +45,6 @@ This command generates static content into the `build` directory and can be serv
 
 Create a PR and once merged, Github actions automatically deploy it.
 
-The docs use GitHub pages for hosting, and deployment is done by building the website and pushing to the `gh-pages` branch.
+The docs use Vercel for hosting, and deployment is done by Vercel on any merge into the master branch.
 
 Note: below is an artifact, should probably not be done this way:
-
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-## Todo
-
-* Cleanup Github Actions (yaml files in `.github/workflows` could be more up-to-date)
