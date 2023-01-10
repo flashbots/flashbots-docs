@@ -17,9 +17,9 @@
       left: 0;
       width: 100%;
       height: calc((100% - 25px) + 1px);
-      border-top: 1px solid rgb(219,221,225);
-      border-left: 1px solid rgb(219,221,225);
-      border-right: 1px solid rgb(219,221,225);
+      border-top: 1px solid var(--ifm-color-emphasis-200);
+      border-left: 1px solid var(--ifm-color-emphasis-200);
+      border-right: 1px solid var(--ifm-color-emphasis-200);
     }
     &:nth-child(2) {
       position: absolute;
@@ -27,8 +27,8 @@
       left: 0;
       width: calc((100% - 25px) + 1px);
       height: 25px;
-      border-bottom: 1px solid rgb(219,221,225);
-      border-left: 1px solid rgb(219,221,225);
+      border-bottom: 1px solid var(--ifm-color-emphasis-200);
+      border-left: 1px solid var(--ifm-color-emphasis-200);
     }
     &:last-child {
       position: absolute;
