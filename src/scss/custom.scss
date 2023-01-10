@@ -35,7 +35,7 @@
   // --ifm-color-primary: #25c2a0;
   --ifm-color-primary: #0044FF;
   --ifm-color-content: var(--ifm-color-emphasis-800);
-  // --ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary-dark: #99AAFF;
   // --ifm-color-primary-darker: rgb(31, 165, 136);
   // --ifm-color-primary-darkest: rgb(26, 136, 112);
   // --ifm-color-primary-light: rgb(70, 203, 174);
@@ -69,7 +69,7 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'CMU-Serif', 'Times New Roman', Garamond, Georgia, serif;
-  color: var(--ifm-color-gray-1000);
+  // color: var(--ifm-color-gray-1000);
 }
 
 h1, h2, h3 {
