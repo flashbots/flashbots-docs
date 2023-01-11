@@ -35,13 +35,18 @@
   // --ifm-color-primary: #25c2a0;
   --ifm-color-primary: #0044FF;
   --ifm-color-content: var(--ifm-color-emphasis-800);
-  // --ifm-color-primary-dark: rgb(33, 175, 144);
+  // --ifm-color-primary-dark: #99AAFF;
   // --ifm-color-primary-darker: rgb(31, 165, 136);
   // --ifm-color-primary-darkest: rgb(26, 136, 112);
   // --ifm-color-primary-light: rgb(70, 203, 174);
   // --ifm-color-primary-lighter: rgb(102, 212, 189);
   // --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #99AAFF;
+  --ifm-heading-color: #FFFFFF;
 }
 
 .docusaurus-highlight-code-line {
@@ -69,7 +74,7 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'CMU-Serif', 'Times New Roman', Garamond, Georgia, serif;
-  color: var(--ifm-color-gray-1000);
+  // color: var(--ifm-color-gray-1000);
 }
 
 h1, h2, h3 {
@@ -78,7 +83,10 @@ h1, h2, h3 {
 
 h2 {
   padding-bottom: 16px;
-  border-bottom: solid 1px var(--ifm-color-gray-300);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
-
+.menu__link--sublist:after {
+  background: var(--ifm-menu-link-sublist-icon) 50%/1.5rem 1.5rem;
+  opacity: .75;
+}
