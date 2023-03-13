@@ -19,7 +19,7 @@ module.exports = {
                 'flashbots-auction/searchers/advanced/bundle-pricing',
                 'flashbots-auction/searchers/advanced/rpc-endpoint',
                 'flashbots-auction/searchers/advanced/reputation',
-                'flashbots-auction/searchers/advanced/goerli-testnet',
+                'flashbots-auction/searchers/advanced/testnets',
                 'flashbots-auction/searchers/advanced/eip1559',
                 'flashbots-auction/searchers/advanced/troubleshooting',
                 'flashbots-auction/searchers/advanced/private-transaction',
