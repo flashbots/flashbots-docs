@@ -1,5 +1,5 @@
 ---
-title: ethers.js provider
+title: Ethers.js Provider
 ---
 
 ethers-provider-flashbots-bundle is a repository that contains the `FlashbotsBundleProvider` ethers.js provider to provide high-level access to the `eth_sendBundle` rpc endpoint.

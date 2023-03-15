@@ -1,5 +1,5 @@
 ---
-title: web3.py provider
+title: Web3.py Provider
 ---
 web3-flashbots is a repository containing a library that works by injecting a new module in the web3.py instance, which can submit "bundles" of transactions to block builders. This is done by creating
 a middleware which captures calls to `eth_sendBundle` and `eth_callBundle`, and sends

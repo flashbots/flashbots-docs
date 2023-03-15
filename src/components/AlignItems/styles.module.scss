@@ -1,0 +1,8 @@
+.root {
+  display: flex;
+
+  & > * {
+    display: block;
+    margin: var(--align-items-margin)
+  }
+}

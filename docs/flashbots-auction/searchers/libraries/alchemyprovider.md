@@ -1,5 +1,5 @@
 ---
-title: alchemy provider
+title: Alchemy Provider
 ---
 The Alchemy SDK makes getting started, shipping builds, and accessing support faster and more streamlined. For instance, it provides high-level access to the `eth_sendPrivateTransaction` and `eth_cancelPrivateTransaction` RPC endpoints.
 

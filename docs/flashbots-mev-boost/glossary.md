@@ -1,3 +1,8 @@
+---
+title: Glossary
+---
+
+
 - **execution payload**: a [message](https://github.com/ethereum/consensus-specs/blob/a45ee9bf5b1fde766d69e551a6b1a21fe2531734/specs/merge/beacon-chain.md#executionpayload) containing the complete content of an unsigned execution payload (an object containing block properties in addition to transactions) that is provided by the execution layer (previous PoW nodes).
 - **MEV-boost “middleware”**: a piece of software that sits between the consensus client and the execution client to outsource block construction to a market of builders.
 - **block proposer (proposer)**: a validator selected to sign and submit a beacon block to the network.

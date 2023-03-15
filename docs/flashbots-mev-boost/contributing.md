@@ -1,3 +1,7 @@
+---
+title: Contributing
+---
+
 [Flashbots](https://flashbots.net/) is a research and development collective working on mitigating the negative externalities of decentralized economies. We contribute with the larger free software community to illuminate the dark forest.
 
 You are welcome here <3.
