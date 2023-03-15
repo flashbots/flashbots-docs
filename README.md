@@ -4,10 +4,12 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 
 ## Installation
 
+Use Node.js v18+
+
 Note: if you want to install the node packages from within a Docker container (recommended for security), then you can start it like this:
 
 ```
-docker run -p 3000:3000 --rm -it -w /mnt -v $(pwd):/mnt node:16 /bin/bash
+docker run -p 3000:3000 --rm -it -w /mnt -v $(pwd):/mnt node:18 /bin/bash
 ```
 
 First create a copy of the environment file `.env.template` in the root of the codebase and rename it to `.env`
@@ -24,7 +26,11 @@ yarn install
 yarn start
 ```
 
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server (and may open up a browser window). Some changes are reflected live without having to restart the server.
+
+You can open the local docs at http://localhost:3000/docs
+
+
 
 ## Build
 
@@ -36,8 +42,7 @@ This command generates static content into the `build` directory and can be serv
 
 ## Deployment
 
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Create a PR and once merged, Github actions automatically deploy it.
+
+The docs use Vercel for hosting, and deployment is done by Vercel on any merge into the master branch.

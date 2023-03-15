@@ -15,7 +15,7 @@ To start addding transactions to a bundle, first create a bundle ID. We recommen
 Connecting to the Flashbots Protect RPC Endpoint with a bundle ID parameter will automatically add incoming transactions to a queue without sending them.
 
 ```txt
-https://protect.flashbots.net?bundle=<YOUR_BUNDLE_ID>
+https://rpc.flashbots.net?bundle=<YOUR_BUNDLE_ID>
 ```
 
 Chain ID should be set to `1`.
@@ -29,7 +29,7 @@ To add a transaction to the bundle, sign and send the transaction as you normall
 You can get the array of transactions included in your bundle using the `GET /bundle?id=<YOUR_BUNDLE_ID>` endpoint:
 
 ```sh
-curl https://protect.flashbots.net/bundle?id=<YOUR_BUNDLE_ID>
+curl https://rpc.flashbots.net/bundle?id=<YOUR_BUNDLE_ID>
 ```
 
 This will return a JSON object with your signed transactions:

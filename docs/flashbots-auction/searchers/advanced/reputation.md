@@ -1,5 +1,5 @@
 ---
-title: searcher reputation
+title: Searcher Reputation
 ---
 
 In order to maintain reliable performance, we've introduced searcher reputation to provide consistent access to the Flashbots block builder for searchers with a good performance track record during periods of heavy load. Reputation is one of many solutions currently being explored to make Flashbots infrastructure resilient against sophisticated Layer 7 attacks. The system described on this page is likely to change and we encourage you to participate in defining the direction it will take by engaging in the [discussion board](https://github.com/flashbots/pm/discussions/79).

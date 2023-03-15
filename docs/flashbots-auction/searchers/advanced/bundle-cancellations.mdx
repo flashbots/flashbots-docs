@@ -1,0 +1,51 @@
+---
+title: bundle cancellations
+---
+
+Bundle cancellations are currently deployed to our mainnet staging environment: `https://relay-staging.flashbots.net`. You must send both bundles and cancellations to this endpoint for it to be successful.
+
+This staging environment is limited to sending and cancelling bundles, and
+will only simulate bundles targeting currently built and the next blocks. The bundles make it to our staging builder (`0x81babe`) and you should see the bundles landing on mainnet as you would be using the production endpoint.
+
+### Understanding bundle cancellations
+
+Bundles can be replaced and canceled using a unique identifier (`replacementUuid`) assigned to a bundle at the time of submission.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_sendBundle",
+  "params": [
+    {
+      txs,
+      blockNumber,
+      minTimestamp,
+      maxTimestamp,
+      revertingTxHashes,
+      replacementUuid, // UUIDv4 to uniquely identify submission
+    }
+  ]
+}
+```
+
+### Replacing bundles
+
+To replace a bundle, send the new bundle via `eth_sendBundle` with the same `replacementUuid` as the bundle you want to replace.
+
+### Canceling bundles
+
+Canceling a bundle will prevent Flashbots builders from including it on-chain. To cancel a bundle, call the [`eth_cancelBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_cancelbundle) endpoint, or use the `cancelBundle` function in your preferred [Flashbots library](/flashbots-auction/searchers/libraries/ethers-js-provider).
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_cancelBundle",
+  "params": [
+    {
+      replacementUuid, // UUIDv4 to uniquely identify submission
+    }
+  ]
+}
+```
