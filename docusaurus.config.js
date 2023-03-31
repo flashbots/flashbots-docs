@@ -39,7 +39,11 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         darkTheme: darkCodeTheme,
         additionalLanguages: ['solidity']
       },
-      hideableSidebar: true,
+      docs: {
+        sidebar: {
+          hideable: true
+        }
+      },
       navbar: {
         title: 'Flashbots Docs',
         logo: {
