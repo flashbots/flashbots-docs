@@ -12,16 +12,16 @@ To opt in, users can specify the URL query `?auction=enabled` when connecting to
 
 Auction preferences are passed as query params in the Protect RPC URL.
 
-To explicitly enable or disable the auction, specify the query param `auction` ("enabled" or "disabled") in the Protect RPC url. If the auction is disabled and hints are passed, they will be ignored.
+To explicitly enable or disable the auction, set the `auction` param ("enabled" or "disabled"). If the auction is disabled and hints are passed, they will be ignored.
 
-`hint` can be specified multiple times to specify which data from the user's transactions is shared with searchers. If no hints are passed and the auction is enabled, the default hints are used. If one or more hint is passed, any hint not passed is disabled.
+`hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified and the auction is enabled, the default hints are used. If one or more hint is specified, any hint _not_ specified is disabled.
 
 ```js
 auction?: "enabled" | "disabled"
 hint?: "calldata" |
-"contract_address" |
-"function_selector" |
-"logs"
+       "contract_address" |
+       "function_selector" |
+       "logs"
 ```
 
 ## Examples
