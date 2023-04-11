@@ -12,6 +12,8 @@ Subscribe to the stream by making an HTTP GET request on the stream endpoint.
 curl https://mev-share-goerli.flashbots.net
 ```
 
+This function is also implemented as an event handler in our [Typescript library](https://github.com/flashbots/matchmaker-ts#onsharetransaction).
+
 ### Event Stream Endpoints
 
 | Network | URL |
@@ -51,7 +53,3 @@ data: {"txHash":"0x4dcc7236a9827ff5d2c024f337e373cee6811909e066b0468b26cc56d5d62
 | `functionSelector` | Hex-string | 4-byte function selector. |
 | `logs` | Array of JSON-encoded events | Event logs emitted by executing the transaction. |
 | `callData` | Hex-string | calldata of the tx. |
-
-## Stream Logic
-
-
