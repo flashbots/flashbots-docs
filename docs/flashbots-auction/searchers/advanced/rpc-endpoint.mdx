@@ -185,15 +185,27 @@ See [bundle cancellations](/flashbots-auction/searchers/advanced/bundle-cancella
 
 This method has the following JSON-RPC format:
 
-```json
+```typescript
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "eth_sendPrivateTransaction",
-  "params": [{
+  jsonrpc: "2.0",
+  id: string | number,
+  method: "eth_sendPrivateTransaction",
+  params: [{
     tx,               // String, raw signed transaction
     maxBlockNumber,   // Hex-encoded number string, optional. Highest block number in which the transaction should be included.
-    preferences: { fast: boolean } // optional. "fast" left for backwards compatibility; may be removed in a future version
+    preferences?: { 
+      fast: boolean,  // Deprecated; required until this is removed from the API. Value has no effect.
+      auction?: {     // MEV-Share options; optional
+            enable: boolean,
+            hint?: Array< // data about tx to share w/ searchers on mev-share
+                "contract_address" |
+                "function_selector" |
+                "calldata" |
+                "logs" |
+                "transaction_hash"
+            >
+      }
+    }
   }]
 }
 ```
@@ -209,7 +221,12 @@ example request:
     {
       "tx": "0x123abc...",
       "maxBlockNumber": "0xcd23a0",
-      "preferences": { "fast": true } // "fast" left for backwards compatibility; may be removed in a future version
+      "preferences": { 
+        "fast": true, // left for backwards compatibility; may be removed in a future version
+        "auction": {
+          "enabled": true
+        }
+      }
     }
   ]
 }
@@ -224,6 +241,27 @@ example response:
   "result": "0x45df1bc3de765927b053ec029fc9d15d6321945b23cac0614eb0b5e61f3a2f2a" // tx hash
 }
 ```
+
+#### `auction`
+
+The `auction` parameter opts the transaction into mev-share, allowing the caller to specify which data they want to share with searchers on mev-share. 
+
+Enabling the auction without explicitly setting hints (i.e. `hint=[]`) will send the transaction with the default hints (everything enabled except `calldata`).
+
+| Param | Type Info | Description |
+|-|-|-|
+| `enable` | boolean | Setting to `true` will enable data-sharing with mev-share. Setting to `false` will send the transaction with full privacy. |
+| `hint` | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
+
+**Hints:**
+
+| Hint | Description |
+| - | - |
+| `calldata` | Share data sent to the smart contract (if applicable) by the transaction. |
+| `logs` | Share logs emitted by executing the transaction. |
+| `function_selector` | Share the 4-byte identifier of the function being called on the smart contract by the transaction. |
+| `contract_address` | Share the address of the recipient of the transaction; typically a smart contract. |
+| `transaction_hash` | Share the transaction hash; disabling this will disable the auction entirely, as searchers rely on the tx hash to include these transactions in their bundles. |
 
 ### eth_cancelPrivateTransaction
 

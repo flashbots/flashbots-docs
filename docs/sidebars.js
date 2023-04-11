@@ -85,6 +85,7 @@ module.exports = {
         {
           'RPC': [
             'flashbots-protect/rpc/quick-start',
+            'flashbots-protect/rpc/mev-share',
             'flashbots-protect/rpc/uncle-bandits',
             'flashbots-protect/rpc/status-api',
             'flashbots-protect/rpc/bundle-cache',
@@ -126,8 +127,8 @@ module.exports = {
       ],
     },
     {
-      "MEV-Share": [
-        'mev-share/overview'
+      "Flashbots MEV-Share": [
+        'flashbots-mev-share/overview',
       ]
     },
     {

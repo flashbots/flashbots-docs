@@ -24,6 +24,16 @@ hint?: "calldata" |
        "logs"
 ```
 
+### Hints
+
+| Hint | Description |
+| - | - |
+| `calldata` | Share data sent to the smart contract (if applicable) by the transaction. |
+| `logs` | Share logs emitted by executing the transaction. |
+| `function_selector` | Share the 4-byte identifier of the function being called on the smart contract by the transaction. |
+| `contract_address` | Share the address of the recipient of the transaction; typically a smart contract. |
+| `transaction_hash` | Share the transaction hash; disabling this will disable the auction entirely, as searchers rely on the tx hash to include these transactions in their bundles. |
+
 ## Examples
 
 | | |
