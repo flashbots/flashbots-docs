@@ -193,7 +193,7 @@ This method has the following JSON-RPC format:
   params: [{
     tx,               // String, raw signed transaction
     maxBlockNumber,   // Hex-encoded number string, optional. Highest block number in which the transaction should be included.
-    preferences?: { 
+    preferences?: {
       fast: boolean,  // Deprecated; required until this is removed from the API. Value has no effect.
       auction?: {     // MEV-Share options; optional
             enable: boolean,
@@ -221,7 +221,7 @@ example request:
     {
       "tx": "0x123abc...",
       "maxBlockNumber": "0xcd23a0",
-      "preferences": { 
+      "preferences": {
         "fast": true, // left for backwards compatibility; may be removed in a future version
         "auction": {
           "enabled": true
@@ -244,7 +244,7 @@ example response:
 
 #### `auction`
 
-The `auction` parameter opts the transaction into mev-share, allowing the caller to specify which data they want to share with searchers on mev-share. 
+The `auction` parameter opts the transaction into mev-share, allowing the caller to specify which data they want to share with searchers on mev-share.
 
 Enabling the auction without explicitly setting hints (i.e. `hint=[]`) will send the transaction with the default hints (everything enabled except `calldata`).
 

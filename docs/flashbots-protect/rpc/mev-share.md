@@ -16,13 +16,18 @@ To explicitly enable or disable the auction, set the `auction` param ("enabled" 
 
 `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified and the auction is enabled, the default hints are used. If one or more hint is specified, any hint _not_ specified is disabled.
 
+_Note: the default setting enables all hints except `calldata`._
+
 ```js
 auction?: "enabled" | "disabled"
 hint?: "calldata" |
        "contract_address" |
        "function_selector" |
-       "logs"
+       "logs" |
+       "transaction_hash"
 ```
+
+> :information_source: _The `auction` parameter may be deprecated in favor of using the `transaction_hash` hint. If the transaction hash is not shared, searchers cannot include the transaction in their bundle._
 
 ### Hints
 
@@ -40,5 +45,5 @@ hint?: "calldata" |
 |-|-|
 | Auction Enabled (Default Hints) | `https://rpc.flashbots.net?auction=enabled` |
 | Auction Disabled (Max Privacy) | `https://rpc.flashbots.net?auction=disabled` |
-|Max Speed & MEV Kickbacks | `https://rpc.flashbots.net?auction=enabled&hint=calldata&hint=logs&hint=function_selector&hint=contract_address` |
-| Stable (Default Hints) | `https://rpc.flashbots.net?auction=enabled&hint=logs&hint=function_selector&hint=contract_address` |
+|Max Speed & MEV Kickbacks | `https://rpc.flashbots.net?auction=enabled&hint=calldata&hint=logs&hint=function_selector&hint=contract_address&hint=transaction_hash` |
+| Stable (Default Hints) | `https://rpc.flashbots.net?auction=enabled&hint=logs&hint=function_selector&hint=contract_address&hint=transaction_hash` |

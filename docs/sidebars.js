@@ -129,6 +129,11 @@ module.exports = {
     {
       "Flashbots MEV-Share": [
         'flashbots-mev-share/overview',
+        {
+          'For Searchers': [
+            'flashbots-mev-share/searchers/event-stream'
+          ]
+        }
       ]
     },
     {

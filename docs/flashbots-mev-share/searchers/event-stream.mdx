@@ -1,0 +1,57 @@
+---
+title: Event Stream
+---
+
+Events on MEV-Share are distributed via an SSE endpoint. Searchers listen to this endpoint to receive a stream of new events, which contain data they can use in their bundles. Currently, the events refer to Ethereum transactions.
+
+## Quickstart
+
+Subscribe to the stream by making an HTTP GET request on the stream endpoint.
+
+```sh
+curl https://mev-share-goerli.flashbots.net
+```
+
+### Event Stream Endpoints
+
+| Network | URL |
+|-|-|
+| Mainnet | https://mev-share.flashbots.net |
+| Goerli | https://mev-share-goerli.flashbots.net |
+
+The endpoint sends an event with the message `:ping` every 15 seconds if no other messages were sent in the last 15 seconds.
+
+_response:_
+
+```sh
+:ping
+
+data: {"txHash":"0x4dcc7236a9827ff5d2c024f337e373cee6811909e066b0468b26cc56d5d6279f","to":"0x0000c335bc9d5d1af0402cad63fa7f258363d71a","functionSelector":"0x696d2073","logs":null,"callData":"0x696d20736861726969696969696e67"}
+
+# blocks until terminated manually (CTRL-C)
+```
+
+
+## Event Scheme
+
+```typescript
+{
+    txHash: string,
+    to?: string,
+    functionSelector?: string,
+    logs?: LogParams[],
+    callData?: string,
+}
+```
+
+| Param | Type Info | Description |
+|-|-|-|
+| `txHash` | Hex-string | Transaction hash. |
+| `to` | Hex-string | Transaction recipient address. |
+| `functionSelector` | Hex-string | 4-byte function selector. |
+| `logs` | Array of JSON-encoded events | Event logs emitted by executing the transaction. |
+| `callData` | Hex-string | calldata of the tx. |
+
+## Stream Logic
+
+
