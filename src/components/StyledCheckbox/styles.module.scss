@@ -1,8 +1,4 @@
 .root {
-}
-
-
-.checkboxRoot {
   input[type="checkbox"] {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -26,5 +22,4 @@
     border-color: purple;
     background: purple;
   }
-  
 }
