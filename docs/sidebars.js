@@ -126,6 +126,11 @@ module.exports = {
       ],
     },
     {
+      "MEV-Share": [
+        'mev-share/overview'
+      ]
+    },
+    {
       "Community": [
         'community-tools', 'whitehat',
       ],
