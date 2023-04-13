@@ -30,8 +30,6 @@ module.exports = {
                 'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
                 'flashbots-auction/searchers/example-searchers/searcher-minter',
                 'flashbots-auction/searchers/example-searchers/synthetix-searcher',
-
-
               ],
               "Libraries": [
                 'flashbots-auction/searchers/libraries/golang',
@@ -135,6 +133,9 @@ module.exports = {
             'flashbots-mev-share/searchers/getting-started',
             'flashbots-mev-share/searchers/event-stream',
             'flashbots-mev-share/searchers/sending-bundles',
+          ],
+          'For Wallet Developers': [
+            'flashbots-mev-share/wallets/integration-guide'
           ]
         }
       ]

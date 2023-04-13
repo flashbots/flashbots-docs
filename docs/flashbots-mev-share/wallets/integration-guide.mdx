@@ -1,0 +1,52 @@
+---
+title: Wallet Integration Guide
+---
+
+This guide is for wallet developers looking to integrate with MEV-Share.
+
+### What is MEV-share?
+
+[MEV-share](https://collective.flashbots.net/t/mev-share-programmably-private-orderflow-to-share-mev-with-users/1264) is a protocol that lets users, wallets, and dapps to **capture the MEV their transactions create.**
+
+You can submit your orderflow to the Flashbots **Matchmaker** to start earning MEV kickbacks from MEV-share.
+
+### What is a matchmaker?
+
+A matchmaker is a service that matches user transactions with searcher bundles. Flashbots runs a matchmaker on Ethereum mainnet. Users submit their transactions to the matchmaker, which shares select information about them with searchers. Searchers propose transactions for the matchmaker to bundle with the user transactions. Currently we only support backruns. The matchmaker forwards these bundles to a block builder with a requirement that **the user is paid a kickback** percent of the winning searcher's backrun profit.
+
+### How to integrate?
+
+The Flashbots Matchmaker is accessible through the [Flashbots Protect RPC](http://localhost:3000/docs/flashbots-protect/rpc/mev-share).
+
+Specifically, you can submit `eth_sendRawTransaction` requests to the Flashbots Matchmaker by following these steps:
+
+1. Switch your RPC to the Flashbots Protect RPC [`rpc.flashbots.net`](https://rpc.flashbots.net/)
+2. Enable the matchmaker by adding `mevshare=enabled` as a query parameter in your RPC request
+3. Configure your privacy settings by adding additional query parameters to your request
+    1. This determines what information about a transaction will be shared with searchers. Currently you can choose to share the following “hints”: `calldata`, `logs`, `function_selector`, `contract_address`, and `transaction_hash`.
+    2. With no hints specified, only transaction hashes will be shared, though this may change. Transaction signatures are always withheld.
+    3. We strongly recommend experimenting to find the right hints for you and your users. We'd be eager to partner with your data and product teams to find the best balance.
+
+For example, this request would share logs and function selectors:
+
+```txt
+https://rpc.flashbots.net?mevshare=enabled&hint=logs&hint=function_selector
+```
+
+### What are the guarantees and benefits?
+
+The matchmaker will bundle user transactions with each valid searcher backrun and submit them to a dedicated Flashbots builder. The builder will choose the winning bundle and transfer 80% of the searcher's payment to `msg.sender` of the user's transaction.
+
+If no valid backruns are submitted, the transaction will be treated as a regular [Protect transaction](https://docs.flashbots.net/flashbots-protect/rpc/quick-start) and receive all the typical benefits of Flashbots Protect.
+
+### What are the risks?
+
+This is a beta release of the Flashbots matchmaker. The matchmaker service may experience service interruptions and there may be API breaks during the trial phase.
+
+By default, the matchmaker shares all transaction information with searchers other than the signature and calldata. It is possible that searchers could act on this information outside of the protocol. You can customize your request to hide additional information and we will closely monitor for adverse behavior and update the defaults where needed.
+
+### Next steps
+
+We are exploring a number of improvements. For instance — customizable kickback % and recipients (which would allow wallets or dapps to take a cut), more privacy settings and per-protocol defaults, execution preferences (allowing searchers to submit bundles that contain more than simple backruns).
+
+The Flashbots Matchmaker is one implementation of the MEV-share protocol. We are also actively designing standard interfaces for the protocol as a whole. Join us in discussing the latest APIs [here](https://github.com/flashbots/mev-share).
