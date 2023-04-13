@@ -2,17 +2,56 @@
 title: Event Stream
 ---
 
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
 Events on MEV-Share are distributed via an SSE endpoint. Searchers listen to this endpoint to receive a stream of new events, which contain data they can use in their bundles. Currently, the events refer to Ethereum transactions.
 
 ## Quickstart
 
-Subscribe to the stream by making an HTTP GET request on the stream endpoint.
+Subscribe to the stream by making an HTTP GET request on the stream endpoint. The [matchmaker-ts](https://npmjs.com/@flashbots/matchmaker-ts) library implements this as an asynchronous event handler.
+
+<Tabs>
+<TabItem value="ts" label="matchmaker-ts">
+
+```typescript
+const matchmaker = new Matchmaker(authSigner, {chainId: 1, name: "mainnet"})
+
+const eventHandler = matchmaker.onShareTransaction((tx: PendingShareTransaction) => {
+    /*
+    Do something with the event data here.
+    */
+})
+
+// call before your program terminates:
+eventHandler.close()
+```
+
+</TabItem>
+<TabItem value="sh" label="curl">
 
 ```sh
 curl https://mev-share-goerli.flashbots.net
 ```
 
-This function is also implemented as an event handler in our [Typescript library](https://github.com/flashbots/matchmaker-ts#onsharetransaction).
+This will block until terminated manually (CTRL-C).
+
+_Response:_
+
+```sh
+:ping
+
+data: {"txHash":"0x4dcc7236a9827ff5d2c024f337e373cee6811909e066b0468b26cc56d5d6279f","to":"0x0000c335bc9d5d1af0402cad63fa7f258363d71a","functionSelector":"0x696d2073","logs":null,"callData":"0x696d20736861726969696969696e67"}
+```
+
+</TabItem>
+</Tabs>
+
+:::info Event Data
+
+Events currently represent pending transactions, but eventually may be expanded to support other event types. For this reason we refer to this endpoint as an _event stream_, rather than a _transaction stream_.
+
+:::
 
 ### Event Stream Endpoints
 
@@ -23,22 +62,11 @@ This function is also implemented as an event handler in our [Typescript library
 
 The endpoint sends an event with the message `:ping` every 15 seconds if no other messages were sent in the last 15 seconds.
 
-_response:_
-
-```sh
-:ping
-
-data: {"txHash":"0x4dcc7236a9827ff5d2c024f337e373cee6811909e066b0468b26cc56d5d6279f","to":"0x0000c335bc9d5d1af0402cad63fa7f258363d71a","functionSelector":"0x696d2073","logs":null,"callData":"0x696d20736861726969696969696e67"}
-
-# blocks until terminated manually (CTRL-C)
-```
-
-
 ## Event Scheme
 
 ```typescript
 {
-    txHash: string,
+    txHash?: string,
     to?: string,
     functionSelector?: string,
     logs?: LogParams[],
@@ -52,4 +80,10 @@ data: {"txHash":"0x4dcc7236a9827ff5d2c024f337e373cee6811909e066b0468b26cc56d5d62
 | `to` | Hex-string | Transaction recipient address. |
 | `functionSelector` | Hex-string | 4-byte function selector. |
 | `logs` | Array of JSON-encoded events | Event logs emitted by executing the transaction. |
-| `callData` | Hex-string | calldata of the tx. |
+| `callData` | Hex-string | Calldata of the transaction. |
+
+Each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information.
+
+---
+
+Now that you've started listening to transactions, you're ready to start searching! Read on to the next page to learn [how to send bundles](/flashbots-mev-share/searchers/sending-bundles).
