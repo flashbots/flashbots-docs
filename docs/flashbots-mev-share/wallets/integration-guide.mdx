@@ -16,7 +16,7 @@ A matchmaker is a service that matches user transactions with searcher bundles. 
 
 ### How to integrate?
 
-The Flashbots Matchmaker is accessible through the [Flashbots Protect RPC](http://localhost:3000/docs/flashbots-protect/rpc/mev-share).
+The Flashbots Matchmaker is accessible through the [Flashbots Protect RPC](/flashbots-protect/rpc/mev-share).
 
 Specifically, you can submit `eth_sendRawTransaction` requests to the Flashbots Matchmaker by following these steps:
 
@@ -32,6 +32,8 @@ For example, this request would share logs and function selectors:
 ```txt
 https://rpc.flashbots.net?mevshare=enabled&hint=logs&hint=function_selector
 ```
+
+For more information about hints and Flashbots Protect, see the [Flashbots Protect RPC docs](/flashbots-protect/rpc/mev-share).
 
 ### What are the guarantees and benefits?
 
