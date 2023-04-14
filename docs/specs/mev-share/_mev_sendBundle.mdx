@@ -1,5 +1,29 @@
 ```typescript
-interface BundleParams {
-    ...
+{
+    jsonrpc: "2.0",
+    id: string | number,
+    method: "mev_sendBundle",
+    params: [{
+        version: "0" | "beta-1",
+        inclusion: {
+            block: string, // hex-encoded
+        },
+        body: Array<{ hash: string } | { tx: string, canFail: boolean }>,
+        validity: {
+            refund: Array<{
+                address: string,
+                percent: number,
+            }>
+        },
+        privacy: {
+            hints: Array<
+                "calldata" |
+                "contract_address" |
+                "logs" |
+                "function_selector" |
+                "transaction_hash"
+            >,
+        },
+    }]
 }
 ```

@@ -13,7 +13,7 @@ Flashbots runs a matchmaker on Ethereum, to which you can connect today. The mat
 
 The simplest way to connect to the Flashbots Matchmaker is to use a [client library](/flashbots-auction/searchers/libraries/matchmaker). For this guide, we'll refer to [matchmaker-ts](https://github.com/flashbots/matchmaker-ts).
 
-If you're coding in a language that doesn't yet have a matchmaker client library, you can interact directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint).
+If you're coding in a language that doesn't yet have a matchmaker client library, you can send transactions & bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
@@ -24,7 +24,7 @@ _Add library to your project:_
 yarn add @flashbots/matchmaker-ts
 ```
 
-_Import library code (note `ALL_CAPS` variables are placeholders; insert your own data there):_
+_Import library code (note `ALL_CAPS` variables are placeholders; replace with your own data):_
 
 ```typescript
 import { Wallet, JsonRpcProvider } from "ethers"
@@ -36,8 +36,28 @@ import Matchmaker, {
 
 const provider = new JsonRpcProvider(RPC_URL)
 const authSigner = new Wallet(FB_REPUTATION_PRIVATE_KEY, provider)
-const matchmaker = new Matchmaker(authSigner, {chainId: 1, name: "mainnet"})
+const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
 ```
+
+_Connecting to Goerli:_
+
+```typescript
+const matchmaker = Matchmaker.useEthereumGoerli(authSigner)
+```
+
+_Custom params (for developers):_
+
+```typescript
+// connect to matchmaker on mainnet
+const matchmaker = new Matchmaker(authSigner, {
+    name: "mainnet",
+    chainId: 1,
+    streamUrl: "https://mev-share.flashbots.net",
+    apiUrl: "https://relay.flashbots.net",
+})
+```
+
+See the repo documentation to learn more.
 
 </TabItem>
 </Tabs>
@@ -48,10 +68,10 @@ Continue reading on the next page to learn how to [listen for pending transactio
 
 :::note A note for experienced searchers getting acquainted with MEV-Share
 
-Searching on MEV-Share is different from searching on the mempool in that only certain parts of a transaction are shared with searchers. On the mempool, we can see all parts of a transaction, such as calldata and logs. But on MEV-Share, a transaction might only reveal its function selector or the liquidity pool it's trading on.
+Searching on MEV-Share is different from searching on the mempool in that only certain parts of a transaction are shared with searchers. On the mempool, we can see all parts of a transaction, such as calldata and logs. But on MEV-Share, a transaction might only reveal its function selector, making a traditional arbitrage calculation infeasible (though this is not necessarily the common case).
 
-New searching strategies will have to be implemented to include these partially-hidden transactions in your bundles. Specifically, searchers may have to reason about the context of markets and/or blockchain state separately from the transaction, and make a proabilistic transaction or set of transactions, leveraging whatever data is provided by the user's transaction.
+That being said, existing strategies can still be employed. Users of MEV-Share have the option to share whichever parts of the transaction they deem appropriate, so strategies which use calldata and/or logs as input are still viable.
 
-This does not mean that existing strategies can't be used. Transactions on MEV-Share still have the option to share any parts of the transaction, so strategies that use calldata and/or logs are still viable.
+To maximally leverage the orderflow on MEV-Share, new searching strategies will have to be implemented to profitably include these transactions in your bundles. More specifically, you may have to reason about markets and/or blockchain state separately from the intra-block context of users' transactions, and leveraging data gleaned from mev-share transactions, probabilistically estimate the parameters of your MEV extraction strategy. A range of probable outcomes may be targeted in parallel, but this must be done efficiently, so as to maintain priority in the matchmaker's priority queues.
 
 :::

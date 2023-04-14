@@ -3,7 +3,7 @@ title: Overview
 ---
 
 import ProtectButton from "protect-button"
-
+import WhatsMevShareAdvanced from "../specs/mev-share/blurbs/_whatsMevShareAdvanced.mdx"
 
 Today, orderflow providers like wallets and dapps do not participate in MEV. Their users generate MEV when transacting, but neither the user nor the orderflow provider receive any benefit from the MEV generated - it is captured by searchers and validators.
 
@@ -13,8 +13,7 @@ Today, orderflow providers like wallets and dapps do not participate in MEV. The
 
 ### What is MEV-share?
 
-MEV-Share is an open-source protocol, not a company. It uses privacy and commitments to facilitate permissionless collaboration between users/OF and searchers. It is credibly neutral, permissionless for searchers, and does not enshrine a single block builder. Aggregating order flow to MEV-Share will greatly reduce proprietary order flow as a centralizing force on Ethereum while enabling wallets and other sources of order flow to participate in the MEV economy.
-
+<WhatsMevShareAdvanced />
 
 To start earning MEV kickbacks from MEV-share, submit your transactions to the Flashbots **Matchmaker**, either by [connecting your wallet to the Protect RPC](#connect-your-wallet), or sending a [private transaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) to the Matchmaker API.
 
