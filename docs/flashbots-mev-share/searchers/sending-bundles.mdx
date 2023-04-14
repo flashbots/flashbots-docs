@@ -2,4 +2,12 @@
 title: Sending Bundles
 ---
 
-...
+import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
+
+Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost; they are an ordered array of transactions; but their structure is a bit different. There are several new parameters which control the privacy of bundles, and there's also a new endpoint to send bundles: [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/src/mev_sendBundle.md).
+
+Check out the spec to see how bundles on MEV-Share are structured:
+
+<SendBundleRpc />
+
+// TODO: finish this page (committing here bc I'll forget if I stash it)
