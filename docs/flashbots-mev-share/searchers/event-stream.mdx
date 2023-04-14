@@ -4,6 +4,7 @@ title: Event Stream
 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import StreamEvent from '../../specs/mev-share/_streamEvent.mdx'
 
 Events on MEV-Share are distributed via an SSE endpoint. Searchers listen to this endpoint to receive a stream of new events, which contain data they can use in their bundles. Currently, the events refer to Ethereum transactions.
 
@@ -66,23 +67,7 @@ The endpoint sends an event with the message `:ping` every 15 seconds if no othe
 
 Events dispatched via the SSE endpoint are JSON-encoded objects that adhere to the following scheme:
 
-```typescript
-{
-    txHash?: string,
-    to?: string,
-    functionSelector?: string,
-    logs?: LogParams[],
-    callData?: string,
-}
-```
-
-| Param | Type Info | Description |
-|-|-|-|
-| `txHash` | Hex-string | Transaction hash. |
-| `to` | Hex-string | Transaction recipient address. |
-| `functionSelector` | Hex-string | 4-byte function selector. |
-| `logs` | Array of JSON-encoded events | Event logs emitted by executing the transaction. |
-| `callData` | Hex-string | Calldata of the transaction. |
+<StreamEvent />
 
 Note that each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information.
 

@@ -4,6 +4,8 @@ title: RPC Endpoint
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Hints from '../../../specs/mev-share/_hints.mdx';
+import TargetBuilders from '../../../specs/mev-share/_targetBuilders.mdx';
 
 :::danger
 
@@ -255,23 +257,13 @@ Enabling the auction without explicitly setting hints (i.e. `hint=[]`) will send
 
 **`hint`**
 
-| Hint | Description |
-| - | - |
-| `calldata` | Share data sent to the smart contract (if applicable) by the transaction. |
-| `logs` | Share logs emitted by executing the transaction. |
-| `function_selector` | Share the 4-byte identifier of the function being called on the smart contract by the transaction. |
-| `contract_address` | Share the address of the recipient of the transaction; typically a smart contract. |
-| `transaction_hash` | Share the transaction hash. Omitting this hint will **disable** the auction entirely, as searchers rely on the tx hash to include these transactions in their bundles. |
+<Hints />
 
 **`targetBuilders`**
 
 Flashbots currently supports sending orderflow to the following block builders. This is subject to change over time.
 
-| Target Builder | Argument |
-| - | - |
-| Send to all builders | `all` |
-| Flashbots | `flashbots` |
-| BlockNative | `blocknative` |
+<TargetBuilders />
 
 ### eth_cancelPrivateTransaction
 

@@ -1,0 +1,17 @@
+```typescript
+{
+    txHash?: string,
+    to?: string,
+    functionSelector?: string,
+    logs?: LogParams[],
+    callData?: string,
+}
+```
+
+| Param | Type Info | Description |
+|-|-|-|
+| `txHash` | Hex-string | Transaction hash. |
+| `to` | Hex-string | Transaction recipient address. |
+| `functionSelector` | Hex-string | 4-byte function selector. |
+| `logs` | Array of JSON-encoded events | Event logs emitted by executing the transaction. |
+| `callData` | Hex-string | Calldata of the transaction. |
