@@ -2,7 +2,7 @@
 title: Overview
 ---
 
-import ProtectButton from "protect-button"
+import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
 Flashbots Protect makes it easy for everyday users and developers to use Flashbots for frontrunning protection. We abstract away the complexity of submitting bundles to the Flashbots Auction and make integrating as simple as adding a URL to MetaMask.
 
@@ -14,7 +14,7 @@ At a high level these are some of the major benefits of integrating Flashbots Pr
 - **No failed transactions:** transactions will only be included if it doesn't include any reverts, so users don't pay for failed transactions. Note: transactions could be included in uncled blocks, emitted to the mempool, and then included on-chain.
 - **Etherscan integration:** users can see the status of their transactions on Etherscan.
 
-<ProtectButton>Connect Wallet to Protect</ProtectButton>
+<ProtectButtonSelector />
 
 <br /><br />
 
