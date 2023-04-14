@@ -134,8 +134,12 @@ module.exports = {
             'flashbots-mev-share/searchers/event-stream',
             'flashbots-mev-share/searchers/sending-bundles',
           ],
-          'For Wallet Developers': [
-            'flashbots-mev-share/wallets/integration-guide'
+          'For Wallet/Dapp Developers': [
+            {
+              type: 'doc',
+              id: 'flashbots-mev-share/orderflow-providers/integration-guide',
+              label: 'Integration Guide'
+            },
           ]
         }
       ]

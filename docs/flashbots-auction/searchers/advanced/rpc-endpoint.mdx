@@ -196,14 +196,13 @@ This method has the following JSON-RPC format:
     preferences?: {
       fast: boolean,  // Deprecated; required until this is removed from the API. Value has no effect.
       auction?: {     // MEV-Share options; optional
-            enable: boolean,
-            hint?: Array< // data about tx to share w/ searchers on mev-share
-                "contract_address" |
-                "function_selector" |
-                "calldata" |
-                "logs" |
-                "transaction_hash"
-            >
+        hint?: Array< // data about tx to share w/ searchers on mev-share
+            "contract_address" |
+            "function_selector" |
+            "calldata" |
+            "logs" |
+            "transaction_hash"
+        >
       }
     }
   }]
@@ -224,7 +223,8 @@ example request:
       "preferences": {
         "fast": true, // left for backwards compatibility; may be removed in a future version
         "auction": {
-          "enabled": true
+          "hint": ["calldata", "transaction_hash"],
+          "targetBuilders": ["all"]
         }
       }
     }
@@ -244,16 +244,16 @@ example response:
 
 #### `auction`
 
-The `auction` parameter opts the transaction into mev-share, allowing the caller to specify which data they want to share with searchers on mev-share.
+The `auction` parameter changes the privacy parameters of the transaction.
 
-Enabling the auction without explicitly setting hints (i.e. `hint=[]`) will send the transaction with the default hints (everything enabled except `calldata`).
+Enabling the auction without explicitly setting hints (i.e. `hint=[]`) will send the transaction with the default [Stable configuration](/flashbots-protect/rpc/mev-share#stable-configuration).
 
 | Param | Type Info | Description |
 |-|-|-|
-| `enable` | boolean | Setting to `true` will enable data-sharing with mev-share. Setting to `false` will send the transaction with full privacy. |
 | `hint` | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
+| `targetBuilders` | Array of strings | Builders to grant permission to include the transaction in a block. |
 
-**Hints:**
+**`hint`**
 
 | Hint | Description |
 | - | - |
@@ -261,7 +261,17 @@ Enabling the auction without explicitly setting hints (i.e. `hint=[]`) will send
 | `logs` | Share logs emitted by executing the transaction. |
 | `function_selector` | Share the 4-byte identifier of the function being called on the smart contract by the transaction. |
 | `contract_address` | Share the address of the recipient of the transaction; typically a smart contract. |
-| `transaction_hash` | Share the transaction hash; disabling this will disable the auction entirely, as searchers rely on the tx hash to include these transactions in their bundles. |
+| `transaction_hash` | Share the transaction hash. Omitting this hint will **disable** the auction entirely, as searchers rely on the tx hash to include these transactions in their bundles. |
+
+**`targetBuilders`**
+
+Flashbots currently supports sending orderflow to the following block builders. This is subject to change over time.
+
+| Target Builder | Argument |
+| - | - |
+| Send to all builders | `all` |
+| Flashbots | `flashbots` |
+| BlockNative | `blocknative` |
 
 ### eth_cancelPrivateTransaction
 

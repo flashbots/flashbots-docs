@@ -19,18 +19,13 @@ Transactions sent to Flashbots Protect are automatically forwarded to the Flashb
 To use a custom configuration, `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified, the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
 
 ```js
-mevshare: "disabled" | undefined
-hint: "calldata" |
+hint:  "calldata" |
        "contract_address" |
        "function_selector" |
        "logs" |
        "transaction_hash" |
        undefined
 ```
-
-> :information_source: The `mevshare` parameter may be deprecated in favor of using the `transaction_hash` hint. If the transaction hash is not shared, searchers cannot include the transaction in their bundle.
-
-To explicitly disable the auction and use Protect with full privacy, set the URL query param `mevshare=disabled` in your Protect RPC URL: `https://rpc.flashbots.net?mevshare=disabled`.
 
 ### Hints
 
@@ -40,11 +35,27 @@ To explicitly disable the auction and use Protect with full privacy, set the URL
 | `logs` | Share logs emitted by executing the transaction. |
 | `function_selector` | Share the 4-byte identifier of the function being called on the smart contract by the transaction. |
 | `contract_address` | Share the address of the recipient of the transaction; typically a smart contract. |
-| `transaction_hash` | Share the transaction hash; disabling this will disable the auction entirely, as searchers rely on the tx hash to include these transactions in their bundles. |
+| `transaction_hash` | Share the transaction hash. |
 
 ### Stable Configuration
 
+The Stable configuration is the default configuration for Protect RPC -- no hints are specified to use it.
+
+```txt
+https://rpc.flashbots.net
+```
+
 > :information_source: The Stable configuration currently shares only the `transaction_hash` from users' transactions. This may change over time as we gather more data and fine-tune the configuration to maximize benefits for our users.
+
+### Opt Out
+
+To explicitly **disable** MEV-Share and use Protect with full privacy, set _only_ the `transaction_hash` hint in your Protect RPC URL:
+
+```txt
+https://rpc.flashbots.net?hint=transaction_hash
+```
+
+This will completely hide all identifying transaction data sent to the Matchmaker from searchers. Transaction hashes cannot be used to gain any information about a transaction or its origin.
 
 ## Examples
 

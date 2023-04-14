@@ -1,31 +1,41 @@
 ---
-title: Wallet Integration Guide
+title: Wallet/Dapp Integration Guide
 ---
 
-This guide is for wallet developers looking to integrate with MEV-Share.
+This guide covers the essential steps for wallet & dapp developers to send transactions to MEV-Share.
 
-### What is MEV-share?
+:::info What is MEV-share?
 
 [MEV-share](https://collective.flashbots.net/t/mev-share-programmably-private-orderflow-to-share-mev-with-users/1264) is a protocol that lets users, wallets, and dapps to **capture the MEV their transactions create.**
 
+:::
+
 You can submit your orderflow to the Flashbots **Matchmaker** to start earning MEV kickbacks from MEV-share.
 
-### What is a matchmaker?
+:::info What is a matchmaker?
 
-A matchmaker is a service that matches user transactions with searcher bundles. Flashbots runs a matchmaker on Ethereum mainnet. Users submit their transactions to the matchmaker, which shares select information about them with searchers. Searchers propose transactions for the matchmaker to bundle with the user transactions. Currently we only support backruns. The matchmaker forwards these bundles to a block builder with a requirement that **the user is paid a kickback** percent of the winning searcher's backrun profit.
+A matchmaker is a service that matches user transactions with searcher bundles. Flashbots runs matchmakers on Ethereum Mainnet and Goerli. Users submit their transactions to the matchmaker, which shares select information about transactions with searchers. Searchers propose transactions for the matchmaker to bundle with the user transactions (currently we only support backruns). The matchmaker forwards these bundles to a block builder with a requirement that **the user is paid a kickback**; a percentage of the winning searcher's bundle profit.
 
-### How to integrate?
+:::
+
+### How to Integrate
 
 The Flashbots Matchmaker is accessible through the [Flashbots Protect RPC](/flashbots-protect/rpc/mev-share).
+
+Route your application's `eth_sendRawTransaction` calls to the Protect RPC [`rpc.flashbots.net`](https://rpc.flashbots.net/) to connect to the matchmaker. By default, connecting to Protect will enable the matchmaker with the Stable configuration, which is set by Flashbots to give users the best possible execution.
+
+To set your own configuration, options are passed as URL query params.
+
+Please refer to the [Protect RPC](/flashbots-protect/rpc/mev-share#protect-rpc-reference) documentation for the most up-to-date parameter definitions.
 
 Specifically, you can submit `eth_sendRawTransaction` requests to the Flashbots Matchmaker by following these steps:
 
 1. Switch your RPC to the Flashbots Protect RPC [`rpc.flashbots.net`](https://rpc.flashbots.net/)
-2. Enable the matchmaker by adding `mevshare=enabled` as a query parameter in your RPC request
-3. Configure your privacy settings by adding additional query parameters to your request
+    1. The matchmaker will be enabled by default with the Flashbots-tuned Stable configuration
+1. Configure your privacy settings by adding additional query parameters to your request
     1. This determines what information about a transaction will be shared with searchers. Currently you can choose to share the following “hints”: `calldata`, `logs`, `function_selector`, `contract_address`, and `transaction_hash`.
-    2. With no hints specified, only transaction hashes will be shared, though this may change. Transaction signatures are always withheld.
-    3. We strongly recommend experimenting to find the right hints for you and your users. We'd be eager to partner with your data and product teams to find the best balance.
+    1. With no hints specified, only transaction hashes will be shared, though this may change. Transaction signatures are always withheld.
+    1. We strongly recommend experimenting to find the right hints for you and your users. We'd be eager to partner with your data and product teams to find the best balance.
 
 For example, this request would share logs and function selectors:
 
