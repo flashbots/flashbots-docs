@@ -1,0 +1,44 @@
+<!-- TODO: get this from https://github.com/flashbots/mev-share/blob/main/specs/mev_sendBundle.md instead of duplicating -->
+
+```typescript
+{
+    jsonrpc: "2.0",
+    id: string | number,
+    method: "mev_simBundle",
+    params: [{ /* MevSimBundleParams */
+        version: "beta-1",
+        inclusion: {
+            block: string,     // hex-encoded number
+            maxBlock?: string, // hex-encoded number
+        },
+        body: Array<
+            { hash: string } |
+            { tx: string, canRevert: boolean } |
+            { bundle: MevSimBundleParams }
+        >,
+        validity: {
+            refund: Array<{
+                bodyIdx: number,
+                percent: number,
+            }>,
+            refundConfig: Array<{
+                address: string,
+                percent: number,
+            }>
+        },
+        privacy?: {
+            hints?: Array<
+                "calldata" |
+                "contract_address" |
+                "logs" |
+                "function_selector" |
+                "hash"
+            >,
+            targetBuilders?: Array<string>,
+        },
+        metadata?: {
+            originId?: string,
+        }
+    }]
+}
+```
