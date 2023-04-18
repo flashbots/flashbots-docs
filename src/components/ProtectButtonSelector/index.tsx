@@ -12,30 +12,19 @@ type Builder = {
 
 const ProtectButtonSelector = () => {
     const [selectedBuilders, setSelectedBuilders] = useState<string[]>(["flashbots"])
-    const [mevShareDisabled, setMevShareDisabled] = useState(false)
     const [calldata, setCalldata] = useState(false)
     const [logs, setLogs] = useState(false)
     const [contractAddress, setContractAddress] = useState(false)
     const [functionSelector, setFunctionSelector] = useState(false)
     const [curatedBuilders, setCuratedBuilders] = useState<Builder[]>()
+    const [advancedOptionsShown, setAdvancedOptionsShown] = useState(false)
 
-    const allHintsFalse = (hints: any) => {
-        return Object.values(hints).reduce((acc, curr) => acc && !curr, true)
-    }
-
-    const hintState = {
+    const hints = advancedOptionsShown ? {
         calldata,
+        logs,
         contractAddress,
         functionSelector,
-        logs,
-    }
-
-    const hints = mevShareDisabled ? {
-        calldata: false,
-        contractAddress: false,
-        functionSelector: false,
-        logs: false,
-    } : allHintsFalse(hintState) ? undefined : hintState
+    } : undefined
 
     const toggleBuilder = (name: string) => {
         if (selectedBuilders.includes(name)) {
@@ -65,10 +54,12 @@ const ProtectButtonSelector = () => {
     }, [curatedBuilders])
 
     return (<GridBlock>
-        <SimpleDropdown header={"Advanced options"}>
+        <SimpleDropdown header={"Advanced options"} onClickHeader={() => {
+            setAdvancedOptionsShown(!advancedOptionsShown)
+        }}>
             <SimpleDropdown.Body>
                 <AlignItems horizontal='center'>
-                    <><FlashbotsProtectButton auctionHints={hints} targetBuilders={selectedBuilders.length === 1 && selectedBuilders[0] === "flashbots" ? undefined : selectedBuilders}>Connect Wallet to Protect</FlashbotsProtectButton></>
+                    <><FlashbotsProtectButton auctionHints={advancedOptionsShown ? hints : undefined} targetBuilders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton></>
                 </AlignItems>
             </SimpleDropdown.Body>
             <SimpleDropdown.HiddenBody>
@@ -76,12 +67,11 @@ const ProtectButtonSelector = () => {
                     <em>MEV-Share Hints</em>
                     <hr style={{ padding: 0, margin: 0 }} />
                     <AlignItems horizontal='left'>
-                        <Checkbox label='Calldata' id='calldata' checked={calldata} onChange={setCalldata} disabled={mevShareDisabled} />
-                        <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={setContractAddress} disabled={mevShareDisabled} />
-                        <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={setFunctionSelector} disabled={mevShareDisabled} />
-                        <Checkbox label='Logs' id='logs' checked={logs} onChange={setLogs} disabled={mevShareDisabled} />
+                        <Checkbox label='Calldata' id='calldata' checked={calldata} onChange={setCalldata} />
+                        <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={setContractAddress} />
+                        <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={setFunctionSelector} />
+                        <Checkbox label='Logs' id='logs' checked={logs} onChange={setLogs} />
                         <div style={{ width: 64 }} /> {/* spacer */}
-                        <Checkbox label='MEV-Share Disabled' id='mevshare_disabled' orientation='last' checked={mevShareDisabled} onChange={setMevShareDisabled} />
                     </AlignItems>
                 </div>
 
@@ -89,7 +79,7 @@ const ProtectButtonSelector = () => {
                     <em>Target Builders</em>
                     <hr style={{ padding: 0, margin: 0 }} />
                     {/* <AlignItems horizontal='left'> */}
-                    {curatedBuilders && curatedBuilders.map(builder => <BuilderCheckbox name={builder.name} />)}
+                    {curatedBuilders && curatedBuilders.map((builder, idx) => <BuilderCheckbox name={builder.name} key={idx} />)}
                     {/* </AlignItems> */}
                 </div>
 
