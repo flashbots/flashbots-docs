@@ -16,9 +16,11 @@ Subscribe to the stream by making an HTTP GET request on the stream endpoint. Th
 <TabItem value="ts" label="matchmaker-ts">
 
 ```typescript
+import Matchmaker, { PendingTransaction, StreamEvent } from '@flashbots/matchmaker-ts'
+
 const matchmaker = new Matchmaker(authSigner, {chainId: 1, name: "mainnet"})
 
-const eventHandler = matchmaker.onShareTransaction((tx: PendingShareTransaction) => {
+const eventHandler = matchmaker.on(StreamEvent.Transaction, (tx: PendingTransaction) => {
     /*
     Do something with the event data here.
     */
