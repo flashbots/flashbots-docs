@@ -41,14 +41,14 @@ The Stable configuration is the default configuration for Protect RPC -- no hint
 https://rpc.flashbots.net
 ```
 
-> :information_source: The Stable configuration currently shares only the `transaction_hash` from users' transactions. This may change over time as we gather more data and fine-tune the configuration to maximize benefits for our users.
+> :information_source: The Stable configuration currently shares only the `hash` from users' transactions. This may change over time as we gather more data and fine-tune the configuration to maximize benefits for our users.
 
 ### Opt Out
 
-To explicitly **disable** MEV-Share and use Protect with full privacy, set _only_ the `transaction_hash` hint in your Protect RPC URL:
+To explicitly **disable** MEV-Share and use Protect with full privacy, set _only_ the `hash` hint in your Protect RPC URL:
 
 ```txt
-https://rpc.flashbots.net?hint=transaction_hash
+https://rpc.flashbots.net?hint=hash
 ```
 
 This will completely hide all identifying transaction data sent to the Matchmaker from searchers. Transaction hashes cannot be used to gain any information about a transaction or its origin.
@@ -60,5 +60,5 @@ This will completely hide all identifying transaction data sent to the Matchmake
 | MEV-Share Enabled (Stable) | `https://rpc.flashbots.net` |
 | Default privacy, only send to Flashbots | `https://rpc.flashbots.net?targetBuilder=flashbots` |
 | MEV-Share Disabled (Max Privacy) | `https://rpc.flashbots.net?mevshare=disabled` |
-| Fast Execution | `https://rpc.flashbots.net?mevshare=enabled&hint=logs&hint=function_selector&hint=contract_address&hint=transaction_hash` |
-| Max Speed & MEV Kickbacks (Low Privacy) | `https://rpc.flashbots.net?mevshare=enabled&hint=calldata&hint=logs&hint=function_selector&hint=contract_address&hint=transaction_hash` |
+| Fast Execution | `https://rpc.flashbots.net?mevshare=enabled&hint=logs&hint=function_selector&hint=contract_address&hint=hash` |
+| Max Speed & MEV Kickbacks (Low Privacy) | `https://rpc.flashbots.net?mevshare=enabled&hint=calldata&hint=logs&hint=function_selector&hint=contract_address&hint=hash` |
