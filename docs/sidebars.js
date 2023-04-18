@@ -132,6 +132,7 @@ module.exports = {
           'For Searchers': [
             'flashbots-mev-share/searchers/getting-started',
             'flashbots-mev-share/searchers/event-stream',
+            'flashbots-mev-share/searchers/understanding-bundles',
             'flashbots-mev-share/searchers/sending-bundles',
           ],
           'For Wallet/Dapp Developers': [
