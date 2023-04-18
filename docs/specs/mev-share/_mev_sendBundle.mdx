@@ -3,27 +3,40 @@
     jsonrpc: "2.0",
     id: string | number,
     method: "mev_sendBundle",
-    params: [{
+    params: [{ /* MevSendBundleParams */
         version: "0" | "beta-1",
         inclusion: {
-            block: string, // hex-encoded
+            block: string,     // hex-encoded number
+            maxBlock?: string, // hex-encoded number
         },
-        body: Array<{ hash: string } | { tx: string, canFail: boolean }>,
+        body: Array<
+            { hash: string } |
+            { tx: string, canRevert: boolean } |
+            { bundle: MevSendBundleParams }
+        >,
         validity: {
             refund: Array<{
+                bodyIdx: number,
+                percent: number,
+            }>,
+            refundConfig: Array<{
                 address: string,
                 percent: number,
             }>
         },
-        privacy: {
-            hints: Array<
+        privacy?: {
+            hints?: Array<
                 "calldata" |
                 "contract_address" |
                 "logs" |
                 "function_selector" |
-                "transaction_hash"
+                "hash"
             >,
+            targetBuilders?: Array<string>,
         },
+        metadata?: {
+            originId?: string,
+        }
     }]
 }
 ```
