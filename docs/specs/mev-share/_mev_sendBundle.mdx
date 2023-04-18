@@ -1,10 +1,12 @@
+<!-- TODO: get this from https://github.com/flashbots/mev-share/blob/main/specs/mev_sendBundle.md instead of duplicating -->
+
 ```typescript
 {
     jsonrpc: "2.0",
     id: string | number,
     method: "mev_sendBundle",
     params: [{ /* MevSendBundleParams */
-        version: "0" | "beta-1",
+        version: "beta-1",
         inclusion: {
             block: string,     // hex-encoded number
             maxBlock?: string, // hex-encoded number
