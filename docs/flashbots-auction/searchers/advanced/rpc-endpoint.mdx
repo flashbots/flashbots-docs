@@ -6,6 +6,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Hints from '../../../specs/mev-share/_hints.mdx';
 import TargetBuilders from '../../../specs/mev-share/_targetBuilders.mdx';
+import SendBundleSpec from '../../../specs/mev-share/_mev_sendBundle.mdx';
 
 :::danger
 
@@ -78,6 +79,12 @@ example response:
   }
 }
 ```
+
+### mev_sendBundle
+
+`mev_sendBundle` uses a new bundle format to send bundles to MEV-Share. See [mev-share spec](https://github.com/flashbots/mev-share/blob/main/specs/mev_sendBundle.md) for more information, or check out the [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles) page for a short guide.
+
+<SendBundleSpec />
 
 ### eth_callBundle
 

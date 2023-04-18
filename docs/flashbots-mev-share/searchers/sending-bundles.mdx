@@ -33,14 +33,14 @@ const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
 
 const bundle = [
     {hash: PENDING_TX.hash},
-    {tx: await wallet.signTransaction(BACKRUN), canRevert: false},
+    {tx: await wallet.signTransaction(BACKRUN_TX), canRevert: false},
 ]
 
 const params: BundleParams = {
     inclusion: {
         block: targetBlock,
         // target several blocks with `maxBlock`
-        maxBlock: targetBlock + ADDL_TARGET_BLOCKS,
+        maxBlock: targetBlock + 3,
     },
     body: bundle,
 }
@@ -53,7 +53,7 @@ See [matchmaker-ts](https://github.com/flashbots/matchmaker-ts/blob/main/src/exa
 
 The params not included in the previous example can be used to configure more advanced conditions for your bundle's execution and the MEV kickbacks you earn.
 
-**Share bundle data**
+### Share bundle data
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
@@ -73,7 +73,7 @@ const params: BundleParams = {
 </TabItem>
 </Tabs>
 
-**Nest bundles (be a matchmaker)**
+### Nest bundles (be a matchmaker)
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
