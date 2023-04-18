@@ -16,18 +16,25 @@ Subscribe to the stream by making an HTTP GET request on the stream endpoint. Th
 <TabItem value="ts" label="matchmaker-ts">
 
 ```typescript
-import Matchmaker, { IMatchmakerEvent, StreamEvent } from '@flashbots/matchmaker-ts'
+import Matchmaker, { IPendingTransaction, IPendingBundle, StreamEvent } from '@flashbots/matchmaker-ts'
 
 const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
 
-const eventHandler = matchmaker.on(StreamEvent.Transaction, (tx: IMatchmakerEvent) => {
+const txHandler = matchmaker.on(StreamEvent.Transaction, (tx: IPendingTransaction) => {
     /*
-    Do something with the event data here.
+    Do something with the pending tx here.
+    */
+})
+
+const bundleHandler = matchmaker.on(StreamEvent.Bundle, (tx: IPendingBundle) => {
+    /*
+    Do something with the pending bundle here.
     */
 })
 
 // call before your program terminates:
-eventHandler.close()
+txHandler.close()
+bundleHandler.close()
 ```
 
 </TabItem>
