@@ -1,4 +1,8 @@
 .root {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px;
+
   input[type="checkbox"] {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -15,11 +19,10 @@
     width: 20px;
     background: #fff;
     border: 2px #ddd solid;
-    margin-right: 4px;
-  }
-  
-  .checkbox--active {
-    border-color: purple;
-    background: purple;
+    margin-right: 0.5rem;
+    &.active {
+      border-color: purple;
+      background: purple;
+    }
   }
 }

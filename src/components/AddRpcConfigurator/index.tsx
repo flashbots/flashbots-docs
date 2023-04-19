@@ -1,5 +1,4 @@
-import React, { ReactNode, useCallback, useState } from "react"
-import { useHistory } from "@docusaurus/router";
+import React, { ReactNode, useCallback, useEffect, useState } from "react"
 import styles from  './styles.module.scss';
 import Button from "../Button/Button";
 import { useMetaMask } from 'metamask-react'
@@ -15,20 +14,47 @@ const RPCS = {
   11155111: "https://rpc-sepolia.flashbots.net"
 }
 
+interface IHintSettings {
+  calldata: boolean
+  contractAddress: boolean
+  functionSelector: boolean
+  logs: boolean
+}
+
+const defaults = {
+  experimental: {
+    calldata: true,
+    contractAddress: true,
+    functionSelector: true,
+    logs: true,
+  },
+  stable: {
+    calldata: false,
+    contractAddress: true,
+    functionSelector: true,
+    logs: true,
+  },
+  private: {
+    calldata: false,
+    contractAddress: false,
+    functionSelector: false,
+    logs: false,
+  }
+}
+
 const AddRpcConfigurator = ({  }: IAddRpcConfigurator) => {
   const { status, connect, addChain } = useMetaMask()
 
   const [targetChain, setTargetChain] = useState<1 | 5 | 11155111>(1)
 
-  const [calldata, setCalldata] = useState(false)
-  const [contractAddress, setContractAddress] = useState(true)
-  const [functionSelector, setFunctionSelector] = useState(true)
-  const [logs, setLogs] = useState(true)
-
-  const [advancedVisible, setAdvancedVisible] = useState(false)
+  const [hintSettings, setHints] = useState<IHintSettings>({
+    calldata: false,
+    contractAddress: true,
+    functionSelector: true,
+    logs: true,
+  })
 
   const [advanced, setAdvanced] = useState(false)
-
 
   const addProtectRpc = useCallback(async () => {
     if (!RPCS[targetChain]) return
@@ -76,7 +102,7 @@ const AddRpcConfigurator = ({  }: IAddRpcConfigurator) => {
 
   return <>
     { status === 'notConnected' && (
-      <button onClick={connect}>Connect to MetaMask</button>
+      <Button action={connect}>Connect to MetaMask</Button>
     )}
     { status !== 'connected' && status !== "notConnected" && (
         <span>Connecting to MetaMask...</span>
@@ -88,24 +114,38 @@ const AddRpcConfigurator = ({  }: IAddRpcConfigurator) => {
         </Button>
         <section>
           <div>
-            <StyledCheckbox active={!advanced} setActive={() => setAdvanced(false)}>
-              Stable
-            </StyledCheckbox>
-            <StyledCheckbox active={advanced} setActive={() => setAdvanced(true)}>
-              Experimental
+            <StyledCheckbox active={advanced} setActive={setAdvanced}>
+              Open settings
             </StyledCheckbox>
           </div>
-          <div className={clsx(styles.settings)}>
-            <StyledCheckbox active={calldata} setActive={setCalldata}>
+          <div className={clsx(
+            styles.settings,
+            {
+              [styles.active]: advanced
+            }
+          )}>
+            <StyledCheckbox active={hintSettings.calldata} setActive={(newHint: boolean) => setHints({
+              ...hintSettings,
+              calldata: newHint
+            })}>
               calldata
             </StyledCheckbox>
-            <StyledCheckbox active={contractAddress} setActive={setContractAddress}>
+            <StyledCheckbox active={hintSettings.contractAddress} setActive={(newHint: boolean) => setHints({
+              ...hintSettings,
+              contractAddress: newHint
+            })}>
               contractAddress
             </StyledCheckbox>
-            <StyledCheckbox active={functionSelector} setActive={setFunctionSelector}>
+            <StyledCheckbox active={hintSettings.functionSelector} setActive={(newHint: boolean) => setHints({
+              ...hintSettings,
+              functionSelector: newHint
+            })}>
               functionSelector
             </StyledCheckbox>
-            <StyledCheckbox active={logs} setActive={setLogs}>
+            <StyledCheckbox active={hintSettings.logs} setActive={(newHint: boolean) => setHints({
+              ...hintSettings,
+              logs: newHint
+            })}>
               logs
             </StyledCheckbox>
           </div>
