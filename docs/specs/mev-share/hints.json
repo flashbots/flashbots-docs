@@ -17,6 +17,6 @@
     },
     {
         "name": "hash",
-        "description": "Share the transaction (or bundle) hash. If other hints are specified, omitting this hint will **disable** the auction entirely, as searchers rely on the tx hash to include these transactions in their bundles."
+        "description": "Share the transaction (or bundle) hash. If other hints are specified, omitting this hint will **disable** MEV-Share entirely, as searchers rely on the tx hash to include these transactions in their bundles."
     }
 ]
