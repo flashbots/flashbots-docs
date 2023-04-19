@@ -260,9 +260,7 @@ example response:
 
 #### `auction`
 
-The `auction` parameter changes the privacy parameters of the transaction.
-
-Enabling the auction without explicitly setting hints (i.e. `hint=[]`) will send the transaction with the default [Stable configuration](/flashbots-protect/rpc/mev-share#stable-configuration).
+By default, transactions are sent to the Flashbots Matchmaker with the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration. The `auction` parameter allows you to specify your own privacy parameters.
 
 | Param | Type Info | Description |
 |-|-|-|
