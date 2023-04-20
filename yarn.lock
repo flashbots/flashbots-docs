@@ -6076,10 +6076,10 @@ property-information@^5.0.0, property-information@^5.3.0:
   dependencies:
     xtend "^4.0.0"
 
-protect-button@0.2:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/protect-button/-/protect-button-0.2.0.tgz#97c5dbffc3f0fda023e09cc23b81a3156df65411"
-  integrity sha512-JhdxUMF+hHgYSUA7Mat52VgkRM5bHCtQ072WP8/aHjJp2OP9MxbPE4qptNkdpKzkl8vOUBNmQJ+UAP7YWRfvdA==
+protect-button@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/protect-button/-/protect-button-0.3.0.tgz#b8473ad58c17ca0b08b61dddb972e7ba3d730ac6"
+  integrity sha512-P0KrxbcSEcHwNecjiHO++j37BmFerjhCVbmtwMrs/VSHaeVyKnxLnbG67aQQ54W3YWNMbQauh7l5hIrMRWjJJQ==
 
 proxy-addr@~2.0.7:
   version "2.0.7"

@@ -1,0 +1,155 @@
+---
+title: Sending Bundles
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
+import TargetBuilderInheritance from '../../specs/mev-share/blurbs/_targetBuilderInheritance.mdx'
+
+While the new [bundle spec](/flashbots-mev-share/searchers/understanding-bundles#bundle-definition) may look complex, a bundle can be sent with default parameters using a client library, which ends up looking quite similar to sending bundles on mev-boost.
+
+## Sending a Bundle
+
+:::info Placeholders
+
+Variables in `ALL_CAPS` are placeholders. To use this code, replace them with your own data.
+
+:::
+
+<Tabs>
+<TabItem value="ts" label="matchmaker-ts">
+
+```typescript
+import Matchmaker, { BundleParams } from '@flashbots/matchmaker-ts'
+
+const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
+
+// ...
+
+const bundle = [
+    {hash: PENDING_TX_HASH},
+    {tx: await wallet.signTransaction(BACKRUN_TX), canRevert: false},
+]
+
+const params: BundleParams = {
+    inclusion: {
+        block: targetBlock,
+        // target several blocks with `maxBlock`
+        maxBlock: targetBlock + 3,
+    },
+    body: bundle,
+}
+
+const bundleResult = await matchmaker.sendBundle(params)
+```
+
+The first transaction in the bundle contains the hash of a pending transaction, which we presumably got from listening to the [event stream](/flashbots-mev-share/searchers/event-stream). The second transaction is one we sign ourself, which backruns the first transaction, presumably for a profit.
+
+See [matchmaker-ts](https://github.com/flashbots/matchmaker-ts/blob/main/src/examples/sendBackrunBundle.ts) for a full working example.
+
+</TabItem>
+</Tabs>
+
+---
+
+The params not included in the previous example can be used to configure more advanced conditions for your bundle's execution and the MEV kickbacks you earn.
+
+### Share bundle data
+
+Specify data about your bundle's transactions that you wish to share with other searchers. Doing this can earn you MEV kickbacks and improve your bundle's chances of inclusion.
+
+<Tabs>
+<TabItem value="ts" label="matchmaker-ts">
+
+```typescript
+const params: BundleParams = {
+    inclusion: {
+        block: TARGET_BLOCK,
+    },
+    body: BUNDLE,
+    privacy: {
+        hints: ["calldata", "logs"],
+    },
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Nest bundles (be a matchmaker)
+
+Matchmakers nest bundles to build composite bundles that are more profitable.
+
+<Tabs>
+<TabItem value="ts" label="matchmaker-ts">
+
+```typescript
+const params: BundleParams = {
+    inclusion: {
+        block: TARGET_BLOCK,
+    },
+    body: {
+        {hash: PENDING_TX_HASH},
+        {bundle: {
+            inclusion: {...},
+            body: {...},
+            privacy: {...},
+            validity: {...},
+        }}
+    },
+}
+```
+
+</TabItem>
+</Tabs>
+
+### targetBuilder Inheritance
+
+<TargetBuilderInheritance />
+
+## Simulating Bundles
+
+Bundles matched by the matchmaker can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle) endpoint. 
+
+:::caution only matched bundles can be simulated
+
+Bundle simulations can only be executed on matched bundles, which contain only signed transactions, or nested bundles which contain only signed transactions. Bundles with transactions including the `hash` parameter are considered unmatched, and will throw an error.
+
+:::
+
+<Tabs>
+<TabItem value="ts" label="matchmaker-ts">
+
+```typescript
+const params: BundleParams = {
+    inclusion: {
+        block: TARGET_BLOCK
+    },
+    body: [
+        {bundle: {
+            version: "beta-1",
+            inclusion: {
+                block: TARGET_BLOCK,
+                maxBlock: TARGET_BLOCK + 3,
+            },
+            body: [{tx: SIGNED_TX_1}],
+            privacy: {
+                hints: {calldata: true},
+            },
+            validity: {
+                refundConfig: [{address: REFUND_ADDRESS, percent: 100}]
+            }
+        }},
+        {tx: SIGNED_TX_2},
+    ],
+    validity: {
+        refund: [{bodyIdx: 0, percent: 90}]
+    }
+}
+
+const simResult = await matchmaker.simulateBundle(params)
+```
+
+</TabItem>
+</Tabs>

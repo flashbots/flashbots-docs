@@ -1,0 +1,85 @@
+---
+title: Event Stream
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import StreamEvent from '../../specs/mev-share/_streamEvent.mdx'
+
+Events on MEV-Share are distributed via an SSE endpoint. Searchers listen to this endpoint to receive a stream of new events, which contain data they can use in their bundles. Currently, the events refer to Ethereum transactions.
+
+## Quickstart
+
+Subscribe to the stream by making an HTTP GET request on the stream endpoint. The [matchmaker-ts](https://npmjs.com/@flashbots/matchmaker-ts) library implements this as an asynchronous event handler.
+
+<Tabs>
+<TabItem value="ts" label="matchmaker-ts">
+
+```typescript
+import Matchmaker, { IPendingTransaction, IPendingBundle, StreamEvent } from '@flashbots/matchmaker-ts'
+
+const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
+
+const txHandler = matchmaker.on(StreamEvent.Transaction, (tx: IPendingTransaction) => {
+    /*
+    Do something with the pending tx here.
+    */
+})
+
+const bundleHandler = matchmaker.on(StreamEvent.Bundle, (tx: IPendingBundle) => {
+    /*
+    Do something with the pending bundle here.
+    */
+})
+
+// call before your program terminates:
+txHandler.close()
+bundleHandler.close()
+```
+
+</TabItem>
+<TabItem value="sh" label="curl">
+
+```sh
+curl https://mev-share-goerli.flashbots.net
+```
+
+This will block until terminated manually (CTRL-C).
+
+_Response:_
+
+```sh
+:ping
+
+data: {"hash":"0xc7dc06c994400830054ab815732d91275bc1241f9be62b62b687b7882f19b8d4","logs":null,"txs":[{"to":"0x0000c335bc9d5d1af0402cad63fa7f258363d71a","functionSelector":"0x696d2073","callData":"0x696d20736861726969696969696e67"}]}
+```
+
+</TabItem>
+</Tabs>
+
+:::info Event Data
+
+Events currently represent pending transactions, but eventually may be expanded to support other event types. For this reason we refer to this endpoint as an _event stream_, rather than a _transaction stream_.
+
+:::
+
+### Event Stream Endpoints
+
+| Network | URL |
+|-|-|
+| Mainnet | https://mev-share.flashbots.net |
+| Goerli | https://mev-share-goerli.flashbots.net |
+
+The endpoint sends an event with the message `:ping` every 15 seconds if no other messages were sent in the last 15 seconds.
+
+## Event Scheme
+
+Events dispatched via the SSE endpoint are JSON-encoded objects that adhere to the following scheme:
+
+<StreamEvent />
+
+Note that each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information.
+
+---
+
+Now that you've started listening to transactions, you're almost ready to start searching! Read on to the next page to learn [about bundles](/flashbots-mev-share/searchers/understanding-bundles).

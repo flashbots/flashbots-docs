@@ -30,14 +30,13 @@ module.exports = {
                 'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
                 'flashbots-auction/searchers/example-searchers/searcher-minter',
                 'flashbots-auction/searchers/example-searchers/synthetix-searcher',
-
-
               ],
               "Libraries": [
                 'flashbots-auction/searchers/libraries/golang',
                 'flashbots-auction/searchers/libraries/ethers-js-provider',
                 'flashbots-auction/searchers/libraries/web3py-provider',
                 'flashbots-auction/searchers/libraries/alchemyprovider',
+                'flashbots-auction/searchers/libraries/matchmaker',
               ]
             },
             'flashbots-auction/other-resources'
@@ -85,6 +84,7 @@ module.exports = {
         {
           'RPC': [
             'flashbots-protect/rpc/quick-start',
+            'flashbots-protect/rpc/mev-share',
             'flashbots-protect/rpc/uncle-bandits',
             'flashbots-protect/rpc/status-api',
             'flashbots-protect/rpc/bundle-cache',
@@ -124,6 +124,26 @@ module.exports = {
           'flashbots-mev-boost/resources',
           'flashbots-mev-boost/community-tools',          
       ],
+    },
+    {
+      "Flashbots MEV-Share": [
+        'flashbots-mev-share/overview',
+        {
+          'For Searchers': [
+            'flashbots-mev-share/searchers/getting-started',
+            'flashbots-mev-share/searchers/event-stream',
+            'flashbots-mev-share/searchers/understanding-bundles',
+            'flashbots-mev-share/searchers/sending-bundles',
+          ],
+          'For Wallet/Dapp Developers': [
+            {
+              type: 'doc',
+              id: 'flashbots-mev-share/orderflow-providers/integration-guide',
+              label: 'Integration Guide'
+            },
+          ]
+        }
+      ]
     },
     {
       "Community": [

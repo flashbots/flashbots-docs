@@ -4,6 +4,10 @@ title: RPC Endpoint
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Hints from '../../../specs/mev-share/_hints.mdx';
+import TargetBuilders from '../../../specs/mev-share/_targetBuilders.mdx';
+import SendBundleSpec from '../../../specs/mev-share/_mev_sendBundle.mdx';
+import SimBundleSpec from '../../../specs/mev-share/_mev_simBundle.mdx';
 
 :::danger
 
@@ -76,6 +80,12 @@ example response:
   }
 }
 ```
+
+### mev_sendBundle
+
+`mev_sendBundle` uses a new bundle format to send bundles to MEV-Share. See the [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles#simulating_bundles) page for more information, or check out the [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles) page for a short guide.
+
+<SendBundleSpec />
 
 ### eth_callBundle
 
@@ -157,6 +167,12 @@ example response:
 }
 ```
 
+### mev_simBundle
+
+`mev_simBundle` uses a new bundle format to simulate matched bundles on MEV-Share. See [mev-share spec](https://github.com/flashbots/mev-share/blob/main/specs/mev_simBundle.md) for more information.
+
+<SendBundleSpec />
+
 ### eth_cancelBundle
 
 `eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain. 
@@ -185,15 +201,26 @@ See [bundle cancellations](/flashbots-auction/searchers/advanced/bundle-cancella
 
 This method has the following JSON-RPC format:
 
-```json
+```typescript
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "eth_sendPrivateTransaction",
-  "params": [{
+  jsonrpc: "2.0",
+  id: string | number,
+  method: "eth_sendPrivateTransaction",
+  params: [{
     tx,               // String, raw signed transaction
     maxBlockNumber,   // Hex-encoded number string, optional. Highest block number in which the transaction should be included.
-    preferences: { fast: boolean } // optional. "fast" left for backwards compatibility; may be removed in a future version
+    preferences?: {
+      fast: boolean,  // Deprecated; required until this is removed from the API. Value has no effect.
+      auction?: {     // MEV-Share options; optional
+        hint?: Array< // data about tx to share w/ searchers on mev-share
+            "contract_address" |
+            "function_selector" |
+            "calldata" |
+            "logs" |
+            "hash"
+        >
+      }
+    }
   }]
 }
 ```
@@ -209,7 +236,13 @@ example request:
     {
       "tx": "0x123abc...",
       "maxBlockNumber": "0xcd23a0",
-      "preferences": { "fast": true } // "fast" left for backwards compatibility; may be removed in a future version
+      "preferences": {
+        "fast": true, // left for backwards compatibility; may be removed in a future version
+        "auction": {
+          "hint": ["calldata", "transaction_hash"],
+          "targetBuilders": ["default"]
+        }
+      }
     }
   ]
 }
@@ -224,6 +257,25 @@ example response:
   "result": "0x45df1bc3de765927b053ec029fc9d15d6321945b23cac0614eb0b5e61f3a2f2a" // tx hash
 }
 ```
+
+#### `auction`
+
+By default, transactions are sent to the Flashbots Matchmaker with the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration. The `auction` parameter allows you to specify your own privacy parameters.
+
+| Param | Type Info | Description |
+|-|-|-|
+| `hint` | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
+| `targetBuilders` | Array of strings | Builders to grant permission to include the transaction in a block. |
+
+**`hint`**
+
+<Hints />
+
+**`targetBuilders`**
+
+Flashbots currently supports sending orderflow to the following block builders. This is subject to change over time.
+
+<TargetBuilders />
 
 ### eth_cancelPrivateTransaction
 

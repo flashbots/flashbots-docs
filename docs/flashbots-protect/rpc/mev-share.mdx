@@ -1,0 +1,64 @@
+---
+title: MEV-Share
+---
+
+import ProtectButton from "protect-button"
+import HintsTable from "../../specs/mev-share/_hints.mdx"
+import RpcHints from "../../specs/protect-rpc/_hints.mdx"
+import TargetBuilders from "../../specs/mev-share/_targetBuilders.mdx"
+
+Flashbots Protect users' transactions automatically flow to the Flashbots [Matchmaker](/flashbots-mev-share/overview#what-is-a-matchmaker), which returns them up to 80% of the MEV that their transactions create. By default, users connected to Protect will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV.
+
+MEV-Share users on Flashbots Protect can directly control which parts of their transaction they wish to share with searchers. Sharing less data will improve privacy, while sharing more will improve chances of both having their transactions included quickly and receiving MEV kickbacks.
+
+<ProtectButton>Connect Wallet to Protect</ProtectButton>
+
+## Protect RPC Reference
+
+Hint preferences are passed as query params in the Protect RPC URL. Users can also specify which builders to which they wish to send transactions.
+
+Transactions sent to Flashbots Protect are automatically forwarded to the Flashbots Matchmaker with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which maintains user privacy while optimizing transaction execution. Users do not need to do anything to start benefiting from MEV-Share right away, other than connect their wallet to Flashbots Protect.
+
+To use a custom hint configuration, `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified, the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
+
+To specify which builders will receive your transactions, the `targetBuilder` parameter can be specified multiple times.
+
+<RpcHints />
+
+### Hints
+
+<HintsTable />
+
+### Target Builders
+
+<TargetBuilders />
+
+### Stable Configuration
+
+The Stable configuration is the default configuration for Protect RPC -- no hints are specified to use it.
+
+```txt
+https://rpc.flashbots.net
+```
+
+> :information_source: The Stable configuration currently shares the `hash` from users' transactions. It also shares partial logs (the pool id and the fact that a swap was made) for curve, balancer, and uniswapV2/V3-style trades. This may change over time as we gather more data and fine-tune the configuration to maximize benefits for our users.
+
+### Full Privacy
+
+To use Protect with full privacy, set _only_ the `hash` hint in your Protect RPC URL:
+
+```txt
+https://rpc.flashbots.net?hint=hash
+```
+
+This will completely hide all identifying transaction data sent to the Matchmaker from searchers. Transaction hashes cannot be used to gain any information about a transaction or its origin.
+
+## Examples
+
+| <div style={{width:"180px"}}>Configuration</div>  | Flashbots Protect RPC URL |
+| - | - |
+| MEV-Share Enabled (Stable) | `https://rpc.flashbots.net` |
+| Default privacy, only send to Flashbots | `https://rpc.flashbots.net?targetBuilder=flashbots` |
+| Max Privacy | `https://rpc.flashbots.net?hint=hash` |
+| Fast Execution | `https://rpc.flashbots.net?hint=logs&hint=function_selector&hint=contract_address&hint=hash` |
+| Max Speed & MEV Kickbacks (Low Privacy) | `https://rpc.flashbots.net?hint=calldata&hint=logs&hint=function_selector&hint=contract_address&hint=hash` |

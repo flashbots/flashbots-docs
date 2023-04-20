@@ -1,0 +1,22 @@
+[
+    {
+        "name": "calldata",
+        "description": "Share data sent to the smart contract (if applicable) by the transaction."
+    },
+    {
+        "name": "logs",
+        "description": "Share logs emitted by executing the transaction."
+    },
+    {
+        "name": "function_selector",
+        "description": "Share the 4-byte identifier of the function being called on the smart contract by the transaction."
+    },
+    {
+        "name": "contract_address",
+        "description": "Share the address of the recipient of the transaction; typically a smart contract."
+    },
+    {
+        "name": "hash",
+        "description": "Share the transaction (or bundle) hash. If other hints are specified, omitting this hint will **disable** MEV-Share entirely, as searchers rely on the tx hash to include these transactions in their bundles."
+    }
+]

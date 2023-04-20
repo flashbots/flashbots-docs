@@ -1,0 +1,77 @@
+---
+title: Getting Started
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+To start searching on MEV-Share, you will need to connect to a matchmaker. A matchmaker receives transactions and bundles from users, and selectively shares information about transactions with searchers. When a searcher wants to include a transaction in their bundle, they use that transaction's hash, and the matchmaker replaces it with the original transaction before sending the bundle to a block builder.
+
+## Connect to Matchmaker
+
+Flashbots runs a matchmaker on Ethereum, to which you can connect today. The matchmaker has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
+
+The simplest way to connect to the Flashbots Matchmaker is to use a [client library](/flashbots-auction/searchers/libraries/matchmaker). For this guide, we'll refer to [matchmaker-ts](https://github.com/flashbots/matchmaker-ts).
+
+If you're coding in a language that doesn't yet have a matchmaker client library, you can send transactions & bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
+
+<Tabs>
+<TabItem value="ts" label="matchmaker-ts">
+
+_Add library to your project:_
+
+```sh
+yarn add @flashbots/matchmaker-ts
+```
+
+_Import library code (note `ALL_CAPS` variables are placeholders; replace with your own data):_
+
+```typescript
+import { Wallet, JsonRpcProvider } from "ethers"
+import Matchmaker, {
+    ShareBundleParams,
+    PendingShareTransaction,
+    ShareTransactionOptions
+} from "@flashbots/matchmaker-ts"
+
+const provider = new JsonRpcProvider(RPC_URL)
+const authSigner = new Wallet(FB_REPUTATION_PRIVATE_KEY, provider)
+const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
+```
+
+_Connecting to Goerli:_
+
+```typescript
+const matchmaker = Matchmaker.useEthereumGoerli(authSigner)
+```
+
+_Custom params (for developers):_
+
+```typescript
+// connect to matchmaker on mainnet
+const matchmaker = new Matchmaker(authSigner, {
+    name: "mainnet",
+    chainId: 1,
+    streamUrl: "https://mev-share.flashbots.net",
+    apiUrl: "https://relay.flashbots.net",
+})
+```
+
+See the repo documentation to learn more.
+
+</TabItem>
+</Tabs>
+
+---
+
+Continue reading on the next page to learn how to [listen for pending transactions on MEV-Share](/flashbots-mev-share/searchers/event-stream).
+
+:::note A note for experienced searchers getting acquainted with MEV-Share
+
+Searching on MEV-Share is different from searching on the mempool in that only certain parts of a transaction are shared with searchers. On the mempool, we can see all parts of a transaction, such as calldata and logs. But on MEV-Share, a transaction might only reveal its function selector, making a traditional arbitrage calculation infeasible (though this is not necessarily the common case).
+
+That being said, existing strategies can still be employed. Users of MEV-Share have the option to share whichever parts of the transaction they deem appropriate, so strategies which use calldata and/or logs as input are still viable.
+
+To maximally leverage the orderflow on MEV-Share, new searching strategies will have to be implemented to profitably include these transactions in your bundles. More specifically, you may have to reason about markets and/or blockchain state separately from the intra-block context of users' transactions, and leveraging data gleaned from mev-share transactions, probabilistically estimate the parameters of your MEV extraction strategy. A range of probable outcomes may be targeted in parallel, but this must be done efficiently, so as to maintain priority in the matchmaker's priority queues.
+
+:::
