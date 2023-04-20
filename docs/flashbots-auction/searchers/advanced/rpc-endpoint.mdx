@@ -240,7 +240,7 @@ example request:
         "fast": true, // left for backwards compatibility; may be removed in a future version
         "auction": {
           "hint": ["calldata", "transaction_hash"],
-          "targetBuilders": ["default"]
+          "builders": ["default"]
         }
       }
     }
@@ -265,13 +265,13 @@ By default, transactions are sent to the Flashbots Matchmaker with the default [
 | Param | Type Info | Description |
 |-|-|-|
 | `hint` | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
-| `targetBuilders` | Array of strings | Builders to grant permission to include the transaction in a block. |
+| `builders` | Array of strings | Builders to grant permission to include the transaction in a block. |
 
 **`hint`**
 
 <Hints />
 
-**`targetBuilders`**
+**`builders`**
 
 Flashbots currently supports sending orderflow to the following block builders. This is subject to change over time.
 
