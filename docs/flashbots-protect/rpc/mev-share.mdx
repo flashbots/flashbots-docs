@@ -6,12 +6,13 @@ import ProtectButton from "protect-button"
 import HintsTable from "../../specs/mev-share/_hints.mdx"
 import RpcHints from "../../specs/protect-rpc/_hints.mdx"
 import TargetBuilders from "../../specs/mev-share/_targetBuilders.mdx"
+import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
 Flashbots Protect users' transactions automatically flow to the Flashbots [Matchmaker](/flashbots-mev-share/overview#what-is-a-matchmaker), which returns them up to 80% of the MEV that their transactions create. By default, users connected to Protect will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV.
 
 MEV-Share users on Flashbots Protect can directly control which parts of their transaction they wish to share with searchers. Sharing less data will improve privacy, while sharing more will improve chances of both having their transactions included quickly and receiving MEV kickbacks.
 
-<ProtectButton>Connect Wallet to Protect</ProtectButton>
+<ProtectButtonSelector />
 
 ## Protect RPC Reference
 
