@@ -41,9 +41,9 @@ The Stable configuration is the default configuration for Protect RPC -- no hint
 https://rpc.flashbots.net
 ```
 
-> :information_source: The Stable configuration currently shares only the `hash` from users' transactions. This may change over time as we gather more data and fine-tune the configuration to maximize benefits for our users.
+> :information_source: The Stable configuration currently shares the `hash` from users' transactions. It also shares partial logs (the pool id and the fact that a swap was made) for curve, balancer, and uniswapV2/V3-style trades. This may change over time as we gather more data and fine-tune the configuration to maximize benefits for our users.
 
-### Opt Out
+### Full Privacy
 
 To use Protect with full privacy, set _only_ the `hash` hint in your Protect RPC URL:
 
