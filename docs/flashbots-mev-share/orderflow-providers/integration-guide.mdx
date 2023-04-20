@@ -55,10 +55,10 @@ We strongly recommend experimenting to find the right hints for you and your use
 
 #### Example
 
-Connecting to RPC with this configuration would share logs and function selectors, and send transactions to all supported builders:
+Connecting to RPC with this configuration would share logs and function selectors, and send transactions only to Flashbots:
 
 ```txt
-https://rpc.flashbots.net?mevshare=enabled&hint=logs&hint=function_selector&targetBuilder=all
+https://rpc.flashbots.net?hint=logs&hint=function_selector&builder=flashbots
 ```
 
 To learn more about configuring Flashbots Protect, see the [Flashbots Protect RPC docs](/flashbots-protect/rpc/mev-share#protect-rpc-reference).
