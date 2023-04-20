@@ -5,6 +5,7 @@ title: Understanding Bundles
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
+import TargetBuilderInheritance from '../../specs/mev-share/blurbs/_targetBuilderInheritance.mdx'
 
 Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost; they are an ordered array of transactions; but their structure is a bit different. There are several new parameters which control the privacy of bundles, and there's also a new endpoint to send bundles: [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/mev_sendBundle.md).
 
@@ -45,6 +46,12 @@ See [validity](/flashbots-mev-share/searchers/understanding-bundles#bundle-defin
 
 - Specify data to share about your bundles to earn kickbacks on top of searching profits.
 - Choose your preferred builder(s), and send them your orderflow exclusively.
+
+:::info Note to searchers
+
+<TargetBuilderInheritance />
+
+:::
 
 See [privacy](/flashbots-mev-share/searchers/understanding-bundles#bundle-definition) for relevant parameters.
 

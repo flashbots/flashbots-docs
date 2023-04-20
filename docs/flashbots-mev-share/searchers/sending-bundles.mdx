@@ -5,6 +5,7 @@ title: Sending Bundles
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
+import TargetBuilderInheritance from '../../specs/mev-share/blurbs/_targetBuilderInheritance.mdx'
 
 While the new [bundle spec](/flashbots-mev-share/searchers/understanding-bundles#bundle-definition) may look complex, a bundle can be sent with default parameters using a client library, which ends up looking quite similar to sending bundles on mev-boost.
 
@@ -103,9 +104,19 @@ const params: BundleParams = {
 </TabItem>
 </Tabs>
 
+### targetBuilder Inheritance
+
+<TargetBuilderInheritance />
+
 ## Simulating Bundles
 
-Bundles matched by the matchmaker can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle) endpoint.
+Bundles matched by the matchmaker can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle) endpoint. 
+
+:::caution only matched bundles can be simulated
+
+Bundle simulations can only be executed on matched bundles, which contain only signed transactions, or nested bundles which contain only signed transactions. Bundles with transactions including the `hash` parameter are considered unmatched, and will throw an error.
+
+:::
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
