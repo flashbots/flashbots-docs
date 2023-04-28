@@ -25,7 +25,7 @@
     "docusaurus-plugin-sass": "0.2.1",
     "docusaurus2-dotenv": "^1.4.0",
     "dotenv": "^8.2.0",
-    "protect-button": "^0.3.0",
+    "protect-button": "^0.4.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "rehype-katex": "^4.0.0",
