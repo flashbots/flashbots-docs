@@ -59,7 +59,7 @@ const ProtectButtonSelector = () => {
         }}>
             <SimpleDropdown.Body>
                 <AlignItems horizontal='center'>
-                    <><FlashbotsProtectButton hints={advancedOptionsShown ? hints : undefined} targetBuilders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton></>
+                    <><FlashbotsProtectButton hints={advancedOptionsShown ? hints : undefined} builders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton></>
                 </AlignItems>
             </SimpleDropdown.Body>
             <SimpleDropdown.HiddenBody>
