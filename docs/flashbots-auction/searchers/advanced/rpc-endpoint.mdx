@@ -211,14 +211,18 @@ This method has the following JSON-RPC format:
     maxBlockNumber,   // Hex-encoded number string, optional. Highest block number in which the transaction should be included.
     preferences?: {
       fast: boolean,  // Deprecated; required until this is removed from the API. Value has no effect.
-      auction?: {     // MEV-Share options; optional
-        hint?: Array< // data about tx to share w/ searchers on mev-share
+      privacy?: {     // MEV-Share options; optional
+        hints?: Array< // data about tx to share w/ searchers on mev-share; optional
             "contract_address" |
             "function_selector" |
             "calldata" |
             "logs" |
             "hash"
-        >
+        >,
+        builders?: Array< // MEV-Share builders to exclusively receive bundles; optional
+            "default" |
+            "flashbots"
+        >,
       }
     }
   }]
