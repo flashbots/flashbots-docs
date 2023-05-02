@@ -33,13 +33,13 @@ Route your application's `eth_sendRawTransaction` calls to the Protect RPC [`rpc
 
 #### Set Privacy Configuration
 
-To specify a custom privacy configuration, options are passed as URL query params. These params currently include _hints_ and _target builders_. 
+To specify a custom privacy configuration, options are passed as URL query params. These params currently include _hints_ and _builders_. 
 
 Hints specify which data fields in the user's transactions are shared with searchers on MEV-Share. The following hints are currently available:
 
 <Hints />
 
-Specifying target builders permits the specified builders to use your orderflow to build blocks.
+Specifying builders permits the specified builders to use your orderflow to build blocks.
 
 :::caution
 
