@@ -128,10 +128,8 @@ module.exports = {
     {
       "Flashbots MEV-Share": [
         'flashbots-mev-share/overview',
+        'flashbots-mev-share/for-users',
         {
-          'For ETH Users': [
-            'flashbots-mev-share/users/getting-started',
-          ],
           'For Searchers': [
             'flashbots-mev-share/searchers/getting-started',
             'flashbots-mev-share/searchers/event-stream',
