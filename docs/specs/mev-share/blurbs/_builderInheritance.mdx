@@ -1,5 +1,3 @@
 By default, when a user specifies which builders their transactions should be sent to (by setting `builders`), those settings are inherited by bundles which use those transactions.
 
-Searchers can override these settings by specifying `builders` in the bundle's `privacy` parameters.
-
-If `builders` is specified in a bundle, then the bundle will be sent only to those builders.
+Searchers can restrict these settings by specifying `builders` in the bundle's `privacy` parameters. Specifically, by setting `builders`, the bundle is sent to the **intersection** of all builders specified by each of the bundle's transactions, and the builders specified in the bundle's `builders` parameter.

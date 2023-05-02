@@ -46,6 +46,12 @@ const bundleResult = await matchmaker.sendBundle(params)
 
 The first transaction in the bundle contains the hash of a pending transaction, which we presumably got from listening to the [event stream](/flashbots-mev-share/searchers/event-stream). The second transaction is one we sign ourself, which backruns the first transaction, presumably for a profit.
 
+:::info Bundle endpoint
+
+MEV-Share bundles are sent to the same RPC endpoint as MEV-Boost bundles: `https://relay.flashbots.net`
+
+:::
+
 See [matchmaker-ts](https://github.com/flashbots/matchmaker-ts/blob/main/src/examples/sendBackrunBundle.ts) for a full working example.
 
 </TabItem>
@@ -104,7 +110,7 @@ const params: BundleParams = {
 </TabItem>
 </Tabs>
 
-### targetBuilder Inheritance
+### Builder Inheritance
 
 <BuilderInheritance />
 
@@ -114,7 +120,7 @@ Bundles matched by the matchmaker can be simulated to check MEV profits. To simu
 
 :::caution only matched bundles can be simulated
 
-Bundle simulations can only be executed on matched bundles, which contain only signed transactions, or nested bundles which contain only signed transactions. Bundles with transactions including the `hash` parameter are considered unmatched, and will throw an error.
+Bundle simulations can only be executed on matched bundles, which contain only signed transactions, or nested bundles which also contain only signed transactions. Bundles with transactions including the `hash` parameter are considered "unmatched", and will throw an error.
 
 :::
 

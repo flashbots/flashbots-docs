@@ -3,7 +3,7 @@ title: Wallet/Dapp Integration Guide
 ---
 
 import Hints from "../../specs/mev-share/_hints.mdx"
-import TargetBuilders from "../../specs/mev-share/_targetBuilders.mdx"
+import Builders from "../../specs/mev-share/_builders.mdx"
 import WhatsMevShare from "../../specs/mev-share/blurbs/_whatsMevShareBasic.mdx"
 import WhatsaMatchmaker from "../../specs/mev-share/blurbs/_whatsaMatchmaker.mdx"
 
@@ -33,13 +33,13 @@ Route your application's `eth_sendRawTransaction` calls to the Protect RPC [`rpc
 
 #### Set Privacy Configuration
 
-To specify a custom privacy configuration, options are passed as URL query params. These params currently include _hints_ and _target builders_. 
+To specify a custom privacy configuration, options are passed as URL query params. These params currently include _hints_ and _builders_. 
 
 Hints specify which data fields in the user's transactions are shared with searchers on MEV-Share. The following hints are currently available:
 
 <Hints />
 
-Specifying target builders permits the specified builders to use your orderflow to build blocks.
+Specifying builders permits the specified builders to use your orderflow to build blocks.
 
 :::caution
 
@@ -49,7 +49,7 @@ Adding other builders can make users' transactions land on-chain faster and more
 
 The following builders are currently supported. By default, orderflow is only routed to the Flashbots block builder.
 
-<TargetBuilders />
+<Builders />
 
 We strongly recommend experimenting to find the right hints for you and your users. We are eager to partner with your data and product teams to find the best balance.
 

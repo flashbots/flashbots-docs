@@ -5,7 +5,7 @@ title: MEV-Share
 import ProtectButton from "protect-button"
 import HintsTable from "../../specs/mev-share/_hints.mdx"
 import RpcHints from "../../specs/protect-rpc/_hints.mdx"
-import TargetBuilders from "../../specs/mev-share/_targetBuilders.mdx"
+import Builders from "../../specs/mev-share/_builders.mdx"
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
 Flashbots Protect users' transactions automatically flow to the Flashbots [Matchmaker](/flashbots-mev-share/overview#what-is-a-matchmaker), which returns them up to 90% of the MEV that their transactions create. By default, users connected to Protect will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV.
@@ -22,7 +22,7 @@ Transactions sent to Flashbots Protect are automatically forwarded to the Flashb
 
 To use a custom hint configuration, `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified, the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
 
-To specify which builders will receive your transactions, the `targetBuilder` parameter can be specified multiple times.
+To specify which builders will receive your transactions, the `builder` parameter can be specified multiple times.
 
 <RpcHints />
 
@@ -30,9 +30,9 @@ To specify which builders will receive your transactions, the `targetBuilder` pa
 
 <HintsTable />
 
-### Target Builders
+### Builders
 
-<TargetBuilders />
+<Builders />
 
 ### Stable Configuration
 
@@ -59,7 +59,7 @@ This will completely hide all identifying transaction data sent to the Matchmake
 | <div style={{width:"180px"}}>Configuration</div>  | Flashbots Protect RPC URL |
 | - | - |
 | MEV-Share Enabled (Stable) | `https://rpc.flashbots.net` |
-| Default privacy, only send to Flashbots | `https://rpc.flashbots.net?targetBuilder=flashbots` |
+| Default privacy, only send to Flashbots | `https://rpc.flashbots.net?builder=flashbots` |
 | Max Privacy | `https://rpc.flashbots.net?hint=hash` |
 | Fast Execution | `https://rpc.flashbots.net?hint=logs&hint=function_selector&hint=contract_address&hint=hash` |
 | Max Speed & MEV Kickbacks (Low Privacy) | `https://rpc.flashbots.net?hint=calldata&hint=logs&hint=function_selector&hint=contract_address&hint=hash` |

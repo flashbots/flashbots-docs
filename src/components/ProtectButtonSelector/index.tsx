@@ -76,7 +76,7 @@ const ProtectButtonSelector = () => {
                 </div>
 
                 <div>
-                    <em>Target Builders</em>
+                    <em>Builders</em>
                     <hr style={{ padding: 0, margin: 0 }} />
                     {/* <AlignItems horizontal='left'> */}
                     {curatedBuilders && curatedBuilders.map((builder, idx) => <BuilderCheckbox name={builder.name} key={idx} />)}
