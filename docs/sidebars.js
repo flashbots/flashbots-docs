@@ -153,7 +153,7 @@ module.exports = {
     },
     {
       "Contribute": [
-        'joining-flashbots', 'contribution-guide', 'cheatsheet',
+        'joining-flashbots', 'contribution-guide', 'cheatsheet', 'bug-bounty',
       ],
     },
     {
