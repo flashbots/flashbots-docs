@@ -10,7 +10,7 @@ interface IBugBounty {
 }
 
 const BugBounty = ({ children, amount, severity, example, emoji }: IBugBounty) => {
-  return (<div className={styles.root}>
+  return (<div className={styles.root + ' ' + styles[severity]}>
 
     <div className={styles.background}>
       <div></div>

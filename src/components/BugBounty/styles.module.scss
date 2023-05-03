@@ -3,7 +3,19 @@
   position: relative;
   padding: 2rem 1rem 1.5rem;
   margin-bottom: 1rem;
+  border-left: 8px solid;
+}
+.low {
   border-left: 8px solid #F5D73D;
+}
+.medium {
+  border-left: 8px solid #F5993D;
+}
+.high {
+  border-left: 8px solid #E24436;
+}
+.critical {
+  border-left: 8px solid #8D4CE6;
 }
 
 .background {
