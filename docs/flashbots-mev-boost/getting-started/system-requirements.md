@@ -2,9 +2,9 @@
 title: System Requirements
 ---
 
-This guide assumes a pre-installed and hardened Ubuntu installation [as well as Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04). Excellent introductory resources to start with are: [eth-docker](https://eth-docker.net/docs/About/Overview#node-components), [Coincashew](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node), and [Rocketpool's Securing your Node](https://docs.rocketpool.net/guides/node/securing-your-node.html#securing-your-node)
+This guide assumes a pre-installed and hardened Ubuntu installation [as well as Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04). Excellent introductory resources to start with are: [Coincashew](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node), and [Rocketpool's Securing your Node](https://docs.rocketpool.net/guides/node/securing-your-node.html#securing-your-node)
 
-**Execution + Beacon Requirements** 
+**Execution + Beacon Requirements**
 
 - **Software**: Execution client, beacon node client (instructions for clients below), [curl](https://curl.se/download.html)
 - **OS**: 64-bit Linux, Mac OS X 10.14+, Windows 10+ 64-bit
@@ -32,7 +32,7 @@ This guide assumes a pre-installed and hardened Ubuntu installation [as well as
 
 |  | MEV-Boost Client Guides |
 | --- | --- |
-| Teku | [Guide](https://hackmd.io/@StefanBratanov/BkMlo1RO9)|
+| Teku | [Guide](hthttps://docs.teku.consensys.net/Concepts/Builder-Network/tps://hackmd.io/@StefanBratanov/BkMlo1RO9)|
 | Prysm | [Guide](https://hackmd.io/@prysmaticlabs/BJeinxFsq) |
 | Lighthouse | [Guide](https://lighthouse-book.sigmaprime.io/builders.html#mev-and-lighthouse) |
 | Lodestar | [Guide](https://github.com/ChainSafe/lodestar/blob/unstable/docs/usage/mev-integration.md) |

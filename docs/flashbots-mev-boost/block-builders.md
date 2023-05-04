@@ -14,23 +14,23 @@ Builders run algorithms and simulations (e.g. First Come First Serve, First Pric
 
 Flashbots proposed a standardized specification for how payments are made from builders to block proposers through the following process:
 
-1. The builder sets their own address as the `feeRecipient` of the payload block header they are constructing. 
+1. The builder sets their own address as the `feeRecipient` of the payload block header they are constructing.
 2. The builder includes a transaction which pays ETH to the proposer’s `feeRecipient` address at the end of their proposed block.
 
 
 
 ### Determining the value of blocks
 
-A standard method for determining block value is crucial for multiple components of the MEV-Boost ecosystem; including relay monitoring, validator accounting, builder payments, block explorers, payment proofs, and MEV hiding. 
+A standard method for determining block value is crucial for multiple components of the MEV-Boost ecosystem; including relay monitoring, validator accounting, builder payments, block explorers, payment proofs, and MEV hiding.
 
 Various methods for defining block value were [considered](https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202) by members of the community. It was determined that block level scoring was the most simple and intuitive method for scoring block value.
 
 
 ### Block level scoring
 
-Block level scoring looks at the difference in the balance of the fee recipient account before and after the block execution.  
+Block level scoring looks at the difference in the balance of the fee recipient account before and after the block execution.
 
-Note that a “block score” is not meant to be a formal definition of realized extractable value, since this is a difficult metric to quantify. For example, a Layer 2 transfer to a validator’ fee recipient address could be considered extractable value, but falls outside the scope of a block score calculation. 
+Note that a “block score” is not meant to be a formal definition of realized extractable value, since this is a difficult metric to quantify. For example, a Layer 2 transfer to a validator’ fee recipient address could be considered extractable value, but falls outside the scope of a block score calculation.
 
 Constructing a payment proof for this scoring method requires a Merkle Proof of the fee recipient balance in block *(n - 1)*, and a Merkle Proof of the fee recipient balance in block *n*. **Payment proofs have not yet been put into production.** Active discussion about payment proof implementation is still on-going. For more details or to participate in the discussion around payment proofs and block-level scoring, please check out to the [block scoring](https://collective.flashbots.net/t/block-scoring-for-mev-boost-relays/202) forum thread.
 
@@ -42,8 +42,8 @@ External builders can submit blocks to Mainnet, Goerli and Sepolia Flashbots rel
 
 |  |  | Mainnet | Goerli | Sepolia |
 | --- | --- | --- | --- | --- |
-| `getValidators` | GET Request - Returns an array of validator registrations with assigned duties in the current and next epoch | https://boost-relay.flashbots.net/relay/v1/builder/validators  | https://builder-relay-goerli.flashbots.net/relay/v1/builder/validators  | https://builder-relay-sepolia.flashbots.net/relay/v1/builder/validators |
-| `submitBlock` | POST Request - submits a block to the builder | https://boost-relay.flashbots.net/relay/v1/builder/blocks  | https://builder-relay-goerli.flashbots.net/relay/v1/builder/blocks | https://builder-relay-sepolia.flashbots.net/relay/v1/builder/blocks |
+| `getValidators` | GET Request - Returns an array of validator registrations with assigned duties in the current and next epoch | https://boost-relay.flashbots.net/relay/v1/builder/validators  | https://boost-relay-goerli.flashbots.net/relay/v1/builder/validators  | https://boost-relay-sepolia.flashbots.net/relay/v1/builder/validators |
+| `submitBlock` | POST Request - submits a block to the builder | `https://boost-relay.flashbots.net/relay/v1/builder/blocks`  | `https://boost-relay-goerli.flashbots.net/relay/v1/builder/blocks` | `https://boost-relay-sepolia.flashbots.net/relay/v1/builder/blocks` |
 
 - See also the [Relay API documentation - Block Builder API](https://bit.ly/3BmGZ3T) for more details on the API and payloads.
 - The example [Flashbots builder implementation](https://github.com/flashbots/boost-geth-builder) is a good external builder reference, and is currently used in production by several builders.
@@ -55,7 +55,7 @@ Submissions to all relays are currently rate-limited to 60 blocks / minute.
 
 ## Flashbots Builders
 
-All Flashbots builders pay block proposers from the [`flashbots-builder.eth` ENS address](https://etherscan.io/address/0xdafea492d9c6733ae3d56b7ed1adb60692c98bc5). Each Flashbots builder uses a different public key (`builder_pubkey`) for relay identification and analytics purposes. 
+All Flashbots builders pay block proposers from the [`flashbots-builder.eth` ENS address](https://etherscan.io/address/0xdafea492d9c6733ae3d56b7ed1adb60692c98bc5). Each Flashbots builder uses a different public key (`builder_pubkey`) for relay identification and analytics purposes.
 
 The various `builder_pubkeys` used to identify Flashbots builders to relays are listed below:
 
@@ -74,4 +74,4 @@ The various `builder_pubkeys` used to identify Flashbots builders to relays are
 - Github issue about becoming block builder: [https://github.com/flashbots/mev-boost/issues/145](https://github.com/flashbots/mev-boost/issues/145).
 - [Mevboost.org*](https://www.mevboost.org/) - Tracking MEV-Boost relays and block builders. A quick hack by [Anish](https://anishagnihotri.com/). Design inspired by file.app.
 
-*Note: Flashbots does not control and cannot verify the data coming from external people and organizations. Please direct questions or issues directly to the creators of external data sources.* 
+*Note: Flashbots does not control and cannot verify the data coming from external people and organizations. Please direct questions or issues directly to the creators of external data sources.*
