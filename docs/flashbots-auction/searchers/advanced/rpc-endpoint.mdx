@@ -9,11 +9,6 @@ import Builders from '../../../specs/mev-share/_builders.mdx';
 import SendBundleSpec from '../../../specs/mev-share/_mev_sendBundle.mdx';
 import SimBundleSpec from '../../../specs/mev-share/_mev_simBundle.mdx';
 
-:::danger
-
-flashbots_getUserStats and flashbots_getBundleStats methods will be deprecated on March 31, 2023, use V2 methods!
-
-:::
 
 ## Interact directly with the Flashbots RPC endpoint
 
@@ -169,13 +164,13 @@ example response:
 
 ### mev_simBundle
 
-`mev_simBundle` uses a new bundle format to simulate matched bundles on MEV-Share. See [mev-share spec](https://github.com/flashbots/mev-share/blob/main/specs/mev_simBundle.md) for more information.
+`mev_simBundle` uses a new bundle format to simulate matched bundles on MEV-Share. See [mev-share spec](https://github.com/flashbots/mev-share/blob/main/specs) for more information.
 
 <SendBundleSpec />
 
 ### eth_cancelBundle
 
-`eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain. 
+`eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain.
 See [bundle cancellations](/flashbots-auction/searchers/advanced/bundle-cancellations) for more information.
 
 > :information_source: `replacementUuid` must have been set when bundle was submitted.
