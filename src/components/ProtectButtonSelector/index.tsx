@@ -16,6 +16,7 @@ const ProtectButtonSelector = () => {
     const [logs, setLogs] = useState(false)
     const [contractAddress, setContractAddress] = useState(false)
     const [functionSelector, setFunctionSelector] = useState(false)
+    const [noHints, setNoHints] = useState(false)
     const [curatedBuilders, setCuratedBuilders] = useState<Builder[]>()
     const [advancedOptionsShown, setAdvancedOptionsShown] = useState(false)
 
@@ -24,7 +25,42 @@ const ProtectButtonSelector = () => {
         logs,
         contractAddress,
         functionSelector,
+        hash: true,
     } : undefined
+
+    const onSetNoHints = (val: boolean) => {
+        setNoHints(val);
+        if (val === true) {
+            // We have to also clear all of the other hints if someone selects no hints.
+            setCalldata(false);
+            setLogs(false);
+            setContractAddress(false);
+            setFunctionSelector(false);
+        }
+    }
+
+    // If the user selects any other hint, the "none" option should be deselected. TODO Is there
+    // a more elegant way to handle this than wrapping each hint update in a callback.
+
+    const onSetCalldata = (val: boolean) => {
+        setNoHints(false);
+        setCalldata(val);
+    }
+
+    const onSetLogs = (val: boolean) => {
+        setNoHints(false);
+        setLogs(val);
+    }
+
+    const onSetFunctionSelector = (val: boolean) => {
+        setNoHints(false);
+        setFunctionSelector(val);
+    }
+
+    const onSetContractAddress = (val: boolean) => {
+        setNoHints(false);
+        setContractAddress(val);
+    }
 
     const toggleBuilder = (name: string) => {
         if (selectedBuilders.includes(name)) {
@@ -67,10 +103,11 @@ const ProtectButtonSelector = () => {
                     <em>MEV-Share Hints</em>
                     <hr style={{ padding: 0, margin: 0 }} />
                     <AlignItems horizontal='left'>
-                        <Checkbox label='Calldata' id='calldata' checked={calldata} onChange={setCalldata} />
-                        <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={setContractAddress} />
-                        <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={setFunctionSelector} />
-                        <Checkbox label='Logs' id='logs' checked={logs} onChange={setLogs} />
+                        <Checkbox label='Calldata' id='calldata' checked={calldata} onChange={onSetCalldata} />
+                        <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={onSetContractAddress} />
+                        <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={onSetFunctionSelector} />
+                        <Checkbox label='Logs' id='logs' checked={logs} onChange={onSetLogs} />
+                        <Checkbox label='None' id='none' checked={noHints} onChange={onSetNoHints} />
                         <div style={{ width: 64 }} /> {/* spacer */}
                     </AlignItems>
                 </div>
