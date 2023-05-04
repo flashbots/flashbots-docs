@@ -47,7 +47,7 @@ Provides data about received blocks from builders, payloads delivered to propose
 
 ## [Relay Monitor](https://hackmd.io/@ralexstokes/SynPJN_pq)
 
-While relays are trusted actors, the ability to run a relay is permissionless. To mitigate potential abuses of this role, Flashbots [has suggested](https://github.com/flashbots/mev-boost/issues/142) a “relay monitor,” which uses publicly available data to form a view on the behavior and performance of the set of relays it is monitoring. More details can be found in the [relay monitor design documentation](https://hackmd.io/@ralexstokes/SynPJN_pq), [keeping MEV-Boost relays honest](https://notes.ethereum.org/@yoav/BJeOQ8rI5), and [understanding liveness risks](https://writings.flashbots.net/writings/understanding-mev-boost-liveness-risks).
+While relays are trusted actors, the ability to run a relay is permissionless. To mitigate potential abuses of this role, Flashbots [has suggested](https://github.com/flashbots/mev-boost/issues/142) a “relay monitor,” which uses publicly available data to form a view on the behavior and performance of the set of relays it is monitoring. More details can be found in the [relay monitor design documentation](https://hackmd.io/@ralexstokes/SynPJN_pq), [keeping MEV-Boost relays honest](https://notes.ethereum.org/@yoav/BJeOQ8rI5), and [understanding liveness risks](https://writings.flashbots.net/understanding-mev-boost-liveness-risks).
 
 ## [Circuit Breaker](https://hackmd.io/@ralexstokes/BJn9N6Thc)
 

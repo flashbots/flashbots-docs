@@ -12,18 +12,18 @@ title: Resources
 
 **MEV**
 
-- [MEV in eth2 - an early exploration](https://writings.flashbots.net/research/mev-eth2/)
+- [MEV in eth2 - an early exploration](https://writings.flashbots.net/mev-eth2/)
 - [MEV Driven Centralization in Ethereum: Part 1](https://simbro.medium.com/mev-driven-centralization-in-ethereum-ec829a214f18)
 
 **MEV-Boost**
 
-- [Beginner's Guide to mev-boost](https://writings.flashbots.net/writings/beginners-guide-mevboost/)
+- [Beginner's Guide to mev-boost](https://writings.flashbots.net/beginners-guide-mevboost/)
 - [MEV-Boost: Merge ready Flashbots Architecture](https://ethresear.ch/t/mev-boost-merge-ready-flashbots-architecture/11177)
-- [Why Run MEV-Boost?](https://writings.flashbots.net/writings/why-run-mevboost/)
+- [Why Run MEV-Boost?](https://writings.flashbots.net/why-run-mevboost/)
 - [Removing Trusted Relays in MEV-Boost Using Threshold Encryption](https://ethresear.ch/t/removing-trusted-relays-in-mev-boost-using-threshold-encryption/13449)
 - [Proposer/block builder separation-friendly fee market designs](https://ethresear.ch/t/proposer-block-builder-separation-friendly-fee-market-designs/9725)
-- [Open sourcing the Flashbots Relay](https://writings.flashbots.net/writings/Flashbots-Relay-open-sourcing)
-- [Understanding liveness risks from mev-boost](https://writings.flashbots.net/writings/understanding-mev-boost-liveness-risks)
+- [Open sourcing the Flashbots Relay](https://writings.flashbots.net/Flashbots-Relay-open-sourcing)
+- [Understanding liveness risks from mev-boost](https://writings.flashbots.net/understanding-mev-boost-liveness-risks)
 
 **Validator Guides**
 

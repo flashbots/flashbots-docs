@@ -5,7 +5,7 @@ title: MEV-Boost Risks and Considerations
 
 **Liveness and Local Fallback**
 
-To prevent any risk to Ethereum **liveness,** mev-boost is implemented as a sidecar for consensus client software. Using the standard [builder specs](https://github.com/ethereum/builder-specs) ensures client diversity is maintained and validators benefit from operating in the same security model, regardless of which client is selected. Should a fault occur in the mev-boost software, the consensus nodes fall back to local block production. Check-out [understanding liveness risk](https://writings.flashbots.net/writings/understanding-mev-boost-liveness-risks), the [circuit breaker proposal](https://hackmd.io/@ralexstokes/BJn9N6Thc), and the [relay monitor specification](https://hackmd.io/@ralexstokes/SynPJN_pq) for more information.
+To prevent any risk to Ethereum **liveness,** mev-boost is implemented as a sidecar for consensus client software. Using the standard [builder specs](https://github.com/ethereum/builder-specs) ensures client diversity is maintained and validators benefit from operating in the same security model, regardless of which client is selected. Should a fault occur in the mev-boost software, the consensus nodes fall back to local block production. Check-out [understanding liveness risk](https://writings.flashbots.net/understanding-mev-boost-liveness-risks), the [circuit breaker proposal](https://hackmd.io/@ralexstokes/BJn9N6Thc), and the [relay monitor specification](https://hackmd.io/@ralexstokes/SynPJN_pq) for more information.
 
 **Builder Centralization**
 
