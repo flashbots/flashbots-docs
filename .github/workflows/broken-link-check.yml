@@ -1,4 +1,4 @@
-name: Check for OFAC update (beta)
+name: Check for broken links
 
 on:
   schedule:
