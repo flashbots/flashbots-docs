@@ -1,4 +1,4 @@
-name: Check for OFAC update (beta)
+name: Check for broken links
 
 on:
   schedule:
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  check-for-ofac-update:
+  check-for-broken-links:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v1
