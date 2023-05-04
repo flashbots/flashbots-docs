@@ -4,7 +4,7 @@ title: MEV-Boost Specifications
 
 
 
-`mev-boost` implements the latest versions of the [Ethereum Builder Specification](https://github.com/ethereum/builder-specs/blob/main/specs/builder.md).
+`mev-boost` implements the latest versions of the [Ethereum Builder Specification](https://github.com/ethereum/builder-specs).
 
 - The Builder API is a temporary solution for [Proposer-builder separation](https://ethresear.ch/t/proposer-block-builder-separation-friendly-fee-market-designs/9725)
  (PBS), and aims to separate the roles of a validator into block proposing and block building. [You can interact with a rendered version of the Builder API here.](https://ethereum.github.io/builder-specs/#/Builder/status)
