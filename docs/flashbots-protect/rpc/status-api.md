@@ -22,7 +22,6 @@ In turn you will receive a JSON response that looks like the following:
     },
   "fastMode": true, // for backwards compatibility; may be removed in a future version
   "seenInMempool": false,
-  "simError": "MaxFeePerGasTooLow"
 }
 ```
 
@@ -56,6 +55,5 @@ For example, once the earlier transaction was included, you would receive a JSON
     },
   "fastMode": true, // for backwards compatibility; may be removed in a future version
   "seenInMempool": false,
-  "simError": "MaxFeePerGasTooLow"
 }
 ```
