@@ -9,7 +9,7 @@
     },
     {
         "name": "function_selector",
-        "description": "Share the 4-byte identifier of the function being called on the smart contract by the transaction."
+        "description": "Share the 4-byte identifier of the function being called on the smart contract by the transaction. The contract address will also be shared if the function selector is shared."
     },
     {
         "name": "contract_address",
@@ -17,6 +17,6 @@
     },
     {
         "name": "hash",
-        "description": "Share the transaction (or bundle) hash. If other hints are specified, omitting this hint will **disable** MEV-Share entirely, as searchers rely on the tx hash to include these transactions in their bundles."
+        "description": "Share the transaction (or bundle) hash. To use full privacy mode, share this hint and this hint alone. The hash will always be shared if other hints are shared."
     }
 ]
