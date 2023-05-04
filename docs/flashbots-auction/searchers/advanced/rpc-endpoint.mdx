@@ -206,14 +206,18 @@ This method has the following JSON-RPC format:
     maxBlockNumber,   // Hex-encoded number string, optional. Highest block number in which the transaction should be included.
     preferences?: {
       fast: boolean,  // Deprecated; required until this is removed from the API. Value has no effect.
-      auction?: {     // MEV-Share options; optional
-        hint?: Array< // data about tx to share w/ searchers on mev-share
+      privacy?: {     // MEV-Share options; optional
+        hints?: Array< // data about tx to share w/ searchers on mev-share
             "contract_address" |
             "function_selector" |
             "calldata" |
             "logs" |
             "hash"
-        >
+        >,
+        builders?: Array< // MEV-Share builders to exclusively receive bundles; optional
+            "default" |
+            "flashbots"
+        >,
       }
     }
   }]
@@ -233,8 +237,8 @@ example request:
       "maxBlockNumber": "0xcd23a0",
       "preferences": {
         "fast": true, // left for backwards compatibility; may be removed in a future version
-        "auction": {
-          "hint": ["calldata", "transaction_hash"],
+        "privacy": {
+          "hints": ["calldata", "transaction_hash"],
           "builders": ["default"]
         }
       }
@@ -253,9 +257,9 @@ example response:
 }
 ```
 
-#### `auction`
+#### `privacy`
 
-By default, transactions are sent to the Flashbots Matchmaker with the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration. The `auction` parameter allows you to specify your own privacy parameters.
+By default, transactions are sent to the Flashbots Matchmaker with the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration. The `privacy` parameter allows you to specify your own privacy parameters.
 
 | Param | Type Info | Description |
 |-|-|-|
