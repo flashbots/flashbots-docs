@@ -1,7 +1,7 @@
 [
     {
         "name": "calldata",
-        "description": "Share data sent to the smart contract (if applicable) by the transaction."
+        "description": "Share data sent to the smart contract (if applicable) by the transaction. The function selector and contract address will also be shared if the calldata is shared."
     },
     {
         "name": "logs",
