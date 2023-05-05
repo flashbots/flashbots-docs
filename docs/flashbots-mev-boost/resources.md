@@ -28,7 +28,6 @@ title: Resources
 **Validator Guides**
 
 - [Validator Checklist - launchpad.ethereum.org](https://launchpad.ethereum.org/en/merge-readiness)
-- [CoinCashew’s Client Usage Guide](https://eth-docker.net/docs/Usage/ResourceUsage)
 - [eth-docker: Docker automation for Ethereum consensus and execution clients.](https://github.com/eth-educators/eth-docker)
 - [Validator Slashing Prevention Tips - Prysmatic Labs](https://medium.com/prysmatic-labs/eth2-slashing-prevention-tips-f6faa5025f50)
 - [Understanding Eth2 Slashing Preventative Measures](https://www.bloxstaking.com/blog/ethereum-2-0/understanding-eth2-slashing-preventative-measures/)
