@@ -7,24 +7,22 @@ on:
   pull_request:
 
 jobs:
-  build:
-    if: github.event_name != 'pull_request'
+  build-and-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-      - name: Test Build
+      - name: Test build
         env:
-          TARGET_URL: "http://not-docs.flashbots.net"
-          BASE_URL: "/docs/"
+          TARGET_URL: "https://docs.flashbots.net"
+          BASE_URL: "/"
         run: |
-          if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
-          elif [ -e package-lock.json ]; then
-          npm ci
-          else
-          npm i
-          fi
-          npm run build
+          yarn build
+      - name: Check for broken links
+        run: |
+          cd build
+          npm install -g linkinator
+          linkinator -r *.html **/*.html -s https://dune.com/ChainsightAnalytics

@@ -1,9 +1,9 @@
-name: Check for broken links
+name: Check for broken links (cron)
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '0 10 * * *'
 
 jobs:
   check-for-broken-links:
@@ -13,4 +13,4 @@ jobs:
         with:
           node-version: '16.x'
       - run: npm install -g linkinator
-      - run: linkinator -r https://docs.flashbots.net
+      - run: linkinator -r https://docs.flashbots.net -s https://dune.com/ChainsightAnalytics
