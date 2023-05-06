@@ -13,4 +13,4 @@ jobs:
         with:
           node-version: '16.x'
       - run: npm install -g linkinator
-      - run: linkinator -r https://docs.flashbots.net -s https://dune.com/ChainsightAnalytics
+      - run: linkinator https://docs.flashbots.net --recurse --timeout 5000 -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/tx.*'
