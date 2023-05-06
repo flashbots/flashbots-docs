@@ -25,4 +25,4 @@ jobs:
         run: |
           cd build
           npm install -g linkinator
-          linkinator -r *.html **/*.html -s https://dune.com/ChainsightAnalytics
+          linkinator "**/*.html" --recurse --timeout 5000 -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/.*'
