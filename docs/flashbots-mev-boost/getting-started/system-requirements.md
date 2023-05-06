@@ -13,7 +13,7 @@ This guide assumes a pre-installed and hardened Ubuntu installation [as well as
 - **Storage**: SSD with at least 2TB free space
 - **Network:** 8 MBit/sec broadband
 
-💡 There are variations in client resource usage. Please review [CoinCashew’s Client Usage Guide](https://eth-docker.net/docs/Usage/ResourceUsage) for more details!
+💡 There are variations in client resource usage.
 
 
 **Validator Requirements**
