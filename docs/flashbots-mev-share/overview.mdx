@@ -51,3 +51,5 @@ MEV-Share dispatches data about pending transactions via an SSE event stream. To
 Bundles on MEV-Share consist of signed transactions and transaction hashes from the event stream, as well as some metadata about the bundle's validity conditions.
 
 To send a bundle to MEV-Share, use a [client library](https://github.com/flashbots/matchmaker-ts) or send a request to the [`mev_sendBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_sendbundle) RPC endpoint. For more information about sending bundles, see [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles).
+
+> :information_source: Currently, MEV-Share only allows constructing bundles containing a single input and a single backrun. If the input is also a bundle, the rule applies recursively to that nested bundle. Concretely this means that searchers can only place hashes in the first position of their bundles; and each bundle may include up to one hash. The Matchmaker will reject any bundles that violate these rules. This ensures that searchers cannot frontrun users in-protocol.
