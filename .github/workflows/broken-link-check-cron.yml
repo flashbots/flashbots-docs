@@ -13,4 +13,4 @@ jobs:
         with:
           node-version: '16.x'
       - run: npm install -g linkinator
-      - run: linkinator https://docs.flashbots.net --recurse --timeout 3000 --concurrency 10 --retry -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/tx.*','https://twitter.com.*'
+      - run: linkinator https://docs.flashbots.net --recurse --timeout 3000 --concurrency 10 --retry -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/tx.*','https://twitter.com.*','https://.*imgur.com.*'
