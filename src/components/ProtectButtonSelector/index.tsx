@@ -1,17 +1,25 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import SimpleDropdown from '../SimpleDropdown'
 import FlashbotsProtectButton from 'protect-button'
 import Checkbox from '../Checkbox'
 import AlignItems from '../AlignItems/AlignItems'
 import GridBlock from '../GridBlock/GridBlock'
+import axios from "axios"
 
 type Builder = {
     name: string,
     rpc: string,
+    "supported-apis": Array<string>, // TODO: can we please change this to camelCase
+}
+
+const fetchDowgBuilders = async (): Promise<Array<Builder>> => {
+    const res = await axios.get("https://raw.githubusercontent.com/flashbots/dowg/main/builder-registrations.json")
+    return res.data
 }
 
 const ProtectButtonSelector = () => {
-    const [selectedBuilders, setSelectedBuilders] = useState<string[]>(["flashbots"])
+    const supportedBuilders = useMemo(() => fetchDowgBuilders(), [])
+    const [selectedBuilders, setSelectedBuilders] = useState<string[]>([])
     const [calldata, setCalldata] = useState(false)
     const [logs, setLogs] = useState(false)
     const [contractAddress, setContractAddress] = useState(false)
@@ -72,18 +80,10 @@ const ProtectButtonSelector = () => {
 
     const BuilderCheckbox = ({ name }: { name: string }) => <Checkbox label={name} id={`builder_${name}`} checked={selectedBuilders.includes(name.toLowerCase())} onChange={(_) => toggleBuilder(name.toLowerCase())} />
 
-    const getSupportedBuilders = async () => {
-        // pending spec release
-        // await get(https://raw.github)
-        return [
-            { name: "flashbots", rpc: "rpc.flashbots.net" }
-        ]
-    }
-
     useEffect(() => {
         async function init() {
             if (!curatedBuilders) {
-                setCuratedBuilders(await getSupportedBuilders())
+                setCuratedBuilders(await supportedBuilders)
             }
         }
         init()
