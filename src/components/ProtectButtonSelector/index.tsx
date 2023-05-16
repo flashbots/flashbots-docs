@@ -1,24 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useState } from "react"
 import SimpleDropdown from '../SimpleDropdown'
 import FlashbotsProtectButton from 'protect-button'
 import Checkbox from '../Checkbox'
 import AlignItems from '../AlignItems/AlignItems'
 import GridBlock from '../GridBlock/GridBlock'
-import axios from "axios"
-
-type Builder = {
-    name: string,
-    rpc: string,
-    "supported-apis": Array<string>, // TODO: can we please change this to camelCase
-}
-
-const fetchDowgBuilders = async (): Promise<Array<Builder>> => {
-    const res = await axios.get("https://raw.githubusercontent.com/flashbots/dowg/main/builder-registrations.json")
-    return res.data
-}
+import { Builder, useDowgBuilders } from '../mev-share/useDowgBuilders'
 
 const ProtectButtonSelector = () => {
-    const supportedBuilders = useMemo(() => fetchDowgBuilders(), [])
+    const supportedBuilders = useDowgBuilders()
     const [selectedBuilders, setSelectedBuilders] = useState<string[]>([])
     const [calldata, setCalldata] = useState(false)
     const [logs, setLogs] = useState(false)
