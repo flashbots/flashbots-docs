@@ -4,14 +4,11 @@ import FlashbotsProtectButton from 'protect-button'
 import Checkbox from '../Checkbox'
 import AlignItems from '../AlignItems/AlignItems'
 import GridBlock from '../GridBlock/GridBlock'
-
-type Builder = {
-    name: string,
-    rpc: string,
-}
+import { Builder, useSupportedBuilders } from '../mev-share/useSupportedBuilders'
 
 const ProtectButtonSelector = () => {
-    const [selectedBuilders, setSelectedBuilders] = useState<string[]>(["flashbots"])
+    const supportedBuilders = useSupportedBuilders()
+    const [selectedBuilders, setSelectedBuilders] = useState<string[]>([])
     const [calldata, setCalldata] = useState(false)
     const [logs, setLogs] = useState(false)
     const [contractAddress, setContractAddress] = useState(false)
@@ -72,18 +69,10 @@ const ProtectButtonSelector = () => {
 
     const BuilderCheckbox = ({ name }: { name: string }) => <Checkbox label={name} id={`builder_${name}`} checked={selectedBuilders.includes(name.toLowerCase())} onChange={(_) => toggleBuilder(name.toLowerCase())} />
 
-    const getSupportedBuilders = async () => {
-        // pending spec release
-        // await get(https://raw.github)
-        return [
-            { name: "flashbots", rpc: "rpc.flashbots.net" }
-        ]
-    }
-
     useEffect(() => {
         async function init() {
             if (!curatedBuilders) {
-                setCuratedBuilders(await getSupportedBuilders())
+                setCuratedBuilders(await supportedBuilders)
             }
         }
         init()
