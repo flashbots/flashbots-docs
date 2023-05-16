@@ -7,11 +7,11 @@ export type Builder = {
     "supported-apis": Array<string>, // TODO: can we please change this to camelCase
 }
 
-const fetchDowgBuilders = async (): Promise<Array<Builder>> => {
+const fetchSupportedBuilders = async (): Promise<Array<Builder>> => {
     const res = await axios.get("https://raw.githubusercontent.com/flashbots/dowg/main/builder-registrations.json")
     return res.data
 }
 
-export const useDowgBuilders = async (): Promise<Array<Builder>> => {
-    return useMemo(() => fetchDowgBuilders(), [])
+export const useSupportedBuilders = async (): Promise<Array<Builder>> => {
+    return useMemo(() => fetchSupportedBuilders(), [])
 }

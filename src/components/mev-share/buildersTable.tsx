@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { useDowgBuilders, Builder } from "./useDowgBuilders"
+import { useSupportedBuilders, Builder } from "./useSupportedBuilders"
 
 export default () => {
-    const supportedBuilders = useDowgBuilders()
+    const supportedBuilders = useSupportedBuilders()
     const [builders, setBuilders] = useState<Array<Builder>>([])
 
     useEffect(() => {

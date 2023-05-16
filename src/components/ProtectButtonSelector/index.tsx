@@ -4,10 +4,10 @@ import FlashbotsProtectButton from 'protect-button'
 import Checkbox from '../Checkbox'
 import AlignItems from '../AlignItems/AlignItems'
 import GridBlock from '../GridBlock/GridBlock'
-import { Builder, useDowgBuilders } from '../mev-share/useDowgBuilders'
+import { Builder, useSupportedBuilders } from '../mev-share/useSupportedBuilders'
 
 const ProtectButtonSelector = () => {
-    const supportedBuilders = useDowgBuilders()
+    const supportedBuilders = useSupportedBuilders()
     const [selectedBuilders, setSelectedBuilders] = useState<string[]>([])
     const [calldata, setCalldata] = useState(false)
     const [logs, setLogs] = useState(false)
