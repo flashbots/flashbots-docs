@@ -6,8 +6,8 @@ title: Contributing
 
 You are welcome here <3.
 
-- If you would like to contribute with code, check the [CONTRIBUTING file](https://github.com/flashbots/mev-boost/blob/main/CONTRIBUTING.md) for further information.
-- Please be kind and read our [code of conduct](https://github.com/flashbots/mev-boost/blob/main/CODE_OF_CONDUCT.md).
+- If you would like to contribute with code, check the [CONTRIBUTING file](https://github.com/flashbots/mev-boost/blob/develop/CONTRIBUTING.md) for further information.
+- Please be kind and read our [code of conduct](https://github.com/flashbots/mev-boost/blob/develop/CODE_OF_CONDUCT.md).
 
 ### Report a Vulnerability
 
