@@ -21,7 +21,7 @@ Validators running MEV-Boost maximize their staking reward by selling their bloc
 
 ## How does MEV-Boost work?
 
-![https://raw.githubusercontent.com/flashbots/mev-boost/main/docs/mev-boost-integration-overview.png](https://raw.githubusercontent.com/flashbots/mev-boost/main/docs/mev-boost-integration-overview.png)
+![https://raw.githubusercontent.com/flashbots/mev-boost/develop/docs/mev-boost-integration-overview.png](https://raw.githubusercontent.com/flashbots/mev-boost/develop/docs/mev-boost-integration-overview.png)
 
 PoS node operators must run three pieces of software: a validator client, consensus client, and an execution client. MEV-boost is a sidecar for the consensus client, a separate piece of open source software, which queries and outsources block-building to a network of builders.
 

@@ -2,7 +2,7 @@
 title: MEV-Boost Block Proposal
 ---
 
-![MEV-Boost Block Proposal](https://raw.githubusercontent.com/flashbots/mev-boost/main/docs/block-proposal.png)
+![MEV-Boost Block Proposal](https://raw.githubusercontent.com/flashbots/mev-boost/develop/docs/block-proposal.png)
 
 
 As depicted above and described in the [Builder — Honest Validator](https://github.com/ethereum/builder-specs) repository, the MEV-Boost block proposal process begins with a [registration step](https://github.com/ethereum/builder-specs) that validators must perform ahead of  proposal duties. Registration ensures builders can craft blocks for a given validator’ block proposal. Once registered, validators wait until selected to propose a block. Once selected, a block proposer building a block on top of a beacon `state` in a given `slot` must take the following actions to obtain an [execution payload](https://github.com/ethereum/consensus-specs/blob/a45ee9bf5b1fde766d69e551a6b1a21fe2531734/specs/merge/beacon-chain.md#executionpayload):
