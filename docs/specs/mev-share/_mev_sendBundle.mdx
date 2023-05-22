@@ -22,12 +22,12 @@
             { tx: string, canRevert: boolean } |
             { bundle: MevSendBundleParams }
         >,
-        validity: {
-            refund: Array<{
+        validity?: {
+            refund?: Array<{
                 bodyIdx: number,
                 percent: number,
             }>,
-            refundConfig: Array<{
+            refundConfig?: Array<{
                 address: string,
                 percent: number,
             }>
