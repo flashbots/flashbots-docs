@@ -65,7 +65,7 @@ To learn more about configuring Flashbots Protect, see the [Flashbots Protect RP
 
 ### What are the guarantees and benefits?
 
-The matchmaker will bundle user transactions with each valid searcher backrun and submit them to a dedicated Flashbots builder. The builder will choose the winning bundle and transfer 90% of the searcher's payment to `msg.sender` of the user's transaction.
+The matchmaker will bundle user transactions with each valid searcher backrun and submit them to a dedicated Flashbots builder. The builder will choose the winning bundle and transfer 90% of the searcher's payment to `tx.origin` of the user's transaction.
 
 If no valid backruns are submitted, the transaction will be treated as a regular [Protect transaction](https://docs.flashbots.net/flashbots-protect/rpc/quick-start) and receive all the typical benefits of Flashbots Protect.
 
