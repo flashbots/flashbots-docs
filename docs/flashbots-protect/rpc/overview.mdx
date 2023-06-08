@@ -16,13 +16,6 @@ The major benefits of connecting to Flashbots Protect are:
 
 <br /><br />
 
-Privacy notice: **Flashbots Protect does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
-
-We intend to release more features on top of Flashbots Protect as part of MEV-Share, offering even more powerful functionalities.
-
-We want to thank MiningDAO, mistX and Nethermind for significant code contributions, testing, and being early adopters of Flashbots Protect. 
-
-
 ## Key Considerations
 
 Before you get started with Flashbots Protect here are a few things to be mindful of:
@@ -31,3 +24,10 @@ Before you get started with Flashbots Protect here are a few things to be mindfu
 - Transactions under 42,000 gas, such as simple ETH transfers, do not need front-running protection, so they are sent to the public mempool to provide the fastest execution possible.
 - Transactions that perform simple actions - such as token approvals or transfers - will also be sent to the public mempool as these do not need frontrunning protection.
 - Your transactions can be emitted to the public mempool if you switch RPC endpoints from Flashbots Protect RPC to another RPC while your transactions are pending.
+
+
+Privacy notice: **Flashbots Protect does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
+
+We intend to release more features on top of Flashbots Protect as part of MEV-Share, offering even more powerful functionalities.
+
+We want to thank MiningDAO, mistX and Nethermind for significant code contributions, testing, and being early adopters of Flashbots Protect. 
