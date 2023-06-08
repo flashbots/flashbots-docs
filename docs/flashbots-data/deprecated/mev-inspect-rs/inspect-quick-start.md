@@ -1,7 +1,7 @@
 ---
 title: quick start
 ---
-This quickstart guide contains all the information necessary to get you up and running using [mev-inspect-rs](https://github.com/flashbots/mev-inspect-rs). If you have any questions, do not hesitate to ask in our [Discord](https://discord.gg/GezzK33W).
+This quickstart guide contains all the information necessary to get you up and running using [mev-inspect-rs](https://github.com/flashbots/mev-inspect-rs). If you have any questions, do not hesitate to ask on our [Forum](https://collective.flashbots.net/) or our [Discord](https://discord.gg/flashbots).
 
 
 ### requirements:
