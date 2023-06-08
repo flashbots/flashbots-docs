@@ -3,6 +3,7 @@
     hash: string,
     logs?: LogParams[],
     txs: Array<{
+        hash?: string,
         callData?: string,
         functionSelector?: string,
         to?: string,
@@ -15,6 +16,7 @@
 | `hash` | Hex-string | Transaction hash. |
 | `logs` | Array of JSON-encoded events | Event logs emitted by executing the transaction. |
 | `txs` | Array of JSON objects | Transactions from the event. Will only be one if event is a transaction, otherwise event is a bundle.
+| `txs.hash` | Hex-string | Transaction hash. |
 | `txs.callData` | Hex-string | Calldata of the transaction. |
 | `txs.functionSelector` | Hex-string | 4-byte function selector. |
 | `txs.to` | Hex-string | Transaction recipient address. |
