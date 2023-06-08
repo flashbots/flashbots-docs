@@ -1,0 +1,16 @@
+.dropdownBody {
+  
+}
+
+.dropdownHiddenBody {
+    // border: 1px solid #9493818b;
+    border: 1px solid var(--ifm-color-emphasis-200);
+    width: 95%;
+    padding-top: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.dropdownHeader {
+    padding: 6px;
+}

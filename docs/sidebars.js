@@ -1,47 +1,47 @@
 module.exports = {
   docs: [
     {
-      "welcome": [
+      "Welcome": [
         'welcome', 'new-to-mev', 'code-of-conduct'
       ],
     },
     {
-      'Flashbots auction': [
+      'Flashbots Auction': [
         'flashbots-auction/overview',
         {
-          "for searchers": [
+          "For Searchers": [
             'flashbots-auction/searchers/quick-start',
             'flashbots-auction/searchers/faq',
             {
-              "advanced concepts": [
+              "Advanced Concepts": [
                 'flashbots-auction/searchers/advanced/understanding-bundles',
                 'flashbots-auction/searchers/advanced/coinbase-payment',
                 'flashbots-auction/searchers/advanced/bundle-pricing',
                 'flashbots-auction/searchers/advanced/rpc-endpoint',
                 'flashbots-auction/searchers/advanced/reputation',
-                'flashbots-auction/searchers/advanced/goerli-testnet',
+                'flashbots-auction/searchers/advanced/testnets',
                 'flashbots-auction/searchers/advanced/eip1559',
                 'flashbots-auction/searchers/advanced/troubleshooting',
-                'flashbots-auction/searchers/advanced/private-transaction'
+                'flashbots-auction/searchers/advanced/private-transaction',
+                'flashbots-auction/searchers/advanced/bundle-cancellations',
               ],
-              "example searchers": [
+              "Example Searchers": [
                 'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
                 'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
                 'flashbots-auction/searchers/example-searchers/searcher-minter',
                 'flashbots-auction/searchers/example-searchers/synthetix-searcher',
-
-
               ],
-              "libraries": [
+              "Libraries": [
                 'flashbots-auction/searchers/libraries/golang',
                 'flashbots-auction/searchers/libraries/ethers-js-provider',
                 'flashbots-auction/searchers/libraries/web3py-provider',
                 'flashbots-auction/searchers/libraries/alchemyprovider',
+                'flashbots-auction/searchers/libraries/matchmaker',
               ]
             },
             'flashbots-auction/other-resources'
           ],
-          'mev-geth releases': [
+          'MEV-Geth Releases': [
             'flashbots-auction/releases/alpha-v0.6',
             'flashbots-auction/releases/alpha-v0.5',
             'flashbots-auction/releases/alpha-v0.4',
@@ -54,16 +54,16 @@ module.exports = {
       ]
     },
     {
-      "Flashbots data": [
+      "Flashbots Data": [
         {
-          'mev-inspect': [
+          'MEV-Inspect': [
             'flashbots-data/mev-inspect-py/overview',
             'flashbots-data/mev-inspect-py/install',
             'flashbots-data/mev-inspect-py/quick-start',
             'flashbots-data/mev-inspect-py/inspecting',
             'flashbots-data/mev-inspect-py/exploring',
             {
-              "data": [
+              "Data": [
                 'flashbots-data/mev-inspect-py/data/classified_traces',
                 'flashbots-data/mev-inspect-py/data/transfers',
                 'flashbots-data/mev-inspect-py/data/swaps',
@@ -82,8 +82,9 @@ module.exports = {
       "Flashbots Protect": [
         'flashbots-protect/overview',
         {
-          'rpc': [
+          'RPC': [
             'flashbots-protect/rpc/quick-start',
+            'flashbots-protect/rpc/mev-share',
             'flashbots-protect/rpc/uncle-bandits',
             'flashbots-protect/rpc/status-api',
             'flashbots-protect/rpc/bundle-cache',
@@ -95,21 +96,21 @@ module.exports = {
       ],
     },
     {
-      "flashbots MEV-boost": [
+      "Flashbots MEV-Boost": [
         'flashbots-mev-boost/introduction',
         {
-          'architecture overview': [
-            'flashbots-mev-boost/architecture-overview/MEV-boost-specifications',
-            'flashbots-mev-boost/architecture-overview/MEV-boost-block-proposal',
+          'Architecture Overview': [
+            'flashbots-mev-boost/architecture-overview/specifications',
+            'flashbots-mev-boost/architecture-overview/block-proposal',
             'flashbots-mev-boost/architecture-overview/risks'
           ]
         },
 
-          'flashbots-mev-boost/block builders',
-          'flashbots-mev-boost/block proposers',
-          'flashbots-mev-boost/relays',
+          'flashbots-mev-boost/block-builders',
+          'flashbots-mev-boost/block-proposers',
+          'flashbots-mev-boost/relay',
         {
-          'getting started':[
+          'Getting Started':[
             'flashbots-mev-boost/getting-started/system-requirements',
             'flashbots-mev-boost/getting-started/installation',
             'flashbots-mev-boost/getting-started/usage',
@@ -125,19 +126,45 @@ module.exports = {
       ],
     },
     {
-      "community": [
+      "Flashbots MEV-Share": [
+        'flashbots-mev-share/overview',
+        'flashbots-mev-share/for-users',
+        {
+          'For Searchers': [
+            'flashbots-mev-share/searchers/getting-started',
+            'flashbots-mev-share/searchers/event-stream',
+            'flashbots-mev-share/searchers/understanding-bundles',
+            'flashbots-mev-share/searchers/sending-bundles',
+          ],
+          'For Wallet/Dapp Developers': [
+            {
+              type: 'doc',
+              id: 'flashbots-mev-share/orderflow-providers/integration-guide',
+              label: 'Integration Guide'
+            },
+          ]
+        }
+      ]
+    },
+    {
+      "Community": [
         'community-tools', 'whitehat',
       ],
     },
     {
-      "contribute": [
+      "Contribute": [
         'joining-flashbots', 'contribution-guide', 'cheatsheet',
       ],
     },
     {
       type: 'link',
+      label: 'Forum',
+      href: 'https://collective.flashbots.net/',
+    },
+    {
+      type: 'link',
       label: 'Discord',
-      href: 'https://discord.gg/7hvTycdNcK',
+      href: 'https://discord.gg/flashbots',
     },
     {
       type: 'link',

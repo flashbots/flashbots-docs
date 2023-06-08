@@ -1,5 +1,5 @@
 ---
-title: bundle pricing
+title: Bundle Pricing
 ---
 
 ### Understanding bundle pricing

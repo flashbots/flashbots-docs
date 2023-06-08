@@ -1,9 +1,13 @@
+---
+title: Contributing
+---
+
 [Flashbots](https://flashbots.net/) is a research and development collective working on mitigating the negative externalities of decentralized economies. We contribute with the larger free software community to illuminate the dark forest.
 
 You are welcome here <3.
 
-- If you would like to contribute with code, check the [CONTRIBUTING file](https://github.com/flashbots/mev-boost/blob/main/CONTRIBUTING.md) for further information.
-- Please be kind and read our [code of conduct](https://github.com/flashbots/mev-boost/blob/main/CODE_OF_CONDUCT.md).
+- If you would like to contribute with code, check the [CONTRIBUTING file](https://github.com/flashbots/mev-boost/blob/develop/CONTRIBUTING.md) for further information.
+- Please be kind and read our [code of conduct](https://github.com/flashbots/mev-boost/blob/develop/CODE_OF_CONDUCT.md).
 
 ### Report a Vulnerability
 

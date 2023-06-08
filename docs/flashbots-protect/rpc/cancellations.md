@@ -1,5 +1,5 @@
 ---
-title: canceling transactions from being submitted further
+title: canceling transactions
 ---
 
 Transactions that are submitted to Flashbots Protect RPC are sent to the Flashbots block builder, where they may stay pending for up to 6 minutes. Once a transaction is included in a block and submitted to validators we cannot "recall" it. However, we can prevent a transaction from being included in future blocks.

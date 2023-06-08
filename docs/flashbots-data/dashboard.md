@@ -1,5 +1,5 @@
 ---
-title: flashbots dashboard
+title: Flashbots Dashboard
 ---
 Flashbots Dashboard v0 is a near real-time analytics dashboard of Flashbots activity on Ethereum.
 
