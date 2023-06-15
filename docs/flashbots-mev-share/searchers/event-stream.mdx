@@ -83,3 +83,116 @@ Note that each of these properties are optional; if a field is not present, it m
 ---
 
 Now that you've started listening to transactions, you're almost ready to start searching! Read on to the next page to learn [about bundles](/flashbots-mev-share/searchers/understanding-bundles).
+
+
+## Historical Data
+
+Historical hints can be retrieved from the historical hint API supported by the event stream endpoint.
+Each hint is associated with a block number and timestamp. Block number is the latest Ethereum block number at the time the hint was generated.
+Timestamp is the timestamp at the time the hint was generated.
+
+### GET /api/v1/history/info
+
+Returns information about the available historical hint data.
+
+#### Response
+
+| Field | Type | Description |
+|-|-|-|
+| count | number | The number of historical hints available. |
+| minBlock | number | The earliest block number for which historical hints are available. |
+| maxBlock | number | The latest block number for which historical hints are available. |
+| minTimestamp | number | The earliest timestamp for which historical hints are available. |
+| maxTimestamp | number | The latest timestamp for which historical hints are available. |
+| maxLimit | number | The maximum number of historical hints that can be requested in a single request. |
+
+
+### GET /api/v1/history
+
+#### Query Parameters
+
+| Field | Type | Description |
+|-|-|-|
+| blockStart (optional) | number | The block number to start retrieving historical hints from. |
+| blockEnd (optional) | number | The block number to end retrieving historical hints from. |
+| timestampStart (optional) | number | The timestamp to start retrieving historical hints from. |
+| timestampEnd (optional) | number | The timestamp to end retrieving historical hints from. |
+| limit (optional) | number | The maximum number of historical hints to retrieve. Default limit is `maxLimit`. |
+| offset (optional) | number | The offset to start retrieving historical hints from. |
+
+#### Response
+
+Returns an array of historical hints.
+
+| Field | Type | Description |
+|-|-|-|
+| block | number | The block number associated with the historical hint. |
+| timestamp | number | The timestamp associated with the historical hint. |
+| hint | Hint | Hint as it was sent to the live streaming endpoint in the past. |
+
+
+### Example
+
+<Tabs>
+<TabItem value="sh" label="curl">
+Get available historical hint data:
+
+```sh
+curl https://mev-share-goerli.flashbots.net/api/v1/history/info
+```
+
+_Response:_
+
+```json
+{
+    "count": 20146,
+    "minBlock": 9091377,
+    "maxBlock": 9143624,
+    "minTimestamp": 1685452445,
+    "maxTimestamp": 1686225251,
+    "maxLimit": 500
+}
+```
+
+Get historical hint data for a block range:
+
+```sh
+curl https://mev-share-goerli.flashbots.net/api/v1/history
+```
+
+_Response:_
+
+```json
+[
+  {
+    "block": 9091377,
+    "timestamp": 1685452445,
+    "hint": {
+      "txs": [
+        {
+          "to": "0x8d460b72eaf3d63830e16c22d1fc6908d0834abe",
+          "callData": "0x",
+          "functionSelector": "0x00000000"
+        }
+      ],
+      "hash": "0x50df4922dd5f9adee91d44119132da85b50fe61f0c77556b039261f7828e1794",
+      "logs": null,
+      "gasUsed": "0x5208",
+      "mevGasPrice": "0x3b9aca00"
+    }
+  },
+  {
+    "block": 9091379,
+    "timestamp": 1685452489,
+    "hint": {
+      "txs": null,
+      "hash": "0x40a85a6e37b449033924da72c0cf9dabcf2ac726b5a88f0ceff330f11bd01913",
+      "logs": null,
+      "gasUsed": "0xaae60",
+      "mevGasPrice": "0x45a9b5b00"
+    }
+  }
+]
+```
+</TabItem>
+</Tabs>
