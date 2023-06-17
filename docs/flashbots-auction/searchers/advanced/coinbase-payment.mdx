@@ -5,7 +5,6 @@ title: coinbase.transfer()
 Flashbots allows you to pay validators for your transactions through a smart contract by using `block.coinbase.transfer(AMOUNT_TO_TRANSFER)`. This smart contract function transfers Ethereum from the contract to the address of the validator who proposes a block. The Flashbots builder will treat fees through coinbase transfers in the same way they do normal transaction fees, which is to say that 1 wei of coinbase payments is equivalent to 1 wei paid through transaction fees. This provides significant benefits to Flashbots users:
 * You can condition payment to the validator on some criteria being met
 * Related, you can only pay for successful transactions, not failures
-* You can pay for a transaction from account X with ETH from account Y (see: searcher sponsored transaction repo [here](https://github.com/flashbots/searcher-sponsored-tx))
 
 Here's an example from our open source simple arbitrage bot of how paying through coinbase transfers work:
 
