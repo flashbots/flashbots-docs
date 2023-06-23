@@ -65,21 +65,53 @@ The params not included in the previous example can be used to configure more ad
 
 Specify data about your bundle's transactions that you wish to share with other searchers. Doing this can earn you MEV kickbacks and improve your bundle's chances of inclusion.
 
+:::caution bundles with signed txs only
+
+Note that bundles with transactions including the `hash` parameter are considered "unmatched", and will throw an error.
+
+:::
+
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
 
 ```typescript
 const params: BundleParams = {
     inclusion: {
-        block: TARGET_BLOCK,
+        block: 17539448,
+        maxBlock: 17539450
     },
-    body: BUNDLE,
+    body: [
+        {tx: "0x02...", canRevert: false},
+        {tx: "0x02...", canRevert: false},
+    ],
     privacy: {
-        hints: ["calldata", "logs"],
+        hints: {
+            calldata: true,
+            logs: true,
+            tx_hash: true
+        },
     },
 }
 ```
 
+</TabItem>
+<TabItem value="curl" label="curl">
+
+```sh
+curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: $FB_SIG" -d '{
+    inclusion: {
+        block: "0x10ba178",
+        maxBlock: "0x10ba17a",
+    },
+    body: [
+        {tx: "0x02...", canRevert: false},
+        {tx: "0x02...", canRevert: false},
+    ],
+    privacy: {
+        hints: ["calldata", "logs", "tx_hash"],
+    },
+}'
+```
 </TabItem>
 </Tabs>
 
