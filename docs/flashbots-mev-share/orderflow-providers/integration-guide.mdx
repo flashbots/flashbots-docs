@@ -57,7 +57,7 @@ By default, the Flashbots Matchmaker will send 90% of the searcher's payment to 
 
 The _refund_ param contains two values separated by a colon `:`. The first value is the address that the refund should be transferred to. The second value is the percentage of the searcher's payment that should be refunded. To split the payment across multiple addresses, add a new _refund_ param for each address with the amount that it should receive.
 
-The sum of all percentages specified in _refund_ params must be less than 100. The validator payment is inferred from 100 - sum of refund percentages. Note that keeping a larger percentage of the refund may result in longer inclusion times, because it reduces the payment to the validator.
+The sum of all percentages specified in _refund_ params must be less than 100. The validator payment is inferred from `100 - sum of refund percentages`. Note that keeping a larger percentage of the refund may result in longer inclusion times, because it reduces the payment to the validator.
 
 #### Examples
 
