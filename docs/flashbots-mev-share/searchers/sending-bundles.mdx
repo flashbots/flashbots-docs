@@ -63,7 +63,7 @@ The params not included in the previous example can be used to configure more ad
 
 ### Share bundle data
 
-Specify data about your bundle's transactions that you wish to share with other searchers. Doing this can earn you MEV kickbacks and improve your bundle's chances of inclusion.
+To earn more MEV kickbacks and improve your bundle's chances of inclusion, you can specify data about your bundle's transactions that you wish to share with other searchers. The data that is shared is specified via the `privacy` parameter.
 
 :::caution bundles with signed txs only
 
@@ -88,7 +88,7 @@ const params: BundleParams = {
         hints: {
             calldata: true,
             logs: true,
-            tx_hash: true
+            txHash: true,
         },
     },
 }
@@ -114,6 +114,10 @@ curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: $FB_
 ```
 </TabItem>
 </Tabs>
+
+Even sharing only the `tx_hash` hint can be enough to earn some extra MEV. The only requirement to earn it is that your bundle is included in another searcher's bundle.
+
+This strategy is particularly relevant to searchers who operate on public mempool transactions, and/or employ strategies that leave leftover MEV on the table (for example, if your strategy changes prices enough for a backrun arbitrage to be profitable).
 
 ### Nest bundles (be a matchmaker)
 
