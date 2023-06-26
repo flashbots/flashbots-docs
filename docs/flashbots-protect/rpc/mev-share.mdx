@@ -16,13 +16,15 @@ MEV-Share users on Flashbots Protect can directly control which parts of their t
 
 ## Protect RPC Reference
 
-Hint preferences are passed as query params in the Protect RPC URL. Users can also specify which builders to which they wish to send transactions.
+Preferences are passed as query params in the Protect RPC URL. Users can specify which hints to share about their transactions; which builders to send their transactions to; and how to distribute any refunds if their transaction is bundled.
 
 Transactions sent to Flashbots Protect are automatically forwarded to the Flashbots Matchmaker with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which maintains user privacy while optimizing transaction execution. Users do not need to do anything to start benefiting from MEV-Share right away, other than connect their wallet to Flashbots Protect.
 
 To use a custom hint configuration, `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified, the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
 
 To specify which builders will receive your transactions, the `builder` parameter can be specified multiple times.
+
+To use a custom refund configuration, `refund` can be specified multiple times to indicate what address(es) should receive what percentage(s) of the payment from a searcher who bundles the user's transaction. If no hints are specified, 90% of any searcher payment will be refunded to `tx.origin` of the user's transaction.
 
 <RpcHints />
 
@@ -33,6 +35,12 @@ To specify which builders will receive your transactions, the `builder` paramete
 ### Builders
 
 <Builders />
+
+### Refunds
+
+The _refund_ param contains two values separated by a colon `:`. The first value is the address that the refund should be transferred to. The second value is the percentage of the searcher's payment that should be refunded. To split the payment across multiple addresses, add a new _refund_ param for each address with the amount that it should receive.
+
+The sum of all percentages specified in _refund_ params must be less than 100. The validator payment is inferred from `100 - sum of refund percentages`. Note that keeping a larger percentage of the refund may result in longer inclusion times, because it reduces the payment to the validator.
 
 ### Stable Configuration
 
@@ -61,4 +69,5 @@ This will completely hide all identifying transaction data sent to the Matchmake
 | MEV-Share Enabled (Stable) | `https://rpc.flashbots.net` |
 | Default privacy, only send to Flashbots | `https://rpc.flashbots.net?builder=flashbots` |
 | Max Privacy | `https://rpc.flashbots.net?hint=hash` |
-| Max Speed & MEV Kickbacks (Low Privacy) | `https://rpc.flashbots.net?hint=calldata&hint=logs&hint=hash` |
+| Max MEV Kickbacks (Low Privacy) | `https://rpc.flashbots.net?hint=calldata&hint=logs&hint=hash` |
+| Max Speed (Low Refund) | `https://rpc.flashbots.net?refund=userAddr:10` |
