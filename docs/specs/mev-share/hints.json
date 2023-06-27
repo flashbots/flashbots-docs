@@ -17,7 +17,7 @@
     },
     {
         "name": "hash",
-        "description": "Share the transaction (or bundle) hash. To use full privacy mode, share this hint and this hint alone. The hash will always be shared if other hints are shared."
+        "description": "Share the transaction hash (or bundle hash if sending a bundle). To use full privacy mode, share this hint and this hint alone. The hash will always be shared if other hints are shared."
     },
     {
         "name": "tx_hash",
