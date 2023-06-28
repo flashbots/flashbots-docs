@@ -67,7 +67,7 @@ To earn more MEV refunds and improve your bundle's chances of inclusion, you can
 
 :::caution bundles with signed txs only
 
-Note that bundles with transactions including the `hash` parameter are considered "unmatched", and will throw an error.
+Note that bundles with transactions including the `hash` parameter are considered "unmerged", and will throw an error.
 
 :::
 
@@ -115,6 +115,10 @@ curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: $FB_
 </TabItem>
 </Tabs>
 
+Even sharing only the `tx_hash` hint can be enough to earn some extra MEV. The only requirement to earn it is that your bundle is included in another searcher's bundle.
+
+This strategy is particularly relevant to searchers who operate on public mempool transactions, and/or employ strategies that leave leftover MEV on the table (for example, if your strategy changes prices enough for a backrun arbitrage to be profitable).
+
 
 Even sharing only the `tx_hash` hint can be enough to earn some extra MEV. The only requirement to earn it is that your bundle is included in another searcher's bundle.
 
@@ -153,11 +157,11 @@ const params: BundleParams = {
 
 ## Simulating Bundles
 
-Bundles matched by the MEV-Share Node can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle) endpoint. 
+Bundles merged by the MEV-Share Node can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle) endpoint. 
 
-:::caution only matched bundles can be simulated
+:::caution only merged bundles can be simulated
 
-Bundle simulations can only be executed on matched bundles, which contain only signed transactions, or nested bundles which also contain only signed transactions. Bundles with transactions including the `hash` parameter are considered "unmatched", and will throw an error.
+Bundle simulations can only be executed on merged bundles, which contain only signed transactions, or nested bundles which also contain only signed transactions. Bundles with transactions including the `hash` parameter are considered "unmerged", and will throw an error.
 
 :::
 
