@@ -63,7 +63,13 @@ The params not included in the previous example can be used to configure more ad
 
 ### Share bundle data
 
-Specify data about your bundle's transactions that you wish to share with other searchers. Doing this can earn you MEV kickbacks and improve your bundle's chances of inclusion.
+To earn more MEV kickbacks and improve your bundle's chances of inclusion, you can specify data about your bundle's transactions that you wish to share with other searchers. The data that is shared is specified via the `privacy` parameter.
+
+:::caution bundles with signed txs only
+
+Note that bundles with transactions including the `hash` parameter are considered "unmatched", and will throw an error.
+
+:::
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
@@ -71,17 +77,47 @@ Specify data about your bundle's transactions that you wish to share with other 
 ```typescript
 const params: BundleParams = {
     inclusion: {
-        block: TARGET_BLOCK,
+        block: 17539448,
+        maxBlock: 17539450
     },
-    body: BUNDLE,
+    body: [
+        {tx: "0x02...", canRevert: false},
+        {tx: "0x02...", canRevert: false},
+    ],
     privacy: {
-        hints: ["calldata", "logs"],
+        hints: {
+            calldata: true,
+            logs: true,
+            txHash: true,
+        },
     },
 }
 ```
 
 </TabItem>
+<TabItem value="curl" label="curl">
+
+```sh
+curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: $FB_SIG" -d '{
+    inclusion: {
+        block: "0x10ba178",
+        maxBlock: "0x10ba17a",
+    },
+    body: [
+        {tx: "0x02...", canRevert: false},
+        {tx: "0x02...", canRevert: false},
+    ],
+    privacy: {
+        hints: ["calldata", "logs", "tx_hash"],
+    },
+}'
+```
+</TabItem>
 </Tabs>
+
+Even sharing only the `tx_hash` hint can be enough to earn some extra MEV. The only requirement to earn it is that your bundle is included in another searcher's bundle.
+
+This strategy is particularly relevant to searchers who operate on public mempool transactions, and/or employ strategies that leave leftover MEV on the table (for example, if your strategy changes prices enough for a backrun arbitrage to be profitable).
 
 ### Nest bundles (be a matchmaker)
 

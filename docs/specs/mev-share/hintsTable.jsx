@@ -8,7 +8,7 @@ export default () => {
             <th>Description</th>
         </thead>
         {hints.map(hint => <tr>
-            <td>{hint.name}</td>
+            <td><code>{hint.name}</code></td>
             <td>{hint.description}</td>
         </tr>)}
     </table>)

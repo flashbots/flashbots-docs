@@ -6,8 +6,9 @@ import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
 import BuilderInheritance from '../../specs/mev-share/blurbs/_builderInheritance.mdx'
+import Hints from '../../specs/mev-share/_hints.mdx'
 
-Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost; they are an ordered array of transactions; but their structure is a bit different. There are several new parameters which control the privacy of bundles, and there's also a new endpoint to send bundles: [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/bundles/v0.1.md).
+Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost; they are an ordered array of transactions that execute atomically; but their structure is a bit different. There are several new parameters which control the privacy of bundles, and there's also a new endpoint to send bundles: [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/bundles/v0.1.md).
 
 ## Bundle Definition
 
@@ -17,15 +18,58 @@ MEV-Share Bundles have the following structure:
 
 This is the generic bundle structure used in MEV-Share. This comprehensive specification enables several exciting features, outlined in the next section.
 
+<Hints />
+
 ## Use Cases
 
-With `arrays` of parameters at your disposal, there are many ways to build bundles on MEV-Share. The following sections describe new features and use cases that arise from the bundle definition.
+With an array of parameters at your disposal, there are many ways to build bundles on MEV-Share. The following sections describe new features and use cases that arise from the bundle definition.
 
 ### Bundle Composition
 
 - Share data from your bundles with other searchers to earn MEV kickbacks.
-- Specify locations in your bundle where searchers are allowed to insert transactions to earn even more kickbacks.
 - Use other searchers' bundles in your own bundles to execute a more profitable strategy.
+
+Bundle composition is enabled by the `privacy` parameter in `mev_sendBundle`.
+
+One example that works well with bundle composition is a liquidation bot. Liquidations often cause a price shift, leaving MEV on the table which can be captured by arbitrage with a backrun bundle. If you run a liquidation bot, you can earn more MEV by sending your bundles to MEV-Share with the `tx_hash` hint enabled, which will allow other searchers to backrun your bundle.
+
+An example would look something like this:
+
+<Tabs>
+<TabItem value="ts" label="matchmaker-ts">
+
+```typescript
+const params: BundleParams = {
+    inclusion: {
+        block: 17539448,
+        maxBlock: 17539458
+    },
+    body: [
+        {tx: "0x02...", canRevert: false},
+        {tx: "0x02...", canRevert: false},
+    ],
+    privacy: {
+        hints: {
+            txHash: true,
+        },
+    },
+}
+```
+
+</TabItem>
+</Tabs>
+
+Specifying the `tx_hash` hint in your bundle shares the hashes of your bundle's transactions with searchers on MEV-Share, which is what allows them to backrun your bundle. When they do this, you earn a cut of the profit!
+
+You may also try experimenting with other hints to give searchers more data with which to formulate a backrun. Sharing more data will lower your privacy, but will make your bundle easier to backrun, and increase the likelihood of your bundles earning extra MEV.
+
+:::caution only original transactions are supported
+
+Bundles that set the `privacy` parameter can only contain original signed transactions in the `body` parameter. Bundles using transactions specified by `{hash}` are not allowed to use the privacy parameter (full bundle privacy is maintained in this case). Allowing such bundles to share data using the `privacy` parameter would compromise the privacy guarantees of user transactions.
+
+:::
+
+See [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles#share-bundle-data) for more information.
 
 ### Pre-inclusion Predicates
 
