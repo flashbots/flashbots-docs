@@ -7,6 +7,7 @@ import TabItem from '@theme/TabItem'
 import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
 import BuilderInheritance from '../../specs/mev-share/blurbs/_builderInheritance.mdx'
 import Hints from '../../specs/mev-share/_hints.mdx'
+import Hints from '../../specs/mev-share/_hints.mdx'
 
 Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost: they are an ordered array of transactions that execute atomically that execute atomically. However, their structure is a bit different. MEV-Share bundles use a new method called [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/bundles/v0.1.md) which has additional fields used to specify their `privacy` and other guarantees.
 
@@ -20,8 +21,11 @@ This is the generic bundle structure used in MEV-Share. This comprehensive speci
 
 <Hints />
 
+<Hints />
+
 ## Use Cases
 
+With an array of parameters at your disposal, there are many ways to build bundles on MEV-Share. The following sections describe new features and use cases that arise from the bundle definition.
 With an array of parameters at your disposal, there are many ways to build bundles on MEV-Share. The following sections describe new features and use cases that arise from the bundle definition.
 
 ### Bundle Composition
