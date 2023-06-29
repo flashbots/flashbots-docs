@@ -8,9 +8,9 @@ import RpcHints from "../../specs/protect-rpc/_hints.mdx"
 import Builders from "../../specs/mev-share/_builders.mdx"
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
-Flashbots Protect users' transactions automatically flow to the Flashbots [Matchmaker](/flashbots-mev-share/overview#what-is-a-matchmaker), which returns them up to 90% of the MEV that their transactions create. By default, users connected to Protect will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV.
+Flashbots Protect users' transactions automatically flow to the Flashbots [Matchmaker](/flashbots-mev-share/overview#what-is-a-matchmaker), which returns them up to 90% of the MEV that their transactions create. By default, Protect users will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV. Users do not need to do anything to start benefiting from MEV-Share, other than to connect their wallet to Flashbots Protect.
 
-MEV-Share users on Flashbots Protect can directly control which parts of their transaction they wish to share with searchers. Sharing less data will improve privacy, while sharing more will improve chances of both having their transactions included quickly and receiving MEV kickbacks.
+MEV-Share users on Flashbots Protect can directly control how their transactions are processed. These settings can be applied using the "advanced" panel; or by manually configuring your Protect RPC request.
 
 <ProtectButtonSelector />
 
@@ -18,39 +18,42 @@ MEV-Share users on Flashbots Protect can directly control which parts of their t
 
 Preferences are passed as query params in the Protect RPC URL. Users can specify which hints to share about their transactions; which builders to send their transactions to; and how to distribute any refunds if their transaction is bundled.
 
-Transactions sent to Flashbots Protect are automatically forwarded to the Flashbots Matchmaker with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which maintains user privacy while optimizing transaction execution. Users do not need to do anything to start benefiting from MEV-Share right away, other than connect their wallet to Flashbots Protect.
+### Hints
 
 To use a custom hint configuration, `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified, the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
-
-To specify which builders will receive your transactions, the `builder` parameter can be specified multiple times.
-
-To use a custom refund configuration, `refund` can be specified multiple times to indicate what address(es) should receive what percentage(s) of the payment from a searcher who bundles the user's transaction. If no hints are specified, 90% of any searcher payment will be refunded to `tx.origin` of the user's transaction.
-
-<RpcHints />
-
-### Hints
 
 <HintsTable />
 
 ### Builders
 
+To specify which builders will receive your transactions, the `builder` parameter can be specified multiple times.
+
 <Builders />
 
 ### Refunds
+
+To use a custom refund configuration, `refund` can be specified multiple times to indicate what address(es) should receive what percentage(s) of the payment from a searcher who bundles the user's transaction. If no hints are specified, 90% of any searcher payment will be refunded to `tx.origin` of the user's transaction.
 
 The _refund_ param contains two values separated by a colon `:`. The first value is the address that the refund should be transferred to. The second value is the percentage of the searcher's payment that should be refunded. To split the payment across multiple addresses, add a new _refund_ param for each address with the amount that it should receive.
 
 The sum of all percentages specified in _refund_ params must be less than 100. The validator payment is inferred from `100 - sum of refund percentages`. Note that keeping a larger percentage of the refund may result in longer inclusion times, because it reduces the payment to the validator.
 
+## Common configurations
+
 ### Stable Configuration
 
-The Stable configuration is the default configuration for Protect RPC -- no hints are specified to use it.
+The Stable configuration is the default configuration for Protect RPC. No query parameters are specified to use it.
 
 ```txt
 https://rpc.flashbots.net
 ```
 
-> :information_source: The Stable configuration currently shares the `hash` from users' transactions. It also shares partial logs (the pool id and the fact that a swap was made) for curve, balancer, and uniswapV2/V3-style trades. This may change over time as we gather more data and fine-tune the configuration to maximize benefits for our users.
+Currently, this configuration shares the following information:
+* The `hash` of all transactions
+* Partial logs (the pool id and the fact that a swap was made) for curve, balancer, and uniswapV2/V3-style trades
+* Transactions are only forwarded to the Flashbots block builder
+
+This may change over time as we gather more data and fine-tune the configuration to maximize benefits.
 
 ### Full Privacy
 
@@ -64,10 +67,12 @@ This will completely hide all identifying transaction data sent to the Matchmake
 
 ## Examples
 
-| <div style={{width:"180px"}}>Configuration</div>  | Flashbots Protect RPC URL |
+Here are some examples of configurations that you might choose, depending on your goals.
+
+| <div style={{width:"180px"}}>Goal</div>  | Flashbots Protect RPC URL |
 | - | - |
-| MEV-Share Enabled (Stable) | `https://rpc.flashbots.net` |
-| Default privacy, only send to Flashbots | `https://rpc.flashbots.net?builder=flashbots` |
+| Stable | `https://rpc.flashbots.net` |
 | Max Privacy | `https://rpc.flashbots.net?hint=hash` |
-| Max MEV Kickbacks (Low Privacy) | `https://rpc.flashbots.net?hint=calldata&hint=logs&hint=hash` |
-| Max Speed (Low Refund) | `https://rpc.flashbots.net?refund=userAddr:10` |
+| Max MEV Refunds (low privacy) | `https://rpc.flashbots.net?hint=calldata&hint=logs&hint=hash` |
+| Add Builders (share with other builders for faster inclusion) | `https://rpc.flashbots.net?builder=flashbots&builder=XYZ` |
+| Change Refund (send more to validator for faster inclusion) | `https://rpc.flashbots.net?refund=userAddr:10` |
