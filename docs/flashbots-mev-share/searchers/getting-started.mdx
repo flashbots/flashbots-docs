@@ -5,11 +5,11 @@ title: Getting Started
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-To start searching on MEV-Share, you will need to connect to a MEV-Share node. A MEV-Share node receives transactions and bundles from users, and selectively shares information about transactions with searchers. When a searcher wants to include a transaction in their bundle, they use that transaction's hash, and the MEV-Share node replaces it with the original transaction before sending the bundle to a block builder.
+To start searching on MEV-Share, you will first need to connect to a MEV-Share node. As a reminder, the MEV-Share node is responsible for receiving transactions and bundles from users, and selectively sharing information ("hints") about them with searchers. When a searcher wants to include a transaction in their bundle, they use that transaction's hash. The MEV-Share node replaces it with the original transaction before sending the bundle to a block builder.
 
 ## Connect to the MEV-Share node
 
-Flashbots runs a MEV-Share node on Ethereum, to which you can connect today. The MEV-Share node has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
+Flashbots runs a MEV-Share node on Ethereum mainnet. The MEV-Share node has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
 
 The simplest way to connect to the Flashbots MEV-Share node is to use a [client library](/flashbots-auction/searchers/libraries/ms-node). For this guide, we'll refer to [matchmaker-ts](https://github.com/flashbots/matchmaker-ts).
 

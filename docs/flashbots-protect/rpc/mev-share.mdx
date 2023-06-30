@@ -8,7 +8,7 @@ import RpcHints from "../../specs/protect-rpc/_hints.mdx"
 import Builders from "../../specs/mev-share/_builders.mdx"
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
-Flashbots Protect users' transactions automatically flow to the Flashbots [MEV-Share node](/flashbots-mev-share/overview#what-is-a-matchmaker), which returns them up to 90% of the MEV that their transactions create. By default, users connected to Protect will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV.
+Flashbots Protect users' transactions automatically flow to the Flashbots [MEV-Share node](/flashbots-mev-share/overview#what-is-a-matchmaker), which returns them up to 90% of the MEV that their transactions create. By default, Protect users will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV. Users do not need to do anything to start benefiting from MEV-Share, other than to connect their wallet to Flashbots Protect.
 
 MEV-Share users on Flashbots Protect can directly control how their transactions are processed. These settings can be applied using the "advanced" panel; or by manually configuring your Protect RPC request.
 
@@ -18,7 +18,6 @@ MEV-Share users on Flashbots Protect can directly control how their transactions
 
 Preferences are passed as query params in the Protect RPC URL. Users can specify which hints to share about their transactions; which builders to send their transactions to; and how to distribute any refunds if their transaction is bundled.
 
-Transactions sent to Flashbots Protect are automatically forwarded to the Flashbots MEV-Share node with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which maintains user privacy while optimizing transaction execution. Users do not need to do anything to start benefiting from MEV-Share right away, other than connect their wallet to Flashbots Protect.
 ### Hints
 Transactions sent to Flashbots Protect are automatically forwarded to the Flashbots MEV-Share node with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which maintains user privacy while optimizing transaction execution. Users do not need to do anything to start benefiting from MEV-Share right away, other than connect their wallet to Flashbots Protect.
 
@@ -29,7 +28,6 @@ To use a custom hint configuration, `hint` can be specified multiple times to sp
 ### Builders
 
 To specify which builders will receive your transactions, the `builder` parameter can be specified multiple times.
-
 <Builders />
 
 ### Refunds
