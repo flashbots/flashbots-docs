@@ -15,15 +15,15 @@ Today, orderflow originators like wallets and dapps do not actively participate 
 
 <WhatsMevShareAdvanced />
 
-To start earning MEV kickbacks from MEV-share, submit your transactions to the Flashbots **Matchmaker**, either by [connecting your wallet to the Protect RPC](#connect-your-wallet), or sending a [private transaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) to the Matchmaker API.
+To start earning MEV refunds from MEV-share, submit your transactions to the Flashbots **Matchmaker**, either by [connecting your wallet to the Protect RPC](#connect-your-wallet), or sending a [private transaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) to the Matchmaker API.
 
 ### What is a matchmaker?
 
-A matchmaker is a service that matches user transactions with searcher bundles. Flashbots runs a matchmaker on Ethereum mainnet. Users submit their transactions to the matchmaker, which shares select information about them with searchers. Searchers propose transactions for the matchmaker to bundle with the user transactions. Currently we only support backruns. The matchmaker forwards these bundles to a block builder with a requirement that **the user is paid a kickback** percent of the winning searcher's backrun profit.
+A matchmaker is a service that implements the MEV-Share protocol. It is responsible for matching user transactions with searcher bundles. Flashbots runs a matchmaker on Ethereum mainnet. Users submit their transactions to the matchmaker, which shares select information about them with searchers. Searchers propose transactions for the matchmaker to bundle with the user transactions. Currently we only support backruns. The matchmaker forwards these bundles to a block builder with a requirement that **the user is paid a refund** percent of the winning searcher's bid.
 
 ## Connect Your Wallet
 
-Ethereum users can start earning MEV kickbacks today by connecting their wallets to Flashbots Protect.
+Ethereum users can start earning MEV refunds today by connecting their wallets to Flashbots Protect.
 
 <ProtectButtonSelector />
 <br /><br />
@@ -32,13 +32,13 @@ Ethereum users can start earning MEV kickbacks today by connecting their wallets
 
 ## Technical Information
 
+**Wallet users** connected to Flashbots Protect do not have to do anything to benefit from MEV-Share. Transactions received by the Protect RPC are automatically forwarded to MEV-Share with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration.
+
 **Searchers** should check out the [Getting Started](/flashbots-mev-share/searchers/getting-started) guide for a walkthrough of MEV-Share and how it differs from searching on the mempool.
 
 **Wallet/Dapp Developers** should check out the [Integration Guide](/flashbots-mev-share/orderflow-providers/integration-guide) for information about MEV-Share and instructions on how to integrate your wallet.
 
 ### Sending Transactions
-
-Wallet users connected to Flashbots Protect do not have to do anything to benefit from MEV-Share. Transactions received by the Protect RPC are automatically forwarded to MEV-Share with the default hint parameters.
 
 To send transactions directly to Flashbots Matchmaker, use a [client library](https://github.com/flashbots/matchmaker-ts) or send a request to the [`sendPrivateTransaction`](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) endpoint with the `privacy` parameter.
 

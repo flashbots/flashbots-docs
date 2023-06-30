@@ -8,7 +8,7 @@ import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
 import BuilderInheritance from '../../specs/mev-share/blurbs/_builderInheritance.mdx'
 import Hints from '../../specs/mev-share/_hints.mdx'
 
-Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost; they are an ordered array of transactions that execute atomically; but their structure is a bit different. There are several new parameters which control the privacy of bundles, and there's also a new endpoint to send bundles: [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/bundles/v0.1.md).
+Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost: they are an ordered array of transactions that execute atomically. However, their structure is a bit different. MEV-Share bundles use a new method called [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/bundles/v0.1.md) which has additional fields used to specify their `privacy` and other guarantees.
 
 ## Bundle Definition
 
@@ -26,7 +26,7 @@ With an array of parameters at your disposal, there are many ways to build bundl
 
 ### Bundle Composition
 
-- Share data from your bundles with other searchers to earn MEV kickbacks.
+- Share data from your bundles with other searchers to earn MEV refunds.
 - Use other searchers' bundles in your own bundles to execute a more profitable strategy.
 
 Bundle composition is enabled by the `privacy` parameter in `mev_sendBundle`.
@@ -80,15 +80,15 @@ See [inclusion](/flashbots-mev-share/searchers/understanding-bundles#bundle-defi
 
 ### Post-inclusion Predicates
 
-- Set guaranteed kickback for inclusion of bundle in a block.
-- Specify kickbacks per-transaction in a bundle.
-- Send kickbacks to any desired account.
+- Set guaranteed refund for inclusion of bundle in a block.
+- Specify refund per-transaction in a bundle.
+- Send refund to any desired account.
 
 See [validity](/flashbots-mev-share/searchers/understanding-bundles#bundle-definition) for relevant parameters.
 
 ### Granular Privacy
 
-- Specify data to share about your bundles to earn kickbacks on top of searching profits.
+- Specify data to share about your bundles to earn refund on top of searching profits.
 - Choose your preferred builder(s), and send them your orderflow exclusively.
 
 :::info Note to searchers

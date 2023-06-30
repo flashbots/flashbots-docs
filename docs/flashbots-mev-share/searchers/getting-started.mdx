@@ -5,15 +5,13 @@ title: Getting Started
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-To start searching on MEV-Share, you will need to connect to a matchmaker. A matchmaker receives transactions and bundles from users, and selectively shares information about transactions with searchers. When a searcher wants to include a transaction in their bundle, they use that transaction's hash, and the matchmaker replaces it with the original transaction before sending the bundle to a block builder.
+To start searching on MEV-Share, you will first need to connect to a matchmaker. As a reminder, the matchmaker is responsible for receiving transactions and bundles from users, and selectively sharing information ("hints") about them with searchers. When a searcher wants to include a transaction in their bundle, they use that transaction's hash. The matchmaker replaces it with the original transaction before sending the bundle to a block builder.
 
 ## Connect to Matchmaker
 
-Flashbots runs a matchmaker on Ethereum, to which you can connect today. The matchmaker has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
+Flashbots runs a matchmaker on Ethereum mainnet. The matchmaker has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
 
 The simplest way to connect to the Flashbots Matchmaker is to use a [client library](/flashbots-auction/searchers/libraries/matchmaker). For this guide, we'll refer to [matchmaker-ts](https://github.com/flashbots/matchmaker-ts).
-
-If you're coding in a language that doesn't yet have a matchmaker client library, you can send transactions & bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
@@ -57,14 +55,18 @@ const matchmaker = new Matchmaker(authSigner, {
 })
 ```
 
-See the repo documentation to learn more.
+See the documentation in the [matchmaker-ts](https://github.com/flashbots/matchmaker-ts) repo to learn more.
+
+### note A note on other languages
+
+If you're coding in a language that doesn't yet have a matchmaker client library, you can send transactions & bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
 
 </TabItem>
 </Tabs>
 
 ---
 
-Continue reading on the next page to learn how to [listen for pending transactions on MEV-Share](/flashbots-mev-share/searchers/event-stream).
+Now you should be connected to the Flashbots Matchmaker. Continue reading on the next page to learn how to [listen for hints](/flashbots-mev-share/searchers/event-stream) about pending transactions shared by the Matchmaker.
 
 :::note A note for experienced searchers getting acquainted with MEV-Share
 
