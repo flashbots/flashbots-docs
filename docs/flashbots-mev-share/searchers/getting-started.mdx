@@ -57,14 +57,18 @@ const matchmaker = new Matchmaker(authSigner, {
 })
 ```
 
-See the repo documentation to learn more.
+See the documentation in the [matchmaker-ts](https://github.com/flashbots/matchmaker-ts) repo to learn more.
+
+### note A note on other languages
+
+If you're coding in a language that doesn't yet have a matchmaker client library, you can send transactions & bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
 
 </TabItem>
 </Tabs>
 
 ---
 
-Continue reading on the next page to learn how to [listen for pending transactions on MEV-Share](/flashbots-mev-share/searchers/event-stream).
+Now you should be connected to the Flashbots Matchmaker. Continue reading on the next page to learn how to [listen for hints](/flashbots-mev-share/searchers/event-stream) about pending transactions shared by the Matchmaker.
 
 :::note A note for experienced searchers getting acquainted with MEV-Share
 
