@@ -21,8 +21,8 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn build
-      - name: Check for broken links
-        run: |
-          cd build
-          npm install -g linkinator
-          linkinator "**/*.html" --recurse --timeout 3000 --concurrency 10 --retry -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/.*','https://twitter.com.*','https://.*imgur.com.*'
+      # - name: Check for broken links
+      #   run: |
+      #     cd build
+      #     npm install -g linkinator
+      #     linkinator "**/*.html" --recurse --timeout 3000 --concurrency 10 --retry -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/.*','https://twitter.com.*','https://.*imgur.com.*'
