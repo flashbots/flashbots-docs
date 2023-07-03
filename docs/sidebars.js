@@ -82,14 +82,15 @@ module.exports = {
       "Flashbots Protect": [
         'flashbots-protect/overview',
         'flashbots-protect/quick-start',
+        'flashbots-protect/mev-share',
         'flashbots-protect/key_considerations',
         'flashbots-protect/cancellations',
         'flashbots-protect/stuck_transactions',
         {
-        "Additional documentation": [
-          'flashbots-protect/additional-documentation/status-api',
-          'flashbots-protect/additional-documentation/ratelimiting',
-          'flashbots-protect/additional-documentation/bundle-cache',
+          'Additional Documentation': [
+            'flashbots-protect/additional-documentation/status-api',
+            'flashbots-protect/additional-documentation/ratelimiting',
+            'flashbots-protect/additional-documentation/bundle-cache',
           ],
         }
       ],
