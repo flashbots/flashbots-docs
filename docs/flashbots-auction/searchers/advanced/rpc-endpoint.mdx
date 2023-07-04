@@ -582,3 +582,15 @@ signature := crypto.PubkeyToAddress(privKey.PublicKey).Hex() + ":" + hexutil.Enc
 
 </TabItem>
 </Tabs>
+
+### Self-Reported Origin
+
+You have the option to add an X-Flashbots-Origin header to your request.
+This can help Flashbots understand the origin of your requests.
+
+In most cases, X-Flashbots-Signature would suffice.
+However, X-Flashbots-Origin is utilized when a request comes through an RPC endpoint where the requests are not signed.
+
+This can be any string that is less than 255 characters long.
+It's recommended to add secret randomness to the value to prevent others from impersonating you.
+For example, `X-Flashbots-Origin: my-readable-id:random`.
