@@ -10,16 +10,17 @@ Today, orderflow originators like wallets and dapps do not actively participate 
 [MEV-share](https://collective.flashbots.net/t/mev-share-programmably-private-orderflow-to-share-mev-with-users/1264) is a protocol that enables users, wallets, and dapps to **capture the MEV their transactions create.**
 
 ## Introduction
+> The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. This change will be reflected in our documentation after June 2023. Note that tutorials and client libraries like matchmaker-ts still use the term "Matchmaker", which is persisted here temporarily until those libraries are renamed.
 
 ### What is MEV-share?
 
 <WhatsMevShareAdvanced />
 
-To start earning MEV refunds from MEV-share, submit your transactions to the Flashbots **Matchmaker**, either by [connecting your wallet to the Protect RPC](#connect-your-wallet), or sending a [private transaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) to the Matchmaker API.
+To start earning MEV refunds from MEV-share, submit your transactions to the Flashbots **MEV-Share Node**, either by [connecting your wallet to the Protect RPC](#connect-your-wallet), or sending a [private transaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) to the MEV-Share Node API.
 
-### What is a matchmaker?
+### What is a MEV-Share Node?
 
-A matchmaker is a service that implements the MEV-Share protocol. It is responsible for matching user transactions with searcher bundles. Flashbots runs a matchmaker on Ethereum mainnet. Users submit their transactions to the matchmaker, which shares select information about them with searchers. Searchers propose transactions for the matchmaker to bundle with the user transactions. Currently we only support backruns. The matchmaker forwards these bundles to a block builder with a requirement that **the user is paid a refund** percent of the winning searcher's bid.
+A MEV-Share Node is a service that implements the MEV-Share protocol. It is responsible for merging user transactions with searcher bundles. Flashbots runs a MEV-Share Node on Ethereum mainnet. Users submit their transactions to the MEV-Share Node, which shares select information about them with searchers. Searchers propose transactions for the MEV-Share Node to bundle with the user transactions. Currently we only support backruns. The MEV-Share Node forwards these bundles to a block builder with a requirement that **the user is paid a refund** percent of the winning searcher's bid.
 
 ## Connect Your Wallet
 
@@ -40,7 +41,7 @@ Ethereum users can start earning MEV refunds today by connecting their wallets t
 
 ### Sending Transactions
 
-To send transactions directly to Flashbots Matchmaker, use a [client library](https://github.com/flashbots/matchmaker-ts) or send a request to the [`sendPrivateTransaction`](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) endpoint with the `privacy` parameter.
+To send transactions directly to Flashbots MEV-Share Node, use a [client library](https://github.com/flashbots/MEV-Share Node-ts) or send a request to the [`sendPrivateTransaction`](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) endpoint with the `privacy` parameter.
 
 ### Listening for Transactions
 
@@ -50,6 +51,6 @@ MEV-Share dispatches data about pending transactions via an SSE event stream. To
 
 Bundles on MEV-Share consist of signed transactions and transaction hashes from the event stream, as well as some metadata about the bundle's validity conditions.
 
-To send a bundle to MEV-Share, use a [client library](https://github.com/flashbots/matchmaker-ts) or send a request to the [`mev_sendBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_sendbundle) RPC endpoint. For more information about sending bundles, see [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles).
+To send a bundle to MEV-Share, use a [client library](https://github.com/flashbots/MEV-Share Node-ts) or send a request to the [`mev_sendBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_sendbundle) RPC endpoint. For more information about sending bundles, see [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles).
 
-> :information_source: Currently, MEV-Share only allows constructing bundles containing a single input and a single backrun. If the input is also a bundle, the rule applies recursively to that nested bundle. Concretely this means that searchers can only place hashes in the first position of their bundles; and each bundle may include up to one hash. The Matchmaker will reject any bundles that violate these rules. This ensures that searchers cannot frontrun users in-protocol.
+> :information_source: Currently, MEV-Share only allows constructing bundles containing a single input and a single backrun. If the input is also a bundle, the rule applies recursively to that nested bundle. Concretely this means that searchers can only place hashes in the first position of their bundles; and each bundle may include up to one hash. The MEV-Share Node will reject any bundles that violate these rules. This ensures that searchers cannot frontrun users in-protocol.

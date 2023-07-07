@@ -36,7 +36,7 @@ module.exports = {
                 'flashbots-auction/searchers/libraries/ethers-js-provider',
                 'flashbots-auction/searchers/libraries/web3py-provider',
                 'flashbots-auction/searchers/libraries/alchemyprovider',
-                'flashbots-auction/searchers/libraries/matchmaker',
+                'flashbots-auction/searchers/libraries/mev-share-clients',
               ]
             },
             'flashbots-auction/other-resources'

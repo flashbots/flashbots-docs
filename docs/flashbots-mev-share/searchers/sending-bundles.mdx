@@ -17,13 +17,15 @@ Variables in `ALL_CAPS` are placeholders. To use this code, replace them with yo
 
 :::
 
+> Note: The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. The following tutorial will update once this change is reflected in the matchmaker-ts client library.
+
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
 
 ```typescript
-import Matchmaker, { BundleParams } from '@flashbots/matchmaker-ts'
+import MEV-Share Node, { BundleParams } from '@flashbots/matchmaker-ts'
 
-const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
+const matchmaker = MEV-Share Node.useEthereumMainnet(authSigner)
 
 // ...
 
@@ -119,9 +121,9 @@ Even sharing only the `tx_hash` hint can be enough to earn some extra MEV. The o
 
 This strategy is particularly relevant to searchers who operate on public mempool transactions, and/or employ strategies that leave leftover MEV on the table (for example, if your strategy changes prices enough for a backrun arbitrage to be profitable).
 
-### Nest bundles (be a matchmaker)
+### Nest bundles (be a MEV-Share Node)
 
-Matchmakers nest bundles to build composite bundles that are more profitable.
+MEV-Share Nodes nest bundles to build composite bundles that are more profitable.
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
@@ -152,7 +154,7 @@ const params: BundleParams = {
 
 ## Simulating Bundles
 
-Bundles matched by the matchmaker can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle) endpoint. 
+Bundles matched by the MEV-Share Node can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle) endpoint. 
 
 :::caution only matched bundles can be simulated
 

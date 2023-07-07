@@ -1,5 +1,5 @@
 ---
-title: MEV-Share Matchmaker Clients
+title: MEV-Share Clients
 ---
 
 ### Typescript

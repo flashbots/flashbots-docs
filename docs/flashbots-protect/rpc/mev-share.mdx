@@ -8,7 +8,7 @@ import RpcHints from "../../specs/protect-rpc/_hints.mdx"
 import Builders from "../../specs/mev-share/_builders.mdx"
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
-Flashbots Protect users' transactions automatically flow to the Flashbots [Matchmaker](/flashbots-mev-share/overview#what-is-a-matchmaker), which returns them up to 90% of the MEV that their transactions create. By default, Protect users will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV. Users do not need to do anything to start benefiting from MEV-Share, other than to connect their wallet to Flashbots Protect.
+Flashbots Protect users' transactions automatically flow to the Flashbots [MEV-Share Node](/flashbots-mev-share/overview), which returns them up to 90% of the MEV that their transactions create. By default, Protect users will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV. Users do not need to do anything to start benefiting from MEV-Share, other than to connect their wallet to Flashbots Protect.
 
 MEV-Share users on Flashbots Protect can directly control how their transactions are processed. These settings can be applied using the "advanced" panel; or by manually configuring your Protect RPC request.
 
@@ -63,7 +63,7 @@ To use Protect with full privacy, set _only_ the `hash` hint in your Protect RPC
 https://rpc.flashbots.net?hint=hash
 ```
 
-This will completely hide all identifying transaction data sent to the Matchmaker from searchers. Transaction hashes cannot be used to gain any information about a transaction or its origin.
+This will completely hide all identifying transaction data sent to the MEV-Share Node from searchers. Transaction hashes cannot be used to gain any information about a transaction or its origin.
 
 ## Examples
 

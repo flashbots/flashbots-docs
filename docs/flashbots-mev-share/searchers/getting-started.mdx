@@ -5,13 +5,15 @@ title: Getting Started
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-To start searching on MEV-Share, you will first need to connect to a matchmaker. As a reminder, the matchmaker is responsible for receiving transactions and bundles from users, and selectively sharing information ("hints") about them with searchers. When a searcher wants to include a transaction in their bundle, they use that transaction's hash. The matchmaker replaces it with the original transaction before sending the bundle to a block builder.
+To start searching on MEV-Share, you will first need to connect to a MEV-Share Node. As a reminder, the MEV-Share Node is responsible for receiving transactions and bundles from users, and selectively sharing information ("hints") about them with searchers. When a searcher wants to include a transaction in their bundle, they use that transaction's hash. The MEV-Share Node replaces it with the original transaction before sending the bundle to a block builder.
 
-## Connect to Matchmaker
+## Connect to MEV-Share Node
 
-Flashbots runs a matchmaker on Ethereum mainnet. The matchmaker has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
+Flashbots runs a MEV-Share Node on Ethereum mainnet. The MEV-Share Node has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
 
-The simplest way to connect to the Flashbots Matchmaker is to use a [client library](/flashbots-auction/searchers/libraries/matchmaker). For this guide, we'll refer to [matchmaker-ts](https://github.com/flashbots/matchmaker-ts).
+The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/searchers/libraries/mev-share-clients). For this guide, we'll refer to [matchmaker-ts](https://github.com/flashbots/matchmaker-ts).
+
+> Note: The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. The following tutorial will update once this change is reflected in the matchmaker-ts client library.
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
@@ -59,14 +61,14 @@ See the documentation in the [matchmaker-ts](https://github.com/flashbots/matchm
 
 ### note A note on other languages
 
-If you're coding in a language that doesn't yet have a matchmaker client library, you can send transactions & bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
+If you're coding in a language that doesn't yet have a MEV-Share Node client library, you can send transactions & bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
 
 </TabItem>
 </Tabs>
 
 ---
 
-Now you should be connected to the Flashbots Matchmaker. Continue reading on the next page to learn how to [listen for hints](/flashbots-mev-share/searchers/event-stream) about pending transactions shared by the Matchmaker.
+Now you should be connected to the Flashbots MEV-Share Node. Continue reading on the next page to learn how to [listen for hints](/flashbots-mev-share/searchers/event-stream) about pending transactions shared by the MEV-Share Node.
 
 :::note A note for experienced searchers getting acquainted with MEV-Share
 
@@ -74,6 +76,6 @@ Searching on MEV-Share is different from searching on the mempool in that only c
 
 That being said, existing strategies can still be employed. Users of MEV-Share have the option to share whichever parts of the transaction they deem appropriate, so strategies which use calldata and/or logs as input are still viable.
 
-To maximally leverage the orderflow on MEV-Share, new searching strategies will have to be implemented to profitably include these transactions in your bundles. More specifically, you may have to reason about markets and/or blockchain state separately from the intra-block context of users' transactions, and leveraging data gleaned from mev-share transactions, probabilistically estimate the parameters of your MEV extraction strategy. A range of probable outcomes may be targeted in parallel, but this must be done efficiently, so as to maintain priority in the matchmaker's priority queues.
+To maximally leverage the orderflow on MEV-Share, new searching strategies will have to be implemented to profitably include these transactions in your bundles. More specifically, you may have to reason about markets and/or blockchain state separately from the intra-block context of users' transactions, and leveraging data gleaned from mev-share transactions, probabilistically estimate the parameters of your MEV extraction strategy. A range of probable outcomes may be targeted in parallel, but this must be done efficiently, so as to maintain priority in the MEV-Share Node's priority queues.
 
 :::
