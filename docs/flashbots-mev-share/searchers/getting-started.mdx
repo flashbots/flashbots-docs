@@ -11,7 +11,9 @@ To start searching on MEV-Share, you will first need to connect to a MEV-Share N
 
 Flashbots runs a MEV-Share Node on Ethereum mainnet. The MEV-Share Node has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
 
-The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/searchers/libraries/matchmaker). For this guide, we'll refer to [mev-share-node-ts](https://github.com/flashbots/matchmaker-ts).
+The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/searchers/libraries/mev-share-clients). For this guide, we'll refer to [matchmaker-ts](https://github.com/flashbots/matchmaker-ts).
+
+> Note: The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. The following tutorial will update once this change is reflected in the matchmaker-ts client library.
 
 <Tabs>
 <TabItem value="ts" label="matchmaker-ts">
@@ -55,7 +57,7 @@ const matchmaker = new Matchmaker(authSigner, {
 })
 ```
 
-See the documentation in the [mev-share-node-ts](https://github.com/flashbots/matchmaker-ts) repo to learn more.
+See the documentation in the [matchmaker-ts](https://github.com/flashbots/matchmaker-ts) repo to learn more.
 
 ### note A note on other languages
 
