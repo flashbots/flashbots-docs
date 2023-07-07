@@ -15,6 +15,7 @@ const ProtectButtonSelector = () => {
     const [functionSelector, setFunctionSelector] = useState(false)
     const [noHints, setNoHints] = useState(false)
     const [curatedBuilders, setCuratedBuilders] = useState<Builder[]>()
+    const [allBuilders, setAllBuilders] = useState(false)
     const [advancedOptionsShown, setAdvancedOptionsShown] = useState(false)
 
     const hints = advancedOptionsShown ? {
@@ -61,9 +62,23 @@ const ProtectButtonSelector = () => {
 
     const toggleBuilder = (name: string) => {
         if (selectedBuilders.includes(name)) {
+            if (selectedBuilders.length === curatedBuilders.length) {
+                setAllBuilders(false);
+            }
             setSelectedBuilders([...selectedBuilders].filter(b => b !== name))
         } else {
+            if (selectedBuilders.length === curatedBuilders.length - 1) {
+                setAllBuilders(true);
+            }
             setSelectedBuilders(selectedBuilders.concat(name))
+        }
+    }
+
+    const toggleAllBuilders = (val: boolean) => {
+        setAllBuilders(val);
+        if (val === true) {
+            const allCuratedBuilderNames = curatedBuilders.map(builder => builder.name.toLowerCase());
+            setSelectedBuilders(allCuratedBuilderNames);
         }
     }
 
@@ -106,6 +121,7 @@ const ProtectButtonSelector = () => {
                     <hr style={{ padding: 0, margin: 0 }} />
                     {/* <AlignItems horizontal='left'> */}
                     {curatedBuilders && curatedBuilders.map((builder, idx) => <BuilderCheckbox name={builder.name} key={idx} />)}
+                    {curatedBuilders && <Checkbox label={"all"} checked={allBuilders === true} onChange={toggleAllBuilders} />}
                     {/* </AlignItems> */}
                 </div>
 
