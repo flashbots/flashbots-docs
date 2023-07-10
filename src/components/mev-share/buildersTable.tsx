@@ -18,12 +18,10 @@ export default () => {
         <thead>
             <th>Name</th>
             <th>RPC</th>
-            <th>Supported APIs</th>
         </thead>
         {builders.map(builder => <tr>
             <td>{builder.name}</td>
             <td>{builder.rpc}</td>
-            <td>{builder['supported-apis']}</td>
         </tr>)}
     </table>)
 }
