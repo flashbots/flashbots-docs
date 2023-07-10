@@ -3,6 +3,7 @@ title: quick start
 ---
 
 import ProtectButton from "protect-button"
+import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
 Flashbots Protect RPC allows regular users to easily submit their transactions to the Flashbots Auction by using a custom RPC endpoint in their wallet. Everything should be the same for users, except transactions are sent to the Flashbots builder instead of the public mempool.
 
@@ -11,10 +12,11 @@ Key benefits to using the Flashbots RPC endpoint:
 - **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
 - **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
     > Note: your transaction could be uncled, emitted to the mempool, and then included on-chain.
+- **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/overview).
 
 Privacy notice: **Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
 
-<ProtectButton>Connect Wallet to Protect</ProtectButton>
+<ProtectButtonSelector />
 
 ## Key considerations
 
