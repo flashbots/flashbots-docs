@@ -11,45 +11,43 @@ To start searching on MEV-Share, you will first need to connect to a MEV-Share N
 
 Flashbots runs a MEV-Share Node on Ethereum mainnet. The MEV-Share Node has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
 
-The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/searchers/libraries/mev-share-clients). For this guide, we'll refer to [matchmaker-ts](https://github.com/flashbots/matchmaker-ts).
-
-> Note: The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. The following tutorial will update once this change is reflected in the matchmaker-ts client library.
+The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/searchers/libraries/mev-share-clients). For this guide, we'll refer to [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts).
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 _Add library to your project:_
 
 ```sh
-yarn add @flashbots/matchmaker-ts
+yarn add @flashbots/mev-share-client
 ```
 
 _Import library code (note `ALL_CAPS` variables are placeholders; replace with your own data):_
 
 ```typescript
 import { Wallet, JsonRpcProvider } from "ethers"
-import Matchmaker, {
+import MevShareClient, {
     ShareBundleParams,
     PendingShareTransaction,
     ShareTransactionOptions
-} from "@flashbots/matchmaker-ts"
+} from "@flashbots/mev-share-client"
 
 const provider = new JsonRpcProvider(RPC_URL)
 const authSigner = new Wallet(FB_REPUTATION_PRIVATE_KEY, provider)
-const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
+const mevShareClient = MevShareClient.useEthereumMainnet(authSigner)
 ```
 
 _Connecting to Goerli:_
 
 ```typescript
-const matchmaker = Matchmaker.useEthereumGoerli(authSigner)
+const mevShareClient = MevShareClient.useEthereumGoerli(authSigner)
 ```
 
 _Custom params (for developers):_
 
 ```typescript
-// connect to matchmaker on mainnet
-const matchmaker = new Matchmaker(authSigner, {
+// connect to MEV-Share on mainnet
+const mevShareClient = new MevShareClient(authSigner, {
     name: "mainnet",
     chainId: 1,
     streamUrl: "https://mev-share.flashbots.net",
@@ -57,7 +55,7 @@ const matchmaker = new Matchmaker(authSigner, {
 })
 ```
 
-See the documentation in the [matchmaker-ts](https://github.com/flashbots/matchmaker-ts) repo to learn more.
+See the documentation in the [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts) repo to learn more.
 
 ### note A note on other languages
 
