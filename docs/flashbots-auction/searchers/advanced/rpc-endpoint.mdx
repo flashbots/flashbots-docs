@@ -82,6 +82,44 @@ example response:
 
 <SendBundleSpec />
 
+example request:
+
+```json
+{
+    "params": [
+    {
+      "version": "v0.1",
+      "inclusion":
+      {
+        "block": "0x8b8da8",
+        "maxBlock": "0x8b8dab"
+      },
+      "body": [
+      {
+        "hash": "0x24e6e999b8abf2c4df46e8a02516c0983043039a5a54f89fa87274427ce64798"
+      },
+      {
+        "tx": "0x02f880058201d685e9103fda0085e9103fda368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a8092696d206261636b72756e6e69696969696e67c080a0c5058ccf5759e29d4ad28e038f632a9b6269bbb0644c61447e0f14d56c453d73a048e877ee621c4b6be1234a8ad84379e80d45b288a7271e2b1aede7a04f06fd98",
+        "canRevert": false
+      }],
+      "validity":
+      {
+        "refund": [],
+        "refundConfig": []
+      }
+    }],
+    "method": "mev_sendBundle",
+    "id": 1,
+    "jsonrpc": "2.0"
+}
+```
+
+example response:
+
+```json
+{ "bundleHash": "0x7d6e491ab67aee5f4b75321c936bf05664d2d9b234fd67083e46bd43bb42f383" }
+```
+
 ### eth_callBundle
 
 `eth_callBundle` can be used to simulate a bundle against a specific block number, including simulating a bundle at the top of the next block. The `eth_callBundle` RPC has the following payload format:
@@ -167,6 +205,57 @@ example response:
 `mev_simBundle` uses a new bundle format to simulate matched bundles on MEV-Share. See [mev-share spec](https://github.com/flashbots/mev-share/blob/main/specs) for more information.
 
 <SendBundleSpec />
+
+example request (sent after landing a bundle via `mev_sendBundle`):
+
+```json
+{
+  "params": [
+    {
+      "inclusion":
+      {
+        "block": "0x8b8da8",
+        "maxBlock": "0x8b8dab"
+      },
+      "body": [
+      {
+        "tx": "0x02f87b058201d5843b9aca00843b9aca368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a808f696d20736861726969696969696e67c001a00d8d998fb0dc1e4da9b1de477acea54f185153d66d0af45a4ecfd20e453772baa07bd0ad1e1afb3f19749aaa5660f22859a6e485942346cd7186c024a5da747ada",
+        "canRevert": false
+      },
+      {
+        "tx": "0x02f880058201d685e9103fda0085e9103fda368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a8092696d206261636b72756e6e69696969696e67c080a0c5058ccf5759e29d4ad28e038f632a9b6269bbb0644c61447e0f14d56c453d73a048e877ee621c4b6be1234a8ad84379e80d45b288a7271e2b1aede7a04f06fd98",
+        "canRevert": false
+      }],
+      "version": "v0.1",
+      "validity":
+      {
+        "refund": [],
+        "refundConfig": []
+      }
+    },
+    {
+      "parentBlock": "0x8b8da8"
+    }
+  ],
+  "method": "mev_simBundle",
+  "id": 1,
+  "jsonrpc": "2.0"
+}
+```
+
+example response:
+
+```json
+{
+  "success": true,
+  "stateBlock": "0x8b8da8",
+  "mevGasPrice": "0x74c7906005",
+  "profit": "0x4bc800904fc000",
+  "refundableValue": "0x4bc800904fc000",
+  "gasUsed": "0xa620",
+  "logs": [{},{}]
+}
+```
 
 ### eth_cancelBundle
 
