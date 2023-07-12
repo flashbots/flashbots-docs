@@ -36,7 +36,7 @@ module.exports = {
                 'flashbots-auction/searchers/libraries/ethers-js-provider',
                 'flashbots-auction/searchers/libraries/web3py-provider',
                 'flashbots-auction/searchers/libraries/alchemyprovider',
-                'flashbots-auction/searchers/libraries/matchmaker',
+                'flashbots-auction/searchers/libraries/mev-share-clients',
               ]
             },
             'flashbots-auction/other-resources'
@@ -142,6 +142,10 @@ module.exports = {
               id: 'flashbots-mev-share/orderflow-providers/integration-guide',
               label: 'Integration Guide'
             },
+          ],
+          'Release Notes': [
+            'flashbots-mev-share/release-notes/2023-03',
+            'flashbots-mev-share/release-notes/2023-06'
           ]
         }
       ]
@@ -176,6 +180,6 @@ module.exports = {
       href: 'https://status.flashbots.net/',
       label: 'Status',
     },
-        'policies/privacy','policies/terms-of-service',
+        'policies/privacy','policies/terms-of-service', 'policies/prohibited-use-policy',
   ],
 };

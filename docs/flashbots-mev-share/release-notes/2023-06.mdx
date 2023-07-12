@@ -1,0 +1,47 @@
+# June 2023
+
+## simBundle options
+
+New options to override the simulation state for `mev_simBundle`:
+
+```typescript
+interface SimBundleOptions {
+    /** Block used for simulation state. Defaults to latest block on chain.
+     *
+     * Block header data will be derived from parent block by default.
+     * Specify other params in this interface to override the default values.
+     *
+     * Can be a block number or block hash.
+    */
+    parentBlock?: number | string,
+
+    // override the default values for the parentBlock header
+    /** default = parentBlock.number + 1 */
+    blockNumber?: number,
+    /** default = parentBlock.coinbase */
+    coinbase?: string,
+    /** default = parentBlock.timestamp + 12 */
+    timestamp?: number,
+    /** default = parentBlock.gasLimit */
+    gasLimit?: number,
+    /** default = parentBlock.baseFeePerGas */
+    baseFee?: bigint,
+    /** default = 5 (defined in seconds) */
+    timeout?: number,
+}
+```
+
+## event history api
+
+Query past events with `/history`, get info about query params to use from `/history/info`.
+
+- https://mev-share.flashbots.net/api/v1/history/info
+- https://mev-share.flashbots.net/api/v1/history
+
+## tx_hash bundle hint
+
+Enables searchers to share the transaction hashes of their bundle's transactions with other searchers, allows other searchers to backrun them without compromising bundle privacy or atomicity.
+
+## public mev-share-node release
+
+Open-sourced the backend node for MEV-Share: https://github.com/flashbots/mev-share-node
