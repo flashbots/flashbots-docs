@@ -38,18 +38,20 @@ type SimBundleLogs = {
   gasUsed: bigint,
   logs?: Array<{
 		/* ETH transaction logs. */
-		txLogs?: Array<[LogParams](https://docs.ethers.org/v6/api/providers/formatting/#LogParams)>,
+		txLogs?: Array<LogParams>,
 		/* Logs for nested bundles. */
 		bundleLogs?: Array<SimBundleLogs>,
 	}>,
 }
 ```
 
+`LogParams` are defined in the [Ethers documentation](https://docs.ethers.org/v6/api/providers/formatting/#LogParams).
+
 :::info Simulating private Transactions
 
-The backend endpoint for simulating bundles (`mev_simBundle`) only accepts signed transactions, not private transactions (specified by `{hash}`). ****The mev-share-client library automatically waits for the transactions in a bundle specified by `{hash}` to land on-chain  by querying for the full signed transactions with `provider.getTransaction` before it calls `mev_simBundle`. If the private transaction(s) in your bundle don't land on-chain, you won't be able to simulate your bundle with them.
+The backend endpoint for simulating bundles (`mev_simBundle`) only accepts signed transactions, not private transactions (specified by `{hash}`). The mev-share-client library automatically waits for the transactions in a bundle specified by `{hash}` to land on-chain  by querying for the full signed transactions with `provider.getTransaction` before it calls `mev_simBundle`. If the private transaction(s) in your bundle don't land on-chain, you won't be able to simulate your bundle with them.
 
-:::info
+:::
 
 There are several things you want to look for when debugging your bundles:
 
@@ -209,7 +211,7 @@ When a simulation succeeds, it looks something like this:
 }
 ```
 
-This means that your bundle *could have* landed in a block, but it isn't a guarantee. If your `mevGasPrice` is not high enough, your bundle may not be included in a block. Refer back to [Did it pay enough gas?](https://www.notion.so/Did-it-pay-enough-gas-21390bd54e9b42478f137250c97aaf7a?pvs=21) for info on setting your gas price.
+This means that your bundle *could have* landed in a block, but it isn't a guarantee. If your `mevGasPrice` is not high enough, your bundle may not be included in a block. Refer back to [Did it pay enough gas?](#did-it-pay-enough-gas) for info on setting your gas price.
 
 There is also one more factor that often comes into play…
 
