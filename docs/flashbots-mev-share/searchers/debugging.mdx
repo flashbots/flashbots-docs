@@ -2,7 +2,7 @@
 title: Debugging
 ---
 
-If you find that your bundles aren’t landing when you think they should, we have some tips to help you figure out why.
+If you find that your bundles aren't landing when you think they should, we have some tips to help you figure out why.
 
 > Note: Some examples you see in the code here are based on the [limit order bot tutorial](/flashbots-mev-share/searchers/tutorials/limit-order/introduction). The same tactics can be used to debug any MEV-Share bundle.
 
@@ -18,7 +18,7 @@ let simResult: SimBundleLogs = await mevshare.simulateBundle(bundleParams)
 console.log("simResult", simResult)
 ```
 
-Here’s a breakdown of the simulation result:
+Here's a breakdown of the simulation result:
 
 ```tsx
 type SimBundleLogs = {
@@ -38,22 +38,24 @@ type SimBundleLogs = {
   gasUsed: bigint,
   logs?: Array<{
 		/* ETH transaction logs. */
-		txLogs?: Array<[***LogParams***](https://docs.ethers.org/v6/api/providers/formatting/#LogParams)>,
+		txLogs?: Array<LogParams>,
 		/* Logs for nested bundles. */
 		bundleLogs?: Array<SimBundleLogs>,
 	}>,
 }
 ```
 
+`LogParams` are defined in the [Ethers documentation](https://docs.ethers.org/v6/api/providers/formatting/#LogParams).
+
 :::info Simulating private Transactions
 
-The backend endpoint for simulating bundles (`mev_simBundle`) only accepts signed transactions, not private transactions (specified by `{hash}`). ****The mev-share-client library automatically waits for the transactions in a bundle specified by `{hash}` to land on-chain  by querying for the full signed transactions with `provider.getTransaction` before it calls `mev_simBundle`. If the private transaction(s) in your bundle don’t land on-chain, you won’t be able to simulate your bundle with them.
+The backend endpoint for simulating bundles (`mev_simBundle`) only accepts signed transactions, not private transactions (specified by `{hash}`). The mev-share-client library automatically waits for the transactions in a bundle specified by `{hash}` to land on-chain  by querying for the full signed transactions with `provider.getTransaction` before it calls `mev_simBundle`. If the private transaction(s) in your bundle don't land on-chain, you won't be able to simulate your bundle with them.
 
-:::info
+:::
 
 There are several things you want to look for when debugging your bundles:
 
-### ‘invalid inclusion’
+### 'invalid inclusion'
 
 When simulating your bundles, you might see a result like this:
 
@@ -70,7 +72,7 @@ When simulating your bundles, you might see a result like this:
 }
 ```
 
-This happens when `bundleParams.inclusion.block` (and `bundleParams.inclusion.maxBlock` if you set it) target a block (range) that doesn’t overlap with the simulation state block.
+This happens when `bundleParams.inclusion.block` (and `bundleParams.inclusion.maxBlock` if you set it) target a block (range) that doesn't overlap with the simulation state block.
 
 To remedy this, you can adjust your `bundleParams` when you call `simulateBundle` to target more blocks — Protect transactions target 25 blocks starting from when they were submitted, so you may want to set your bundleParams like this:
 
@@ -98,7 +100,7 @@ We would just set the `maxBlock` parameter to `inclusion.block + 25`, but we hav
 
 You can also simply modify your original `bundleParams` to target more blocks, but note that this opens up the possibility of bundles using an outdated price landing on-chain.
 
-### ‘tx failed’
+### 'tx failed'
 
 ```tsx
 {
@@ -115,17 +117,17 @@ You can also simply modify your original `bundleParams` to target more blocks, b
 
 This happens when one of your transactions reverts. Since our `simulateBundle` function waits for private transactions to land on chain before simulating the bundle, we know that in our example, this error means that our backrun transaction failed.
 
-If you see this error when running the bot, it most likely means that the transaction you tried to backrun didn’t affect the price enough to meet our target. This is expected — it’s a feature, not a bug!
+If you see this error when running the bot, it most likely means that the transaction you tried to backrun didn't affect the price enough to meet our target. This is expected — it's a feature, not a bug!
 
-However, if you want to be sure, a good way to further verify what’s happening is to simulate transactions in a local development environment. Toolkits such as [foundry](https://github.com/foundry-rs/foundry) or [hardhat](https://hardhat.org/docs) give you tools to compile contracts, create local nodes that fork their state from public nodes (e.g. mainnet, goerli), and simulate transactions locally, with stack traces to show you where things went wrong.
+However, if you want to be sure, a good way to further verify what's happening is to simulate transactions in a local development environment. Toolkits such as [foundry](https://github.com/foundry-rs/foundry) or [hardhat](https://hardhat.org/docs) give you tools to compile contracts, create local nodes that fork their state from public nodes (e.g. mainnet, goerli), and simulate transactions locally, with stack traces to show you where things went wrong.
 
 ## Did it pay enough gas?
 
-One of the most common reasons a bundle doesn’t land is that it didn’t pay enough gas. Of course, you need to pay at least the base fee (the current minimum gas price on Ethereum), but you may also be facing competition. If there are other searchers trying to include the same transaction as you in a bundle, then only one of these bundles can land, because the transaction specified in multiple bundles can only be included on-chain once. The one that lands is determined by who pays the most. 
+One of the most common reasons a bundle doesn't land is that it didn't pay enough gas. Of course, you need to pay at least the base fee (the current minimum gas price on Ethereum), but you may also be facing competition. If there are other searchers trying to include the same transaction as you in a bundle, then only one of these bundles can land, because the transaction specified in multiple bundles can only be included on-chain once. The one that lands is determined by who pays the most. 
 
-Increasing the priority fee (`maxPriorityFeePerGas`) on your backrun transaction is a reliable way to improve your chances of inclusion. Note that we also increase `maxFeePerGas` by the same amount — this ensures that the builder/validator gets the tip, and it isn’t consumed by the base fee. See this [blog post from Blocknative](https://www.blocknative.com/blog/eip-1559-fees) for a detailed explanation of gas fees on Ethereum.
+Increasing the priority fee (`maxPriorityFeePerGas`) on your backrun transaction is a reliable way to improve your chances of inclusion. Note that we also increase `maxFeePerGas` by the same amount — this ensures that the builder/validator gets the tip, and it isn't consumed by the base fee. See this [blog post from Blocknative](https://www.blocknative.com/blog/eip-1559-fees) for a detailed explanation of gas fees on Ethereum.
 
-Here’s one example of how we can set higher gas fees in our code:
+Here's one example of how we can set higher gas fees in our code:
 
 ```tsx
 async function getSignedBackrunTx( outputAmount: bigint, nonce: number, gasTip: bigint ) {
@@ -142,7 +144,7 @@ async function getSignedBackrunTx( outputAmount: bigint, nonce: number, gasTip: 
 }
 ```
 
-Then we’d call it like this:
+Then we'd call it like this:
 
 ```tsx
 // tip: +5 gwei per gas
@@ -150,9 +152,9 @@ const tip = 5n * GWEI;
 const backrunTx = await getSignedBackrunTx(outputAmount, nonce, tip)
 ```
 
-You’ll notice that we set our gas prices (`maxFeePerGas` and `maxPriorityFeePerGas`) to constant values. If you don’t mind waiting for the gas price on Ethereum to go down, then you can safely ignore these errors. However, if you want to ensure that your trade goes through regardless of the gas price, then you’ll have to track the base fee on Ethereum and adjust your transactions’ gas prices accordingly.
+You'll notice that we set our gas prices (`maxFeePerGas` and `maxPriorityFeePerGas`) to constant values. If you don't mind waiting for the gas price on Ethereum to go down, then you can safely ignore these errors. However, if you want to ensure that your trade goes through regardless of the gas price, then you'll have to track the base fee on Ethereum and adjust your transactions' gas prices accordingly.
 
-Here’s how we can do that in our project:
+Here's how we can do that in our project:
 
 ```tsx
 async function getSignedBackrunTx( outputAmount: bigint, nonce: number, tip: bigint ) {
@@ -170,12 +172,12 @@ async function getSignedBackrunTx( outputAmount: bigint, nonce: number, tip: big
 }
 ```
 
-We start off by fetching the gas fees using `provider.getFeeData` — this queries the RPC provider. You may want to do this in a background thread (once per block) to avoid making redundant calls. But it’s OK for demonstration’s sake. 
-In `backrunTxFull`, we set our gas parameters with `gasFees`. We use the `!` suffix operator to coerce the value, which is possibly null, into a bigint. This is safe to do when you’re sure that your network has EIP-1559 integrated, which Ethereum mainnet does. The values will only be null on old, deprecated networks.
+We start off by fetching the gas fees using `provider.getFeeData` — this queries the RPC provider. You may want to do this in a background thread (once per block) to avoid making redundant calls. But it's OK for demonstration's sake. 
+In `backrunTxFull`, we set our gas parameters with `gasFees`. We use the `!` suffix operator to coerce the value, which is possibly null, into a bigint. This is safe to do when you're sure that your network has EIP-1559 integrated, which Ethereum mainnet does. The values will only be null on old, deprecated networks.
 
 ## Did any transactions fail? If so, which one(s)?
 
-It’s possible that one of the transactions in your bundle encountered an error and was not able to execute. If this is the case, you’ll see `false` in the `success` parameter of the simulation response, along with an error message, and some data about gas usage and payment.
+It's possible that one of the transactions in your bundle encountered an error and was not able to execute. If this is the case, you'll see `false` in the `success` parameter of the simulation response, along with an error message, and some data about gas usage and payment.
 
 For example, a simulation result for a bundle including a transaction with its gas price set too low might look like this:
 
@@ -192,7 +194,7 @@ For example, a simulation result for a bundle including a transaction with its g
 }
 ```
 
-If `mevGasPrice` is 0, it just means that the transaction didn’t use any gas (in this case, because it reverted).
+If `mevGasPrice` is 0, it just means that the transaction didn't use any gas (in this case, because it reverted).
 
 When a simulation succeeds, it looks something like this:
 
@@ -209,13 +211,13 @@ When a simulation succeeds, it looks something like this:
 }
 ```
 
-This means that your bundle *could have* landed in a block, but it isn’t a guarantee. If your `mevGasPrice` is not high enough, your bundle may not be included in a block. Refer back to [Did it pay enough gas?](https://www.notion.so/Did-it-pay-enough-gas-21390bd54e9b42478f137250c97aaf7a?pvs=21) for info on setting your gas price.
+This means that your bundle *could have* landed in a block, but it isn't a guarantee. If your `mevGasPrice` is not high enough, your bundle may not be included in a block. Refer back to [Did it pay enough gas?](#did-it-pay-enough-gas) for info on setting your gas price.
 
 There is also one more factor that often comes into play…
 
 ## Did the Flashbots builder have a chance to include my bundle?
 
-Another common reason a bundle doesn’t land is simply because the builders on MEV-Share didn’t have an opportunity to build a block for the desired slot. For more details about how builders work, and why this happens, see [Searching Post-Merge](https://writings.flashbots.net/searching-post-merge). You can check to see if your target block was built by any of the builders connected to MEV-Share by checking the block’s `miner` parameter. The Flashbots builder address is `0xDAFEA492D9c6733ae3d56b7Ed1ADB60692c98Bc5`
+Another common reason a bundle doesn't land is simply because the builders on MEV-Share didn't have an opportunity to build a block for the desired slot. For more details about how builders work, and why this happens, see [Searching Post-Merge](https://writings.flashbots.net/searching-post-merge). You can check to see if your target block was built by any of the builders connected to MEV-Share by checking the block's `miner` parameter. The Flashbots builder address is `0xDAFEA492D9c6733ae3d56b7Ed1ADB60692c98Bc5`
 
 ```tsx
 async function isBlockBuiltByFlashbots(blockNum: number) {

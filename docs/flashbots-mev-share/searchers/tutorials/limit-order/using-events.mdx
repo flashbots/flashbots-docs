@@ -4,11 +4,11 @@ title: Using Events
 
 ## Finding pending transactions with MEV-Share Event Stream
 
-Now that we have all the setup done, we need to find some transactions to backrun. Remember, we’re looking for transactions that affect the price of our trading pair (WETH/DAI), so that we can take advantage of the price impact created by the transaction to get a better price for our trade. By placing the two transactions in a bundle (the transaction we found on the event stream, and our backrun trade), we ensure that our trade only executes if it gets placed immediately behind the transaction that causes the price impact that benefits us.
+Now that we have all the setup done, we need to find some transactions to backrun. Remember, we're looking for transactions that affect the price of our trading pair (WETH/DAI), so that we can take advantage of the price impact created by the transaction to get a better price for our trade. By placing the two transactions in a bundle (the transaction we found on the event stream, and our backrun trade), we ensure that our trade only executes if it gets placed immediately behind the transaction that causes the price impact that benefits us.
 
-We’ll start by listening to the MEV-Share event stream. The event stream shares data about pending transactions (and bundles). We can use this information to deduce whether a transaction affects the price of our trading pair.
+We'll start by listening to the MEV-Share event stream. The event stream shares data about pending transactions (and bundles). We can use this information to deduce whether a transaction affects the price of our trading pair.
 
-In our project, we add a main function at the bottom, and in it, use the mev-share client’s `.on` function to execute our own code when we receive new pending transaction events. To start, let’s just look at the event stream by printing each event to the console.
+In our project, we add a main function at the bottom, and in it, use the mev-share client's `.on` function to execute our own code when we receive new pending transaction events. To start, let's just look at the event stream by printing each event to the console.
 
 `src/index.ts`
 
@@ -42,7 +42,7 @@ You should see events popping up in the console. Something like this:
 
 > Traffic is often low on goerli, so you may want to try connecting to mainnet with `MevShareClient.useEthereumMainnet(authSigner)` to see more events.
 
-The logs filling up your console are all transactions which we can backrun. You’ll notice that some share more data than others. We’ll cover how to include these transactions in our bundles soon, but first we need to go a little deeper to understand these events, and how we might use them to our advantage.
+The logs filling up your console are all transactions which we can backrun. You'll notice that some share more data than others. We'll cover how to include these transactions in our bundles soon, but first we need to go a little deeper to understand these events, and how we might use them to our advantage.
 
 ## Finding backrun opportunities using event data
 
@@ -50,7 +50,7 @@ Transactions on MEV-Share can share a wide variety of data with searchers. They 
 
 :::info For the Adventurous
 
-💡 Bundles can also be shared on MEV-Share. If you query the raw stream (you can view it in your web browser here: https://mev-share.flashbots.net), you’ll see that each event actually has a `txs` property, which itself may contains transaction events. In the client library, we convert the events into transaction or bundle types for you. To listen for bundles with the client lib, call the function `.on("bundle", ...)`. We’ll talk more about this in a later guide.
+💡 Bundles can also be shared on MEV-Share. If you query the raw stream (you can view it in your web browser here: https://mev-share.flashbots.net), you'll see that each event actually has a `txs` property, which itself may contains transaction events. In the client library, we convert the events into transaction or bundle types for you. To listen for bundles with the client lib, call the function `.on("bundle", ...)`. We'll talk more about this in a later guide.
 
 :::info
 
@@ -58,9 +58,9 @@ In our project, we want to know whether a transaction interacts with the token p
 
 To find out which trading pair a transaction is interacting with, we need to look at one of two fields: `to` and `logs`, depending on which is shared by the sender of the transaction.
 
-The `to` address is the actual recipient of the transaction. Typically, this would be a router contract like the [Uniswap Universal Router](https://etherscan.io/address/0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD), which allows users of the Uniswap web app to split trades between multiple Uniswap liquidity pools. However, we’re not interested in any Uniswap routers. We’re looking for the token pair contract (e.g. [WETH/DAI](https://etherscan.io/address/0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11)). If the `to` field is the pair address, the transaction sender is trading directly on the pair, which may mean that the transaction is from another searcher, as web UI users would most likely be interacting with the router contract. Nevertheless, if someone is trading on the token pair, we want to try to backrun it.
+The `to` address is the actual recipient of the transaction. Typically, this would be a router contract like the [Uniswap Universal Router](https://etherscan.io/address/0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD), which allows users of the Uniswap web app to split trades between multiple Uniswap liquidity pools. However, we're not interested in any Uniswap routers. We're looking for the token pair contract (e.g. [WETH/DAI](https://etherscan.io/address/0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11)). If the `to` field is the pair address, the transaction sender is trading directly on the pair, which may mean that the transaction is from another searcher, as web UI users would most likely be interacting with the router contract. Nevertheless, if someone is trading on the token pair, we want to try to backrun it.
 
-If the `logs` field is specified, we look for the pair address in the `address` field of one of the logs. MEV-Share, by default, shares the pair address in logs for swaps on Uniswap V2/V3 (V4 coming soon), Curve and Balancer. We’ll look more in depth at decoding logs in a later guide, but for now it’s sufficient to simply look for the pair address — if a log contains this address, then we can be confident that the transaction in the event is a good candidate to backrun.
+If the `logs` field is specified, we look for the pair address in the `address` field of one of the logs. MEV-Share, by default, shares the pair address in logs for swaps on Uniswap V2/V3 (V4 coming soon), Curve and Balancer. We'll look more in depth at decoding logs in a later guide, but for now it's sufficient to simply look for the pair address — if a log contains this address, then we can be confident that the transaction in the event is a good candidate to backrun.
 
 Add the following code in your project:
 
@@ -75,7 +75,7 @@ function transactionIsRelatedToPair(pendingTx: IPendingTransaction, PAIR_ADDRESS
 }
 ```
 
-Additionally, we’ll need to approve the router to spend our WETH. Add this function:
+Additionally, we'll need to approve the router to spend our WETH. Add this function:
 
 ```tsx
 async function approveTokenToRouter( tokenAddress: string, routerAddress: string ) {
@@ -106,7 +106,7 @@ await approveTokenToRouter(SELL_TOKEN_ADDRESS, UNISWAP_V2_ADDRESS)
 
 Then, where we handle new pending transactions, call `transactionIsRelatedToPair` to see if we should backrun the transaction.
 
-Your main function should similar to this when you’re done:
+Your main function should similar to this when you're done:
 
 ```tsx
 async function main() {
@@ -126,7 +126,7 @@ async function main() {
 }
 ```
 
-If you run the code now, you’ll probably see a lot of skipped transactions, but eventually you’ll find a match! If you’re not seeing any activity, try switching to mainnet:
+If you run the code now, you'll probably see a lot of skipped transactions, but eventually you'll find a match! If you're not seeing any activity, try switching to mainnet:
 
 ```tsx
 // const mevshare = MevShareClient.useEthereumGoerli(authSigner)
