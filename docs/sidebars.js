@@ -135,6 +135,21 @@ module.exports = {
             'flashbots-mev-share/searchers/event-stream',
             'flashbots-mev-share/searchers/understanding-bundles',
             'flashbots-mev-share/searchers/sending-bundles',
+            'flashbots-mev-share/searchers/debugging',
+            {
+              'Tutorials': [
+                {
+                  'Limit Order Bot': [
+                    'flashbots-mev-share/searchers/tutorials/limit-order/introduction',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/setup',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/using-events',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/sending-bundles',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/debugging',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/more-resources'
+                  ]
+                }
+              ]
+            }
           ],
           'For Wallet/Dapp Developers': [
             {
