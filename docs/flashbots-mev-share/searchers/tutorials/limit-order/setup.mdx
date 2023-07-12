@@ -65,7 +65,7 @@ Private Key: 😉
 
 ::: info
 
-Next we’ll read in the variables from our .env file with `dotenv`.
+Next we'll read in the variables from our .env file with `dotenv`.
 
 Add the following code to your project:
 
@@ -85,13 +85,13 @@ const FB_REPUTATION_PRIVATE_KEY = process.env.FB_REPUTATION_KEY || Wallet.create
 
 ## Connecting to smart contracts to get prices and make trades
 
-To get the price of our trading pair and make trades, we’ll need to interact with a few smart contracts: the Uniswap V2 Router, the ERC20 token contracts, and the factory contract. 
+To get the price of our trading pair and make trades, we'll need to interact with a few smart contracts: the Uniswap V2 Router, the ERC20 token contracts, and the factory contract. 
 
 - **Uniswap V2 Router contract**: smart contract to trade tokens on Uniswap V2. We also use it to get the market price of the trading pair, by simulating a small trade.
 - **factory contract**: this is where Uniswap trading pairs are created. We use it to find the pair address for the tokens we want to trade (e.g. WETH/DAI).
 - **ERC20 token contract**: the tokens themselves; in our example, we use the WETH contract to call `approve`, so that the router can transfer our WETH tokens for us.
 
-To do this in our code, we’ll create contract instances using ethers. We instantiate contracts with the ABI and contract address of each contract we want to use. The ABI specifies the functions that can be called on the contract.
+To do this in our code, we'll create contract instances using ethers. We instantiate contracts with the ABI and contract address of each contract we want to use. The ABI specifies the functions that can be called on the contract.
 
 For convenience, we've gathered the ABIs required to create ethers contracts for Uniswap V2. Copy these into a new file `src/abi.ts`.
 
@@ -130,7 +130,7 @@ const UNISWAP_FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
 const uniswapRouterContract = new Contract(UNISWAP_V2_ADDRESS, UNISWAP_V2_ABI, executorWallet)
 const uniswapFactoryContract = new Contract(UNISWAP_FACTORY_ADDRESS, UNISWAP_FACTORY_ABI, provider)
 
-/* While we’re here, let’s also set some useful constants we'll use later */
+/* While we're here, let's also set some useful constants we'll use later */
 // discount we expect from the backrun trade (basis points):
 const DISCOUNT_IN_BPS = 40n
 // try sending a backrun bundle for this many blocks:
@@ -152,8 +152,8 @@ const GWEI = 10n ** 9n
 
 `uniswapFactoryContract` is used to find the contract address of the token pair we trade on (e.g. [WETH/DAI](https://etherscan.io/address/0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11)).
 
-`SELL_TOKEN_ADDRESS` is the token we want to sell (in this case, WETH). The token we’re buying in this example is [DAI](https://etherscan.io/address/0x6b175474e89094c44da98b954eedeac495271d0f). Choose whichever tokens you want to trade if you’re following along — you can check to see if your tokens have a pair by calling the `getPair` function with your token addresses on the Uniswap [factory contract](https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#readContract).
+`SELL_TOKEN_ADDRESS` is the token we want to sell (in this case, WETH). The token we're buying in this example is [DAI](https://etherscan.io/address/0x6b175474e89094c44da98b954eedeac495271d0f). Choose whichever tokens you want to trade if you're following along — you can check to see if your tokens have a pair by calling the `getPair` function with your token addresses on the Uniswap [factory contract](https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#readContract).
 
 `SELL_TOKEN_AMOUNT` specifies 0.1 gwei of WETH to spend, and in `BUY_TOKEN_AMOUNT_CUTOFF` we specify that we want to buy when the token price is **1800** DAI/WETH.
 
-*We set our gas fees (see `MAX_GAS_PRICE` and `MAX_PRIORITY_FEE`) to constant values for the example. If you don’t mind possibly paying more gas, we recommend setting your gas parameters so that they follow the base fee. Ethers has a function for this called [getFeeData](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getFeeData).*
+*We set our gas fees (see `MAX_GAS_PRICE` and `MAX_PRIORITY_FEE`) to constant values for the example. If you don't mind possibly paying more gas, we recommend setting your gas parameters so that they follow the base fee. Ethers has a function for this called [getFeeData](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getFeeData).*

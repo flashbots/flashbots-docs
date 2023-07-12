@@ -6,9 +6,9 @@ title: Sending Bundles
 
 After we find a transaction that touches the trading pair we're targeting, we need to calculate how many tokens we should expect to receive. In this project, we are specifically *buying* DAI with ETH (technically WETH, because Uniswap only trades ERC-20 tokens), so we want the price of DAI/WETH to be as low as possible. In code, we define our price requirements in terms of the *amount of tokens we receive* from the trade — so we want the *highest* amount of tokens possible, but we have a definite minimum (1800 DAI). 
 
-In terms of a limit order, we’re saying that we want our order to be filled when the price is *at most* 1800 DAI, but if the price is lower, then we want to fill at the lower price, which yields more DAI per WETH.
+In terms of a limit order, we're saying that we want our order to be filled when the price is *at most* 1800 DAI, but if the price is lower, then we want to fill at the lower price, which yields more DAI per WETH.
 
-To find our token’s market price, we simulate our trade by calling the `swapExactTokensForTokens` function with a static call. A static call simply simulates the transaction, so we can see what it would do if we were to actually send it. We set our buy/sell amounts that we defined earlier to see how much we'd get from the swap. Add this function to your code — we’ll add it to our main function later.
+To find our token's market price, we simulate our trade by calling the `swapExactTokensForTokens` function with a static call. A static call simply simulates the transaction, so we can see what it would do if we were to actually send it. We set our buy/sell amounts that we defined earlier to see how much we'd get from the swap. Add this function to your code — we'll add it to our main function later.
 
 `src/index.ts`
 
@@ -29,11 +29,11 @@ async function getBuyTokenAmountWithExtra() {
 }
 ```
 
-The minimum amount we can expect to receive from a swap is defined by `normalOutputAmount`. Then, we calculate how much we’d get if with a 40 basis-points discount, which we should expect if we successfully backrun a transaction that shifts the price in our favor, and assign this value to `extraOutputAmount`.
+The minimum amount we can expect to receive from a swap is defined by `normalOutputAmount`. Then, we calculate how much we'd get if with a 40 basis-points discount, which we should expect if we successfully backrun a transaction that shifts the price in our favor, and assign this value to `extraOutputAmount`.
 
-When we detect a new transaction, we’ll need to check the going price and set up our trade accordingly. If the price is lower than our target, and because we’re trying to *buy* tokens, we want to make sure our trade expects more tokens out; as many as we can get at the lower price with our fixed sell amount (the ETH we’ll spend to buy the tokens). If the price is higher than our target, then we’ll just set the expected output to the minimum amount we’d expect to if the price were at our target, in hopes that the transaction we backrun will move the price enough for us to make a trade.
+When we detect a new transaction, we'll need to check the going price and set up our trade accordingly. If the price is lower than our target, and because we're trying to *buy* tokens, we want to make sure our trade expects more tokens out; as many as we can get at the lower price with our fixed sell amount (the ETH we'll spend to buy the tokens). If the price is higher than our target, then we'll just set the expected output to the minimum amount we'd expect to if the price were at our target, in hopes that the transaction we backrun will move the price enough for us to make a trade.
 
-Let’s add a couple more functions to implement this logic:
+Let's add a couple more functions to implement this logic:
 
 `src/index.ts`
 
@@ -73,17 +73,17 @@ async function backrunAttempt( currentBlockNumber: number, nonce: number, pendin
 }
 ```
 
-The `getSignedBackrunTx` function creates the transaction we’ll send to execute our trade on Uniswap. We set a fixed gas price here for simplicity. If you prefer, you could replace the with dynamic fees that track the base fee of the chain. But constant gas prices may work better if you don’t want to spend a lot on gas, and don’t mind having to wait if the network’s base fee exceeds your settings.
+The `getSignedBackrunTx` function creates the transaction we'll send to execute our trade on Uniswap. We set a fixed gas price here for simplicity. If you prefer, you could replace the with dynamic fees that track the base fee of the chain. But constant gas prices may work better if you don't want to spend a lot on gas, and don't mind having to wait if the network's base fee exceeds your settings.
 
 The `backrunAttempt` function defines our price requirement logic: we make sure that `outputAmount` is at least our previously-defined cutoff amount. However, if the simulated output amount is higher, then we set `outputAmount` to expect that much, which protects us from [slippage](https://en.wikipedia.org/wiki/Slippage_(finance)) in case other transactions in the block happen to trade on the same pair. This function then sends our bundle to MEV-Share. If the bundle was received successfully, we should see a bundle hash logged to our console.
 
 Using `getBuyTokenAmountWithExtra`, we define `outputAmount`, the amount we expect to receive from the trade. We create our backrun transaction `backrunSignedTx` and send it to MEV-Share in a bundle by calling `mevshare.sendBundle`.
 
-*Real quick, let’s break down the bundle we passed to `sendBundle`:*
+*Real quick, let's break down the bundle we passed to `sendBundle`:*
 
 The `block` parameter in `inclusion` specifies which block we want the bundle to land in. We indicate here that we want our bundle to land in the next block.
 
-The `body` parameter is where we set our bundle’s transactions. The order in which they’re specified is the order in which they’ll execute on chain. Each transaction is specified as an object, with either a `hash` parameter, or a `tx` parameter (paired with `canRevert` to specify whether this transaction is allowed to revert and land on chain). The transaction we specify with `hash` is the pending transaction from the event stream that we want to backrun. We have to use its hash because the MEV-Share event stream does not reveal the entire signed transaction. Naturally, the following transaction, specified by `tx`, is our trade.
+The `body` parameter is where we set our bundle's transactions. The order in which they're specified is the order in which they'll execute on chain. Each transaction is specified as an object, with either a `hash` parameter, or a `tx` parameter (paired with `canRevert` to specify whether this transaction is allowed to revert and land on chain). The transaction we specify with `hash` is the pending transaction from the event stream that we want to backrun. We have to use its hash because the MEV-Share event stream does not reveal the entire signed transaction. Naturally, the following transaction, specified by `tx`, is our trade.
 
 Once we stitch all these new functions into our main loop, our bot will be done!
 
@@ -107,7 +107,7 @@ mevshare.on("transaction", (pendingTx) => {
 })
 ```
 
-We’ll also want to set up a callback that watches for new blocks and retries previous backrun attempts. Our bundles only target one block, but Protect transactions (which make up the transactions in the event stream) are valid for 25 blocks from when they’re received. This means that if our backrun wasn’t successful before, we can try again up to 24 more times.
+We'll also want to set up a callback that watches for new blocks and retries previous backrun attempts. Our bundles only target one block, but Protect transactions (which make up the transactions in the event stream) are valid for 25 blocks from when they're received. This means that if our backrun wasn't successful before, we can try again up to 24 more times.
 
 Add this code to your `main` function:
 
@@ -130,7 +130,7 @@ And in your `mevshare.on` callback, add this piece at the end:
 recentPendingTxHashes.push({ txHash: pendingTx.hash, blockNumber: currentBlockNumber })
 ```
 
-When you’re done, your main function should look like this:
+When you're done, your main function should look like this:
 
 `src/index.ts`
 
@@ -169,7 +169,7 @@ async function main() {
 
 ![Mario finish](/img/mario-finish.png)
 
-*That’s all you need!* This code will listen for new transactions and blocks, and trigger our code to send bundles when we find a transaction that changes the price.
+*That's all you need!* This code will listen for new transactions and blocks, and trigger our code to send bundles when we find a transaction that changes the price.
 
 Run the code and you should see something like this:
 
@@ -181,4 +181,4 @@ And after some time…
 
 It may take a while to find a match — remember, the code scans for a trade on the ETH/DAI pair on Uniswap V2. There are lots of other events to consider for future improvements to this bot!
 
-You may also consider removing the code that checks the event to see if it matches our pair address. It’s possible that the price could move to our target level without us seeing an event to backrun. If we simply backrun every transaction we see, then we can potentially benefit from opportunities that we can’t yet see. However, it is essential to understand how to use logs on MEV-Share, as they provide critical data that can be used for a multitude of other purposes, so we’ve introduced it here as a practical example.
+You may also consider removing the code that checks the event to see if it matches our pair address. It's possible that the price could move to our target level without us seeing an event to backrun. If we simply backrun every transaction we see, then we can potentially benefit from opportunities that we can't yet see. However, it is essential to understand how to use logs on MEV-Share, as they provide critical data that can be used for a multitude of other purposes, so we've introduced it here as a practical example.
