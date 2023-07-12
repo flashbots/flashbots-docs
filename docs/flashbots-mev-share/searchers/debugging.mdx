@@ -4,6 +4,8 @@ title: Debugging
 
 If you find that your bundles aren’t landing when you think they should, we have some tips to help you figure out why.
 
+> Note: Some examples you see in the code here are based on the [limit order bot tutorial](/flashbots-mev-share/searchers/tutorials/limit-order/introduction). The same tactics can be used to debug any MEV-Share bundle.
+
 ## Simulate your bundle
 
 The simplest way to find out what happened with your bundle is to simulate it. The [mev-share-client](https://www.npmjs.com/package/@flashbots/mev-share-client) library has a function `simulateBundle` which executes your bundle in a virtual environment based on the block which the bundle was targeting.
