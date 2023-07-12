@@ -10,25 +10,23 @@ Events on MEV-Share are distributed via an SSE endpoint. Searchers listen to thi
 
 ## Quickstart
 
-Subscribe to the stream by making an HTTP GET request on the stream endpoint. The [matchmaker-ts](https://npmjs.com/@flashbots/matchmaker-ts) library implements this as an asynchronous event handler.
-
-> Note: The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. The following tutorial will update once this change is reflected in the matchmaker-ts client library.
+Subscribe to the stream by making an HTTP GET request on the stream endpoint. The [mev-share-client-ts](https://npmjs.com/@flashbots/mev-share-client) library implements this as an asynchronous event handler.
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
-import Matchmaker, { IPendingTransaction, IPendingBundle, StreamEvent } from '@flashbots/matchmaker-ts'
+import MevShareClient, { IPendingTransaction, IPendingBundle, StreamEvent } from '@flashbots/mev-share-client'
 
-const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
+const mevShareClient = MevShareClient.useEthereumMainnet(authSigner)
 
-const txHandler = matchmaker.on(StreamEvent.Transaction, (tx: IPendingTransaction) => {
+const txHandler = mevShareClient.on(StreamEvent.Transaction, (tx: IPendingTransaction) => {
     /*
     Do something with the pending tx here.
     */
 })
 
-const bundleHandler = matchmaker.on(StreamEvent.Bundle, (tx: IPendingBundle) => {
+const bundleHandler = mevShareClient.on(StreamEvent.Bundle, (tx: IPendingBundle) => {
     /*
     Do something with the pending bundle here.
     */

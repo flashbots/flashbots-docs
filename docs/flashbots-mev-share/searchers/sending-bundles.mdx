@@ -17,15 +17,13 @@ Variables in `ALL_CAPS` are placeholders. To use this code, replace them with yo
 
 :::
 
-> Note: The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. The following tutorial will update once this change is reflected in the matchmaker-ts client library.
-
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
-import MEV-Share Node, { BundleParams } from '@flashbots/matchmaker-ts'
+import MevShareClient, { BundleParams } from '@flashbots/mev-share-client'
 
-const matchmaker = MEV-Share Node.useEthereumMainnet(authSigner)
+const mevShareClient = MevShareClient.useEthereumMainnet(authSigner)
 
 // ...
 
@@ -43,7 +41,7 @@ const params: BundleParams = {
     body: bundle,
 }
 
-const bundleResult = await matchmaker.sendBundle(params)
+const bundleResult = await mevShareClient.sendBundle(params)
 ```
 
 The first transaction in the bundle contains the hash of a pending transaction, which we presumably got from listening to the [event stream](/flashbots-mev-share/searchers/event-stream). The second transaction is one we sign ourself, which backruns the first transaction, presumably for a profit.
@@ -54,7 +52,7 @@ MEV-Share bundles are sent to the same RPC endpoint as MEV-Boost bundles: `https
 
 :::
 
-See [matchmaker-ts](https://github.com/flashbots/matchmaker-ts/blob/main/src/examples/sendBackrunBundle.ts) for a full working example.
+See [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts/blob/main/src/examples/sendBackrunBundle.ts) for a full working example.
 
 </TabItem>
 </Tabs>
@@ -74,7 +72,7 @@ Note that bundles with transactions including the `hash` parameter are considere
 :::
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
 const params: BundleParams = {
@@ -126,7 +124,7 @@ This strategy is particularly relevant to searchers who operate on public mempoo
 MEV-Share Nodes nest bundles to build composite bundles that are more profitable.
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
 const params: BundleParams = {
@@ -163,7 +161,7 @@ Bundle simulations can only be executed on matched bundles, which contain only s
 :::
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
 const params: BundleParams = {
@@ -192,7 +190,7 @@ const params: BundleParams = {
     }
 }
 
-const simResult = await matchmaker.simulateBundle(params)
+const simResult = await mevShareClient.simulateBundle(params)
 ```
 
 </TabItem>
