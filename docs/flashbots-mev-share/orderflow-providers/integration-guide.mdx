@@ -25,7 +25,7 @@ You can submit your orderflow to the Flashbots **MEV-Share Node** to internalize
 
 ### How to Integrate
 
-The Flashbots MEV-Share Node is accessible through the [Flashbots Protect RPC](/flashbots-protect/rpc/mev-share#protect-rpc-reference).
+The Flashbots MEV-Share Node is accessible through the [Flashbots Protect RPC](/flashbots-protect/mev-share#protect-rpc-reference).
 
 #### Send Orderflow to Protect RPC
 
@@ -75,13 +75,13 @@ https://rpc.flashbots.net?refund=userAddr:40&refund=walletAddr:10
 
 We recommend experimenting to find the right settings for you and your users. We are happy to partner with your data and product teams to find the best balance.
 
-To learn more about configuring Flashbots Protect, see the [Flashbots Protect RPC docs](/flashbots-protect/rpc/mev-share#protect-rpc-reference).
+To learn more about configuring Flashbots Protect, see the [Flashbots Protect RPC docs](/flashbots-protect/mev-share#protect-rpc-reference).
 
 ### What are the guarantees and benefits?
 
 The MEV-Share Node will bundle user transactions with each valid searcher backrun and submit them to a dedicated Flashbots builder. The builder will choose the winning bundle and transfer 90% of the searcher's payment to `tx.origin` of the user's transaction.
 
-If no valid backruns are submitted, the transaction will be treated as a regular [Protect transaction](https://docs.flashbots.net/flashbots-protect/rpc/quick-start) and receive all the typical benefits of Flashbots Protect.
+If no valid backruns are submitted, the transaction will be treated as a regular [Protect transaction](https://docs.flashbots.net/flashbots-protect/quick-start) and receive all the typical benefits of Flashbots Protect.
 
 ### What are the risks?
 
