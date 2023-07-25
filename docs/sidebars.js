@@ -160,7 +160,8 @@ module.exports = {
           ],
           'Release Notes': [
             'flashbots-mev-share/release-notes/2023-03',
-            'flashbots-mev-share/release-notes/2023-06'
+            'flashbots-mev-share/release-notes/2023-06',
+            'flashbots-mev-share/release-notes/2023-07'
           ]
         }
       ]
