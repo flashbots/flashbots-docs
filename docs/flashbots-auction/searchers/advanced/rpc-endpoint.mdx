@@ -307,6 +307,9 @@ This method has the following JSON-RPC format:
             "default" |
             "flashbots"
         >,
+      },
+      validity?: {
+        refund?: Array<{address, percent}>
       }
     }
   }]
@@ -329,6 +332,9 @@ example request:
         "privacy": {
           "hints": ["calldata", "transaction_hash"],
           "builders": ["default"]
+        },
+        "validity": {
+          "refund": [{"address": "0xadd123", "percent": 50}]
         }
       }
     }
@@ -364,6 +370,23 @@ By default, transactions are sent to the Flashbots MEV-Share Node with the defau
 Flashbots currently supports sending orderflow to the following block builders. This is subject to change over time.
 
 <Builders />
+
+#### `validity`
+
+Validity is used to specify the address and percentage to pay refund from the backrun of this transaction.
+
+By default, the refund is paid to the signer of the transaction and 90% of the backrun value is sent to the user by default.
+
+If multiple refund addresses are specified, then the backrun value is split between them according to the percentage specified.
+For example, if refund is `[{address: addr1, percent: 10}, {address: addr1, percent: 20}]` then 10% of the backrun value is sent to `addr1` and 20% is sent to `addr2`
+and 70% of the backrun value is left to the builder.
+
+| Param | Type Info | Description |
+|-|-|-|
+| `refund` | Array of objects | Each entry in the array specifies address that should receive refund from backrun and percent of the backrun value. |
+| `refund[].address` | Address | Address that should receive refund. |
+| `refund[].percent` | Number | Percentage of the total backrun value that this address should receive. |
+
 
 ### eth_cancelPrivateTransaction
 
