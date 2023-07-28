@@ -387,6 +387,51 @@ and 70% of the backrun value is left to the builder.
 | `refund[].address` | Address | Address that should receive refund. |
 | `refund[].percent` | Number | Percentage of the total backrun value that this address should receive. |
 
+### eth_sendPrivateRawTransaction
+
+`eth_sendPrivateTransaction` behaves like [eth_sendPrivateTransaction](#eth_sendprivatetransaction) but its format
+is similar to that of [`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendrawtransaction)
+
+This method has the following JSON-RPC format:
+
+```typescript
+{
+  jsonrpc: "2.0",
+  id: string | number,
+  method: "eth_sendPrivateRawTransaction",
+  params: [
+    tx,               // String, raw signed transaction
+    preferences?      // Optional, see eth_sendPrivateTransaction
+  ]
+}
+```
+
+example request:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_sendPrivateRawTransaction",
+  "params": ["0x123abc..."]
+}
+```
+
+example response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x45df1bc3de765927b053ec029fc9d15d6321945b23cac0614eb0b5e61f3a2f2a" // tx hash
+}
+```
+
+| Param | Type Info | Description |
+|-|-|-|
+| `params[0]` | String | Raw signed transaction |
+| `refund[1]` | Object | Optional private tx preferences, see `preferences` in eth_sendPrivateTransaction. |
+
 
 ### eth_cancelPrivateTransaction
 
