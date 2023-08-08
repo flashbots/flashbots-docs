@@ -16,17 +16,17 @@ Subscribe to the stream by making an HTTP GET request on the stream endpoint. Th
 <TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
-import MevShareClient, { IPendingTransaction, IPendingBundle, StreamEvent } from '@flashbots/mev-share-client'
+import MevShareClient, { IPendingTransaction, IPendingBundle } from '@flashbots/mev-share-client'
 
 const mevShareClient = MevShareClient.useEthereumMainnet(authSigner)
 
-const txHandler = mevShareClient.on(StreamEvent.Transaction, (tx: IPendingTransaction) => {
+const txHandler = mevShareClient.on("transaction", async (tx: IPendingTransaction) => {
     /*
     Do something with the pending tx here.
     */
 })
 
-const bundleHandler = mevShareClient.on(StreamEvent.Bundle, (tx: IPendingBundle) => {
+const bundleHandler = mevShareClient.on("bundle", async (tx: IPendingBundle) => {
     /*
     Do something with the pending bundle here.
     */
