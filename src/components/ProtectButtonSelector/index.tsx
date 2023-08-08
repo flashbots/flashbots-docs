@@ -16,7 +16,7 @@ const ProtectButtonSelector = () => {
     const [noHints, setNoHints] = useState(false)
     const [curatedBuilders, setCuratedBuilders] = useState<Builder[]>()
     const [allBuilders, setAllBuilders] = useState(false)
-    const [advancedOptionsShown, setAdvancedOptionsShown] = useState(false)
+    const [advancedOptionsShown, setAdvancedOptionsShown] = useState(true)
 
     const hints = advancedOptionsShown ? {
         calldata,
@@ -96,7 +96,7 @@ const ProtectButtonSelector = () => {
     return (<GridBlock>
         <SimpleDropdown header={"Advanced options"} onClickHeader={() => {
             setAdvancedOptionsShown(!advancedOptionsShown)
-        }}>
+        }} isOpen={advancedOptionsShown}>
             <SimpleDropdown.Body>
                 <AlignItems horizontal='center'>
                     <><FlashbotsProtectButton hints={advancedOptionsShown ? hints : undefined} builders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton></>
