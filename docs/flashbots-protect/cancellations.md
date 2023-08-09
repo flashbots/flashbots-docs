@@ -1,7 +1,7 @@
 ---
 title: Cancellations 
 ---
-Transactions that are submitted to Flashbots Protect are sent to the Flashbots Matchmaker, where they may stay pending for up to 6 minutes.
+Transactions that are submitted to Flashbots Protect are sent to the Flashbots MEV-Share Node, where they may stay pending for up to 6 minutes.
 
 Flashbots Protect allows you to cancel pending transactions by submitting a cancellation transaction to Flashbots Protect. You can cancel a transaction by sending a new transaction which:
 
