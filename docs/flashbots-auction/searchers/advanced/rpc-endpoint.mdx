@@ -389,8 +389,8 @@ and 70% of the backrun value is left to the builder.
 
 ### eth_sendPrivateRawTransaction
 
-`eth_sendPrivateTransaction` behaves like [eth_sendPrivateTransaction](#eth_sendprivatetransaction) but its format
-is similar to that of [`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendrawtransaction)
+`eth_sendPrivateRawTransaction` behaves like [eth_sendPrivateTransaction](#eth_sendprivatetransaction) but its format
+is similar to that of [`eth_sendRawTransaction`](https://docs.alchemy.com/reference/eth-sendrawtransaction)
 
 This method has the following JSON-RPC format:
 
@@ -430,7 +430,7 @@ example response:
 | Param | Type Info | Description |
 |-|-|-|
 | `params[0]` | String | Raw signed transaction |
-| `refund[1]` | Object | Optional private tx preferences, see `preferences` in eth_sendPrivateTransaction. |
+| `params[1]` | Object | Optional private tx preferences, see `preferences` in eth_sendPrivateTransaction. |
 
 
 ### eth_cancelPrivateTransaction
