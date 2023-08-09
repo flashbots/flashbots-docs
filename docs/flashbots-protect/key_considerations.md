@@ -14,6 +14,5 @@ Before you get started with Flashbots Protect here are a few things to be mindfu
 
 - Your transactions can be emitted to the public mempool if you switch RPC endpoints from Flashbots Protect RPC to another RPC while your transactions are pending.
 
-## Setting the Right Gas Price 
-In most cases sending a transaction through Flashbots Protect should not require a higher gas price than normal. However, in periods of high load, you may want to increase gas prices to ensure your transaction is included in a block quickly. If the network is congested and you need your transaction to execute quickly you can increase your max fee to adjust for fluctuations in base fee and set your priority fee to be 3 - 5gwei.
-Note also that the money saved from keeping reverts from landing on-chain means you will most likely save money even if you occasionally need to pay higher fees during periods of congestion.
+## Speeding up your transaction's inclusion
+By default transactions sent through Flashbots Protect are only shared with Flashbots, which builds only a subset of all blocks on Ethereum. If you want to increase the chance of your transaction being included, you can opt-in to sharing your transaction with more builders. You can easily do so by selecting other builders in the options accompanying the "Connect Wallet to Protect" button. **Note**: by sending your transaction to a builder you are trusting them to not frontrun your transaction or reveal it to third parties who might.
