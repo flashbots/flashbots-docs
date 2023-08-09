@@ -3,12 +3,12 @@ title: MEV-Share
 ---
 
 import ProtectButton from "protect-button"
-import HintsTable from "../../specs/mev-share/_hints.mdx"
-import RpcHints from "../../specs/protect-rpc/_hints.mdx"
-import Builders from "../../specs/mev-share/_builders.mdx"
+import HintsTable from "../specs/mev-share/_hints.mdx"
+import RpcHints from "../specs/protect-rpc/_hints.mdx"
+import Builders from "../specs/mev-share/_builders.mdx"
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
-Flashbots Protect users' transactions automatically flow to the Flashbots [MEV-Share Node](/flashbots-mev-share/overview), which returns them up to 90% of the MEV that their transactions create. By default, Protect users will be connected with the [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV. Users do not need to do anything to start benefiting from MEV-Share, other than to connect their wallet to Flashbots Protect.
+Flashbots Protect users' transactions automatically flow to the Flashbots [MEV-Share Node](/flashbots-mev-share/overview), which returns them up to 90% of the MEV that their transactions create. By default, Protect users will be connected with the [Stable](/flashbots-protect/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV. Users do not need to do anything to start benefiting from MEV-Share, other than to connect their wallet to Flashbots Protect.
 
 MEV-Share users on Flashbots Protect can directly control how their transactions are processed. These settings can be applied using the "advanced" panel; or by manually configuring your Protect RPC request.
 
@@ -20,7 +20,7 @@ Preferences are passed as query params in the Protect RPC URL. Users can specify
 
 ### Hints
 
-To use a custom hint configuration, `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified, the default [Stable](/flashbots-protect/rpc/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
+To use a custom hint configuration, `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified, the default [Stable](/flashbots-protect/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
 
 <HintsTable />
 

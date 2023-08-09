@@ -50,7 +50,6 @@ const signedTransactions = await flashbotsProvider.signBundle([
         value: 0,
       },
     },
-    // we need this second tx because flashbots only accept bundles that use at least 42000 gas.
     {
       signer: wallet,
       transaction: {

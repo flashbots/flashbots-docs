@@ -1,0 +1,46 @@
+---
+title: Add to wallet
+---
+
+import ProtectButton from "protect-button"
+import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
+
+Flashbots Protect RPC allows regular users to easily submit their transactions to the Flashbots Auction by using a custom RPC endpoint in their wallet. Everything should be the same for users, except transactions are sent to the Flashbots builder instead of the public mempool.
+
+Key benefits to using the Flashbots RPC endpoint:
+
+- **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
+- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
+    > Note: your transaction could be uncled, emitted to the mempool, and then included on-chain.
+- **Etherscan integration:** users can see the status of their transactions on Etherscan.
+- **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/overview).
+
+Privacy notice: **Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
+Click the button below from a browser with a wallet extension to add Flashbots Protect RPC to your wallet.
+
+<ProtectButtonSelector />
+
+## Adding Flashbots Protect RPC Manually
+You can also add Flashbots Protect RPC manually in MetaMask by following these steps:
+1. Expand the Network drop-down menu by clicking on your current network at the top of your MetaMask. By default you are connected to “Ethereum mainnet.”
+2. Click “Add network”
+3. Click “Add a network manually” and fill in the following information:
+- **Network Name:** Flashbots Protect
+- **New RPC URL:** https://rpc.flashbots.net
+- **Chain ID:** 1
+- **Currency Symbol:** ETH
+- **Block Explorer URL:** https://etherscan.io/
+4. Click “Save.”
+5. Click “Switch to Flashbots Protect”
+
+![mm_rpc](/img/mm_rpc.png)
+
+Flashbots Protect RPC for Goerli testnet can be added with these details:
+- **Network Name:** Goerli Flashbots Protect
+- **New RPC URL:** https://rpc-goerli.flashbots.net
+- **Chain ID:** 5
+- **Currency Symbol:** ETH
+- **Block Explorer URL**: https://goerli.etherscan.io/
+
+## Stuck transactions
+If a transaction is "stuck" as pending then please see our [stuck transactions guide](/flashbots-protect/stuck_transactions).

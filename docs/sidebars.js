@@ -81,17 +81,17 @@ module.exports = {
     {
       "Flashbots Protect": [
         'flashbots-protect/overview',
+        'flashbots-protect/quick-start',
+        'flashbots-protect/mev-share',
+        'flashbots-protect/key_considerations',
+        'flashbots-protect/cancellations',
+        'flashbots-protect/stuck_transactions',
         {
-          'RPC': [
-            'flashbots-protect/rpc/quick-start',
-            'flashbots-protect/rpc/mev-share',
-            'flashbots-protect/rpc/uncle-bandits',
-            'flashbots-protect/rpc/status-api',
-            'flashbots-protect/rpc/bundle-cache',
-            'flashbots-protect/rpc/ratelimiting',
-            'flashbots-protect/rpc/cancellations',
-            'flashbots-protect/rpc/releases',
-          ]
+          'Additional Documentation': [
+            'flashbots-protect/additional-documentation/status-api',
+            'flashbots-protect/additional-documentation/ratelimiting',
+            'flashbots-protect/additional-documentation/bundle-cache',
+          ],
         }
       ],
     },
