@@ -21,7 +21,7 @@ const SimpleDropdown = ({ children, header, italicHeader, onClickHeader, isOpen 
     return (
         <div className='dropdown-container'>
             {subComponents[0]}
-            <details open={isOpen} onClick={onClickHeader}>
+            <details open={isOpen}>
                 <summary className={styles.dropdownHeader}>
                     {useItalic ? <em>{header}</em> : header}
                 </summary>
