@@ -4,14 +4,13 @@ title: Overview
 
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
-Flashbots Protect makes it easy for anyone to protect themselves against frontrunning and sandwich attacks by routing transactions to the Flashbots Matchmaker, instead of the public mempool. The experience for the end user is the same as before, just with added benefits.
-
-The major benefits of connecting to Flashbots Protect are:
-
+Flashbots Protect is the best way to transact on Ethereum. It offers the following features:
 - **Frontrunning protection:** transactions will not be seen by hungry sandwich bots in the public mempool.
 - **No failed transactions:** transactions will only be included if it doesn't include any reverts, so users don't pay for failed transactions.
 - **Etherscan integration:** users can see the status of their transactions on Etherscan.
 - **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/overview).
+
+You can use Flashbots Protect by clicking the button below, or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net`.
 
 <ProtectButtonSelector />
 
