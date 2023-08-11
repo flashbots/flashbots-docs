@@ -7,15 +7,25 @@ import TabItem from '@theme/TabItem';
 import Hints from '../../specs/mev-share/_hints.mdx';
 import Builders from '../../specs/mev-share/_builders.mdx';
 
-### eth_sendPrivateTransaction
+## Introduction
 
-`eth_sendPrivateTransaction` is used to send a single transaction. You can choose to send to additional builders beyond the Flashbots Builders. Please send your `eth_sendPrivateTransaction` requests to `https://relay.flashbots.net` using the `X-Flashbots-Signature` header. Private transactions can be cancelled with the `eth_cancelPrivateTransaction` method.
+Introduction:
+eth_sendPrivateTransaction is a method to send a singular private transaction. Users have the flexibility to extend their transactions beyond just the default Flashbots Builders.
 
-These methods are currently implemented in [ethers-provider-flashbots-bundle.js](/flashbots-auction/searchers/libraries/ethers-js-provider) and [web3-flashbots.py](/flashbots-auction/searchers/libraries/web3py-provider). [`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendprivatetransaction?a=fb) is also supported for free on [Alchemy](https://alchemy.com?a=fb).
+## Implementation
+Implementation:
+* Endpoint: Send your eth_sendPrivateTransaction requests to https://relay.flashbots.net.
+* Header: Use the X-Flashbots-Signature header.
+* Cancellation: Private transactions can be halted using eth_cancelPrivateTransaction.
+
+The methods are integrated in:
+* [ethers-provider-flashbots-bundle.js](/flashbots-auction/searchers/libraries/ethers-js-provider)
+* [web3-flashbots.py](/flashbots-auction/searchers/libraries/web3py-provider). 
+* [`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendprivatetransaction?a=fb) is also supported for free on [Alchemy](https://alchemy.com?a=fb).
 
 ## Examples
 
-The following examples show how to use eth_sendPrivateTransaction using the Flashbots ethers and web3.py libraries.
+The following code examples show how to use eth_sendPrivateTransaction using the Flashbots ethers and web3.py libraries.
 
 <Tabs 
     defaultValue="ethers.js"
@@ -86,7 +96,7 @@ web3.flashbots.send_private_transaction({
 
 ## JSON-RPC
 
-This method has the following JSON-RPC format:
+Detailed JSON-RPC structure for the method are below:
 
 ```typescript
 {
@@ -155,14 +165,14 @@ example response:
 }
 ```
 
-#### `privacy`
+#### Privacy options
 
-By default, transactions are sent to the Flashbots MEV-Share Node with the default [Stable](/flashbots-protect/mev-share#stable-configuration) configuration. The `privacy` parameter allows you to specify your own privacy parameters.
+By default, transactions are sent to the Flashbots MEV-Share Node with the default [Stable](/flashbots-protect/mev-share#stable-configuration) configuration. The `privacy` parameter allows you to customize privacy settings:
 
-| Param | Type Info | Description |
+| Parameter | Type | Description |
 |-|-|-|
-| `hint` | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
-| `builders` | Array of strings | Builders to grant permission to include the transaction in a block. |
+| `hint` | String array | Indicates the type of data from the transaction shared on mev-share. |
+| `builders` | String array | Builders that are sent the transaction. |
 
 **`hint`**
 
@@ -176,19 +186,21 @@ Flashbots currently supports sending orderflow to the following block builders. 
 
 #### `validity`
 
-Validity is used to specify the address and percentage to pay refund from the backrun of this transaction.
+Validity is used to specify the address and percentage to pay any refund from the backrun of a `eth_sendPrivateTranasction` transaction.
 
-By default, the refund is paid to the signer of the transaction and 90% of the backrun value is sent to the user by default.
+By default, the refund is paid to the signer of the transaction and 90% of the backrun value is sent to the signer's address.
 
 If multiple refund addresses are specified, then the backrun value is split between them according to the percentage specified.
 For example, if refund is `[{address: addr1, percent: 10}, {address: addr1, percent: 20}]` then 10% of the backrun value is sent to `addr1` and 20% is sent to `addr2`
 and 70% of the backrun value is left to the builder.
 
-| Param | Type Info | Description |
+| Parameter | Type | Description |
 |-|-|-|
 | `refund` | Array of objects | Each entry in the array specifies address that should receive refund from backrun and percent of the backrun value. |
 | `refund[].address` | Address | Address that should receive refund. |
 | `refund[].percent` | Number | Percentage of the total backrun value that this address should receive. |
+
+## Additional methods
 
 ### eth_sendPrivateRawTransaction
 
@@ -230,7 +242,7 @@ example response:
 }
 ```
 
-| Param | Type Info | Description |
+| Parameter | Type | Description |
 |-|-|-|
 | `params[0]` | String | Raw signed transaction |
 | `params[1]` | Object | Optional private tx preferences, see `preferences` in eth_sendPrivateTransaction. |
