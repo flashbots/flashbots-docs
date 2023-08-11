@@ -128,7 +128,7 @@ module.exports = {
     },
     {
       "MEV-Share": [
-        'flashbots-mev-share/overview',
+        'flashbots-mev-share/introduction',
         'flashbots-mev-share/for-users',
         {
           'For Searchers': [

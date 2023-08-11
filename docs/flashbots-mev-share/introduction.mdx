@@ -1,0 +1,25 @@
+---
+title: Introduction
+---
+
+import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
+import WhatsMevShareAdvanced from "../specs/mev-share/blurbs/_whatsMevShareAdvanced.mdx"
+
+> The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. This change will be reflected in our documentation after June 2023. The client library previously named `matchmaker-ts` has also been renamed to `mev-share-client-ts`.
+
+## What is MEV-Share?
+<WhatsMevShareAdvanced />
+
+To start earning MEV refunds from MEV-share, submit your transactions to the Flashbots **MEV-Share Node**, either by [connecting your wallet to the Protect RPC](#connect-your-wallet), or sending a [private transaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) to the MEV-Share Node API.
+
+## Why MEV-Share?
+MEV-Share redistributes MEV back to the party that creates it in the first place: users. It does so through a design that is built to scale and be decentralized, which means that it is permissionless for searchers to integrate and it does not enshrine a single block builder.
+
+## How does MEV-Share work?
+Users send their transactions to a specialized actor called a MEV-Share Node. The MEV-Share Node selectively shares information about the user's transaction according to their privacy preferences. Seeing this information, searchers submit optimistic bundles to the MEV-Share Node to attempt to extract MEV from user's transactions without seeing the full transaction data. MEV-Share Nodes simulate each of these searcher bundles and forward the successful ones on to builders along with a condition that the user must be paid back 90% of the MEV their transactions create.
+
+## How do I use MEV-Share?
+The most simple way to use MEV-Share is by sending transactions to [Flashbots Protect](/flashbots-protect/rpc/quick-start), which leverages the [Flashbots MEV-Share Node](/flashbots-protect/mev-share). Wallet and application developers should check out the [Flashbots Protect MEV-Share section](/flashbots-protection/mev-share) for information about integrating and configuring the Flashbots MEV-Share Node.
+
+## How do I search on MEV-Share?
+Searchers should see the [Getting Started](/flashbots-mev-share/searchers/getting-started) guide for a walkthrough of MEV-Share and how it differs from traditional searching.
