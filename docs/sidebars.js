@@ -63,6 +63,7 @@ module.exports = {
         'flashbots-protect/stuck_transactions',
         {
           'Additional Documentation': [
+            'flashbots-protect/additional-documentation/eth-sendPrivateTransaction',
             'flashbots-protect/additional-documentation/status-api',
             'flashbots-protect/additional-documentation/ratelimiting',
             'flashbots-protect/additional-documentation/bundle-cache',

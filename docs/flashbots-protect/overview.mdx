@@ -4,20 +4,20 @@ title: Overview
 
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
-Flashbots Protect is the best way to transact on Ethereum. It offers the following features:
-- **Frontrunning protection:** transactions will not be seen by hungry sandwich bots in the public mempool.
-- **No failed transactions:** transactions will only be included if it doesn't include any reverts, so users don't pay for failed transactions.
-- **Etherscan integration:** users can see the status of their transactions on Etherscan.
+> **Privacy notice: Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
+
+Flashbots Protect is a user-friendly, secure, and powerful way to transact on Ethereum for both novices and sophisticated users. 
+
+It has the following key benefits:
+- **Configurable:** you can choose which builders to send to and your mev-share settings.
+- **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
 - **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/overview).
+- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
 
 You can use Flashbots Protect by clicking the button below, or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net`.
 
 <ProtectButtonSelector />
 
 <br /><br />
-
-Privacy notice: **Flashbots Protect does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
-
-We intend to release more features on top of Flashbots Protect as part of MEV-Share, offering even more powerful functionalities.
 
 We want to thank MiningDAO, mistX and Nethermind for significant code contributions, testing, and being early adopters of Flashbots Protect. 

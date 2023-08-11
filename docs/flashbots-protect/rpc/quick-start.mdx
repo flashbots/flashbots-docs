@@ -1,22 +1,27 @@
 ---
-title: Add to wallet
+title: Quick start
 ---
 
 import ProtectButton from "protect-button"
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
-Flashbots Protect RPC allows regular users to easily submit their transactions to the Flashbots Auction by using a custom RPC endpoint in their wallet. Everything should be the same for users, except transactions are sent to the Flashbots builder instead of the public mempool.
+> **Privacy notice: Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
 
-Key benefits to using the Flashbots RPC endpoint:
+Flashbots Protect is a user-friendly, secure, and powerful way to transact on Ethereum for both novices and sophisticated users. 
 
+It has the following key benefits:
+- **Configurable:** you can choose which builders to send to and your mev-share settings.
 - **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
-- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
-    > Note: your transaction could be uncled, emitted to the mempool, and then included on-chain.
-- **Etherscan integration:** users can see the status of their transactions on Etherscan.
 - **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/overview).
+- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
 
-Privacy notice: **Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
-Click the button below from a browser with a wallet extension to add Flashbots Protect RPC to your wallet.
+## Using Flashbots Protect
+There are three ways to use Flashbots Protect:
+1. Add the Flashbots Protect RPC (`https://rpc.flashbots.net`) to your wallet. Most users will do this.
+2. Send transactions to `https://rpc.flashbots.net` using [eth_sendRawTransaction](https://docs.alchemy.com/reference/eth-sendrawtransaction).
+3. Send transactions to Flashbots using [eth_sendPrivateTransaction](/flashbots-protect/additional-documentation/eth-sendPrivateTransaction).
+
+Which way you integrate is up to you and your preferences. The most simple way to use Flashbots Protect is to add the Flashbots Protect RPC to your wallet. You can do so using the below button or by following the manual instructions below. **Note that you can configure the builders you send to and your MEV-Share hints as well**.
 
 <ProtectButtonSelector />
 
