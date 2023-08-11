@@ -54,6 +54,23 @@ module.exports = {
       ]
     },
     {
+      "Flashbots Protect": [
+        'flashbots-protect/overview',
+        'flashbots-protect/rpc/quick-start',
+        'flashbots-protect/mev-share',
+        'flashbots-protect/key_considerations',
+        'flashbots-protect/cancellations',
+        'flashbots-protect/stuck_transactions',
+        {
+          'Additional Documentation': [
+            'flashbots-protect/additional-documentation/status-api',
+            'flashbots-protect/additional-documentation/ratelimiting',
+            'flashbots-protect/additional-documentation/bundle-cache',
+          ],
+        }
+      ],
+    },
+    {
       "Flashbots Data": [
         {
           'MEV-Inspect': [
@@ -76,23 +93,6 @@ module.exports = {
         'flashbots-data/blockapi',
         'flashbots-data/mev-explore',
         'flashbots-data/dashboard',
-      ],
-    },
-    {
-      "Flashbots Protect": [
-        'flashbots-protect/overview',
-        'flashbots-protect/rpc/quick-start',
-        'flashbots-protect/mev-share',
-        'flashbots-protect/key_considerations',
-        'flashbots-protect/cancellations',
-        'flashbots-protect/stuck_transactions',
-        {
-          'Additional Documentation': [
-            'flashbots-protect/additional-documentation/status-api',
-            'flashbots-protect/additional-documentation/ratelimiting',
-            'flashbots-protect/additional-documentation/bundle-cache',
-          ],
-        }
       ],
     },
     {
