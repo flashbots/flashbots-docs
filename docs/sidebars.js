@@ -6,7 +6,7 @@ module.exports = {
       ],
     },
     {
-      'Flashbots Auction': [
+      'Flashbots Builders': [
         'flashbots-auction/overview',
         {
           "For Searchers": [
@@ -96,7 +96,7 @@ module.exports = {
       ],
     },
     {
-      "Flashbots MEV-Boost": [
+      "MEV-Boost": [
         'flashbots-mev-boost/introduction',
         {
           'Architecture Overview': [
@@ -126,7 +126,7 @@ module.exports = {
       ],
     },
     {
-      "Flashbots MEV-Share": [
+      "MEV-Share": [
         'flashbots-mev-share/overview',
         'flashbots-mev-share/for-users',
         {
