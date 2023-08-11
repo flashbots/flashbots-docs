@@ -57,6 +57,7 @@ module.exports = {
       "Flashbots Protect": [
         'flashbots-protect/overview',
         'flashbots-protect/rpc/quick-start',
+        'flashbots-protect/integrations',
         'flashbots-protect/mev-share',
         'flashbots-protect/key_considerations',
         'flashbots-protect/cancellations',
