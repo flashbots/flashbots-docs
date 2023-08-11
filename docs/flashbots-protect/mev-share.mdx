@@ -8,35 +8,56 @@ import RpcHints from "../specs/protect-rpc/_hints.mdx"
 import Builders from "../specs/mev-share/_builders.mdx"
 import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 
-Flashbots Protect users' transactions automatically flow to the Flashbots [MEV-Share Node](/flashbots-mev-share/overview), which returns them up to 90% of the MEV that their transactions create. By default, Protect users will be connected with the [Stable](/flashbots-protect/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV. Users do not need to do anything to start benefiting from MEV-Share, other than to connect their wallet to Flashbots Protect.
+## Introduction
+MEV-Share allows users to gain up to 90% of the MEV that their transactions create. By default, Protect users' transactions are sent to Flashbots [MEV-Share Node](/flashbots-mev-share/overview), which returns them up to 90% of the MEV that their transactions create. By default, Protect users will be connected with the [Stable](/flashbots-protect/mev-share#stable-configuration) configuration, which is continuously tuned by Flashbots to optimize execution while protecting users from harmful MEV. This document guides users on the nuances and configurations of MEV-Share.
 
-MEV-Share users on Flashbots Protect can directly control how their transactions are processed. These settings can be applied using the "advanced" panel; or by manually configuring your Protect RPC request.
+Flashbots MEV-Share Node maintains a [Stable](/flashbots-protect/mev-share#stable-configuration) configuration that is continuously optimized to attempt to give users better execution while protecting them from harmful MEV. All users need to do to benefit is to [send transactions](/flashbots-protect/rpc/quick-start) to Flashbots Protect.
+
+Advanced users can exert more control over their transactions and preferences through the advanced panel or by manually setting up their Protect RPC request.
 
 <ProtectButtonSelector />
 
 ## Protect RPC Reference
 
-Preferences are passed as query params in the Protect RPC URL. Users can specify which hints to share about their transactions; which builders to send their transactions to; and how to distribute any refunds if their transaction is bundled.
+In the Protect RPC, preferences are passed as query parameters within the URL. This encompasses hints about your transaction, the builders your transaction is directed to, and how potential refunds are to be distributed if your transaction gets bundled.
 
 ### Hints
 
-To use a custom hint configuration, `hint` can be specified multiple times to specify exactly which data from the user's transactions is shared with searchers. If no hints are specified, the default [Stable](/flashbots-protect/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
+For a custom hint setup, specify the hint parameter to determine which data from your transaction is visible to searchers. If no hints are specified, the default [Stable](/flashbots-protect/mev-share#stable-configuration) hint configuration is used. If one or more hint is specified, any hint _not_ specified is disabled.
 
 <HintsTable />
 
+Here is an example:
+
+```txt
+https://rpc.flashbots.net?hint=calldata&hint=logs&hint=hash
+```
+
 ### Builders
 
-To specify which builders will receive your transactions, the `builder` parameter can be specified multiple times.
+To specify which builders will receive your transactions, the `builder` parameter can be specified multiple times. The below builders are supported.
 
 <Builders />
 
+Please note that while adding other builders increases your inclusion rate it does mean you are trusting them. Here is an example of how to use the `builder` parameter:
+
+```txt
+https://rpc.flashbots.net?builder=flashbots&builder=XYZ
+```
+
 ### Refunds
 
-To use a custom refund configuration, `refund` can be specified multiple times to indicate what address(es) should receive what percentage(s) of the payment from a searcher who bundles the user's transaction. If no hints are specified, 90% of any searcher payment will be refunded to `tx.origin` of the user's transaction.
+Customize your refund configuration with the refund parameter, determining which addresses should receive what fraction of the searcher's payment if they bundle your transaction. If left unmentioned, tx.origin (the originator of the transaction) will receive 90% of the searcher's payment.
 
-The _refund_ param contains two values separated by a colon `:`. The first value is the address that the refund should be transferred to. The second value is the percentage of the searcher's payment that should be refunded. To split the payment across multiple addresses, add a new _refund_ param for each address with the amount that it should receive.
+The refund parameter contains two colon-separated values: an address for the refund and the percentage of the searcher's payment to be refunded. To distribute the payment across multiple addresses, append a new refund parameter for each.
 
-The sum of all percentages specified in _refund_ params must be less than 100. The validator payment is inferred from `100 - sum of refund percentages`. Note that keeping a larger percentage of the refund may result in longer inclusion times, because it reduces the payment to the validator.
+All percentages in the refund parameters must total less than 100. The remaining percentage, inferred from 100 - total refund percentages, is the payment to the validator. Note that keeping a larger percentage of the refund may result in longer inclusion times, because it reduces the payment to the validator.
+
+Here is an example:
+
+```txt
+https://rpc.flashbots.net?refund=userAddr:10
+```
 
 ## Common configurations
 
@@ -63,7 +84,7 @@ To use Protect with full privacy, set _only_ the `hash` hint in your Protect RPC
 https://rpc.flashbots.net?hint=hash
 ```
 
-This will completely hide all identifying transaction data sent to the MEV-Share Node from searchers. Transaction hashes cannot be used to gain any information about a transaction or its origin.
+This ensures that all identifiable transaction data sent to MEV-Share Node remains hidden from searchers.
 
 ## Examples
 
@@ -73,6 +94,6 @@ Here are some examples of configurations that you might choose, depending on you
 | - | - |
 | Stable | `https://rpc.flashbots.net` |
 | Max Privacy | `https://rpc.flashbots.net?hint=hash` |
-| Max MEV Refunds (low privacy) | `https://rpc.flashbots.net?hint=calldata&hint=logs&hint=hash` |
+| Low privacy | `https://rpc.flashbots.net?hint=calldata&hint=logs&hint=hash` |
 | Add Builders (share with other builders for faster inclusion) | `https://rpc.flashbots.net?builder=flashbots&builder=XYZ` |
 | Change Refund (send more to validator for faster inclusion) | `https://rpc.flashbots.net?refund=userAddr:10` |
