@@ -8,7 +8,7 @@ import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
 import BuilderInheritance from '../../specs/mev-share/blurbs/_builderInheritance.mdx'
 import Hints from '../../specs/mev-share/_hints.mdx'
 
-Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost: they are an ordered array of transactions that execute atomically. However, their structure is a bit different. MEV-Share bundles use a new method called [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/bundles/v0.1.md) which has additional fields used to specify their `privacy` and other guarantees.
+Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost: they are an ordered array of transactions that execute atomically. However, their structure is a bit different. MEV-Share bundles use a new method called [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/bundles/v0.1.md) which has additional fields used to specify privacy preferences and introduce other new features like post-execution validity checks.
 
 ## Bundle Definition
 
@@ -16,20 +16,25 @@ MEV-Share Bundles have the following structure:
 
 <SendBundleRpc />
 
+Key Fields:
+* **inclusion**: Defines the pre-inclusion predicates to check (e.g. block range).
+* **body**: Contains transactions, bundle hashes, or transaction hashes.
+* **validity**: (Optional) Defines the post-inclusion predicates to check, which are just refund parameters at the moment.
+* **privacy**: (Optional) Sets privacy configurations, including which builders to submit to.
+Optional properties are denoted with a ?.
+
+:::info Note to searchers on builders
+
+<BuilderInheritance />
+
+:::
+
 This is the generic bundle structure used in MEV-Share. This comprehensive specification enables several exciting features, outlined in the next section.
 
 <Hints />
 
-## Use Cases
-
-With an array of parameters at your disposal, there are many ways to build bundles on MEV-Share. The following sections describe new features and use cases that arise from the bundle definition.
-
-### Bundle Composition
-
-- Share data from your bundles with other searchers to earn MEV refunds.
-- Use other searchers' bundles in your own bundles to execute a more profitable strategy.
-
-Bundle composition is enabled by the `privacy` parameter in `mev_sendBundle`.
+## Bundle composition (backrunning other bundles)
+With the `privacy` parameter in `mev_sendBundle` you can share select information about your bundle with other searchers, who can then use that to try to extract MEV. Should they succeed, you get paid some of the MEV they extracted!
 
 One example that works well with bundle composition is a liquidation bot. Liquidations often cause a price shift, leaving MEV on the table which can be captured by arbitrage with a backrun bundle. If you run a liquidation bot, you can earn more MEV by sending your bundles to MEV-Share with the `tx_hash` hint enabled, which will allow other searchers to backrun your bundle.
 
@@ -59,7 +64,7 @@ const params: BundleParams = {
 </TabItem>
 </Tabs>
 
-Specifying the `tx_hash` hint in your bundle shares the hashes of your bundle's transactions with searchers on MEV-Share, which is what allows them to backrun your bundle. When they do this, you earn a cut of the profit!
+Specifying the `tx_hash` hint in your bundle shares the hashes of your bundle's transactions with searchers on MEV-Share, which is what allows them to backrun your bundle. Again, when they do this, you earn a cut of the profit!
 
 You may also try experimenting with other hints to give searchers more data with which to formulate a backrun. Sharing more data will lower your privacy, but will make your bundle easier to backrun, and increase the likelihood of your bundles earning extra MEV.
 
@@ -70,35 +75,5 @@ Bundles that set the `privacy` parameter can only contain original signed transa
 :::
 
 See [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles#share-bundle-data) for more information.
-
-### Pre-inclusion Predicates
-
-- Specify a strict range of blocks to target.
-- Predicate is evaluated before the builder considers the bundle for inclusion in a block.
-
-See [inclusion](/flashbots-mev-share/searchers/understanding-bundles#bundle-definition) for relevant parameters.
-
-### Post-inclusion Predicates
-
-- Set guaranteed refund for inclusion of bundle in a block.
-- Specify refund per-transaction in a bundle.
-- Send refund to any desired account.
-
-See [validity](/flashbots-mev-share/searchers/understanding-bundles#bundle-definition) for relevant parameters.
-
-### Granular Privacy
-
-- Specify data to share about your bundles to earn refund on top of searching profits.
-- Choose your preferred builder(s), and send them your orderflow exclusively.
-
-:::info Note to searchers
-
-<BuilderInheritance />
-
-:::
-
-See [privacy](/flashbots-mev-share/searchers/understanding-bundles#bundle-definition) for relevant parameters.
-
----
-
+-- 
 Now that we know all the different ways in which we can send and share bundles, we're finally ready to [send a bundle](/flashbots-mev-share/searchers/sending-bundles).
