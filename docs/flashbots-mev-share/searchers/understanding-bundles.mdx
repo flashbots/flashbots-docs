@@ -31,7 +31,14 @@ Optional properties are denoted with a ?.
 
 This is the generic bundle structure used in MEV-Share. This comprehensive specification enables several exciting features, outlined in the next section.
 
+## Sharing hints
+MEV-Share bundles can share hints with searchers, which can be used to backrun the bundle. This is done by setting the `privacy` parameter in `mev_sendBundle`. The `privacy` parameter is an object with the following fields:
 <Hints />
+
+Searchers can share hints to give other searchers information about their bundle that would allow them to be backrun. If your bundle gets backrun by another searcher, you get paid a cut of the MEV they extract!
+
+## Builders
+MEV-Share bundles can be sent to multiple builders at once. This is done by setting the `builders` field in the `privacy` parameter of `mev_sendBundle`.
 
 ## Bundle composition (backrunning other bundles)
 With the `privacy` parameter in `mev_sendBundle` you can share select information about your bundle with other searchers, who can then use that to try to extract MEV. Should they succeed, you get paid some of the MEV they extracted!
