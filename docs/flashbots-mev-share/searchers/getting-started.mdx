@@ -74,8 +74,10 @@ Now you should be connected to the Flashbots MEV-Share Node. Continue reading on
 
 Searching on MEV-Share is different from searching on the mempool in that only certain parts of a transaction are shared with searchers. In the mempool, we can see all parts of a transaction, such as its calldata or who the transaction is from. But on MEV-Share, a transaction might only reveal its function selector, making a traditional arbitrage calculation infeasible.
 
-That being said, existing strategies can still be employed. Users of MEV-Share have the option to share whichever parts of the transaction they deem appropriate, so strategies which use calldata or similar data as an input are still viable.
+There are three primary strategies for searching on MEV-Share:
+* Probabilistically: send many bundles that probabilistically backrun MEV-Share orderflow.
+* On-chain: perform more of your searching on-chain instead of off-chain.
+* Existing: only search on transactions which share all the information you need.
 
-To maximally leverage the orderflow on MEV-Share, new searching strategies will have to be implemented to profitably leverage this orderflow in your bundles. More specifically, you can perform more of your searching on-chain instead of off-chain, or you can submit many bundles that probabilistically backrun the orderflow.
-
+To maximally leverage MEV-Share searchers will need to employ new strategies.
 :::
