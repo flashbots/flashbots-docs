@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import SimpleDropdown from '../SimpleDropdown'
-import FlashbotsProtectButton from 'protect-button'
+import FlashbotsProtectButton, { generateRpcUrl } from 'protect-button';
 import Checkbox from '../Checkbox'
 import AlignItems from '../AlignItems/AlignItems'
 import GridBlock from '../GridBlock/GridBlock'
 import { Builder, useSupportedBuilders } from '../mev-share/useSupportedBuilders'
+import styles from './styles.module.scss';
 
 const ProtectButtonSelector = () => {
     const supportedBuilders = useSupportedBuilders()
@@ -93,6 +94,12 @@ const ProtectButtonSelector = () => {
         init()
     }, [curatedBuilders])
 
+    // Generate the RPC URL
+    const rpcUrl = generateRpcUrl({
+        hints: advancedOptionsShown ? hints : undefined,
+        builders: advancedOptionsShown ? selectedBuilders : undefined
+    }).toString();
+
     return (<GridBlock>
         <SimpleDropdown header={"Advanced options"} onClickHeader={() => {
             setAdvancedOptionsShown(!advancedOptionsShown)
@@ -101,6 +108,10 @@ const ProtectButtonSelector = () => {
                 <AlignItems horizontal='center'>
                     <><FlashbotsProtectButton hints={advancedOptionsShown ? hints : undefined} builders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton></>
                 </AlignItems>
+                <div className={styles.rpcUrlContainer}>
+                    <div className={styles.rpcUrlLabel}>RPC URL:</div>
+                    <div className={styles.rpcUrl}>{rpcUrl}</div>
+                </div>
             </SimpleDropdown.Body>
             <SimpleDropdown.HiddenBody>
                 <div>
