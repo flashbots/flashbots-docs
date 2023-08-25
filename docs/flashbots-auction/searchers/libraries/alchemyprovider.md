@@ -5,7 +5,7 @@ The Alchemy SDK makes getting started, shipping builds, and accessing support fa
 
 Benefits of the Alchemy SDK include providing:
 
-**1. Automatic management of your Flashbots reputation** - the SDK takes on the work of actively, and manually, managing your reputation. Learn more about reputation [here](https://docs.flashbots.net/flashbots-auction/searchers/advanced/reputation#querying-reputation)
+**1. Automatic management of your Flashbots reputation** - the SDK takes on the work of actively, and manually, managing your reputation. Learn more about reputation [here](/flashbots-auction/searchers/advanced/reputation#querying-reputation)
 
 **2. A superset of the ethers.js Provider library plus the suite of Alchemy APIs** - the Alchemy Provider exposes all Flashbots JSON-RPC endpoints. The Flashbots API can be used natively with the core EVM APIs as well as the suite of Alchemy APIs
 
