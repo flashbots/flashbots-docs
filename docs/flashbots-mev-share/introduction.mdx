@@ -2,7 +2,6 @@
 title: Introduction
 ---
 
-import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
 import WhatsMevShareAdvanced from "../specs/mev-share/blurbs/_whatsMevShareAdvanced.mdx"
 
 > The MEV-Share Matchmaker was renamed to the MEV-Share Node to better reflect the role we envision this actor will play in SUAVE. This change will be reflected in our documentation after June 2023. The client library previously named `matchmaker-ts` has also been renamed to `mev-share-client-ts`.
@@ -10,7 +9,7 @@ import WhatsMevShareAdvanced from "../specs/mev-share/blurbs/_whatsMevShareAdvan
 ## What is MEV-Share?
 <WhatsMevShareAdvanced />
 
-To start earning MEV refunds from MEV-share, submit your transactions to the Flashbots **MEV-Share Node**, either by [connecting your wallet to the Protect RPC](#connect-your-wallet), or sending a [private transaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) to the MEV-Share Node API.
+To start earning MEV refunds from MEV-share, submit your transactions to the Flashbots **MEV-Share Node**, either by [connecting your wallet to the Protect RPC](/flashbots-protect/quick-start/#using-flashbots-protect), or sending a [private transaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction) to the MEV-Share Node API.
 
 ## Why MEV-Share?
 MEV-Share redistributes MEV back to the party that creates it in the first place: users. It does so through a design that is built to scale and be decentralized, which means that it is permissionless for searchers to integrate and it does not enshrine a single block builder.
