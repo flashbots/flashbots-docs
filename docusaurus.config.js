@@ -29,10 +29,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       algolia: {
-        apiKey: '693df7609c6aeaac03b78418095b79c4',
-        indexName: 'flashbots',
-        // Optional: see doc section below
-        appId: 'BH4D9OD16A',
+        apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+        indexName: process.env.ALGOLIA_INDEX_NAME,
+        appId: process.env.ALGOLIA_APP_ID, 
       },
       prism: {
         theme: lightCodeTheme,
