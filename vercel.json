@@ -1,0 +1,44 @@
+{
+    "redirects": [
+        {
+            "source": "/flashbots-protect/rpc/uncle-bandits",
+            "destination": "/flashbots-protect/overview",
+            "permanent": true
+        },
+        {
+            "source": "/flashbots-protect/rpc/releases",
+            "destination": "/flashbots-protect/overview",
+            "permanent": true
+        },
+        {
+            "source": "/flashbots-protect/rpc/quick-start",
+            "destination": "/flashbots-protect/quick-start",
+            "permanent": true
+        },
+        {
+            "source": "/flashbots-protect/rpc/mev-share",
+            "destination": "/flashbots-protect/mev-share",
+            "permanent": true
+        },
+        {
+            "source": "/flashbots-protect/rpc/cancellations",
+            "destination": "/flashbots-protect/cancellations",
+            "permanent": true
+        },
+        {
+            "source": "/flashbots-protect/rpc/status-api",
+            "destination": "/flashbots-protect/additional-documentation/status-api",
+            "permanent": true
+        },
+        {
+            "source": "/flashbots-protect/rpc/ratelimiting",
+            "destination": "/flashbots-protect/additional-documentation/ratelimiting",
+            "permanent": true
+        },
+        {
+            "source": "/flashbots-protect/rpc/bundle-cache",
+            "destination": "/flashbots-protect/additional-documentation/bundle-cache",
+            "permanent": true
+        }
+    ]
+}
