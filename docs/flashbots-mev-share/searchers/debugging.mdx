@@ -8,7 +8,11 @@ If you find that your bundles aren't landing when you think they should, we have
 
 ## Simulate your bundle
 
-The simplest way to find out what happened with your bundle is to simulate it. The [mev-share-client](https://www.npmjs.com/package/@flashbots/mev-share-client) library has a function `simulateBundle` which executes your bundle in a virtual environment based on the block which the bundle was targeting.
+The simplest way to find out what happened with your bundle is to simulate it. MEV-Share nodes offer the `mev_simBundle` [json rpc](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle). Typically, MEV-Share Nodes will not return simulation results unless the private transaction being backrun has already landed on-chain.
+
+## Using a client
+
+The [mev-share-client](https://www.npmjs.com/package/@flashbots/mev-share-client) library has a function `simulateBundle` which executes your bundle in a virtual environment based on the block which the bundle was targeting.
 
 In our project, we can simply call the `simulateBundle` function with our original bundle. The block we choose is the block before the first transaction (the one we tried to backrun) lands on-chain, because we want the state as close as possible to when the transaction actually landed; this is the most accurate representation of the state of the blockchain (i.e. prices) when our bundle was supposed to have landed.
 

@@ -128,8 +128,9 @@ module.exports = {
     },
     {
       "MEV-Share": [
-        'flashbots-mev-share/overview',
+        'flashbots-mev-share/introduction',
         'flashbots-mev-share/for-users',
+        'flashbots-mev-share/orderflow-providers',
         {
           'For Searchers': [
             'flashbots-mev-share/searchers/getting-started',
@@ -151,13 +152,6 @@ module.exports = {
                 }
               ]
             }
-          ],
-          'For Wallet/Dapp Developers': [
-            {
-              type: 'doc',
-              id: 'flashbots-mev-share/orderflow-providers/integration-guide',
-              label: 'Integration Guide'
-            },
           ],
           'Release Notes': [
             'flashbots-mev-share/release-notes/2023-03',
