@@ -29,3 +29,6 @@ const bundleReceipt = await flashbotsProvider.sendRawBundle(
 ```
 
 In the above example we've constructed a bundle that includes our transaction (transaction) and a transaction from the mempool: SIGNED_ORACLE_UPDATE_FROM_PENDING_POOL.
+
+## Limits to be aware of
+There is currently a limit of 100 transactions per bundle. Bundles with more than 100 transactions will be rejected.
