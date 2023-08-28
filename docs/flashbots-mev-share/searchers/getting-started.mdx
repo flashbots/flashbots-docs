@@ -9,21 +9,20 @@ To start searching on MEV-Share, you will first need to connect to a MEV-Share N
 
 ## Connect to MEV-Share Node
 
-Flashbots runs a MEV-Share Node on Ethereum mainnet. The MEV-Share Node has endpoints to receive transactions and bundles, as well as an SSE event stream endpoint which dispatches pending events/transactions to searchers.
+Flashbots operates an MEV-Share Node on the Ethereum mainnet. This Node provides endpoints for user transactions and searcher bundles. Additionally, it offers an SSE event stream endpoint, broadcasting pending events/transactions to searchers.
 
 The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/searchers/libraries/mev-share-clients). For this guide, we'll refer to [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts).
 
 <Tabs>
 <TabItem value="ts" label="mev-share-client-ts">
 
-_Add library to your project:_
+*Add library to your project:*
 
 ```sh
 yarn add @flashbots/mev-share-client
 ```
 
-_Import library code (note `ALL_CAPS` variables are placeholders; replace with your own data):_
-
+*Use the following code to import the library* (Replace ALL_CAPS placeholders with your data):
 ```typescript
 import { Wallet, JsonRpcProvider } from "ethers"
 import MevShareClient, {
@@ -45,7 +44,7 @@ _Connecting to Goerli:_
 const mevShareClient = MevShareClient.useEthereumGoerli(authSigner)
 ```
 
-_Custom params (for developers):_
+*Advanced setup* (for developers):
 
 ```typescript
 // connect to MEV-Share on mainnet
@@ -57,11 +56,11 @@ const mevShareClient = new MevShareClient(authSigner, {
 })
 ```
 
-See the documentation in the [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts) repo to learn more.
+Further documentation on the client library can be found in the [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts).
 
-### note A note on other languages
+### A note on other languages
 
-If you're coding in a language that doesn't yet have a MEV-Share Node client library, you can send transactions & bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
+If you're coding in a language that doesn't yet have a MEV-Share Node client library, you can send transactions and bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
 
 </TabItem>
 </Tabs>
@@ -72,10 +71,12 @@ Now you should be connected to the Flashbots MEV-Share Node. Continue reading on
 
 :::note A note for experienced searchers getting acquainted with MEV-Share
 
-Searching on MEV-Share is different from searching on the mempool in that only certain parts of a transaction are shared with searchers. On the mempool, we can see all parts of a transaction, such as calldata and logs. But on MEV-Share, a transaction might only reveal its function selector, making a traditional arbitrage calculation infeasible (though this is not necessarily the common case).
+Searching on MEV-Share is different from searching on the mempool in that only certain parts of a transaction are shared with searchers. In the mempool, we can see all parts of a transaction, such as its calldata or who the transaction is from. But on MEV-Share, a transaction might only reveal its function selector, making a traditional arbitrage calculation infeasible.
 
-That being said, existing strategies can still be employed. Users of MEV-Share have the option to share whichever parts of the transaction they deem appropriate, so strategies which use calldata and/or logs as input are still viable.
+There are three primary strategies for searching on MEV-Share:
+* Probabilistically: send many bundles that probabilistically backrun MEV-Share orderflow.
+* On-chain: perform more of your searching on-chain instead of off-chain.
+* Existing: only search on transactions which share all the information you need.
 
-To maximally leverage the orderflow on MEV-Share, new searching strategies will have to be implemented to profitably include these transactions in your bundles. More specifically, you may have to reason about markets and/or blockchain state separately from the intra-block context of users' transactions, and leveraging data gleaned from mev-share transactions, probabilistically estimate the parameters of your MEV extraction strategy. A range of probable outcomes may be targeted in parallel, but this must be done efficiently, so as to maintain priority in the MEV-Share Node's priority queues.
-
+To maximally leverage MEV-Share searchers will need to employ new strategies.
 :::
