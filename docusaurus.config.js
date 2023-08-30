@@ -15,6 +15,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
   favicon: 'img/favicon.ico',
   organizationName: 'flashbots', 
   projectName: 'docs', 
+  trailingSlash: false,
   url: process.env.TARGET_URL,
   stylesheets: [
     {
