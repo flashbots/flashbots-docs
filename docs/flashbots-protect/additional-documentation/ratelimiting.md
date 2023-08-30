@@ -8,10 +8,8 @@ In order to protect our service from abuse we have rate limits on the number of 
 
 - Burst Limit: Up to 100 requests
 
-
-Note that this is *requests* and not *transactions* submitted per second. There is no limitation on the number of transactions in a request.
+Note that this is _requests_ and not _transactions_ submitted per second. There is no limitation on the number of transactions in a request.
 Note that you are not required to read JSON RPC requests to send transactions to Flashbots Protect RPC.
-
 
 ## Rate limiting exceptions
 

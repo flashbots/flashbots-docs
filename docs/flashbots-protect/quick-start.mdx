@@ -2,12 +2,11 @@
 title: Quick start
 ---
 
-import ProtectButton from "protect-button"
-import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
+import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector";
 
-> **Privacy notice: Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
+## Key Considerations
 
-Flashbots Protect is a user-friendly, secure, and powerful way to transact on Ethereum for both novices and sophisticated users. 
+Before you get started with Flashbots Protect here are a few things to be mindful of:
 
 It has the following key benefits:
 - **Configurable:** you can choose which builders to send to and your mev-share settings.
@@ -15,33 +14,45 @@ It has the following key benefits:
 - **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
 - **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
 
-## Using Flashbots Protect
-There are three ways to use Flashbots Protect:
-1. Add the Flashbots Protect RPC (`https://rpc.flashbots.net`) to your wallet. Most users will do this.
-2. Send transactions to `https://rpc.flashbots.net` using [eth_sendRawTransaction](https://docs.alchemy.com/reference/eth-sendrawtransaction).
-3. Send transactions to Flashbots using [eth_sendPrivateTransaction](/flashbots-protect/additional-documentation/eth-sendPrivateTransaction).
+### Speeding up your transaction's inclusion
 
+Transactions sent through Flashbots Protect are, by default, only shared with Flashbots Builder, which builds only a subset of all Ethereum blocks. To enhance the rate of transaction inclusion, you may choose to share your transaction with additional builders. This can be accomplished by selecting other builders in the advanced options when [configuring your Protect RPC](/flashbots-protect/quick-start#using-flashbots-protect).
+
+**Note**: When you send your transaction to a builder, you are entrusting them not to frontrun your transaction or disclose it to third parties who might.
+
+## Using Flashbots Protect
+
+There are three ways to use Flashbots Protect:
+
+1. Add the Flashbots Protect RPC to your wallet. Most users will do this.
+2. Send transactions to the RPC URL using [eth_sendRawTransaction](https://docs.alchemy.com/reference/eth-sendrawtransaction).
+3. Send transactions to Flashbots using [eth_sendPrivateTransaction](/flashbots-protect/additional-documentation/eth-sendPrivateTransaction).
 
 Which way you integrate is up to you and your preferences. The most simple way to use Flashbots Protect is to add the Flashbots Protect RPC to your wallet. You can do so using the below button or by following the manual instructions below. **Note that you can configure the builders you send to and your MEV-Share hints as well**.
 
 <ProtectButtonSelector />
 
 ## Adding Flashbots Protect RPC Manually
+
 You can also add Flashbots Protect RPC manually in MetaMask by following these steps:
+
 1. Expand the Network drop-down menu by clicking on your current network at the top of your MetaMask. By default you are connected to “Ethereum mainnet.”
 2. Click “Add network”
 3. Click “Add a network manually” and fill in the following information:
+
 - **Network Name:** Flashbots Protect
-- **New RPC URL:** https://rpc.flashbots.net
+- **New RPC URL:** https://rpc.flashbots.net or the URL provided above based on your configuration
 - **Chain ID:** 1
 - **Currency Symbol:** ETH
 - **Block Explorer URL:** https://etherscan.io/
+
 4. Click “Save.”
 5. Click “Switch to Flashbots Protect”
 
 ![mm_rpc](/img/mm_rpc.png)
 
 Flashbots Protect RPC for Goerli testnet can be added with these details:
+
 - **Network Name:** Goerli Flashbots Protect
 - **New RPC URL:** https://rpc-goerli.flashbots.net
 - **Chain ID:** 5
@@ -49,4 +60,5 @@ Flashbots Protect RPC for Goerli testnet can be added with these details:
 - **Block Explorer URL**: https://goerli.etherscan.io/
 
 ## Stuck transactions
+
 If a transaction is "stuck" as pending then please see our [stuck transactions guide](/flashbots-protect/stuck_transactions).

@@ -11,20 +11,7 @@ module.exports = {
         {
           "For Searchers": [
             'flashbots-auction/searchers/quick-start',
-            'flashbots-auction/searchers/faq',
             {
-              "Advanced Concepts": [
-                'flashbots-auction/searchers/advanced/understanding-bundles',
-                'flashbots-auction/searchers/advanced/coinbase-payment',
-                'flashbots-auction/searchers/advanced/bundle-pricing',
-                'flashbots-auction/searchers/advanced/rpc-endpoint',
-                'flashbots-auction/searchers/advanced/reputation',
-                'flashbots-auction/searchers/advanced/testnets',
-                'flashbots-auction/searchers/advanced/eip1559',
-                'flashbots-auction/searchers/advanced/troubleshooting',
-                'flashbots-auction/searchers/advanced/private-transaction',
-                'flashbots-auction/searchers/advanced/bundle-cancellations',
-              ],
               "Example Searchers": [
                 'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
                 'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
@@ -37,8 +24,20 @@ module.exports = {
                 'flashbots-auction/searchers/libraries/web3py-provider',
                 'flashbots-auction/searchers/libraries/alchemyprovider',
                 'flashbots-auction/searchers/libraries/mev-share-clients',
-              ]
+              ],
+              "Advanced Concepts": [
+                'flashbots-auction/searchers/advanced/understanding-bundles',
+                'flashbots-auction/searchers/advanced/coinbase-payment',
+                'flashbots-auction/searchers/advanced/bundle-pricing',
+                'flashbots-auction/searchers/advanced/rpc-endpoint',
+                'flashbots-auction/searchers/advanced/reputation',
+                'flashbots-auction/searchers/advanced/testnets',
+                'flashbots-auction/searchers/advanced/eip1559',
+                'flashbots-auction/searchers/advanced/troubleshooting',
+                'flashbots-auction/searchers/advanced/bundle-cancellations',
+              ],
             },
+            'flashbots-auction/searchers/faq',
             'flashbots-auction/other-resources'
           ],
           'MEV-Geth Releases': [
@@ -58,7 +57,6 @@ module.exports = {
         'flashbots-protect/overview',
         'flashbots-protect/quick-start',
         'flashbots-protect/mev-share',
-        'flashbots-protect/key_considerations',
         'flashbots-protect/cancellations',
         'flashbots-protect/stuck_transactions',
         {
@@ -76,7 +74,6 @@ module.exports = {
         {
           'MEV-Inspect': [
             'flashbots-data/mev-inspect-py/overview',
-            'flashbots-data/mev-inspect-py/install',
             'flashbots-data/mev-inspect-py/quick-start',
             'flashbots-data/mev-inspect-py/inspecting',
             'flashbots-data/mev-inspect-py/exploring',

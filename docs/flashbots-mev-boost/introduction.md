@@ -1,4 +1,6 @@
-# Introduction
+---
+title: Overview
+---
 
 ## What is MEV-Boost?
 
@@ -7,9 +9,10 @@
 With MEV-Boost, validators can access blocks from a marketplace of builders. Builders produce blocks containing transaction orderflow and a fee for the block proposing validator. Separating the role of proposers from block builders promotes greater competition, decentralization, and censorship-resistance for Ethereum.
 
 See also:
-* [boost.flashbots.net](https://boost.flashbots.net/)
-* [boost-relay.flashbots.net](https://boost-relay.flashbots.net/)
-* [github.com/flashbots/mev-boost](https://github.com/flashbots/mev-boost/)
+
+- [boost.flashbots.net](https://boost.flashbots.net/)
+- [boost-relay.flashbots.net](https://boost-relay.flashbots.net/)
+- [github.com/flashbots/mev-boost](https://github.com/flashbots/mev-boost/)
 
 ---
 
@@ -21,11 +24,10 @@ Validators running MEV-Boost maximize their staking reward by selling their bloc
 
 ## How does MEV-Boost work?
 
-![https://raw.githubusercontent.com/flashbots/mev-boost/develop/docs/mev-boost-integration-overview.png](https://raw.githubusercontent.com/flashbots/mev-boost/develop/docs/mev-boost-integration-overview.png)
+![MEV Boost Integration Overview](https://raw.githubusercontent.com/flashbots/mev-boost/develop/docs/mev-boost-integration-overview.png)
 
 PoS node operators must run three pieces of software: a validator client, consensus client, and an execution client. MEV-boost is a sidecar for the consensus client, a separate piece of open source software, which queries and outsources block-building to a network of builders.
 
 Block builders prepare full blocks, optimizing for MEV extraction and fair distribution of rewards, and send blocks to relays. A single MEV-boost instance can be configured to connect to **multiple** relays.
 
 Relays aggregate blocks from **multiple** builders and identify the most profitable block to submit to the block proposer. The proposing validators’ consensus client then propagates the most profitable block received from MEV-boost to the Ethereum network for attestation and block inclusion.
-

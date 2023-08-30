@@ -12,20 +12,24 @@ The current reputation system is designed to classify searchers into a high repu
 
 To determine which queue a searcher belongs to, Flashbots looks at their history of submissions to the builder. Specifically, Flashbots uses the following scoring function:
 
-$$r(U) = \frac{\sum_{T\in H_U}\Delta_{coinbase_T} + g_Tp_T}{\sum_{T\in S_U}g_T}$$
+$$
+r(U) = \frac{\sum_{T\in H_U}(\Delta_{coinbase_T} + g_Tp_T)}{\sum_{T\in S_U}g_T}
+$$
 
+<!-- markdownlint-disable MD037 -->
 $r$: searcher reputation score.  
 $H_U$: set of all transactions $T$ submitted by searcher $U$ to `eth_sendBundle` RPC and successfully landed on chain.  
 $S_U$: set of all transactions $T$ submitted by searcher $U$ to `eth_sendBundle` and `eth_callBundle` RPC.  
 $g_{T}$: _gas used_ by transaction $T$.  
 $p_{T}$: _gas price_ of transaction $T$.  
-$\Delta_{coinbase_T}$: coinbase difference from direct payment in transaction $T$.  
+$\Delta_{coinbase_T}$: coinbase difference from direct payment in transaction $T$.
+<!-- markdownlint-enable MD037 -->
 
 ## Querying reputation
 
 Flashbots uses a dynamic threshold to classify users between the high reputation and low reputation queue. The dynamic variables are: 1) the historical time period considered to calculate reputation, 2) the cutoff reputation score which classifies a searcher as "high reputation". Using a dynamic threshold allows the builder to adapt in periods of high demand and maintain high reliability for top searchers.
 
-A searcher can query their current reputation status using the [`flashbots_getUserStats` RPC method](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getuserstats).
+A searcher can query their current reputation status using the [`flashbots_getUserStatsV2` RPC method](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getuserstatsv2).
 
 ## Building reputation
 
