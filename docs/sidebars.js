@@ -148,6 +148,12 @@ module.exports = {
                     'flashbots-mev-share/searchers/tutorials/limit-order/sending-bundles',
                     'flashbots-mev-share/searchers/tutorials/limit-order/debugging',
                     'flashbots-mev-share/searchers/tutorials/limit-order/more-resources'
+                  ],
+                  'Flash Loan Arbitrage Bot': [
+                    'flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/introduction',
+                    'flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/simple-blind-arbitrage',
+                    'flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/flash-loan-basics',
+                    'flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/bot',
                   ]
                 }
               ]

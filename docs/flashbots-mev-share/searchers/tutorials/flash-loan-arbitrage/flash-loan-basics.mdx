@@ -1,0 +1,34 @@
+# Flash Loan Basics (Balancer)
+
+To recap, flash loans allow us to borrow vast amounts of tokens, which we can use to pay for trades. If we make a profit from executing an arbitrage, we pay the loan back and keep what's left over. If the arbitrage fails or does not produce enough profit to repay the loan, the transaction reverts and Flashbots prevents it from landing onchain, so we don't pay any fees. The only fees we pay are gas fees for successful arbitrage trades.
+
+We'll implement flash loans using Balancer, because they don't charge any loan fees, and have plenty of capital with which we can perform our arbitrage trades. Typically, flash loans (including Balancer) work by using callbacks. Callbacks are just functions that _other_ smart contracts call on _your_ smart contract. A callback in solidity is implemented by declaring a function in your smart contract with the exact name of the callback.
+
+In the case of a flash loan on Balancer, which we'll implement shortly, the callback we have to create is the `receiveFlashLoan` function. When we want to get a flash loan, we'll call `vault.flashLoan`, where `vault` is the Balancer Vault smart contract, which holds the capital used for flash loans. In turn, the vault contract will call the `receiveFlashLoan` callback on our smart contract; this is where we'll put the code that performs an arbitrage trade and pays back the loan. That's all there is to it!
+
+## Adding Flash Loans to Your Contract
+
+Flash loan capabilities can be added to any smart contract by simply implementing the `receiveFlashLoan` function. The only requirement for this function is that it pays back the flash loan, but we'll also call our arbitrage function here, since we only need flash loans for executing arbitrages.
+
+Here's what it looks like in solidity:
+
+```solidity
+// TODO: add code
+function receiveFlashLoan(...) external override {...}
+```
+
+Add this function to your existing smart contract, and then add a function that calls `vault.flashLoan`. Here's an example we borrowed from the [Balancer docs](https://docs.balancer.fi/reference/contracts/flash-loans.html#example-code):
+
+```solidity
+function makeFlashLoan(
+        IERC20[] memory tokens,
+        uint256[] memory amounts,
+        bytes memory userData
+    ) external {
+    vault.flashLoan(this, tokens, amounts, userData);
+}
+```
+
+We'll call `makeFlashLoan` to get a flash loan, which will in turn trigger the `receiveFlashLoan` function, which will execute the arbitrage trade and pay the loan back.
+
+Now that our contract is ready, we need to watch for new pending transactions and send arbitrage bundles to Flashbots when we find them. See the next page for instructions on writing a bot to do this for you.

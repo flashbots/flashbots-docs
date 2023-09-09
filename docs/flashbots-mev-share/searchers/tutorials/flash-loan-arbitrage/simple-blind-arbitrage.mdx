@@ -1,0 +1,45 @@
+import RemoteCodeBlock from "@site/src/components/RemoteCodeBlock"
+
+# Breakdown: simple-blind-arbitrage
+
+This guide is based off of [simple-blind-arbitrage](https://github.com/flashbots/simple-blind-arbitrage). Before you continue with this guide, we recommend reading the [README](https://github.com/flashbots/simple-blind-arbitrage#readme) for a technical overview of the system. If this raises more questions than it answers, that's OK! This guide will break down each component of the bot in detail.
+
+We'll start by explaining the core concept of this bot's strategy: _onchain searching_.
+
+## Onchain Searching
+
+Our goal is to turn a profit by backrunning pending transactions from **MEV-Share**. The "backrun transaction" is an arbitrage: we buy tokens on one exchange and sell them on another for a different price. Ideally, the difference in price will allow us to take a profit.
+
+MEV-Share introduces some key differences from more common strategies that you may have seen elsewhere (e.g. simple-arbitrage, subway, rusty-sando [// TODO: ADD LINKS]). The main difference is that pending transactions typically expose _less data_, compared to transactions in the public mempool. Transaction signatures are _always_ hidden from searchers. Simulation-based strategies (e.g. rusty-sando) on these transactions are usually not possible, since the amount traded by the user is typically hidden. That being said, users can choose to reveal more data to searchers, so all the classic strategies can still be used; they'll just land less often.
+
+The strategy we'll use is called "onchain" searching: we calculate how much to trade within the "trade" itself, effectively executing the searching strategy & algorithm _on the blockchain_ ("onchain"). We send a backrun for every transaction that touches the tokens we're interested in trading, and rely on Flashbots to prevent unprofitable trades from landing on-chain (formerly known as "being mined"). The _amount_ we buy & sell in our arbitrage trades is derived from the prices of the assets on the blockchain at the time of execution. Because we place our transaction behind another user's transaction ("backrunning"), the price that our transaction sees is the price which has been changed by the user's trade. This is where we get our arbitrage opportunity.
+
+## Arbitrage Contract
+
+In the interest of time, we've provided a ready-made smart contract, which you are free to use and modify as you like. This contract contains functions for performing arbitrage between Uniswap-V2-like exchanges (e.g. UniV2 / Sushiswap).
+
+<RemoteCodeBlock url="https://raw.githubusercontent.com/flashbots/simple-blind-arbitrage/main/src/BlindBackrunLogic.sol" language="solidity" />
+
+This contract performs arbitrage trades by calling the `executeArbitrage` function. The contract isn't fully complete -- we haven't added flash loans yet -- but before we do that, let's examine each piece of the smart contract to see how it works.
+
+### section to explain core concept of arb contract
+
+...
+
+### another core concept
+
+...
+
+---
+
+:::info Unincluded alpha
+
+We strictly use Uniswap V2 because its pricing algorithm is simple, making arbitrages easily calculable. Uniswap V2 and Sushiswap use the same pricing algorithms, so we efficiently arb between those two exchanges. Uniswap V3 math is more complicated, making arbitrages on V3 very inefficient to calculate onchain.
+
+However, Uniswap V3+ processes much more trade volume than V2 nowadays. To improve your profits, consider developing a strategy that integrates Uniswap V3 into your own contract. It will likely involve probabilistic methods. Also note: Uniswap V4 uses the same pricing math as V3.
+
+MEV-Share also supports Balancer and Curve.
+
+:::
+
+Now that the core contract is ready, let's add flash loans. Read on in the next page.

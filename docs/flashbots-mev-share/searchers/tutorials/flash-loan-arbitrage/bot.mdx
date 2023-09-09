@@ -1,0 +1,126 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Automated Arbitrage Bot
+
+With the flash-loan arbitrage smart contract finished, our last task is to automate the process of finding and back-running other users' trades.
+
+To reiterate our goal, the idea is to find pending transactions from other Ethereum users and backrun them (send our transaction immediately after the user's transaction). If the user's trade moves the price enough, we'll arbitrage the trading pair between two exchanges for a profit.
+
+## Finding Pending Transactions
+
+When a new transaction is received, it's broadcast to searchers via [Event Stream](/flashbots-mev-share/searchers/event-stream). Each transaction shares varying amounts of data via [hints](#/), but by default, transactions that trade on Uniswap, Balancer, or Curve will expose the trading pair's contract address in the log topics.
+
+Here's an example of an event from a transaction with MEV-Share's default privacy settings:
+
+```json
+TODO: ADD EXAMPLE EVENT
+```
+
+If we look up the address specified in the log topics, we'll see that it's a trading pair contract for INSERT_TRADING_PAIR_HERE on INSERT_EXCHANGE_PROTOCOL_HERE. This tells us that the user has either bought or sold INSERT_ASSET_HERE on INSERT_EXCHANGE_PROTOCOL_HERE, which means that we may be able to arbitrage it with INSERT_ALT_EXCHANGE_PROTOCOL_HERE.
+
+To detect events, listen to the SSE Event Stream at [https://mev-share.flashbots.net](https://mev-share.flashbots.net). Client libraries exist for Typescript/Javascript and Rust (more coming soon) to simplify this:
+
+<Tabs defaultValue="tsjs"
+  values={[
+    {label: 'TS/JS', value: 'tsjs'},
+    {label: 'Rust', value: 'rs'},
+  ]}>
+<TabItem value="tsjs">
+
+[mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts)
+
+```typescript
+// tsjs
+```
+
+// TODO: Explain specific typescript code here.
+
+</TabItem>
+<TabItem value="rs">
+
+[mev-share-rs](https://github.com/paradigmxyz/mev-share-rs)
+
+```typescript
+// rs
+```
+
+// TODO: Explain specific rust code here.
+
+</TabItem>
+</Tabs>
+
+## Filtering Relevant Transactions
+
+// TODO: explain logs & default privacy settings on mev-share.
+
+<Tabs defaultValue="tsjs"
+  values={[
+    {label: 'TS/JS', value: 'tsjs'},
+    {label: 'Rust', value: 'rs'},
+  ]}>
+<TabItem value="tsjs">
+
+[mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts)
+
+```typescript
+// tsjs
+```
+
+// TODO: Explain specific typescript code here.
+
+</TabItem>
+<TabItem value="rs">
+
+[mev-share-rs](https://github.com/paradigmxyz/mev-share-rs)
+
+```typescript
+// rs
+```
+
+// TODO: Explain specific rust code here.
+
+</TabItem>
+</Tabs>
+
+## Sending Backrun Bundles
+
+<Tabs defaultValue="tsjs"
+  values={[
+    {label: 'TS/JS', value: 'tsjs'},
+    {label: 'Rust', value: 'rs'},
+  ]}>
+<TabItem value="tsjs">
+
+[mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts)
+
+```typescript
+// tsjs
+```
+
+// TODO: Explain specific typescript code here.
+
+</TabItem>
+<TabItem value="rs">
+
+[mev-share-rs](https://github.com/paradigmxyz/mev-share-rs)
+
+```typescript
+// rs
+```
+
+// TODO: Explain specific rust code here.
+
+</TabItem>
+</Tabs>
+
+For a full example, checkout our simple-blind-arbitrage bot written in Typescript.
+
+TODO: nice wrap-up
+
+** outline (deleteme) **
+
+- watch event stream (mev-share mempool)
+- parse log topic for pair address
+- send backrun bundle
+

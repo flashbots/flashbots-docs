@@ -1,0 +1,41 @@
+# Introduction
+
+In this guide, we show you how to run an atomic arbitrage bot that uses flash loans. Flash loans allow you to borrow vast amounts of capital, which we'll use to pay for arbitrage trades. If you make a profit, then you pay back the loan and keep what's left over. If you don't, then the transaction simply reverts. Thanks to Flashbots, we don't pay for reverted transactions; we only have to pay gas for successful transactions. In sum, this is an ultra-low-risk strategy that requires very little upfront capital.
+
+If you're only here for the money, you can skip to the end for a turnkey bot you can run yourself. If you want to know how it works, see the next page for a breakdown of our simple-blind-arbitrage bot.
+
+---
+
+## (deleteme: tutorial outline)
+
+- derive code from simple-blind-arb
+    - modify it and document the changes
+
+> (tweet content):
+> - anyone can call
+> - only need money for gas
+
+### goal: on-chain arb bot w/ minimal upfront capital
+
+- quick rundown of how the arb bot works
+    - https://youtu.be/Twcr2vZ1tRU?si=krmJbMH5htNTd-HK
+- rundown on how flash loan works
+    - https://docs.balancer.fi/reference/contracts/flash-loans.html
+- link to new code
+    - https://github.com/zeroXbrock/simple-blind-arbitrage/tree/brock/flashloan
+
+### arb contract walkthrough
+
++ "compile & deploy" snippet
+
+- talk about cost of deploying contracts
+- mention public arb contract
+- talk about tradeoffs of on-chain vs off-chain searching
+
+### hooking up the contract to our bot
+
+- keep it short and straightforward; ez copypasta
+
+### implications of mev-share & limitations of strategy
+
++ ways to improve
