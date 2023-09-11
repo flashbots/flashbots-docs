@@ -9,18 +9,23 @@ interface IRemoteCodeBlock {
     /** URL of code to be fetched. Must be a raw file. 
      * [Example](https://raw.githubusercontent.com/flashbots/pm/main/README.md) */
     url?: string
+    /** Title of code block, rendered as a bold span. If undefined, no title is rendered. */
+    title?: string
 }
 
-const RemoteCodeBlock = ({ language, url }: IRemoteCodeBlock) => {
+const RemoteCodeBlock = ({ language, url, title }: IRemoteCodeBlock) => {
     const [content, setContent] = useState<string>()
     useEffect(() => {
         fetch(url)
             .then((response) => response.text())
             .then((text) => setContent(text))
     }, [url])
-    return (<CodeBlock language={language}>
-        {content || `// Loading ${url} ...`}
-    </CodeBlock>)
+    return (<>
+        {title && <span><strong>{title}</strong></span>}
+        <CodeBlock language={language}>
+            {content || `// Loading ${url} ...`}
+        </CodeBlock>
+    </>)
 }
 
 export default RemoteCodeBlock

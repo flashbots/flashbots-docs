@@ -16,27 +16,58 @@ The strategy we'll use is called "onchain" searching: we calculate how much to t
 
 ## Arbitrage Contract
 
-In the interest of time, we've provided a ready-made smart contract, which you are free to use and modify as you like. This contract contains functions for performing arbitrage between Uniswap-V2-like exchanges (e.g. UniV2 / Sushiswap).
+We'll start by looking at a ready-made smart contract and breaking it down piece by piece. 
 
-<RemoteCodeBlock url="https://raw.githubusercontent.com/flashbots/simple-blind-arbitrage/main/src/BlindBackrunLogic.sol" language="solidity" />
+This is the **core logic contract**, which contains functions for performing arbitrage between Uniswap-V2-like exchanges (e.g. UniV2 / Sushiswap). Later on, we'll create other contracts that inherit this one, so that we can add custom asset management logic (flash loans, where to store profits, etc.) without having to rewrite all the Uniswap-centric logic, which you likely won't need to change.
 
-This contract performs arbitrage trades by calling the `executeArbitrage` function. The contract isn't fully complete -- we haven't added flash loans yet -- but before we do that, let's examine each piece of the smart contract to see how it works.
+<RemoteCodeBlock url="https://raw.githubusercontent.com/flashbots/simple-blind-arbitrage/main/src/BlindBackrunLogic.sol" language="solidity" title="BlindBackrunLogic.sol" />
 
-### section to explain core concept of arb contract
+### Imports & Interfaces
 
-...
+We start by importing some contract interfaces [`openzeppelin/access/Ownable.sol`](https://github.com/flashbots/simple-blind-arbitrage/blob/main/lib/openzeppelin-contracts/contracts/access/Ownable.sol) and [`./IWETH.sol`](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/IWETH.sol). Ownable allows us to restrict certain functions to the contract owner. IWETH allows us to deposit/withdraw ETH for [WETH](https://cointelegraph.com/news/what-is-wrapped-ethereum-weth-and-how-does-it-work). We need WETH because Uniswap (V2/V3) only supports ERC20 tokens.
 
-### another core concept
+We also define a couple interfaces ourselves: `IUniswapV2Pair` and `IPairReserves`. We could import these from the official Uniswap contract library like we did with OpenZeppelin for the Ownable contract, but that comes with a lot of bloat for our project. In this case, we only need four functions from `IUniswapV2Pair`, and the struct definition of `PairReserves` from `IPairReserves`.
 
-...
+Defining these interfaces allows us to interact with other smart contracts directly, as we'll see in the next sections.
 
----
+### Abstract Contract
 
-:::info Unincluded alpha
+It's important to remember that this is an abstract contract, meaning that to use it, we'll need to write another smart contract that extends it (using the `is` keyword). The following sections explain the arbitrage algorithm and its implementation.
+
+### Arbitrage Algorithm
+
+> TODO: add maths
+
+### `_executeArbitrage`
+
+- parse inputs
+- calculate amountIn
+- execute arb
+- check profit
+- calculate tip and pay coinbase
+
+### Compile & Deploy (optional)
+
+```sh
+# TODO: forge stuff
+```
+
+- talk about cost of deploying contracts
+- mention public arb contract
+
+## Tradeoffs
+
+### Offchain Searching
+
+**TODO: talk about tradeoffs of on-chain vs off-chain searching**
+
+- 
+
+### Other Exchanges
 
 We strictly use Uniswap V2 because its pricing algorithm is simple, making arbitrages easily calculable. Uniswap V2 and Sushiswap use the same pricing algorithms, so we efficiently arb between those two exchanges. Uniswap V3 math is more complicated, making arbitrages on V3 very inefficient to calculate onchain.
 
-However, Uniswap V3+ processes much more trade volume than V2 nowadays. To improve your profits, consider developing a strategy that integrates Uniswap V3 into your own contract. It will likely involve probabilistic methods. Also note: Uniswap V4 uses the same pricing math as V3.
+However, Uniswap V3+ processes much more trade volume than V2. To improve your profits, consider developing a strategy that integrates Uniswap V3 into your own contract. It will likely involve probabilistic methods. Also note: Uniswap V4 uses the same pricing math as V3.
 
 MEV-Share also supports Balancer and Curve.
 
