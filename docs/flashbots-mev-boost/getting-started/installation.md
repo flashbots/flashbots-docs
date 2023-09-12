@@ -2,109 +2,142 @@
 title: Installation
 ---
 
-The most common setup is to install MEV-Boost on the same machine as the beacon client. Multiple beacon-clients can use a single MEV-Boost instance. The default port is 18550.
+Get started with MEV-Boost installation with this guide. Whether you are looking to install it on a machine with the beacon client or multiple beacon clients, this guide will assist you in setting it up smoothly.
 
-See also [Rémy Roy's](https://github.com/remyroy/ethstaker/blob/main/prepare-for-the-merge.md#installing-mev-boost) guide for comprehensive instructions on installing, configuring and running MEV-Boost.
+## Prerequisites
 
+- For a comprehensive guide on preparing for the merge, refer to [Rémy Roy's guide](https://github.com/remyroy/ethstaker/blob/main/prepare-for-the-merge.md#installing-mev-boost).
+- Ensure you have [Go 1.18+](https://go.dev/doc/install) installed for source-based installations.
 
-## Binaries
+## Installation Methods
 
-Each release includes binaries from Linux, Windows and macOS (portable build, for amd and arm). You can find the latest release at
-https://github.com/flashbots/mev-boost/releases
+### Using Binaries
 
-## From source
+For convenience, each release includes binaries suitable for Linux, Windows, and macOS (both amd and arm). Find the latest releases [here](https://github.com/flashbots/mev-boost/releases).
 
-Requires [Go 1.18+](https://go.dev/doc/install).
+### From Source
 
-### `go install`
+#### Build and install with `go install`
 
-Install MEV-Boost with `go install`:
+The easiest way to build and install MEV-Boost from sources is to use `go install`. You can simply execute the `go install` command as shown below:
 
 ```bash
 go install github.com/flashbots/mev-boost@latest
 mev-boost -help
 ```
 
-### Clone and Build
+This would install the latest version of MEV-Boost in your `$GOPATH/bin` directory. You can then run the `mev-boost` command from anywhere in your terminal.
 
-Ensure you are downloading the most updated MEV-Boost release. Releases are available at https://github.com/flashbots/mev-boost/releases
-
-clone the repository and build it:
+If you want to install a specific version, you can use the `@` syntax:
 
 ```bash
-git clone https://github.com/flashbots/mev-boost.git
-cd mev-boost
-
-# If you want to build a specific release, check out the tag first. https://github.com/flashbots/mev-boost/releases
-git checkout tags/YOUR_VERSION
-
-# Build most recent version of MEV-Boost
-make build
-
-# Use build-portable if the standard build crashes on startup
-make build-portable
-
-# Show help. This confirms MEV-Boost is able to start
-./mev-boost -help
+go install github.com/flashbots/mev-boost@VERSION
 ```
 
-## From Docker image
+Simply look up the specific version you want to install in the [releases](https://github.com/flashbots/mev-boost/releases) page.
 
-We maintain a MEV-Boost Docker images at https://hub.docker.com/r/flashbots/mev-boost
+#### Clone and Build
 
-- [Install Docker Engine](https://docs.docker.com/engine/install/)
-- Pull & run the latest image:
+You can also clone the repository and build the software yourself without using `go install`.
 
-```bash
-# Get the default MEV-Boost image
-docker pull flashbots/mev-boost:latest
+1. Clone the repository:
 
-# Get the portable MEV-Boost image
-docker pull flashbots/mev-boost:latest-portable
+   ```bash
+   git clone https://github.com/flashbots/mev-boost.git
+   cd mev-boost
+   ```
 
-# Run it
-docker run flashbots/mev-boost -help
-```
+2. (Optional) To build a specific release, refer to the available [releases](https://github.com/flashbots/mev-boost/releases) and checkout the desired tag:
 
-## Systemd configuration
+   ```bash
+   git checkout tags/YOUR_VERSION
+   ```
 
-You can run MEV-Boost with a systemd config like this:
+3. Build the software:
 
-`/etc/systemd/system/mev-boost.service`
-```ini
-[Unit]
-Description=mev-boost
-Wants=network-online.target
-After=network-online.target
+   ```bash
+   make build
+   ```
 
-[Service]
-User=mev-boost
-Group=mev-boost
-WorkingDirectory=/home/mev-boost
-Type=simple
-Restart=always
-RestartSec=5
-ExecStart=/home/mev-boost/bin/mev-boost \
-		-mainnet \
-		-relay-check \
-		-relays YOUR_RELAY_CHOICE
+4. If you experience issues, use the portable build:
 
-[Install]
-WantedBy=multi-user.target
-```
+   ```bash
+   make build-portable
+   ```
 
-## Troubleshoot Installation
+5. Verify your installation:
 
-If MEV-Boost crashes with [`"SIGILL: illegal instruction"`](https://github.com/flashbots/mev-boost/issues/256) then you need to use a portable build:
+   ```bash
+   ./mev-boost -help
+   ```
 
-You can either use a [portable Docker image](https://hub.docker.com/r/flashbots/mev-boost/tags), or install/build the portable build like this:
+### From Docker Image
 
-```bash
-# using `go install`
-CGO_CFLAGS="-O -D__BLST_PORTABLE__" go install github.com/flashbots/mev-boost@latest
+Flashbots provides maintained Docker images for MEV-Boost.
 
-# build from source
-make build-portable
-```
+1. [Install Docker Engine](https://docs.docker.com/engine/install/).
 
+2. Pull the latest MEV-Boost image:
 
+   ```bash
+   docker pull flashbots/mev-boost:latest
+   ```
+
+   Or pull the portable version:
+
+   ```bash
+   docker pull flashbots/mev-boost:latest-portable
+   ```
+
+3. Run the Docker image:
+
+   ```bash
+   docker run flashbots/mev-boost -help
+   ```
+
+## Systemd Configuration
+
+To keep MEV-Boost running as a service, configure systemd by creating the systemd config file `/etc/systemd/system/mev-boost.service`.
+
+Below is an example of a config file:
+
+   ```ini
+   [Unit]
+   Description=mev-boost
+   Wants=network-online.target
+   After=network-online.target
+
+   [Service]
+   User=mev-boost
+   Group=mev-boost
+   WorkingDirectory=/home/mev-boost
+   Type=simple
+   Restart=always
+   RestartSec=5
+   ExecStart=/home/mev-boost/bin/mev-boost \
+   -mainnet \
+   -relay-check \
+   -relays YOUR_RELAY_CHOICE
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+## Troubleshooting
+
+If you encounter an error: [`"SIGILL: illegal instruction"`](https://github.com/flashbots/mev-boost/issues/256), you'll need to use the portable build.
+
+There are three ways to install the portable build:
+
+1. Use the [portable Docker image](https://hub.docker.com/r/flashbots/mev-boost/tags).
+2. Build the portable version from source:
+
+   ```bash
+   make build-portable
+   ```
+
+3. Using `go install`:
+
+   ```bash
+   CGO_CFLAGS="-O -D__BLST_PORTABLE__" go install github.com/flashbots/mev-boost@latest
+   ```

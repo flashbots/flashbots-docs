@@ -11,10 +11,10 @@ See you on-chain! ⚡🤖
 
 ### Bundle Relay URLS
 
-| Network | URL |
-| --- | --- |
-| Mainnet | `https://relay.flashbots.net` |
-| Goerli | `https://relay-goerli.flashbots.net` |
+| Network | URL                                   |
+| ------- | ------------------------------------- |
+| Mainnet | `https://relay.flashbots.net`         |
+| Goerli  | `https://relay-goerli.flashbots.net`  |
 | Sepolia | `https://relay-sepolia.flashbots.net` |
 
 ### Who should use Flashbots Auction?
@@ -25,7 +25,7 @@ See you on-chain! ⚡🤖
 
 ### How does Flashbots work for searchers?
 
-Flashbots connects searchers to validators (previously "miners") while allowing them to avoid the public tx pool. Searchers with transactions they would like to send first craft what we call "bundles" and send these to a block builder such as Flashbots. The builder simulates the bundles to ensure there are no reverts, and then builds a full block with the available bundles and transactions. Via mev-boost and the network of relays and builders, these blocks are received by validators while maintaining pre-trade privacy.
+Flashbots provides a platform that connects searchers with validators, bypassing the public transaction pool. Searchers create 'bundles' of transactions they wish to send and forward these to block builders, such as Flashbots. The builder then simulates these bundles to ensure they won't revert and constructs a full block using the available bundles and transactions. Through the use of mev-boost and a network of relays and builders, these blocks are delivered to validators while preserving pre-trade privacy.
 
 Getting onboarded to Flashbots is easy for searchers; you simply need to update how you send transactions.
 
@@ -33,14 +33,16 @@ Getting onboarded to Flashbots is easy for searchers; you simply need to update 
 
 To access the Flashbots network you will need three things:
 
-1. A private key that Flashbots can use to identify you
-2. A way to interact with the Flashbots network
-   - [Alchemy](https://docs.alchemy.com/docs/how-to-send-a-private-transaction-on-ethereum?a=fb) offers an easy way to send single transactions to Flashbots.
-3. A "bundle" for your transactions
+1. A unique ECDSA-secp256k1 key pair for Flashbots to identify you
+2. A method to communicate with the Flashbots network
+   - [Alchemy](https://docs.alchemy.com/docs/how-to-send-a-private-transaction-on-ethereum?a=fb) provides a convenient way to dispatch individual transactions to Flashbots.
+3. A "bundle" comprising your transactions
 
-Let's begin with the private key Flashbots uses for identity. When you send bundles to Flashbots you will sign them with a private key so that we can establish identity for searchers and establish reputation for them over time. This private key **does not** store funds and is **not** the primary private key you use for executing transactions. Again, it is only used for identity, and it can be any private key.
+When you send bundles to Flashbots, they are signed with your key, which allows us to confirm your identity and accumulate your [reputation](/flashbots-auction/searchers/advanced/reputation) over time. Reputation system is set up to protect the infrastructure from attacks like DDoS. Searcheres with higher reputation will have better access to the network especially during times of high congestion.
 
-Second, you'll need a way to interact with Flashbots. The Flashbots builder receives bundles at `relay.flashbots.net`, and we have specific RPC endpoints you'll need to use to send us transactions. We've integrated with a few popular developer tools like Ethers.js or web3.py to make interacting with Flashbots as easy as possible. Here are a few examples of how to set up a Flashbots provider:
+It's crucial to understand that this key **does not** manage any funds and does **not** have to be the main Ethereum key used for authenticating transactions. Its only function is to establish your identity with Flashbots. You can use any ECDSA-secp256k1 key for this purpose.
+
+Next, you need a means to communicate with the Flashbots network. The Flashbots builder accepts bundles at `relay.flashbots.net`, and there are specific RPC endpoints that you must use to transmit transactions to us. To simplify this process, we've integrated with several widely-used developer tools such as Ethers.js and web3.py. Below are some examples of how to configure a Flashbots provider:
 
 <Tabs
   defaultValue="ethers.js"
@@ -57,22 +59,23 @@ const ethers = require("ethers.js");
 const {
   FlashbotsBundleProvider,
 } = require("@flashbots/ethers-provider-bundle");
+
+// Standard json rpc provider directly from ethers.js. You can use Infura, Alchemy, or your own node.
 const provider = new ethers.providers.JsonRpcProvider({
   url: ETHEREUM_RPC_URL,
 });
-// Standard json rpc provider directly from ethers.js. For example you can use Infura, Alchemy, or your own node.
 
+// `authSigner` is an Ethereum private key that does NOT store funds and is NOT your bot's primary key.
+// This is an identifying key for signing payloads to establish reputation and whitelisting
 const authSigner = new ethers.Wallet(
   "0x0000000000000000000000000000000000000000000000000000000000000000"
 );
-// `authSigner` is an Ethereum private key that does NOT store funds and is NOT your bot's primary key.
-// This is an identifying key for signing payloads to establish reputation and whitelisting
 
+// Flashbots provider requires passing in a standard provider and an auth signer
 const flashbotsProvider = await FlashbotsBundleProvider.create(
   provider,
   authSigner
 );
-// Flashbots provider requires passing in a standard provider and an auth signer
 ```
 
 </TabItem>
@@ -209,5 +212,5 @@ Congrats! You should now have everything you need to start sending transactions 
 
 - If you are looking to interact with Flashbots without using one of the libraries, check out the [RPC endpoint documentation](/flashbots-auction/searchers/advanced/rpc-endpoint) and other advanced concepts.
 - For examples of advanced usage of Flashbots, check out the [example searchers](/flashbots-auction/searchers/example-searchers/simple-arbitrage-bot).
-- For additional tools, check out the [searcher libraries.](/flashbots-auction/searchers/libraries/ethers-js-provider)
+- For additional tools, check out the [searcher libraries](/flashbots-auction/searchers/libraries/ethers-js-provider).
 - For potential MEV opportunities, check out the [MEV job board](https://github.com/flashbots/mev-job-board) 🤠
