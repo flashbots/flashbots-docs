@@ -2,10 +2,6 @@
 title: List of Flashbots Builders
 ---
 
-We've been alerted to instances where individuals have registered misleading ENS names, attempting to pose as affiliates of Flashbots. A notable example includes "flashbots-worker.eth" which has no affiliation with Flashbots whatsoever. As of now, we have not registered any ENS names related to our builders.
-
-Below is the table of builders officially recognized by Flashbots:
-
 | Builder Address                                                                                    |
 | -------------------------------------------------------------------------------------------------- |
 | 0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f |
@@ -15,5 +11,3 @@ Below is the table of builders officially recognized by Flashbots:
 | 0xb89b9308fbc6c2998c7e60e39424b858c74b02c234b3e0fa5ecf7c3971208dfa5f92e0bdbe16fc24abfd71c248acf0f9 |
 | 0x81babad2d5fd9413c942f49bfd86bc1dca5b02ff4cd065a10c7ab05713e63883056e6a87777e236424574aa25bbe3e99 |
 | 0xa35e2b13ef528efbed8d2f709c0eb9eceb1225ed0605a653ba923588b0150c94772a9ba1c809d048e321f6b73d905c60 |
-
-Always ensure you're working with authentic Flashbots builders by referencing this list.
