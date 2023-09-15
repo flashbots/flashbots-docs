@@ -115,3 +115,30 @@ h2 {
     background-image: linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1));
   }
 }
+
+/* Top banner */
+div.announcementBarContent_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module.content_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-Content-styles-module {
+  /* For every banner */
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* For the current banner */
+  column-gap: 0.5rem;
+  background-image: linear-gradient(6deg, #73c2fa, 60%, #1c1c1c 100%);
+  color: white;
+}
+
+div.announcementBarContent_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module.content_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-Content-styles-module
+  > a {
+  font-family: "CMU-Serif";
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+div.announcementBarContent_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module.content_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-Content-styles-module
+  > a:hover {
+  text-decoration: underline;
+}
