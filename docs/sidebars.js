@@ -37,6 +37,7 @@ module.exports = {
                 'flashbots-auction/searchers/advanced/bundle-cancellations',
               ],
             },
+            'flashbots-auction/builder-list',
             'flashbots-auction/searchers/faq',
             'flashbots-auction/other-resources'
           ],
