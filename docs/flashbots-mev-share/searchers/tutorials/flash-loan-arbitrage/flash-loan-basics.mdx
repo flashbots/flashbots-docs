@@ -31,4 +31,6 @@ function makeFlashLoan(
 
 We'll call `makeFlashLoan` to get a flash loan, which will in turn trigger the `receiveFlashLoan` function, which will execute the arbitrage trade and pay the loan back.
 
+See [simple-blind-arbitrage](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunFlashLoan.sol) for a ready-to-use flash loan smart contract.
+
 Now that our contract is ready, we need to watch for new pending transactions and send arbitrage bundles to Flashbots when we find them. See the next page for instructions on writing a bot to do this for you.

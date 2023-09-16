@@ -16,11 +16,13 @@ The strategy we'll use is called "onchain" searching: we calculate how much to t
 
 ## Arbitrage Contract
 
-We'll start by looking at a ready-made smart contract and breaking it down piece by piece. 
+We'll start by looking at a ready-made smart contract, and then break it down piece by piece. 
 
 This is the **core logic contract**, which contains functions for performing arbitrage between Uniswap-V2-like exchanges (e.g. UniV2 / Sushiswap). Later on, we'll create other contracts that inherit this one, so that we can add custom asset management logic (flash loans, where to store profits, etc.) without having to rewrite all the Uniswap-centric logic, which you likely won't need to change.
 
-<RemoteCodeBlock url="https://raw.githubusercontent.com/flashbots/simple-blind-arbitrage/main/src/BlindBackrunLogic.sol" language="solidity" title="BlindBackrunLogic.sol" />
+<RemoteCodeBlock url="https://raw.githubusercontent.com/flashbots/simple-blind-arbitrage/main/src/BlindBackrunLogic.sol" language="solidity" title="BlindBackrunLogic.sol" showLineNumbers={true} />
+
+This may look complicated, but by the end we'll have explained every line of code. We'll start at the top with Imports & Interfaces.
 
 ### Imports & Interfaces
 
@@ -32,36 +34,126 @@ Defining these interfaces allows us to interact with other smart contracts direc
 
 ### Abstract Contract
 
-It's important to remember that this is an abstract contract, meaning that to use it, we'll need to write another smart contract that extends it (using the `is` keyword). The following sections explain the arbitrage algorithm and its implementation.
+It's important to remember that this is an abstract contract, meaning that to use it, we'll need to write another smart contract that extends it (using the `is` keyword). That contract is responsible for writing the capital-management strategy; where to keep money, where/how to get it; as well as any other custom logic required for their specific strategy. We'll do a walkthrough of two different finished implementations after we break down the core logic contract. Read on to learn how our arbitrage algorithm works.
 
 ### Arbitrage Algorithm
 
-> TODO: add maths
+To illustrate what the algorithm does, we plot profit (in ETH) from an arbitrage, where we buy `amount_in` tokens for WETH on one exchange and sell them all for WETH on another.
+
+![](/img/arb-profit-plot.png "arbitrage profit per amount_in")
+
+As you can see, the optimal amount_in to buy is approximately 35 ETH, but that's just eyeballing. How do we calculate the exact optimal point? To figure that out, first we need to figure out how to pre-calculate the outcome of a single swap. Then we'll compose two swaps together to calculate the outcome of an arbitrage. (This is how we made that chart!)
+
+The amount of tokens we get out from one swap is defined with the following function:
+
+- let $F$ = `FEE` = 997
+- let $D$ = `FEE_DIVISOR` = 1000
+- let $R_o$ = `reserveOut` (constant at execution time, changes after a trade)
+    - this refers to the reserves of the token that we're getting _out_ of the trade
+- let $R_i$ = `reserveIn` (constant at execution time, changes after a trade)
+    - this refers to the reserves of the token that we're paying _into_ the trade
+
+$$
+amountOut = f(x) = {x \cdot F \cdot R_o \over R_i \cdot D + x \cdot F}
+$$
+
+This is implemented in the `getAmountOut` function [in our smart contract](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L249C1-L258C6). It's adapted from the [UniswapV2 Library contract](https://github.com/Uniswap/v2-periphery/blob/master/contracts/libraries/UniswapV2Library.sol#L43-L50); we just removed the safety checks to save gas. We don't need guard rails since Flashbots will prevent reverting transactions from landing onchain.
+
+```solidity
+function getAmountOut(
+    uint amountIn,
+    uint reserveIn,
+    uint reserveOut
+) internal pure returns (uint amountOut) {
+    uint amountInWithFee = amountIn * 997;
+    uint numerator = amountInWithFee * reserveOut;
+    uint denominator = reserveIn * 1000 + amountInWithFee;
+    amountOut = numerator / denominator;
+    return amountOut;
+}
+```
+
+If we calculate the $amountOut$ from one pair, and set that as the input to another trading pair's $amountOut$ function, then we get the ETH proceeds from an arbitrage. Subtract the original amount in ($x$) and that number is our gross profit.
+
+- function $f(x)$ returns $amountOut$ for the _first_ trading pair.
+- function $g(x)$ returns $amountOut$ for the _second_ trading pair.
+- $R_o$ and $R_i$ are defined per function, each using reserves from to their respective trading pool. The trade direction (whether a reserve is $R_i$ or $R_o$) will need to be defined more strictly in code, but for this general formula, the notion of "in" and "out" to refer to reserves is sufficient.
+
+$$
+profit = g(f(x)) - x
+$$
+
+Fully expanded, the equation looks like this (it's messy, don't read into it too much):
+
+$$
+profit = p(x) = {({x \cdot F \cdot {R_o}_A \over {R_i}_A \cdot D + x \cdot F}) \cdot F \cdot {R_o}_B \over {R_i}_B \cdot D + F \cdot ({x \cdot F \cdot {R_o}_A \over {R_i}_A \cdot D + x \cdot F})} - x
+$$
+
+- ${R_o}_A$ and ${R_i}_A$ are `reservesOut` and `reservesIn`, respectively, for trading pair $A$
+- we start (buy tokens) on exchange $A$ and finish the arb (sell tokens) on exchange $B$
+
+:::caution // TODO
+
+Calculus fundamentals are out of the scope of this guide, but something something explain the maximization solution
+
+:::
+
+$$
+todo
+$$
+
+This is implemented by the `getAmountIn` function [in our smart contract](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L116C14-L130), which relies on [`getNumerator`](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L132-L173) and [`getDenominator`](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L175-L206) to do the math (and to avoid "stack too deep" errors).
+
+Now that we know how to calculate the optimal amount of WETH to send for an arbitrage, let's put it to use.
 
 ### `_executeArbitrage`
 
-- parse inputs
-- calculate amountIn
-- execute arb
-- check profit
-- calculate tip and pay coinbase
+`_executeArbitrage` is the core function responsible for looking up trading prices, calculating the optimal buy/sell amounts, and executing the two trades that make up the arbitrage. It only takes three arguments:
+
+```solidity
+function _executeArbitrage(
+    address firstPairAddress,
+    address secondPairAddress,
+    uint percentageToPayToCoinbase
+) ...
+```
+
+We just tell it which token pairs to trade, and how much profit to tip the validator.
+
+The function starts by reading the smart contract's own WETH balance. This is used later to verify our profits. We use the pair addresses to instantiate uniswap Pair contracts, which we pass to `getPairData` to read the reserves, which we then use to calculate the optimal arbitrage with `getAmountIn(firstPairData, secondPairData)`.
+
+Uniswap token pairs refer to their tokens as `token0` and `token1`; `token0` being the one whose address is numerically less than the other (e.g. 0x0123 < 0x0234); so we need to discern which token of the pair's two tokens is WETH. Our `getPairData` function sets this in the `isWETHZero` field. If WETH is token0, then we'll trade token0 -> token1 on exchange A, then token1 -> token0 on exchange B. If WETH is token1, then we just switch "token0" with "token1" and apply the same formula.
+
+Once we know which token is which, we calculate the amount of tokens we'll receive from each trade. We use these values as inputs to the token pairs' swap functions. See [`swap` on the Uniswap V2 Pair](/#TODO) contract for more details on how swaps work.
+
+Once we've executed our trades, we should expect to have more ETH (or WETH) than we started with. But that won't always be the case. To ensure that we don't pay for an unprofitable trade, we check the WETH balance at the end of the `_executeArbitrage` function. If the balance isn't greater than when we first called the function, the transaction will revert. This protects us from malicious tokens, unforseen market conditions, and a variety of other ways you can lose your money.
+
+When we do turn a profit, we need to pay some of it to the validators/builders in order to get our transactions on-chain. Block builders have differing preferences & ordering algorithms, but a good rule of thumb is to use a gas price higher than the market average, and unless you know you have no competition, send at least 80% of the profit to `block.coinbase`.
 
 ### Compile & Deploy (optional)
 
-```sh
-# TODO: forge stuff
-```
+If you want to run a capital-intensive strategy (not using flash loans) you'll have to deploy your own contract. This is not required if you use our flash loan contract. The flash loan contract is designed to send profits to the caller when the arbitrage is done. This allows anyone to execute arbitrages without paying to deploy the contract. The tradeoff with this is that it costs more gas to transfer the profit to your wallet than it does to keep the money in the contract. If you decide to deploy your own contract, this is a commonly used strategy and will save gas (at the risk of your contract containing a bug that might compromise the funds).
 
-- talk about cost of deploying contracts
-- mention public arb contract
+```sh
+# compile contracts
+forge build
+# deploy contracts
+forge create -r $RPC_URL --private-key $PRIVATE_KEY
+```
 
 ## Tradeoffs
 
+Our onchain searching strategy is relatively straightforward, but it has its drawbacks:
+
+- calculating trade amounts onchain costs gas, making the strategy less efficient
+- only Uniswap-V2-like trading pairs are compatible with this strategy
+    - Uniswap V3 uses a different algorithm, which is very costly to compute onchain
+
 ### Offchain Searching
 
-**TODO: talk about tradeoffs of on-chain vs off-chain searching**
+The more data you can compute offchain, the less gas your transactions have to spend. If you rely on offchain computations to define your strategy, you can save a lot of gas, giving you a competitive edge.
 
-- 
+However, some data can only be used in an onchain setting. For instance, if you were to run the same arbitrage calculation algorithm offchain that we have onchain in the [BlindBackrunLogic](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L249-L258) contract, you'd probably get different results. This is because prices can change in the block; before your transaction is executed; but off-chain, we can't see that until the block has been finalized. The advantage of onchain searching is that you always have immediate access to the latest system state, so your calculations will always be accurate.
 
 ### Other Exchanges
 
@@ -71,6 +163,6 @@ However, Uniswap V3+ processes much more trade volume than V2. To improve your p
 
 MEV-Share also supports Balancer and Curve.
 
-:::
+---
 
 Now that the core contract is ready, let's add flash loans. Read on in the next page.
