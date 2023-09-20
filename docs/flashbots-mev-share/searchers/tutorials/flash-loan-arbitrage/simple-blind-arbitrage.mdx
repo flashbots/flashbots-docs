@@ -40,7 +40,7 @@ It's important to remember that this is an abstract contract, meaning that to us
 
 To illustrate what the algorithm does, we plot profit (in ETH) from an arbitrage, where we buy `amount_in` tokens for WETH on one exchange and sell them all for WETH on another.
 
-![](/img/arb-profit-plot.png "arbitrage profit per amount_in")
+![](/img/mevshare-flashloan-arb-guide/arb-profit-plot.png "arbitrage profit per amount_in")
 
 As you can see, the optimal amount_in to buy is approximately 35 ETH, but that's just eyeballing. How do we calculate the exact optimal point? To figure that out, first we need to figure out how to pre-calculate the outcome of a single swap. Then we'll compose two swaps together to calculate the outcome of an arbitrage. (This is how we made that chart!)
 
@@ -134,7 +134,7 @@ When we do turn a profit, we need to pay some of it to the validators/builders i
 
 If you want to run a capital-intensive strategy (not using flash loans) you'll have to deploy your own contract. This is not required if you use our flash loan contract. The flash loan contract is designed to send profits to the caller when the arbitrage is done. This allows anyone to execute arbitrages without paying to deploy the contract. The tradeoff with this is that it costs more gas to transfer the profit to your wallet than it does to keep the money in the contract. If you decide to deploy your own contract, this is a commonly used strategy and will save gas (at the risk of your contract containing a bug that might compromise the funds).
 
-```sh
+```bash
 # compile contracts
 forge build
 # deploy contracts

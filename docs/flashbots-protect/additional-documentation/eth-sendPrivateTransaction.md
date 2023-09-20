@@ -4,8 +4,8 @@ title: eth_sendPrivateTransaction
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Hints from '../../specs/mev-share/_hints.mdx';
-import Builders from '../../specs/mev-share/_builders.mdx';
+import Hints from '@site/docs/specs/mev-share/_hints.mdx';
+import Builders from '@site/docs/specs/mev-share/_builders.mdx';
 
 ## Introduction
 

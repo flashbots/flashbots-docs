@@ -4,7 +4,7 @@ title: Event Stream
 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
-import StreamEvent from '../../specs/mev-share/_streamEvent.mdx'
+import StreamEvent from '@site/docs/specs/mev-share/_streamEvent.mdx'
 
 Events on MEV-Share are distributed via an SSE endpoint. Searchers listen to this endpoint to receive a stream of new events, which contain data they can use in their bundles. Currently, the events refer to Ethereum transactions.
 
@@ -40,7 +40,7 @@ bundleHandler.close()
 </TabItem>
 <TabItem value="sh" label="curl">
 
-```sh
+```bash
 curl https://mev-share-goerli.flashbots.net
 ```
 
@@ -48,7 +48,7 @@ This will block until terminated manually (CTRL-C).
 
 _Response:_
 
-```sh
+```bash
 :ping
 
 data: {"hash":"0xc7dc06c994400830054ab815732d91275bc1241f9be62b62b687b7882f19b8d4","logs":null,"txs":[{"to":"0x0000c335bc9d5d1af0402cad63fa7f258363d71a","functionSelector":"0x696d2073","callData":"0x696d20736861726969696969696e67"}]}
@@ -137,7 +137,7 @@ Returns an array of historical hints.
 <TabItem value="sh" label="curl">
 Get available historical hint data:
 
-```sh
+```bash
 curl https://mev-share-goerli.flashbots.net/api/v1/history/info
 ```
 
@@ -156,7 +156,7 @@ _Response:_
 
 Get historical hint data for a block range:
 
-```sh
+```bash
 curl https://mev-share-goerli.flashbots.net/api/v1/history
 ```
 

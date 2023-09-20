@@ -28,7 +28,7 @@ To add a transaction to the bundle, sign and send the transaction as you normall
 
 You can get the array of transactions included in your bundle using the `GET /bundle?id=<YOUR_BUNDLE_ID>` endpoint:
 
-```sh
+```bash
 curl https://rpc.flashbots.net/bundle?id=<YOUR_BUNDLE_ID>
 ```
 
