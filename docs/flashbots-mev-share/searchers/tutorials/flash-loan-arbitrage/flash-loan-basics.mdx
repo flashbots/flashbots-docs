@@ -10,16 +10,7 @@ In the case of a flash loan on Balancer, which we'll implement shortly, the call
 
 ## Adding Flash Loans to Your Contract
 
-Flash loan capabilities can be added to any smart contract by simply implementing the `receiveFlashLoan` function. The only requirement for this function is that it pays back the flash loan, but we'll also call our arbitrage function here, since we only need flash loans for executing arbitrages.
-
-Here's what it looks like in solidity:
-
-```solidity
-// TODO: add code
-function receiveFlashLoan(...) external override {...}
-```
-
-Add this function to your existing smart contract, and then add a function that calls `vault.flashLoan`. Here's an example we borrowed from the [Balancer docs](https://docs.balancer.fi/reference/contracts/flash-loans.html#example-code):
+Flash loan capabilities can be added to any smart contract by simply implementing the `receiveFlashLoan` function. The only requirement for this function is that it pays back the flash loan, but we'll also call our arbitrage function here, since we only need flash loans for executing arbitrages. Add this function to your existing smart contract, and then add a function that calls `vault.flashLoan`. Here's an example we borrowed from the [Balancer docs](https://docs.balancer.fi/reference/contracts/flash-loans.html#example-code):
 
 ```solidity
 function makeFlashLoan(
