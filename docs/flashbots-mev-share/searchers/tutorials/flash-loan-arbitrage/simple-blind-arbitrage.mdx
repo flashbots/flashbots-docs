@@ -42,7 +42,7 @@ Defining these interfaces allows us to interact with other smart contracts direc
 
 ### Abstract Contract
 
-It's important to remember that this is an abstract contract, meaning that to use it, we'll need to write another smart contract that extends it (using the `is` keyword). That contract is responsible for writing the capital-management strategy; where to keep money, where/how to get it; as well as any other custom logic required for their specific strategy. We'll do a walkthrough of two different finished implementations after we break down the core logic contract. Read on to learn how our arbitrage algorithm works.
+It's important to remember that this is an abstract contract, meaning that to use it, we'll need to write another smart contract that extends it (using the `is` keyword). This contract is responsible for implementing the capital-management strategy; where to keep money, where/how to get it; as well as any other custom logic such as fee payments, etc. We'll do a walkthrough of a finished implementation with flash loans after we break down the core logic contract. Read on to learn how our arbitrage algorithm works.
 
 ### Arbitrage Algorithm
 
