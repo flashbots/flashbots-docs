@@ -158,11 +158,11 @@ However, some data can only be used in an onchain setting. For instance, if you 
 
 ### Other Exchanges
 
-We strictly use Uniswap V2 because its pricing algorithm is simple, making arbitrages easily calculable. Uniswap V2 and Sushiswap use the same pricing algorithms, so we efficiently arb between those two exchanges. Uniswap V3 math is more complicated, making arbitrages on V3 very inefficient to calculate onchain.
+We strictly use Uniswap V2 in this guide/bot because its pricing algorithm is simple, making arbitrages easily calculable. Uniswap V2 and Sushiswap use the same pricing algorithms, so we efficiently arb between those two exchanges. Uniswap V3 math is more complicated, making arbitrages on V3 very inefficient to calculate onchain.
 
 However, Uniswap V3+ processes much more trade volume than V2. To improve your profits, consider developing a strategy that integrates Uniswap V3 into your own contract. It will likely involve probabilistic methods. Also note: Uniswap V4 uses the same pricing math as V3.
 
-MEV-Share also supports Balancer and Curve.
+MEV-Share also shares hints for swaps on Balancer and Curve, from users with the default hint settings.
 
 ---
 
