@@ -131,13 +131,36 @@ When we do turn a profit, we need to pay some of it to the validators/builders i
 
 ### Compile & Deploy (optional)
 
-If you want to run a capital-intensive strategy (not using flash loans) you'll have to deploy your own contract. This is not required if you use our flash loan contract. The flash loan contract is designed to send profits to the caller when the arbitrage is done. This allows anyone to execute arbitrages without paying to deploy the contract. The tradeoff with this is that it costs more gas to transfer the profit to your wallet than it does to keep the money in the contract. If you decide to deploy your own contract, this is a commonly used strategy and will save gas (at the risk of your contract containing a bug that might compromise the funds).
+If you want to run a capital-intensive strategy (not using flash loans) you'll have to deploy your own contract. This is not required if you use our flash loan contract. The flash loan contract is designed to send profits to the caller when the arbitrage is done. This allows anyone to execute arbitrages without paying to deploy the contract. The tradeoff with this is that it costs more gas to transfer the profit to your wallet than it does to keep the money in the contract. However, if you decide to deploy your own contract, its transactions will use less gas (at the risk of your contract containing a bug that might compromise the funds), but will only land bundles if it holds enough capital to buy the required tokens.
+
+A simple way to deploy contracts is to use [**`forge`** from Foundry](https://github.com/foundry-rs/foundry):
 
 ```bash
 # compile contracts
 forge build
-# deploy contracts
-forge create -r $RPC_URL --private-key $PRIVATE_KEY
+
+# to test with a local fork:
+anvil -f $MAINNET_RPC_URL --chain-id 1 &
+
+# these vars are set to deploy on local fork; change as/if needed
+export PRIVATE_KEY="0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+export WETH_ADDRESS="0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+export RPC_URL="http://localhost:8545"
+
+# deploy flashloan arb contract
+forge create -r $RPC_URL --private-key $PRIVATE_KEY BlindBackrunFlashLoan --constructor-args $WETH_ADDRESS
+
+# or deploy capital-intensive contract
+forge create -r $RPC_URL --private-key $PRIVATE_KEY BlindBackrun --constructor-args $WETH_ADDRESS
+```
+
+_output:_
+
+```
+No files changed, compilation skipped
+Deployer: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Deployed to: 0xc075BC0f734EFE6ceD866324fc2A9DBe1065CBB1
+Transaction hash: 0xe9567cce60dfdc1f815f4724340228f2af77ee5cc157a69d07c4b270fcab3a30
 ```
 
 ## Tradeoffs
