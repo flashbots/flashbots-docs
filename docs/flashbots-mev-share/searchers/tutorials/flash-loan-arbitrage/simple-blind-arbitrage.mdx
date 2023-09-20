@@ -10,7 +10,7 @@ We'll start by explaining the core concept of this bot's strategy: _onchain sear
 
 Our goal is to turn a profit by backrunning pending transactions from **MEV-Share**. The "backrun transaction" is an arbitrage: we buy tokens on one exchange and sell them on another for a different price. Ideally, the difference in price will allow us to take a profit.
 
-MEV-Share introduces some key differences from more common strategies that you may have seen elsewhere (e.g. simple-arbitrage, subway, rusty-sando [// TODO: ADD LINKS]). The main difference is that pending transactions typically expose _less data_, compared to transactions in the public mempool. Transaction signatures are _always_ hidden from searchers. Simulation-based strategies (e.g. rusty-sando) on these transactions are usually not possible, since the amount traded by the user is typically hidden. That being said, users can choose to reveal more data to searchers, so all the classic strategies can still be used; they'll just land less often.
+MEV-Share introduces some key differences from more common strategies that you may have seen elsewhere (e.g. [simple-arbitrage](https://github.com/flashbots/simple-arbitrage), [subway](https://github.com/libevm/subway), [rusty-sando](https://github.com/mouseless-eth/rusty-sando)). The main difference is that pending transactions typically expose _less data_, compared to transactions in the public mempool. Transaction signatures are _always_ hidden from searchers. Simulation-based strategies (e.g. rusty-sando) on these transactions are usually not possible, since the amount traded by the user is typically hidden. That being said, users can choose to reveal more data to searchers, so all the classic strategies can still be used; they'll just land less often.
 
 The strategy we'll use is called "onchain" searching: we calculate how much to trade within the "trade" itself, effectively executing the searching strategy & algorithm _on the blockchain_ ("onchain"). We send a backrun for every transaction that touches the tokens we're interested in trading, and rely on Flashbots to prevent unprofitable trades from landing on-chain (formerly known as "being mined"). The _amount_ we buy & sell in our arbitrage trades is derived from the prices of the assets on the blockchain at the time of execution. Because we place our transaction behind another user's transaction ("backrunning"), the price that our transaction sees is the price which has been changed by the user's trade. This is where we get our arbitrage opportunity.
 
@@ -48,9 +48,9 @@ The amount of tokens we get out from one swap is defined with the following func
 
 - let $F$ = `FEE` = 997
 - let $D$ = `FEE_DIVISOR` = 1000
-- let $R_o$ = `reserveOut` (constant at execution time, changes after a trade)
+- let $R_o$ = `reserveOut`
     - this refers to the reserves of the token that we're getting _out_ of the trade
-- let $R_i$ = `reserveIn` (constant at execution time, changes after a trade)
+- let $R_i$ = `reserveIn`
     - this refers to the reserves of the token that we're paying _into_ the trade
 
 $$
@@ -75,34 +75,33 @@ function getAmountOut(
 
 If we calculate the $amountOut$ from one pair, and set that as the input to another trading pair's $amountOut$ function, then we get the ETH proceeds from an arbitrage. Subtract the original amount in ($x$) and that number is our gross profit.
 
-- function $f(x)$ returns $amountOut$ for the _first_ trading pair.
-- function $g(x)$ returns $amountOut$ for the _second_ trading pair.
-- $R_o$ and $R_i$ are defined per function, each using reserves from to their respective trading pool. The trade direction (whether a reserve is $R_i$ or $R_o$) will need to be defined more strictly in code, but for this general formula, the notion of "in" and "out" to refer to reserves is sufficient.
+The following function calculates the optimal trade amount such that gross profit is as high as possible:
+
+- let $F$ = `FEE` = 997
+- let $D$ = `FEE_DIVISOR` = 1000
+- let ${R_i}_{A|B}$ = `reserveIn` for exchange A or B
+    - this refers to the reserves of the token that we're paying _into_ the trade
+- let ${R_o}_{A|B}$ = `reserveOut` for exchange A or B
+    - this refers to the reserves of the token that we're getting _out_ of the trade
 
 $$
-profit = g(f(x)) - x
+profit_{gross} = {
+    \left(\sqrt{F^2 \cdot {R_o}_A \cdot {R_o}_B \over {R_i}_B \cdot {R_i}_A} - D\right) \cdot {R_i}_B \cdot {R_i}_A
+    \over
+    \left(F \cdot {R_i}_B \cdot D \right) + \left( F^2 \cdot {R_o}_A \right)
+}
 $$
 
-Fully expanded, the equation looks like this (it's messy, don't read into it too much):
+_For example, if we're arbitraging WETH -> TKN on exchange A, then TKN -> WETH on exchange B, our variables would be:_
 
-$$
-profit = p(x) = {({x \cdot F \cdot {R_o}_A \over {R_i}_A \cdot D + x \cdot F}) \cdot F \cdot {R_o}_B \over {R_i}_B \cdot D + F \cdot ({x \cdot F \cdot {R_o}_A \over {R_i}_A \cdot D + x \cdot F})} - x
-$$
+- ${R_i}_A$ = `WETH.reserves`
+- ${R_o}_A$ = `TKN.reserves`
+- ${R_i}_B$ = `TKN.reserves`
+- ${R_o}_B$ = `WETH.reserves`
 
-- ${R_o}_A$ and ${R_i}_A$ are `reservesOut` and `reservesIn`, respectively, for trading pair $A$
-- we start (buy tokens) on exchange $A$ and finish the arb (sell tokens) on exchange $B$
+How to derive this formula is beyond the scope of this document, but if you want to dig deeper, check out [this paper](https://arxiv.org/pdf/1911.03380.pdf).
 
-:::caution // TODO
-
-Calculus fundamentals are out of the scope of this guide, but something something explain the maximization solution
-
-:::
-
-$$
-todo
-$$
-
-This is implemented by the `getAmountIn` function [in our smart contract](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L116C14-L130), which relies on [`getNumerator`](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L132-L173) and [`getDenominator`](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L175-L206) to do the math (and to avoid "stack too deep" errors).
+This formula is implemented by the `getAmountIn` function [in our smart contract](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L116C14-L130), which relies on [`getNumerator`](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L132-L173) and [`getDenominator`](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L175-L206) to do the math (and to avoid "stack too deep" errors).
 
 Now that we know how to calculate the optimal amount of WETH to send for an arbitrage, let's put it to use.
 
