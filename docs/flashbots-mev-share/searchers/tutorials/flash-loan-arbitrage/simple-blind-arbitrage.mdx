@@ -94,7 +94,7 @@ function _executeArbitrage(
 ) ...
 ```
 
-We just tell it which token pairs to trade, and how much profit to tip the validator.
+We just tell it which token pairs to trade, and how much profit to tip the validator. We choose to make `percentageToPayToCoinbase` a function argument because as competition increases, you may have to pay more to the validator to be selected over another competing bundle. This may change frequently, so it's important to monitor the bot and adjust the tip as needed.
 
 The function starts by reading the smart contract's own WETH balance. This is used later to verify our profits. We use the pair addresses to instantiate uniswap Pair contracts, which we pass to `getPairData` to read the reserves, which we then use to calculate the optimal arbitrage with `getAmountIn(firstPairData, secondPairData)`.
 
