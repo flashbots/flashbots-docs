@@ -2,17 +2,25 @@ import RemoteCodeBlock from "@site/src/components/RemoteCodeBlock"
 
 # Breakdown: simple-blind-arbitrage
 
-This guide is based off of [simple-blind-arbitrage](https://github.com/flashbots/simple-blind-arbitrage). Before you continue with this guide, we recommend reading the [README](https://github.com/flashbots/simple-blind-arbitrage#readme) for a technical overview of the system. If this raises more questions than it answers, that's OK! This guide will break down each component of the bot in detail.
+Our goal is to make an _arbitrage bot_ that uses flash loans to fund its trades. Arbitrage opportunities arise when one user makes a trade that results in a significant price shift on one exchange. If there is a trading pair on another exchange for the same tokens, and the difference in price between the two exchanges is large enough, we can turn a profit by sending a two trades immediately after the one that caused the price shift: one to buy tokens on one exchange, one to sell them on another. Sending one or more transactions immediately after another is known as **backrunning**.
 
-We'll start by explaining the core concept of this bot's strategy: _onchain searching_.
+The goal of backrunning is to guarantee that our trades are first in line to execute after the result of some transaction (e.g. a price shift). This allows us to calculate the optimal trade at execution-time with certainty that it will either execute the ideal arbitrage, or revert.
+
+> This guide is based off of [simple-blind-arbitrage](https://github.com/flashbots/simple-blind-arbitrage). Before you continue with this guide, we recommend skimming the [README](https://github.com/flashbots/simple-blind-arbitrage#readme) for a technical overview of the system. If this raises more questions than it answers, that's OK! This guide will break down each component of the bot in detail.
+
+Before we backrun any transactions, we need to create a smart contract to make trades for us. The backrun transaction we send will call a function on the contract that executes the arbitrage. So how does the smart contract execute an arbitrage?
+
+To find out, let's examine this bot's strategy: _onchain searching_.
 
 ## Onchain Searching
 
-Our goal is to turn a profit by backrunning pending transactions from **MEV-Share**. The "backrun transaction" is an arbitrage: we buy tokens on one exchange and sell them on another for a different price. Ideally, the difference in price will allow us to take a profit.
+MEV-Share introduces some key differences from more common strategies that you may have seen elsewhere (e.g. [simple-arbitrage](https://github.com/flashbots/simple-arbitrage), [subway](https://github.com/libevm/subway), [rusty-sando](https://github.com/mouseless-eth/rusty-sando)). These bots rely on _full transaction simulations_ (with signatures) to calculate the optimal trade _off-chain_. Calculating trades off-chain saves gas, but comes at the cost of uncertainty. Based on your bundle's placement in the block, the state your transaction relies on may change, which could potentially invalidate your transaction.
 
-MEV-Share introduces some key differences from more common strategies that you may have seen elsewhere (e.g. [simple-arbitrage](https://github.com/flashbots/simple-arbitrage), [subway](https://github.com/libevm/subway), [rusty-sando](https://github.com/mouseless-eth/rusty-sando)). The main difference is that pending transactions typically expose _less data_, compared to transactions in the public mempool. Transaction signatures are _always_ hidden from searchers. Simulation-based strategies (e.g. rusty-sando) on these transactions are usually not possible, since the amount traded by the user is typically hidden. That being said, users can choose to reveal more data to searchers, so all the classic strategies can still be used; they'll just land less often.
+On MEV-Share, pending transactions typically expose _less data_ than transactions in the public mempool. Transaction signatures are _always_ hidden from searchers. Simulation-based strategies (e.g. rusty-sando) on these transactions are usually not possible, since the amount traded by the user is typically hidden. That being said, users can choose to reveal more data to searchers, so all the classic strategies can still be used; they'll just land less often.
 
-The strategy we'll use is called "onchain" searching: we calculate how much to trade within the "trade" itself, effectively executing the searching strategy & algorithm _on the blockchain_ ("onchain"). We send a backrun for every transaction that touches the tokens we're interested in trading, and rely on Flashbots to prevent unprofitable trades from landing on-chain (formerly known as "being mined"). The _amount_ we buy & sell in our arbitrage trades is derived from the prices of the assets on the blockchain at the time of execution. Because we place our transaction behind another user's transaction ("backrunning"), the price that our transaction sees is the price which has been changed by the user's trade. This is where we get our arbitrage opportunity.
+The strategy we'll use is called "onchain" searching: we calculate how much to trade within the "trade" itself, effectively executing the searching strategy & algorithm _on the blockchain_ ("onchain"). The advantage of this strategy is that it has direct access to onchain state, meaning it can _always_ calculate the most optimal arbitrage trade parameters, unlike off-chain strategies.
+
+We send a backrun for every transaction that touches the tokens we're interested in trading, and rely on Flashbots to prevent unprofitable trades from landing on-chain. The _amount_ we buy & sell in our arbitrage trades is derived from the prices of the assets on the blockchain at the time of execution. Because we place our transaction behind another user's transaction ("backrunning"), the price that our transaction sees is the price which has been changed by the user's trade. This is where we get our arbitrage opportunity.
 
 ## Arbitrage Contract
 
@@ -123,7 +131,7 @@ The function starts by reading the smart contract's own WETH balance. This is us
 
 Uniswap token pairs refer to their tokens as `token0` and `token1`; `token0` being the one whose address is numerically less than the other (e.g. 0x0123 < 0x0234); so we need to discern which token of the pair's two tokens is WETH. Our `getPairData` function sets this in the `isWETHZero` field. If WETH is token0, then we'll trade token0 -> token1 on exchange A, then token1 -> token0 on exchange B. If WETH is token1, then we just switch "token0" with "token1" and apply the same formula.
 
-Once we know which token is which, we calculate the amount of tokens we'll receive from each trade. We use these values as inputs to the token pairs' swap functions. See [`swap` on the Uniswap V2 Pair](/#TODO) contract for more details on how swaps work.
+Once we know which token is which, we calculate the amount of tokens we'll receive from each trade. We use these values as inputs to the token pairs' swap functions. See [`swap` on the Uniswap V2 Pair](https://github.com/Uniswap/v2-core/blob/master/contracts/UniswapV2Pair.sol#L159-L187) contract for more details on how swaps work.
 
 Once we've executed our trades, we should expect to have more ETH (or WETH) than we started with. But that won't always be the case. To ensure that we don't pay for an unprofitable trade, we check the WETH balance at the end of the `_executeArbitrage` function. If the balance isn't greater than when we first called the function, the transaction will revert. This protects us from malicious tokens, unforseen market conditions, and a variety of other ways you can lose your money.
 
