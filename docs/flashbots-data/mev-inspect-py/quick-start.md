@@ -1,47 +1,107 @@
 ---
-title: quick start
+title: Quick Start
 ---
 
 Let's use mev-inspect to find the same arbitrage as [MEV Alpha Leak](https://twitter.com/mevalphaleak/status/1420416437575901185)
 
-### Install
+## Install
 
-Get mev-inspect running by going through the [install section](/flashbots-data/mev-inspect-py/install)
+mev-inspect-py is built to run on kubernetes locally and in production
 
-### Inspect a block
+### Install dependencies
+
+First, setup a local kubernetes deployment - we use [Docker](https://www.docker.com/products/docker-desktop) and [kind](https://kind.sigs.k8s.io/docs/user/quick-start)
+
+If using kind, create a new cluster with:
+
+```sh
+kind create cluster
+```
+
+Next, install the kubernetes CLI [`kubectl`](https://kubernetes.io/docs/tasks/tools/)
+
+Then, install [helm](https://helm.sh/docs/intro/install/) - helm is a package manager for kubernetes
+
+Lastly, setup [Tilt](https://docs.tilt.dev/install.html) which manages running and updating kubernetes resources locally
+
+### Start up
+
+Set an environment variable `RPC_URL` to an RPC for fetching blocks
+Example:
+
+```sh
+export RPC_URL="http://111.111.111.111:8546"
+```
+
+:::note
+
+mev-inspect-py currently requires and RPC with support for OpenEthereum / Erigon traces (not geth 😔)
+
+:::
+
+Next, start all servcies with:
+
+```sh
+tilt up
+```
+
+Press "space" to see a browser of the services starting up
+
+On first startup, you'll need to apply database migrations. Apply with:
+
+```sh
+./mev exec alembic upgrade head
+```
+
+### Tear down
+
+First stop the running tilt window with `Ctrl+C`
+
+Then run
+
+```sh
+tilt down
+```
+
+## Inspect a block
 
 Using the [linked etherscan transaction](https://etherscan.io/tx/0xfcf4558f6432689ea57737fe63124a5ec39fd6ba6aaf198df13a825dd599bffc), we can see the block number is 12914944.
 
 To inspect this block, run
-```
+
+```sh
 ./mev inspect 12914944
 ```
 
-### Connect to Postgres
+## Connect to Postgres
 
 We'll connect to the Postgres database to see the data inspect found in that block
 
 Let's start up a client container connected to the DB:
-```
+
+```sh
 ./mev db
 ```
 
 When you see the prompt
-```
+
+```sh
 mev_inspect=#
 ```
 
 You're ready to query!
 
 To make the data display nice, switch into "Expanded display" mode by running
-```
+
+```sh
 \x
 ```
 
-### Query for arbitrage data
+## Query for arbitrage data
 
 Let's find that arbitrage by querying the `arbitrages` table:
-```
+
+```sql
 SELECT *
 FROM arbitrages
 WHERE
@@ -50,7 +110,8 @@ WHERE
 ```
 
 You should see output like this:
-```
+
+```txt
 id                   | ff2deb13-c2c1-4ef5-a6ff-0ca813a07d6b
 created_at           | 2021-09-27 15:26:58.193263
 account_address      | 0x0000fee6275dab194ab538a01dd8b18b02b20000
@@ -66,12 +127,15 @@ We can see this matches the original tweet description!
 
 The `profit_token_address` is the address for WETH, our `start_amount` is 70 WETH (assuming 18 decimals), and our `end_amount` is 123 WETH
 
-### Query for arbitrage swaps
+## Query for arbitrage swaps
 
 We can learn about the swaps involed in this arbitrage by joining against the `arbitrage_swaps` and `swaps` tables
 
-**Note: you'll need to switch in the id you got in the first query for arbitrage_id**
-```
+:::note
+You'll need to switch in the id you got in the first query for arbitrage_id
+:::
+
+```sql
 SELECT s.*
 FROM swaps s
 JOIN arbitrage_swaps arb_swaps ON
@@ -81,7 +145,8 @@ WHERE arb_swaps.arbitrage_id = 'ff2deb13-c2c1-4ef5-a6ff-0ca813a07d6b';
 ```
 
 You should see output like this:
-```
+
+```txt
 -[ RECORD 1 ]-----+-------------------------------------------------------------------
 created_at        | 2021-09-27 15:26:58.180131
 abi_name          | UniswapV3Pool
@@ -101,17 +166,19 @@ error             |
 ...
 ```
 
-### Query for miner payment
+## Query for miner payment
 
 Lastly, we can see how much was paid to the miner for this transaction by querying by the transaction hash:
-```
+
+```sql
 SELECT *
 FROM miner_payments
 WHERE transaction_hash = '0xfcf4558f6432689ea57737fe63124a5ec39fd6ba6aaf198df13a825dd599bffc';
 ```
 
 You should see results like this:
-```
+
+```txt
 created_at                       | 2021-09-27 15:26:58.245444
 block_number                     | 12914944
 transaction_hash                 | 0xfcf4558f6432689ea57737fe63124a5ec39fd6ba6aaf198df13a825dd599bffc
@@ -134,7 +201,7 @@ transaction_from_address         | 0xd80276cd0348e9b3c5d017e1f7529f0a785fec3a
 
 So in total, this searcher paid 48.2 ETH to make 53.5 ETH for a net profit of 5.3 ETh
 
-### Next steps
+## Next steps
 
 To see what other data is available for querying, check out the [data](/flashbots-data/mev-inspect-py/data/classified_traces) section
 

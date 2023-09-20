@@ -4,11 +4,9 @@ title: RPC Endpoint
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Hints from '@site/docs/specs/mev-share/_hints.mdx';
-import Builders from '@site/docs/specs/mev-share/_builders.mdx';
-import SendBundleSpec from '@site/docs/specs/mev-share/_mev_sendBundle.mdx';
-import SimBundleSpec from '@site/docs/specs/mev-share/_mev_simBundle.mdx';
-
+import Hints from "../../../specs/mev-share/_hints.mdx";
+import Builders from "../../../specs/mev-share/_builders.mdx";
+import SendBundleSpec from "../../../specs/mev-share/_mev_sendBundle.mdx";
 
 ## Interact directly with the Flashbots RPC endpoint
 
@@ -16,10 +14,10 @@ Advanced users can interact with the RPC endpoint at `relay.flashbots.net`, or o
 
 ### Bundle Relay URLS
 
-| Network | URL |
-| --- | --- |
-| Mainnet | `https://relay.flashbots.net` |
-| Goerli | `https://relay-goerli.flashbots.net` |
+| Network | URL                                   |
+| ------- | ------------------------------------- |
+| Mainnet | `https://relay.flashbots.net`         |
+| Goerli  | `https://relay-goerli.flashbots.net`  |
 | Sepolia | `https://relay-sepolia.flashbots.net` |
 
 The API provides JSON-RPC methods for interfacing with Flashbots which are documented below:
@@ -86,38 +84,40 @@ example request:
 
 ```json
 {
-    "params": [
+  "params": [
     {
       "version": "v0.1",
-      "inclusion":
-      {
+      "inclusion": {
         "block": "0x8b8da8",
         "maxBlock": "0x8b8dab"
       },
       "body": [
-      {
-        "hash": "0x24e6e999b8abf2c4df46e8a02516c0983043039a5a54f89fa87274427ce64798"
-      },
-      {
-        "tx": "0x02f880058201d685e9103fda0085e9103fda368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a8092696d206261636b72756e6e69696969696e67c080a0c5058ccf5759e29d4ad28e038f632a9b6269bbb0644c61447e0f14d56c453d73a048e877ee621c4b6be1234a8ad84379e80d45b288a7271e2b1aede7a04f06fd98",
-        "canRevert": false
-      }],
-      "validity":
-      {
+        {
+          "hash": "0x24e6e999b8abf2c4df46e8a02516c0983043039a5a54f89fa87274427ce64798"
+        },
+        {
+          "tx": "0x02f880058201d685e9103fda0085e9103fda368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a8092696d206261636b72756e6e69696969696e67c080a0c5058ccf5759e29d4ad28e038f632a9b6269bbb0644c61447e0f14d56c453d73a048e877ee621c4b6be1234a8ad84379e80d45b288a7271e2b1aede7a04f06fd98",
+          "canRevert": false
+        }
+      ],
+      "validity": {
         "refund": [],
         "refundConfig": []
       }
-    }],
-    "method": "mev_sendBundle",
-    "id": 1,
-    "jsonrpc": "2.0"
+    }
+  ],
+  "method": "mev_sendBundle",
+  "id": 1,
+  "jsonrpc": "2.0"
 }
 ```
 
 example response:
 
 ```json
-{ "bundleHash": "0x7d6e491ab67aee5f4b75321c936bf05664d2d9b234fd67083e46bd43bb42f383" }
+{
+  "bundleHash": "0x7d6e491ab67aee5f4b75321c936bf05664d2d9b234fd67083e46bd43bb42f383"
+}
 ```
 
 ### eth_callBundle
@@ -212,23 +212,22 @@ example request (sent after landing a bundle via `mev_sendBundle`):
 {
   "params": [
     {
-      "inclusion":
-      {
+      "inclusion": {
         "block": "0x8b8da8",
         "maxBlock": "0x8b8dab"
       },
       "body": [
-      {
-        "tx": "0x02f87b058201d5843b9aca00843b9aca368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a808f696d20736861726969696969696e67c001a00d8d998fb0dc1e4da9b1de477acea54f185153d66d0af45a4ecfd20e453772baa07bd0ad1e1afb3f19749aaa5660f22859a6e485942346cd7186c024a5da747ada",
-        "canRevert": false
-      },
-      {
-        "tx": "0x02f880058201d685e9103fda0085e9103fda368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a8092696d206261636b72756e6e69696969696e67c080a0c5058ccf5759e29d4ad28e038f632a9b6269bbb0644c61447e0f14d56c453d73a048e877ee621c4b6be1234a8ad84379e80d45b288a7271e2b1aede7a04f06fd98",
-        "canRevert": false
-      }],
+        {
+          "tx": "0x02f87b058201d5843b9aca00843b9aca368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a808f696d20736861726969696969696e67c001a00d8d998fb0dc1e4da9b1de477acea54f185153d66d0af45a4ecfd20e453772baa07bd0ad1e1afb3f19749aaa5660f22859a6e485942346cd7186c024a5da747ada",
+          "canRevert": false
+        },
+        {
+          "tx": "0x02f880058201d685e9103fda0085e9103fda368255f0940000c335bc9d5d1af0402cad63fa7f258363d71a8092696d206261636b72756e6e69696969696e67c080a0c5058ccf5759e29d4ad28e038f632a9b6269bbb0644c61447e0f14d56c453d73a048e877ee621c4b6be1234a8ad84379e80d45b288a7271e2b1aede7a04f06fd98",
+          "canRevert": false
+        }
+      ],
       "version": "v0.1",
-      "validity":
-      {
+      "validity": {
         "refund": [],
         "refundConfig": []
       }
@@ -253,7 +252,7 @@ example response:
   "profit": "0x4bc800904fc000",
   "refundableValue": "0x4bc800904fc000",
   "gasUsed": "0xa620",
-  "logs": [{},{}]
+  "logs": [{}, {}]
 }
 ```
 
@@ -279,7 +278,7 @@ See [bundle cancellations](/flashbots-auction/searchers/advanced/bundle-cancella
 
 ### eth_sendPrivateTransaction
 
-`eth_sendPrivateTransaction` is used to send a single transaction to Flashbots. Flashbots will attempt to build a block including the transaction for the next 25 blocks. See [Private Transactions](/flashbots-auction/searchers/advanced/private-transaction.mdx) for more info.
+`eth_sendPrivateTransaction` is used to send a single transaction to Flashbots. Flashbots will attempt to build a block including the transaction for the next 25 blocks. See [Private Transactions](/flashbots-protect/additional-documentation/eth-sendPrivateTransaction) for more info.
 
 [`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendprivatetransaction?a=fb) is also supported for free on [Alchemy](https://alchemy.com?a=fb).
 
@@ -334,7 +333,7 @@ example request:
           "builders": ["default"]
         },
         "validity": {
-          "refund": [{"address": "0xadd123", "percent": 50}]
+          "refund": [{ "address": "0xadd123", "percent": 50 }]
         }
       }
     }
@@ -356,10 +355,10 @@ example response:
 
 By default, transactions are sent to the Flashbots MEV-Share Node with the default [Stable](/flashbots-protect/mev-share#stable-configuration) configuration. The `privacy` parameter allows you to specify your own privacy parameters.
 
-| Param | Type Info | Description |
-|-|-|-|
-| `hint` | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
-| `builders` | Array of strings | Builders to grant permission to include the transaction in a block. |
+| Param      | Type Info        | Description                                                                                      |
+| ---------- | ---------------- | ------------------------------------------------------------------------------------------------ |
+| `hint`     | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
+| `builders` | Array of strings | Builders to grant permission to include the transaction in a block.                              |
 
 **`hint`**
 
@@ -381,11 +380,11 @@ If multiple refund addresses are specified, then the backrun value is split betw
 For example, if refund is `[{address: addr1, percent: 10}, {address: addr1, percent: 20}]` then 10% of the backrun value is sent to `addr1` and 20% is sent to `addr2`
 and 70% of the backrun value is left to the builder.
 
-| Param | Type Info | Description |
-|-|-|-|
-| `refund` | Array of objects | Each entry in the array specifies address that should receive refund from backrun and percent of the backrun value. |
-| `refund[].address` | Address | Address that should receive refund. |
-| `refund[].percent` | Number | Percentage of the total backrun value that this address should receive. |
+| Param              | Type Info        | Description                                                                                                         |
+| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `refund`           | Array of objects | Each entry in the array specifies address that should receive refund from backrun and percent of the backrun value. |
+| `refund[].address` | Address          | Address that should receive refund.                                                                                 |
+| `refund[].percent` | Number           | Percentage of the total backrun value that this address should receive.                                             |
 
 ### eth_sendPrivateRawTransaction
 
@@ -427,11 +426,10 @@ example response:
 }
 ```
 
-| Param | Type Info | Description |
-|-|-|-|
-| `params[0]` | String | Raw signed transaction |
-| `params[1]` | Object | Optional private tx preferences, see `preferences` in eth_sendPrivateTransaction. |
-
+| Param       | Type Info | Description                                                                       |
+| ----------- | --------- | --------------------------------------------------------------------------------- |
+| `params[0]` | String    | Raw signed transaction                                                            |
+| `params[1]` | Object    | Optional private tx preferences, see `preferences` in eth_sendPrivateTransaction. |
 
 ### eth_cancelPrivateTransaction
 
@@ -560,28 +558,27 @@ example response:
   "sentToMinersAt": "2021-08-06T21:36:06.343Z",
   "receivedAt": "2022-10-06T21:36:06.250Z", // Added for POS, will be included as part of V2
   "consideredByBuildersAt": [
-		{
-			"pubkey": "0x81babeec8c9f2bb9c329fd8a3b176032fe0ab5f3b92a3f44d4575a231c7bd9c31d10b6328ef68ed1e8c02a3dbc8e80f9",
-			"timestamp": "2022-10-06T21:36:06.343Z"
-		},
-		{
-			"pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
-			"timestamp": "2022-10-06T21:36:06.394Z"
-		},
-		{
-			"pubkey": "0xa1dead1e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
-			"timestamp": "2022-10-06T21:36:06.322Z"
-		}
-	], // Added for POS, will be included as part of V2
+    {
+      "pubkey": "0x81babeec8c9f2bb9c329fd8a3b176032fe0ab5f3b92a3f44d4575a231c7bd9c31d10b6328ef68ed1e8c02a3dbc8e80f9",
+      "timestamp": "2022-10-06T21:36:06.343Z"
+    },
+    {
+      "pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
+      "timestamp": "2022-10-06T21:36:06.394Z"
+    },
+    {
+      "pubkey": "0xa1dead1e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
+      "timestamp": "2022-10-06T21:36:06.322Z"
+    }
+  ], // Added for POS, will be included as part of V2
   "sealedByBuildersAt": [
     {
       "pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
-			"timestamp": "2022-10-06T21:36:07.742Z"
-		}
+      "timestamp": "2022-10-06T21:36:07.742Z"
+    }
   ] // Added for POS, will be included as part of V2
 }
 ```
-
 
 ### flashbots_getUserStatsV2
 
@@ -620,7 +617,6 @@ where
 - `allTimeValidatorPayments`: the total amount paid to validators over all time
 - `allTimeGasSimulated`: the total amount of gas simulated across all bundles submitted to Flashbots. This is the actual gas used in simulations, not gas limit
 
-
 ### flashbots_getBundleStatsV2
 
 The `flashbots_getBundleStatsV2` JSON-RPC method returns stats for a single bundle. You must provide a blockNumber and the bundleHash, and the signing address must be the same as the one who submitted the bundle.
@@ -648,27 +644,28 @@ example response:
   "simulatedAt": "2022-10-06T21:36:06.317Z",
   "receivedAt": "2022-10-06T21:36:06.250Z",
   "consideredByBuildersAt": [
-		{
-			"pubkey": "0x81babeec8c9f2bb9c329fd8a3b176032fe0ab5f3b92a3f44d4575a231c7bd9c31d10b6328ef68ed1e8c02a3dbc8e80f9",
-			"timestamp": "2022-10-06T21:36:06.343Z"
-		},
-		{
-			"pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
-			"timestamp": "2022-10-06T21:36:06.394Z"
-		},
-		{
-			"pubkey": "0xa1dead1e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
-			"timestamp": "2022-10-06T21:36:06.322Z"
-		}
-	],
+    {
+      "pubkey": "0x81babeec8c9f2bb9c329fd8a3b176032fe0ab5f3b92a3f44d4575a231c7bd9c31d10b6328ef68ed1e8c02a3dbc8e80f9",
+      "timestamp": "2022-10-06T21:36:06.343Z"
+    },
+    {
+      "pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
+      "timestamp": "2022-10-06T21:36:06.394Z"
+    },
+    {
+      "pubkey": "0xa1dead1e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc",
+      "timestamp": "2022-10-06T21:36:06.322Z"
+    }
+  ],
   "sealedByBuildersAt": [
     {
       "pubkey": "0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f",
-			"timestamp": "2022-10-06T21:36:07.742Z"
-		}
+      "timestamp": "2022-10-06T21:36:07.742Z"
+    }
   ]
 }
 ```
+
 where
 
 - `isHighPriority`: boolean representing if this searcher has a high enough reputation to be in the high priority queue
@@ -680,18 +677,18 @@ where
 
 ### API Response
 
-* All method supports JSON-RPC standards for success response and not supported for error response(V2 methods are exceptions).
-* V2 methods supports JSON-RPC standards for both success and error response.
+- All method supports JSON-RPC standards for success response and not supported for error response(V2 methods are exceptions).
+- V2 methods supports JSON-RPC standards for both success and error response.
 
 ### Authentication
 
 To authenticate your request, Flashbots endpoints require you to sign the payload and include the signed payload in the `X-Flashbots-Signature` header of your request.
 
 ```curl
-curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: 0x1234:0xabcd" --data '{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}' https://relay.flashbots.net
+curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: <public key address>:<signature>" --data '{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}' https://relay.flashbots.net
 ```
 
-Any valid Ethereum key can be used to sign the payload. The Ethereum address associated with this key will be used by Flashbots to keep track of your requests over time and provide user statistics. You can change the key you use at any time.
+Any valid ECDSA-secp256k1 key, like an arbitrary Ethereum key, can be used to sign the payload. The address associated with this key will be used by Flashbots to keep track of your [reputation](/flashbots-auction/searchers/advanced/reputation) over time and provide user statistics. You can change the key you use at any time.
 
 The signature is calculated by taking the [EIP-191](https://eips.ethereum.org/EIPS/eip-191) hash of the json body encoded as UTF-8 bytes. Here's an example using ethers.js:
 

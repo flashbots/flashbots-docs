@@ -2,7 +2,9 @@
 title: Relay Fundamentals
 ---
 
-**What is a Relay?**
+## Relay Fundamentals
+
+### What is a Relay?
 
 Relays are a doubly-trusted data-availability layer and communication interface between builders and validators. Relays are trusted by builders for fair payload routing, and trusted by proposers for block validity, accuracy, and data availability. They are often specialized in Denial of Service (DoS) protection and networking.
 
@@ -10,7 +12,7 @@ Relays can connect to one or many builders, and we expect that there will be bot
 
 Before validators can receive any bids from relays, they need to [set up mev-boost](https://boost.flashbots.net/) and add relays to their mev-boost config. mev-boost is effectively just a relay aggregator or a local relay of relays. It will serve the validator the winning bid from all relays. A validator can connect to a small number of relays that aggregate all the builders, and many will probably do that. Other validators might connect to many relays.
 
-**The Role of Relays**
+### The Role of Relays
 
 A relay has several responsibilities:
 
@@ -18,9 +20,9 @@ A relay has several responsibilities:
 - Handle validator registrations and block proposals in a scalable manner.
 - Provide block escrow and data availability.
 - Simulate and verify blocks sent by block-builders, and rate-limit as necessary. Relays simulate whether:
-    - the correct amount of fees are paid to recent validator feeRecipient.
-    - the correct block attributes and transactions exist.
-    - the block gas is within the gasLimit requested by validator.
+  - the correct amount of fees are paid to recent validator feeRecipient.
+  - the correct block attributes and transactions exist.
+  - the block gas is within the gasLimit requested by validator.
 
 ## [Relay API Specification](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
 
@@ -55,6 +57,6 @@ The circuit breaker is implemented by client software teams to define “circuit
 
 Each consensus client implements different circuit breaker conditions, as an example:
 
-| Name | Value | Units |
-| --- | --- | --- |
-| MAX_ALLOWED_MISSING_SLOTS | 5 | slot(s) |
+| Name                      | Value | Units   |
+| ------------------------- | ----- | ------- |
+| MAX_ALLOWED_MISSING_SLOTS | 5     | slot(s) |

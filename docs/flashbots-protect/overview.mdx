@@ -2,22 +2,24 @@
 title: Overview
 ---
 
-import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
+import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector";
 
 > **Privacy notice: Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
 
-Flashbots Protect is a user-friendly, secure, and powerful way to transact on Ethereum for both novices and sophisticated users. 
+Flashbots Protect is a user-friendly, secure, and powerful way to transact on Ethereum for both novices and sophisticated users.
 
 It has the following key benefits:
+
 - **Configurable:** you can choose which builders to send to and your mev-share settings.
-- **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
-- **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
+- **Frontrunning protection:** your transaction will not be seen by bots hungry to frontrun you in the public mempool.
+- **Get backrunning MEV back**: if your transaction creates MEV in backrunning, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
 - **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
 
-You can use Flashbots Protect by clicking the button below, or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net`.
+You can use Flashbots Protect by clicking the button below, or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net` or the custom URL based on your advanced configuration below.
 
 <ProtectButtonSelector />
 
-<br /><br />
+<br />
+<br />
 
-We want to thank MiningDAO, mistX and Nethermind for significant code contributions, testing, and being early adopters of Flashbots Protect. 
+We want to thank MiningDAO, mistX and Nethermind for significant code contributions, testing, and being early adopters of Flashbots Protect.
