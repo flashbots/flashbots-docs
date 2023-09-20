@@ -44,44 +44,13 @@ Defining these interfaces allows us to interact with other smart contracts direc
 
 It's important to remember that this is an abstract contract, meaning that to use it, we'll need to write another smart contract that extends it (using the `is` keyword). This contract is responsible for implementing the capital-management strategy; where to keep money, where/how to get it; as well as any other custom logic such as fee payments, etc. We'll do a walkthrough of a finished implementation with flash loans after we break down the core logic contract. Read on to learn how our arbitrage algorithm works.
 
-### Arbitrage Algorithm
+### Calculating the Optimal Arbitrage
 
 To illustrate what the algorithm does, we plot profit (in ETH) from an arbitrage, where we buy `amount_in` tokens for WETH on one exchange and sell them all for WETH on another.
 
 ![](/img/mevshare-flashloan-arb-guide/arb-profit-plot.png "arbitrage profit per amount_in")
 
-As you can see, the optimal amount_in to buy is approximately 35 ETH, but that's just eyeballing. How do we calculate the exact optimal point? To figure that out, first we need to figure out how to pre-calculate the outcome of a single swap. Then we'll compose two swaps together to calculate the outcome of an arbitrage. (This is how we made that chart!)
-
-The amount of tokens we get out from one swap is defined with the following function:
-
-- let $F$ = `FEE` = 997
-- let $D$ = `FEE_DIVISOR` = 1000
-- let $R_o$ = `reserveOut`
-    - this refers to the reserves of the token that we're getting _out_ of the trade
-- let $R_i$ = `reserveIn`
-    - this refers to the reserves of the token that we're paying _into_ the trade
-
-$$
-amountOut = f(x) = {x \cdot F \cdot R_o \over R_i \cdot D + x \cdot F}
-$$
-
-This is implemented in the `getAmountOut` function [in our smart contract](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L249C1-L258C6). It's adapted from the [UniswapV2 Library contract](https://github.com/Uniswap/v2-periphery/blob/master/contracts/libraries/UniswapV2Library.sol#L43-L50); we just removed the safety checks to save gas. We don't need guard rails since Flashbots will prevent reverting transactions from landing onchain.
-
-```solidity
-function getAmountOut(
-    uint amountIn,
-    uint reserveIn,
-    uint reserveOut
-) internal pure returns (uint amountOut) {
-    uint amountInWithFee = amountIn * 997;
-    uint numerator = amountInWithFee * reserveOut;
-    uint denominator = reserveIn * 1000 + amountInWithFee;
-    amountOut = numerator / denominator;
-    return amountOut;
-}
-```
-
-If we calculate the $amountOut$ from one pair, and set that as the input to another trading pair's $amountOut$ function, then we get the ETH proceeds from an arbitrage. Subtract the original amount in ($x$) and that number is our gross profit.
+As you can see, the optimal amount_in to buy is approximately 35 ETH, but that's just eyeballing. How do we calculate the exact optimal point?
 
 The following function calculates the optimal trade amount such that gross profit is as high as possible:
 
@@ -131,7 +100,9 @@ The function starts by reading the smart contract's own WETH balance. This is us
 
 Uniswap token pairs refer to their tokens as `token0` and `token1`; `token0` being the one whose address is numerically less than the other (e.g. 0x0123 < 0x0234); so we need to discern which token of the pair's two tokens is WETH. Our `getPairData` function sets this in the `isWETHZero` field. If WETH is token0, then we'll trade token0 -> token1 on exchange A, then token1 -> token0 on exchange B. If WETH is token1, then we just switch "token0" with "token1" and apply the same formula.
 
-Once we know which token is which, we calculate the amount of tokens we'll receive from each trade. We use these values as inputs to the token pairs' swap functions. See [`swap` on the Uniswap V2 Pair](https://github.com/Uniswap/v2-core/blob/master/contracts/UniswapV2Pair.sol#L159-L187) contract for more details on how swaps work.
+Once we know which token is which, we can make assertions about our profits and calculate how much to send for the second trade. To calculate how many tokens we'll receive from a single trade, we use a [custom `getAmountOut` function](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L249C1-L258C6). It's adapted from the [UniswapV2 Library contract](https://github.com/Uniswap/v2-periphery/blob/master/contracts/libraries/UniswapV2Library.sol#L43-L50); we just removed the safety checks to save gas. We don't need guard rails since Flashbots will prevent reverting transactions from landing onchain.
+
+We use the values calculated from `getAmountOut` as inputs to the token pairs' swap functions: we use `amountIn` (the "optimal arbitrage" value) as the amount (of WETH) to send for the first trade, then use the output (`firstPairAmountOut`) of the first trade as the input to the second trade, selling all the tokens we bought from the first exchange to the other.
 
 Once we've executed our trades, we should expect to have more ETH (or WETH) than we started with. But that won't always be the case. To ensure that we don't pay for an unprofitable trade, we check the WETH balance at the end of the `_executeArbitrage` function. If the balance isn't greater than when we first called the function, the transaction will revert. This protects us from malicious tokens, unforseen market conditions, and a variety of other ways you can lose your money.
 
