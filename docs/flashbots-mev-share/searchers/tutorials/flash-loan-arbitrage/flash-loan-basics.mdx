@@ -1,3 +1,5 @@
+import RemoteCodeBlock from "@site/src/components/RemoteCodeBlock"
+
 # Flash Loan Basics (Balancer)
 
 To recap, flash loans allow us to borrow vast amounts of tokens, which we can use to pay for trades. If we make a profit from executing an arbitrage, we pay the loan back and keep what's left over. If the arbitrage fails or does not produce enough profit to repay the loan, the transaction reverts and Flashbots prevents it from landing onchain, so we don't pay any fees. The only fees we pay are gas fees for successful arbitrage trades.
@@ -31,6 +33,8 @@ function makeFlashLoan(
 
 We'll call `makeFlashLoan` to get a flash loan, which will in turn trigger the `receiveFlashLoan` function, which will execute the arbitrage trade and pay the loan back.
 
-See [simple-blind-arbitrage](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunFlashLoan.sol) for a ready-to-use flash loan smart contract.
+Here's a finished smart contract from [simple-blind-arbitrage](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunFlashLoan.sol) for reference:
+
+<RemoteCodeBlock url="https://raw.githubusercontent.com/flashbots/simple-blind-arbitrage/main/src/BlindBackrunFlashLoan.sol" title="BlindBackrunFlashLoan.sol" language="solidity" showLineNumbers={true} />
 
 Now that our contract is ready, we need to watch for new pending transactions and send arbitrage bundles to Flashbots when we find them. See the next page for instructions on writing a bot to do this for you.
