@@ -154,7 +154,9 @@ Our onchain searching strategy is relatively straightforward, but it has its dra
 
 The more data you can compute offchain, the less gas your transactions have to spend. If you rely on offchain computations to define your strategy, you can save a lot of gas, giving you a competitive edge.
 
-However, some data can only be used in an onchain setting. For instance, if you were to run the same arbitrage calculation algorithm offchain that we have onchain in the [BlindBackrunLogic](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L249-L258) contract, you'd probably get different results. This is because prices can change in the block; before your transaction is executed; but off-chain, we can't see that until the block has been finalized. The advantage of onchain searching is that you always have immediate access to the latest system state, so your calculations will always be accurate.
+However, off-chain data will never be as accurate as on-chain data. This is because other transactions may affect the state of the blockchain (e.g. the price of a trading pair) if they are placed before your bundle in the block. Unless you're the block builder, you have no way of knowing where in the block your transaction will be placed, so you have no way of knowing whether the state used to calculate your strategy's parameters (e.g. your trade amounts) is still accurate.
+
+For instance, if you were to run the same arbitrage calculation algorithm _offchain_, which we've implemented _onchain_ in the [BlindBackrunLogic](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L249-L258) contract, you'd probably get different results. Again, this is because prices can change in the block before your transaction is executed. The advantage of onchain searching is that you always have immediate access to the latest system state, so your calculations will always be accurate.
 
 ### Other Exchanges
 
