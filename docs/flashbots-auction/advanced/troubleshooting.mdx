@@ -16,7 +16,7 @@ Unlike broadcasting a transaction which lands on-chain even if the transaction f
 
 Instead of relying on [Etherscan](https://etherscan.io) to examine the execution of your transaction, its on-chain status, and its comparison with competitors, you'll need a different approach with Flashbots. This is because Flashbots prevents failed transactions from appearing on the chain. For effective debugging, we highly recommend simulating your transactions, logging the results, and maintaining a record of all submitted data, including the complete bundle and its signed transactions.
 
-The issues listed above are arranged in the order of their priority for consideration. In the following sections, we will explore each issue in detail, providing guidance on how to identify and address them. While the examples provided assume the use of the [Flashbots Ethers Provider](https://github.com/flashbots/ethers-provider-flashbots-bundle), the [RPC calls are standard](/flashbots-auction/searchers/advanced/rpc-endpoint) and the suggested strategies can be easily adapted for use with [other providers](/flashbots-auction/searchers/libraries/golang).
+The issues listed above are arranged in the order of their priority for consideration. In the following sections, we will explore each issue in detail, providing guidance on how to identify and address them. While the examples provided assume the use of the [Flashbots Ethers Provider](https://github.com/flashbots/ethers-provider-flashbots-bundle), the [RPC calls are standard](/flashbots-auction/advanced/rpc-endpoint) and the suggested strategies can be easily adapted for use with [other providers](/flashbots-auction/libraries/golang).
 
 ## Does your transaction work and pay enough?
 
@@ -29,8 +29,8 @@ Covers:
 
 The first two issues are grouped together as their causes, investigations, and solutions are closely related. Flashbots will not include a bundle if:
 
-1. A transaction within the bundle reverts, unless it's specified via the [optional argument `revertingTxHashes`](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendbundle) or it's uncled.
-2. The [gas price is below the base fee](/flashbots-auction/searchers/advanced/eip1559#faq), as this would result in an invalid block if included.
+1. A transaction within the bundle reverts, unless it's specified via the [optional argument `revertingTxHashes`](/flashbots-auction/advanced/rpc-endpoint#eth_sendbundle) or it's uncled.
+2. The [gas price is below the base fee](/flashbots-auction/advanced/eip1559#faq), as this would result in an invalid block if included.
 3. The effective priority fee is not sufficient to offset the opportunity cost of using the block space for other unrelated transactions. For instance, if your bundle is paying a 1 Gwei priority fee, but the cheapest transaction in the block is paying 2 Gwei, the builder would benefit more from discarding your bundle in favor of standard pending transactions.
 
 As any of these conditions result in your bundle not appearing in a block, troubleshooting these issues requires _simulation_ using `eth_callBundle` RPC call. `eth_callBundle` is similar to an `eth_call` you might already be familiar with, but offers these key benefits:

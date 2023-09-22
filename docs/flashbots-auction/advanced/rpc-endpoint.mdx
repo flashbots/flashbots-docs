@@ -259,7 +259,7 @@ example response:
 ### eth_cancelBundle
 
 `eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain.
-See [bundle cancellations](/flashbots-auction/searchers/advanced/bundle-cancellations) for more information.
+See [bundle cancellations](/flashbots-auction/advanced/bundle-cancellations) for more information.
 
 > :information_source: `replacementUuid` must have been set when bundle was submitted.
 
@@ -479,11 +479,11 @@ example response:
 
 :::caution
 
-flashbots_getUserStats will be deprecated soon, use [flashbots_getUserStatsV2](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getuserstatsv2)
+flashbots_getUserStats will be deprecated soon, use [flashbots_getUserStatsV2](/flashbots-auction/advanced/rpc-endpoint#flashbots_getuserstatsv2)
 
 :::
 
-The `flashbots_getUserStats` JSON-RPC method returns a quick summary of how a searcher is performing in the Flashbots ecosystem, including their [reputation-based priority](/flashbots-auction/searchers/advanced/reputation). It is currently updated once every hour and has the following payload format:
+The `flashbots_getUserStats` JSON-RPC method returns a quick summary of how a searcher is performing in the Flashbots ecosystem, including their [reputation-based priority](/flashbots-auction/advanced/reputation). It is currently updated once every hour and has the following payload format:
 
 ```json
 {
@@ -526,7 +526,7 @@ Parameters with `miner` in the name are retrofitted with Flashbots block builder
 
 :::caution
 
-flashbots_getBundleStats will be deprecated soon, use [flashbots_getBundleStatsV2](/flashbots-auction/searchers/advanced/rpc-endpoint#flashbots_getbundlestatsv2)
+flashbots_getBundleStats will be deprecated soon, use [flashbots_getBundleStatsV2](/flashbots-auction/advanced/rpc-endpoint#flashbots_getbundlestatsv2)
 
 :::
 
@@ -582,7 +582,7 @@ example response:
 
 ### flashbots_getUserStatsV2
 
-The `flashbots_getUserStatsV2` JSON-RPC method returns a quick summary of how a searcher is performing in the Flashbots ecosystem, including their [reputation-based priority](/flashbots-auction/searchers/advanced/reputation). It is currently updated once every hour and has the following payload format:
+The `flashbots_getUserStatsV2` JSON-RPC method returns a quick summary of how a searcher is performing in the Flashbots ecosystem, including their [reputation-based priority](/flashbots-auction/advanced/reputation). It is currently updated once every hour and has the following payload format:
 
 ```json
 {
@@ -688,7 +688,7 @@ To authenticate your request, Flashbots endpoints require you to sign the payloa
 curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: <public key address>:<signature>" --data '{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}' https://relay.flashbots.net
 ```
 
-Any valid ECDSA-secp256k1 key, like an arbitrary Ethereum key, can be used to sign the payload. The address associated with this key will be used by Flashbots to keep track of your [reputation](/flashbots-auction/searchers/advanced/reputation) over time and provide user statistics. You can change the key you use at any time.
+Any valid ECDSA-secp256k1 key, like an arbitrary Ethereum key, can be used to sign the payload. The address associated with this key will be used by Flashbots to keep track of your [reputation](/flashbots-auction/advanced/reputation) over time and provide user statistics. You can change the key you use at any time.
 
 The signature is calculated by taking the [EIP-191](https://eips.ethereum.org/EIPS/eip-191) hash of the json body encoded as UTF-8 bytes. Here's an example using ethers.js:
 
