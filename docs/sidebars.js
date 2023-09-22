@@ -8,49 +8,35 @@ module.exports = {
     {
       'Flashbots Builders': [
         'flashbots-auction/overview',
+        'flashbots-auction/quick-start',
         {
-          "For Searchers": [
-            'flashbots-auction/searchers/quick-start',
-            {
-              "Example Searchers": [
-                'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
-                'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
-                'flashbots-auction/searchers/example-searchers/searcher-minter',
-                'flashbots-auction/searchers/example-searchers/synthetix-searcher',
-              ],
-              "Libraries": [
-                'flashbots-auction/searchers/libraries/golang',
-                'flashbots-auction/searchers/libraries/ethers-js-provider',
-                'flashbots-auction/searchers/libraries/web3py-provider',
-                'flashbots-auction/searchers/libraries/alchemyprovider',
-                'flashbots-auction/searchers/libraries/mev-share-clients',
-              ],
-              "Advanced Concepts": [
-                'flashbots-auction/searchers/advanced/understanding-bundles',
-                'flashbots-auction/searchers/advanced/coinbase-payment',
-                'flashbots-auction/searchers/advanced/bundle-pricing',
-                'flashbots-auction/searchers/advanced/rpc-endpoint',
-                'flashbots-auction/searchers/advanced/reputation',
-                'flashbots-auction/searchers/advanced/testnets',
-                'flashbots-auction/searchers/advanced/eip1559',
-                'flashbots-auction/searchers/advanced/troubleshooting',
-                'flashbots-auction/searchers/advanced/bundle-cancellations',
-              ],
-            },
-            'flashbots-auction/builder-list',
-            'flashbots-auction/searchers/faq',
-            'flashbots-auction/other-resources'
+          "Example Searchers": [
+            'flashbots-auction/example-searchers/simple-arbitrage-bot',
+            'flashbots-auction/example-searchers/searcher-sponsored-tx',
+            'flashbots-auction/example-searchers/searcher-minter',
+            'flashbots-auction/example-searchers/synthetix-searcher',
           ],
-          'MEV-Geth Releases': [
-            'flashbots-auction/releases/alpha-v0.6',
-            'flashbots-auction/releases/alpha-v0.5',
-            'flashbots-auction/releases/alpha-v0.4',
-            'flashbots-auction/releases/alpha-v0.3',
-            'flashbots-auction/releases/alpha-v0.2',
-            'flashbots-auction/releases/upgrade-process',
-
+          "Libraries": [
+            'flashbots-auction/libraries/golang',
+            'flashbots-auction/libraries/ethers-js-provider',
+            'flashbots-auction/libraries/web3py-provider',
+            'flashbots-auction/libraries/alchemyprovider',
+            'flashbots-auction/libraries/mev-share-clients',
+          ],
+          "Advanced Concepts": [
+            'flashbots-auction/advanced/understanding-bundles',
+            'flashbots-auction/advanced/coinbase-payment',
+            'flashbots-auction/advanced/bundle-pricing',
+            'flashbots-auction/advanced/rpc-endpoint',
+            'flashbots-auction/advanced/reputation',
+            'flashbots-auction/advanced/testnets',
+            'flashbots-auction/advanced/eip1559',
+            'flashbots-auction/advanced/troubleshooting',
+            'flashbots-auction/advanced/bundle-cancellations',
           ],
         },
+        'flashbots-auction/faq',
+        'flashbots-auction/other-resources',
       ]
     },
     {
