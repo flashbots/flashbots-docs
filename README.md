@@ -22,6 +22,12 @@ yarn install
 
 ## Local Development
 
+```sh
+cp .env.template .env
+```
+
+First create a local `.env` file to fill in env variable placeholders necessary for setting up the development. Note that these are merely placeholders.
+
 ```console
 yarn start
 ```
