@@ -57,12 +57,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             position: 'right',
           },
         ],
-      },
-      announcementBar: {
-        id: "ETHGlobal",
-        content:
-          '<span>🍎</span><a href="https://collective.flashbots.net/t/ethglobal-ny-hackathon-sept-22-24/2413" target="_blank" rel="noreferrer">Participate in the Flashbots hackathon track at ETHGlobal NY, Sept 22 - 24</a><span>🍎</span>',
-        isCloseable: false,
       }
       
     }),
