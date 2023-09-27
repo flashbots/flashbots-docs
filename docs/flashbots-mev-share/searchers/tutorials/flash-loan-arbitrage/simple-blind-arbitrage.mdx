@@ -1,4 +1,5 @@
-import RemoteCodeBlock from "@site/src/components/RemoteCodeBlock"
+import RemoteCodeBlock from "@site/src/components/RemoteCodeBlock";
+import Admonition from "@theme/Admonition";
 
 # Breakdown: simple-blind-arbitrage
 
@@ -106,7 +107,44 @@ We use the values calculated from `getAmountOut` as inputs to the token pairs' s
 
 Once we've executed our trades, we should expect to have more ETH (or WETH) than we started with. But that won't always be the case. To ensure that we don't pay for an unprofitable trade, we check the WETH balance at the end of the `_executeArbitrage` function. If the balance isn't greater than when we first called the function, the transaction will revert. This protects us from malicious tokens, unforseen market conditions, and a variety of other ways you can lose your money.
 
-When we do turn a profit, we need to pay some of it to the validators/builders in order to get our transactions on-chain. Block builders have differing preferences & ordering algorithms, but a good rule of thumb is to use a gas price higher than the market average, and unless you know you have no competition, send at least 80% of the profit to `block.coinbase`.
+When we do turn a profit, we need to pay some of it to the validators/builders in order to get our transactions on-chain. Block builders have differing preferences & ordering algorithms, but a good rule of thumb is to use `maxBaseFeePerGas` and `maxPriorityFeePerGas` values that are slightly higher than the market average, and then tip a percentage of your profits to the builder. MEV-Share uses this builder tip to pay the user; this is the "MEV kickback."
+
+### Fee Considerations
+
+If you have no competition, you only need to send as much as is required to pay the user's kickback, which includes the gas cost of the payment transaction and a non-zero kickback.
+
+To prevent negligible-value tips from being sent, MEV-Share uses 30,000 gas to represent the cost of the user payment transaction, instead of 21,000. The minimum tip payment required for a MEV-Share bundle to be eligible for inclusion is as follows:
+
+- let $F_P$ = `block.priorityFee`
+- let $F_B$ = `block.baseFee`
+
+$$
+T_{min} = 30000 \cdot (F_P + F_B)
+$$
+
+This represents the **total surplus ETH** that the coinbase must have received _in addition to gas fees_ for all transactions in the bundle.
+
+Bots that only send two-transaction bundles will probably want send this tip in the backrun tx. However, this may also be paid by multiple transactions.
+Also note: sending your tip via `block.coinbase.transfer` is not technically necessary; it is possible to achieve the same effect by simply increasing the gas price (`maxBaseFeePerGas` and `maxPriorityFeePerGas`) of your backrun transaction(s).
+
+<Admonition type="info" icon="👾" title="Competition">
+
+Tipping the minimum is unlikely to result in your bundle landing on-chain unless you have zero competition. If there are other searchers competing to include the same transaction in their bundles, you will have to pay a higher percentage of your profits to outbid them.
+
+You may try tipping low to start, but over time, you should expect competition to increase. With healthy competition, your tip is likely to be around 80-90%.
+
+- let $P_{net}$ = net profit (profit after paying gas fees)
+- let $\gamma$ ($\gamma \in \R; \gamma > 0, \gamma < 1$) = percentage of profit sufficient to outbid competition
+
+$$
+T_{optimal} = 30000 * (F_P + F_B) + (P_{net} \cdot \gamma)
+$$
+
+How you find the exact optimal value of $\gamma$ is a matter of trial-and-error, and will continually change, but you'll probably find success between 50-90%.
+
+</Admonition>
+
+By default, 90% of the tip $T$ is sent to the user whose transaction was included by your bundle. This can be changed with the `validity` parameter in the `mev_sendBundle` params, but it suffices for now to keep the default settings and just send less from the smart contract.
 
 ### Compile & Deploy (optional)
 
