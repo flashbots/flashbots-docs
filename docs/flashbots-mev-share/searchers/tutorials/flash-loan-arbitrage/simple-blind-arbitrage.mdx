@@ -190,11 +190,12 @@ Our onchain searching strategy is relatively straightforward, but it has its dra
 
 ### Offchain Searching
 
-The more data you can compute offchain, the less gas your transactions have to spend. If you rely on offchain computations to define your strategy, you can save a lot of gas, giving you a competitive edge.
+The more data you can compute offchain, the less gas you have to spend. This gives you more ETH to tip with; better profit margins or a competitive edge.
 
-However, off-chain data will never be as accurate as on-chain data. This is because other transactions may affect the state of the blockchain (e.g. the price of a trading pair) if they are placed before your bundle in the block. Unless you're the block builder, you have no way of knowing where in the block your transaction will be placed, so you have no way of knowing whether the state used to calculate your strategy's parameters (e.g. your trade amounts) is still accurate.
+However, off-chain data is not always as accurate as on-chain data. This is because other transactions may affect the state of the blockchain (e.g. the price of a trading pair) if they are placed before your bundle in the block. 
+The very first position in an upcoming block ("top of the block") is the only one that's guaranteed to match the state of the last block.
 
-For instance, if you were to run the same arbitrage calculation algorithm _offchain_, which we've implemented _onchain_ in the [BlindBackrunLogic](https://github.com/flashbots/simple-blind-arbitrage/blob/main/src/BlindBackrunLogic.sol#L249-L258) contract, you'd probably get different results. Again, this is because prices can change in the block before your transaction is executed. The advantage of onchain searching is that you always have immediate access to the latest system state, so your calculations will always be accurate.
+Unless you're the block builder (or have privileged access to their orderflow), you have no way of knowing where in the block your transaction will be placed, so you have no way of knowing whether the off-chain state used to calculate your strategy's parameters (e.g. your trade amounts) is still accurate. You may add logic in your smart contract that reverts if the transaction isn't placed in the first position, which will guarantee that your information is accurate, but may lower your chances of being included, depending on the builder's transaction-sorting algorithm.
 
 ### Other Exchanges
 
