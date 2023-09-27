@@ -115,14 +115,13 @@ If you have no competition, you only need to send as much as is required to pay 
 
 To prevent negligible-value tips from being sent, MEV-Share uses 30,000 gas to represent the cost of the user payment transaction, instead of 21,000. The minimum tip payment required for a MEV-Share bundle to be eligible for inclusion is as follows:
 
-- let $F_P$ = `block.priorityFee`
 - let $F_B$ = `block.baseFee`
 
 $$
-T_{min} = 30000 \cdot (F_P + F_B)
+T_{min} = 30000 \cdot F_B
 $$
 
-This represents the **total surplus ETH** that the coinbase must have received _in addition to gas fees_ for all transactions in the bundle.
+This represents the **total surplus ETH** that the coinbase must have received _in addition to gas fees_ for all transactions in the bundle. Note that we don't include a priority fee for the tip; this is because the builder will send the transaction that pays the user with a priority fee of 0.
 
 Bots that only send two-transaction bundles will probably want send this tip in the backrun tx. However, this may also be paid by multiple transactions.
 Also note: sending your tip via `block.coinbase.transfer` is not technically necessary; it is possible to achieve the same effect by simply increasing the gas price (`maxBaseFeePerGas` and `maxPriorityFeePerGas`) of your backrun transaction(s).
@@ -137,7 +136,7 @@ You may try tipping low to start, but over time, you should expect competition t
 - let $\gamma$ ($\gamma \in \R; \gamma > 0, \gamma < 1$) = percentage of profit sufficient to outbid competition
 
 $$
-T_{optimal} = 30000 * (F_P + F_B) + (P_{net} \cdot \gamma)
+T_{optimal} = (30000 \cdot F_B) + (P_{net} \cdot \gamma)
 $$
 
 How you find the exact optimal value of $\gamma$ is a matter of trial-and-error, and will continually change, but you'll probably find success between 50-90%.
