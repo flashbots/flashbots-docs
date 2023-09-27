@@ -8,7 +8,7 @@ Use Node.js v18+
 
 Note: if you want to install the node packages from within a Docker container (recommended for security), then you can start it like this:
 
-```sh
+```bash
 docker run -p 3000:3000 --rm -it -w /mnt -v $(pwd):/mnt node:18 /bin/bash
 ```
 

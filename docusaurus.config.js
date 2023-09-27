@@ -37,7 +37,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['solidity', 'uri', 'ini']
+        additionalLanguages: ['solidity', 'uri', 'ini', 'rust']
       },
       docs: {
         sidebar: {
