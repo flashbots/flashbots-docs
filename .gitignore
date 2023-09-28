@@ -23,3 +23,5 @@ node_modules
 .env
 .vercel
 .env*.local
+
+.idea/

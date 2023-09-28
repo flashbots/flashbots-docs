@@ -11,6 +11,7 @@ const ProtectButtonSelector = () => {
     const [selectedBuilders, setSelectedBuilders] = useState<string[]>([])
     const [calldata, setCalldata] = useState(false)
     const [logs, setLogs] = useState(false)
+    const [defaultLogs, setDefaultLogs] = useState(false)
     const [contractAddress, setContractAddress] = useState(false)
     const [functionSelector, setFunctionSelector] = useState(false)
     const [noHints, setNoHints] = useState(false)
@@ -22,6 +23,7 @@ const ProtectButtonSelector = () => {
     const hints: HintPreferences = advancedOptionsShown ? {
         calldata,
         logs,
+        defaultLogs,
         contractAddress,
         functionSelector,
         txHash: noHints
@@ -39,6 +41,7 @@ const ProtectButtonSelector = () => {
             // We have to also clear all of the other hints if someone selects no hints.
             setCalldata(false);
             setLogs(false);
+            setDefaultLogs(false);
             setContractAddress(false);
             setFunctionSelector(false);
         }
@@ -55,6 +58,11 @@ const ProtectButtonSelector = () => {
     const onSetLogs = (val: boolean) => {
         setNoHints(false);
         setLogs(val);
+    }
+
+    const onSetDefaultLogs = (val: boolean) => {
+        setNoHints(false);
+        setDefaultLogs(val);
     }
 
     const onSetFunctionSelector = (val: boolean) => {
@@ -106,7 +114,8 @@ const ProtectButtonSelector = () => {
                 <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={onSetContractAddress} />
                 <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={onSetFunctionSelector} />
                 <Checkbox label='Logs' id='logs' checked={logs} onChange={onSetLogs} />
-                <Checkbox label='None' id='none' checked={noHints} onChange={onSetNoHints} />
+                <Checkbox label='DefaultLogs' id='defaultLogs' checked={defaultLogs} onChange={onSetDefaultLogs} />
+                        <Checkbox label='None' id='none' checked={noHints} onChange={onSetNoHints} />
                 <div style={{ width: 64 }} /> {/* spacer */}
             </AlignItems>
         </div>
