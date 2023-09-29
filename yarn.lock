@@ -2340,10 +2340,10 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^17.0.20":
-  version "17.0.65"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.65.tgz#95f6a2ab61145ffb69129d07982d047f9e0870cd"
-  integrity sha512-oxur785xZYHvnI7TRS61dXbkIhDPnGfsXKv0cNXR/0ml4SipRIFpSMzA7HMEfOywFwJ5AOnPrXYTEiTRUQeGlQ==
+"@types/react@^18.2.23":
+  version "18.2.23"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.23.tgz#60ad6cf4895e93bed858db0e03bcc4ff97d0410e"
+  integrity sha512-qHLW6n1q2+7KyBEYnrZpcsAmU/iiCh9WGCKgXvMxx89+TYdJWRjZohVIo9XTcoLhfX3+/hP0Pbulu3bCZQ9PSA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -7386,10 +7386,10 @@ property-information@^5.0.0, property-information@^5.3.0:
   dependencies:
     xtend "^4.0.0"
 
-protect-button@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/protect-button/-/protect-button-0.4.2.tgz#6851255a4d7e0513e288a8130912ea9263d24226"
-  integrity sha512-Wm2QmCSTYaxFswjqEdsd8GHTxkExgM2nshV7ph+tdX7RjcSYbDLjvzGbBBpXDbaie/dNw7bNI9Mk37rOyLbzXA==
+protect-button@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/protect-button/-/protect-button-0.4.5.tgz#f3456b75ca55a8b9d733ce021c07e5ba7e014b64"
+  integrity sha512-MYKHADSmc05CLPoJhdoiDFEXldYU6+KU+iAhjb2FPo6TTRf8kbbUfMoX/LrwXluoMTa8C4GQEg2FTCfyOvc6EQ==
 
 proxy-addr@~2.0.7:
   version "2.0.7"

@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 type SimpleDropdownParams = {
     header: string,
     italicHeader?: boolean,
-    onClickHeader?: (e: any) => void,
+    onClickHeader?: () => void,
     isOpen: boolean,
 }
 
@@ -22,7 +22,13 @@ const SimpleDropdown = ({ children, header, italicHeader, onClickHeader, isOpen 
         <div className='dropdown-container'>
             {subComponents[0]}
             <details open={isOpen}>
-                <summary className={styles.dropdownHeader}>
+                <summary
+                    className={styles.dropdownHeader}
+                    onClick={(event) => {
+                        event.preventDefault();
+                        onClickHeader();
+                    }}
+                >
                     {useItalic ? <em>{header}</em> : header}
                 </summary>
                 {subComponents[1]}
