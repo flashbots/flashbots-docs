@@ -7386,8 +7386,10 @@ property-information@^5.0.0, property-information@^5.3.0:
   dependencies:
     xtend "^4.0.0"
 
-protect-button@../protect-button/protect:
-  version "0.4.4"
+protect-button@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/protect-button/-/protect-button-0.4.5.tgz#f3456b75ca55a8b9d733ce021c07e5ba7e014b64"
+  integrity sha512-MYKHADSmc05CLPoJhdoiDFEXldYU6+KU+iAhjb2FPo6TTRf8kbbUfMoX/LrwXluoMTa8C4GQEg2FTCfyOvc6EQ==
 
 proxy-addr@~2.0.7:
   version "2.0.7"
