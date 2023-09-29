@@ -8,9 +8,9 @@ import { Builder, useSupportedBuilders } from '../mev-share/useSupportedBuilders
 import styles from './styles.module.scss';
 
 const ProtectButtonSelector = () => {
-    const [selectedBuilders, setSelectedBuilders] = useState<string[]>(["flashbots"])
+    const [selectedBuilders, setSelectedBuilders] = useState<string[]>([])
     const [calldata, setCalldata] = useState(false)
-    const [logs, setLogs] = useState(true)
+    const [logs, setLogs] = useState(false)
     const [contractAddress, setContractAddress] = useState(false)
     const [functionSelector, setFunctionSelector] = useState(false)
     const [noHints, setNoHints] = useState(false)
