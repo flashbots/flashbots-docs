@@ -8,6 +8,10 @@
         "description": "Share logs emitted by executing the transaction."
     },
     {
+        "name": "default_logs",
+        "description": "Share specific subset of logs related to defi swaps. Partial info (the pool id and the fact that a swap was made) for curve, balancer, and uniswapV2/V3-style trades"
+    },
+    {
         "name": "function_selector",
         "description": "Share the 4-byte identifier of the function being called on the smart contract by the transaction. The contract address will also be shared if the function selector is shared."
     },
