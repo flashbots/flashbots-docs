@@ -19,11 +19,12 @@ const ProtectButtonSelector = () => {
 
     const supportedBuilders = useSupportedBuilders().map(builder => builder.name)
 
-    const hints : HintPreferences = advancedOptionsShown ? {
+    const hints: HintPreferences = advancedOptionsShown ? {
         calldata,
         logs,
         contractAddress,
         functionSelector,
+        txHash: noHints
     } : undefined
 
     // Generate the RPC URL
@@ -69,7 +70,7 @@ const ProtectButtonSelector = () => {
     useEffect(() => {
         setAllBuilders(selectedBuilders.length === supportedBuilders.length);
     }, [selectedBuilders, supportedBuilders]);
-    
+
     const toggleBuilder = (name: string) => {
         if (selectedBuilders.includes(name)) {
             setSelectedBuilders(selectedBuilders.filter(b => b !== name));
