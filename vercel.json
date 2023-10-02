@@ -2,43 +2,23 @@
     "trailingSlash": false,
     "redirects": [
         {
-            "source": "/flashbots-protect/rpc/uncle-bandits",
+            "source": "/flashbots-protect/rpc/:path(uncle-bandits|releases)",
             "destination": "/flashbots-protect/overview",
             "permanent": true
         },
         {
-            "source": "/flashbots-protect/rpc/releases",
-            "destination": "/flashbots-protect/overview",
+            "source": "/flashbots-protect/rpc/:path(quick-start|mev-share|cancellations)",
+            "destination": "/flashbots-protect/:path",
             "permanent": true
         },
         {
-            "source": "/flashbots-protect/rpc/quick-start",
-            "destination": "/flashbots-protect/quick-start",
+            "source": "/flashbots-protect/rpc/:path(status-api|ratelimiting|bundle-cache)",
+            "destination": "/flashbots-protect/additional-documentation/:path",
             "permanent": true
         },
         {
-            "source": "/flashbots-protect/rpc/mev-share",
-            "destination": "/flashbots-protect/mev-share",
-            "permanent": true
-        },
-        {
-            "source": "/flashbots-protect/rpc/cancellations",
-            "destination": "/flashbots-protect/cancellations",
-            "permanent": true
-        },
-        {
-            "source": "/flashbots-protect/rpc/status-api",
-            "destination": "/flashbots-protect/additional-documentation/status-api",
-            "permanent": true
-        },
-        {
-            "source": "/flashbots-protect/rpc/ratelimiting",
-            "destination": "/flashbots-protect/additional-documentation/ratelimiting",
-            "permanent": true
-        },
-        {
-            "source": "/flashbots-protect/rpc/bundle-cache",
-            "destination": "/flashbots-protect/additional-documentation/bundle-cache",
+            "source": "/flashbots-auction/searchers/:path*",
+            "destination": "/flashbots-auction/:path",
             "permanent": true
         }
     ]

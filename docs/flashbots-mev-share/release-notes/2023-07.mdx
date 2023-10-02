@@ -3,7 +3,7 @@
 ## customized refunds
 
 Configure the percent(s) and recipient(s) for MEV-Share refunds by adding the [`refund`](/flashbots-protect/mev-share#refunds) query parameter to Protect RPC requests
-or by adding `preferences.validity.refund` argument to the `eth_sendPrivateTransaction` JSON-RPC [method](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivatetransaction).
+or by adding `preferences.validity.refund` argument to the `eth_sendPrivateTransaction` JSON-RPC [method](/flashbots-auction/advanced/rpc-endpoint#eth_sendprivatetransaction).
 
 ## orderflow sharing
 
@@ -25,5 +25,5 @@ New tutorial for searching on MEV-Share, using a simple limit order bot as an ex
 
 ### eth_sendPrivateRawTransaction
 
-- [eth_sendPrivateRawTransaction](/flashbots-auction/searchers/advanced/rpc-endpoint#eth_sendprivaterawtransaction)
+- [eth_sendPrivateRawTransaction](/flashbots-auction/advanced/rpc-endpoint#eth_sendprivaterawtransaction)
 is now supported on relay endpoint. Its behavior is identical to `eth_sendPrivateTransaction` but its format is similar to `eth_sendRawTransaction`.

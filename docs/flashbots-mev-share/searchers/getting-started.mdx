@@ -11,7 +11,7 @@ To start searching on MEV-Share, you will first need to connect to a MEV-Share N
 
 Flashbots operates an MEV-Share Node on the Ethereum mainnet. This Node provides endpoints for user transactions and searcher bundles. Additionally, it offers an SSE event stream endpoint, broadcasting pending events/transactions to searchers.
 
-The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/searchers/libraries/mev-share-clients). For this guide, we'll refer to [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts).
+The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/libraries/mev-share-clients). For this guide, we'll refer to [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts).
 
 <Tabs>
 <TabItem value="ts" label="mev-share-client-ts">
@@ -60,7 +60,7 @@ Further documentation on the client library can be found in the [mev-share-clien
 
 ### A note on other languages
 
-If you're coding in a language that doesn't yet have a MEV-Share Node client library, you can send transactions and bundles directly with the [JSON-RPC endpoint](/flashbots-auction/searchers/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
+If you're coding in a language that doesn't yet have a MEV-Share Node client library, you can send transactions and bundles directly with the [JSON-RPC endpoint](/flashbots-auction/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
 
 </TabItem>
 </Tabs>
