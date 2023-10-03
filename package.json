@@ -11,7 +11,12 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "lint": "yarn lint:js && yarn lint:style && yarn lint:spelling",
+    "lint:ci": "yarn lint:js --quiet && yarn lint:style && yarn lint:spelling",
+    "lint:js": "eslint --cache --report-unused-disable-directives \"**/*.{js,jsx,ts,tsx,mjs}\"",
+    "lint:spelling": "cspell \"**\" --no-progress",
+    "lint:style": "stylelint \"**/*.css\""
   },
   "dependencies": {
     "@docusaurus/core": "^2.4.0",
@@ -52,12 +57,26 @@
     "@types/react": "^18.2.23",
     "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.8",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
     "cspell": "^6.31.2",
     "eslint": "^8.48.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-header": "^3.1.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.4.2",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-mdx": "^2.2.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-regexp": "^1.15.0",
     "markdownlint-cli2": "^0.9.2",
     "prettier": "3.0.2",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^29.0.0",
     "typescript": "^4.4.2"
   }
 }

@@ -1,0 +1,8 @@
+node_modules
+.yarn
+.history
+build
+coverage
+jest.config.js
+jest.transform.js
+jest/vendor
