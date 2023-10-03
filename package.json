@@ -52,6 +52,7 @@
     "@types/react": "^18.2.23",
     "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.8",
+    "cspell": "^6.31.2",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-mdx": "^2.2.0",
