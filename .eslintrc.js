@@ -4,45 +4,29 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-const OFF = 0;
+// const OFF = 0;
 const WARNING = 1;
 const ERROR = 2;
 
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-    project: './tsconfig.json'
+    project: true,
+    tsconfigRootDir: __dirname,
   },
-  plugins: [
-    'react',
-    'react-hooks',
-    'header',
-    'jest',
-    '@typescript-eslint',
-    'regexp',
-    '@docusaurus',
-  ],
-  env: {
-    es6: true,
-  },
+  plugins: ['header'],
   extends: [
     'eslint:recommended',
     'airbnb',
     'airbnb/hooks',
     'airbnb-typescript',
     'plugin:@docusaurus/recommended',
-    "plugin:react/jsx-runtime",
+    'plugin:react/jsx-runtime',
     'plugin:mdx/recommended',
+    'plugin:import/recommended',
     'prettier',
   ],
   rules: {
-    'react/jsx-uses-react': OFF, // JSX runtime: automatic
-    'react/react-in-jsx-scope': OFF, // JSX runtime: automatic
     camelcase: WARNING,
     'max-len': [
       WARNING,
@@ -54,9 +38,6 @@ module.exports = {
         ignorePattern: '(eslint-disable|@)',
       },
     ],
-    'no-lonely-if': WARNING,
-    'no-nested-ternary': WARNING,
-    'prefer-destructuring': WARNING,
     'header/header': [
       ERROR,
       'block',
@@ -70,13 +51,18 @@ module.exports = {
       ],
     ],
   },
-  // optional, if you want to lint code blocks at the same time
   settings: {
+    'import/no-unresolved': ERROR,
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
     'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      'webpack': true,
+      'typescript': {
+        'alwaysTryTypes': true,
       },
     },
+    // optional, if you want to lint code blocks at the same time
     'mdx/code-blocks': true,
     // optional, if you want to disable language mapper, set it to `false`
     // if you want to override the default language mapper inside, you can
