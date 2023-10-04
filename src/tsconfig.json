@@ -5,6 +5,12 @@
     "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
     "resolveJsonModule": true,
+    "types": [
+      "node",
+      "@docusaurus/module-type-aliases",
+      "@docusaurus/theme-classic",
+      "docusaurus-plugin-sass"
+    ],
 
     // Duplicated from the root config, because TS does not support extending
     // multiple configs and we want to dogfood the @docusaurus/tsconfig one
@@ -33,6 +39,5 @@
     // imported, invalid semantics...). Because we don't have end-to-end type
     // tests, removing this would make things much harder to catch.
     "skipLibCheck": false,
-    "types": ["jest"]
   },
 }
