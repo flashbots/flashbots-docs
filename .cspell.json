@@ -1,0 +1,32 @@
+{
+    "version": "0.2",
+    "gitignoreRoot": ".",
+    "useGitignore": true,
+    "dictionaries": [
+        "css",
+        "html",
+        "fonts",
+        "typescript",
+        "softwareTerms",
+        "companies",
+        "project-words"
+    ],
+    "dictionaryDefinitions": [
+        {
+            "name": "project-words",
+            "path": "./project-words.txt",
+            "noSuggest": false
+        }
+    ],
+    "ignorePaths": [
+        "package.json",
+        "yarn.lock",
+        "project-words.txt",
+        "*.gitignore"
+    ],
+    "ignoreRegExpList": [
+        "Email",
+        "Urls",
+        "#[\\w-]*"
+    ]
+}

@@ -13,7 +13,7 @@ For a more in-depth guide on writing a bot from scratch, check out the [MEV-Shar
 
 ## Client Libraries
 
-To write your own bot, you'll need a way to interact with Flashbots APIs. Client libraries implement all the functionality of the APIs in their native programming language. If your preferred language doesn't have a MEV-Share client library already, you can interact with the APIs directly, effectively implementing your own client (let us know if you do!). Information about Flashbots APIs can be found in the [RPC docs](/flashbots-auction/searchers/advanced/rpc-endpoint) and [Event Stream docs](/flashbots-mev-share/searchers/event-stream).
+To write your own bot, you'll need a way to interact with Flashbots APIs. Client libraries implement all the functionality of the APIs in their native programming language. If your preferred language doesn't have a MEV-Share client library already, you can interact with the APIs directly, effectively implementing your own client (let us know if you do!). Information about Flashbots APIs can be found in the [RPC docs](/flashbots-auction/advanced/rpc-endpoint) and [Event Stream docs](/flashbots-mev-share/searchers/event-stream).
 
 Client libraries have been developed for the following programming languages (more to come soon):
 
@@ -141,7 +141,7 @@ _To read more about how the SSE stream works, see the [Event Stream docs](/flash
 
 ## Filtering Relevant Transactions
 
-MEV-Share uses [**hints**](/flashbots-protect/mev-share#hints) to selectively share information about a transaction. Based on the hint preferences specifies by the user when connecting, the transactions (or bundles) they send will trigger events containing information about their transaction which is filtered according to their hint preferences. 
+MEV-Share uses [**hints**](/flashbots-protect/mev-share#hints) to selectively share information about a transaction. Based on the hint preferences specifies by the user when connecting, the transactions (or bundles) they send will trigger events containing information about their transaction which is filtered according to their hint preferences.
 
 In this guide, we're only concerned with the fields in `logs`: `address` and `topics`. Other fields not covered in this guide are detailed in the [Event Scheme docs](/flashbots-mev-share/searchers/event-stream#event-scheme).
 
@@ -226,14 +226,14 @@ mevshare.on("transaction", async (tx: IPendingTransaction) => {
       console.error("pair not found on alternative exchange")
       continue
     }
-    
+
     // placeholder: send backrun bundle
     await tryBackrun(pair.address, altPair)
   }
 })
 ```
 
-Note: querying the blockchain can cost precious time -- a better design would be to store arb-ready pairs somewhere fast, like in memory or a fast DB, and only query the blockchain when a stored pair alternative can't be found. 
+Note: querying the blockchain can cost precious time -- a better design would be to store arb-ready pairs somewhere fast, like in memory or a fast DB, and only query the blockchain when a stored pair alternative can't be found.
 
 </TabItem>
 <TabItem value="rs">
@@ -313,7 +313,7 @@ async function tryBackrun(startPair, endPair, txHash) {
   console.log("Building bundles")
 
   let bundleTransactionOptions = {
-      gasPrice: (await this.signer.provider.getGasPrice()), // This is *extremely* naive. 
+      gasPrice: (await this.signer.provider.getGasPrice()), // This is *extremely* naive.
       gasLimit: ethers.BigNumber.from(400000),
       nonce: await this.signer.getTransactionCount(),
   }
@@ -325,10 +325,10 @@ async function tryBackrun(startPair, endPair, txHash) {
   const values = [
     startPair,
     endPair,
-    this.percentageToKeep  
+    this.percentageToKeep
   ]
   let params = Web3EthAbi.encodeParameters(types, values)
-  
+
   let bundleTransaction = await arbContract.populateTransaction.makeFlashLoan(
     config.mainnetWETHAddress,
     ethers.BigNumber.from(10**21).toString(),
