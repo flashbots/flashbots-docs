@@ -18,3 +18,10 @@
     width: 80%;
     word-break: break-all;
   }
+
+.fastContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
