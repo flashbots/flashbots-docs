@@ -17,7 +17,7 @@ Flashbots Protect has the following key benefits:
 You can speed up your transaction's inclusion by using Protect in fast mode. Click the "fast" option when [configuring your Protect RPC](/flashbots-protect/quick-start#using-flashbots-protect) or manually set your RPC to `rpc.flashbots.net/fast`.
 
 Fast mode has 2 key differences from the default Protect experience:
-1. **Shared with all builders:** By default, Protect transactions are only shared with the Flashbots Builder, which builds only a subset of all Ethereum blocks. In fast mode, transactions are shared with all [registered builders](`https://github.com/flashbots/dowg/blob/main/builder-registrations.json`) to increase the number of blocks the user's transaction can be included in.
+1. **Shared with all builders:** By default, Protect transactions are only shared with the Flashbots Builder, which builds only a subset of all Ethereum blocks. In fast mode, transactions are shared with all [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json) to increase the number of blocks the user's transaction can be included in.
 2. **Larger refund paid to validator:** By default, only 10% of MEV-Share refunds are paid to validators. In fast mode, validators receive 50% of refunds which makes it more likely that the user’s transactions will be chosen in a given block.
 
 **Note**: When you send your transaction to a builder, you are entrusting them not to frontrun your transaction or disclose it to third parties who might.
