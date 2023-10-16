@@ -9320,10 +9320,8 @@ property-information@^6.0.0:
   resolved "https://registry.yarnpkg.com/property-information/-/property-information-6.3.0.tgz#ba4a06ec6b4e1e90577df9931286953cdf4282c3"
   integrity sha512-gVNZ74nqhRMiIUYWGQdosYetaKc83x8oT41a0LlV3AAFCAZwCpg4vmGkq8t34+cUhp3cnM4XDiU/7xlgK7HGrg==
 
-protect-button@^0.4.5:
+protect-button@../protect-button/protect:
   version "0.4.5"
-  resolved "https://registry.yarnpkg.com/protect-button/-/protect-button-0.4.5.tgz#f3456b75ca55a8b9d733ce021c07e5ba7e014b64"
-  integrity sha512-MYKHADSmc05CLPoJhdoiDFEXldYU6+KU+iAhjb2FPo6TTRf8kbbUfMoX/LrwXluoMTa8C4GQEg2FTCfyOvc6EQ==
 
 proto-list@~1.2.1:
   version "1.2.4"
