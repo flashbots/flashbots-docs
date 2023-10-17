@@ -14,10 +14,10 @@ import { useSupportedBuilders } from '../mev-share/useSupportedBuilders'
 import styles from './styles.module.scss';
 
 function BuilderCheckbox({ name, selectedBuilders, fastMode, toggleBuilder }: { name: string, selectedBuilders: string[], fastMode: boolean, toggleBuilder: (name: string) => any }) {
-  return <Checkbox label={name} id={`builder_${name}`} checked={selectedBuilders.includes(name) || fastMode} disabled={fastMode === true} onChange={() => toggleBuilder(name)} />
+    return <Checkbox label={name} id={`builder_${name}`} checked={selectedBuilders.includes(name) || fastMode} disabled={fastMode === true} onChange={() => toggleBuilder(name)} />
 }
 
-export default function ProtectButtonSelector () {
+export default function ProtectButtonSelector() {
     const [selectedBuilders, setSelectedBuilders] = useState<string[]>([])
     const [calldata, setCalldata] = useState(false)
     const [logs, setLogs] = useState(false)
@@ -31,7 +31,7 @@ export default function ProtectButtonSelector () {
 
     const supportedBuilders = useSupportedBuilders().map(builder => builder.name)
 
-    const hints: HintPreferences = advancedOptionsShown ? {
+    const hints: HintPreferences | undefined = advancedOptionsShown ? {
         calldata,
         logs,
         defaultLogs,
@@ -43,8 +43,8 @@ export default function ProtectButtonSelector () {
     // Generate the RPC URL
     const rpcUrl = generateRpcUrl({
         hints,
-        builders: advancedOptionsShown ? selectedBuilders : undefined
-        // TODO also accept "fast"
+        builders: advancedOptionsShown ? selectedBuilders : undefined,
+        fast: fastMode
     }).toString();
 
     const onSetNoHints = (val: boolean) => {
@@ -115,36 +115,37 @@ export default function ProtectButtonSelector () {
             }} isOpen={advancedOptionsShown}>
                 <SimpleDropdown.Body>
                     <AlignItems horizontal='center'>
-                        <FlashbotsProtectButton hints={hints} builders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton>
+                        <FlashbotsProtectButton chainId={1} hints={hints} fast={fastMode} builders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton>
+                        <></>
                     </AlignItems>
                     <div className={styles.fastContainer}>
-                        <Checkbox label="Fast" id="fast" checked={fastMode === true} onChange={setFastMode} />
+                        <Checkbox label="Fast" id="fast" checked={fastMode} onChange={setFastMode} />
                     </div>
                     <div className={styles.rpcUrlContainer}>
-                      <div className={styles.rpcUrlLabel}>RPC URL:</div>
-                      <div className={styles.rpcUrl}>{rpcUrl}</div>
+                        <div className={styles.rpcUrlLabel}>RPC URL:</div>
+                        <div className={styles.rpcUrl}>{rpcUrl}</div>
                     </div>
                 </SimpleDropdown.Body>
                 <SimpleDropdown.HiddenBody>
-                <div>
-                  <em>MEV-Share Hints</em>
-                  <hr style={{ padding: 0, margin: 0 }} />
-                  <AlignItems horizontal='left'>
-                      <Checkbox label='Calldata' id='calldata' checked={calldata} onChange={onSetCalldata} />
-                      <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={onSetContractAddress} />
-                      <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={onSetFunctionSelector} />
-                      <Checkbox label='Logs' id='logs' checked={logs} onChange={onSetLogs} />
-                      <Checkbox label='DefaultLogs' id='defaultLogs' checked={defaultLogs} onChange={onSetDefaultLogs} />
-                      <Checkbox label='None' id='none' checked={noHints} onChange={onSetNoHints} />
-                      <div style={{ width: 64 }} /> {/* spacer */}
-                  </AlignItems>
-                </div>
-                <div>
-                  <em>Builders</em>
-                  <hr style={{ padding: 0, margin: 0 }} />
-                  {supportedBuilders.map((builder: string) => <BuilderCheckbox fastMode={fastMode} name={builder} key={builder} selectedBuilders={selectedBuilders} toggleBuilder={toggleBuilder} />)}
-                  <Checkbox label="all" id="all" checked={allBuilders === true || fastMode === true} disabled={fastMode === true} onChange={toggleAllBuilders} />
-                </div>
+                    <div>
+                        <em>MEV-Share Hints</em>
+                        <hr style={{ padding: 0, margin: 0 }} />
+                        <AlignItems horizontal='left'>
+                            <Checkbox label='Calldata' id='calldata' checked={calldata} onChange={onSetCalldata} />
+                            <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={onSetContractAddress} />
+                            <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={onSetFunctionSelector} />
+                            <Checkbox label='Logs' id='logs' checked={logs} onChange={onSetLogs} />
+                            <Checkbox label='DefaultLogs' id='defaultLogs' checked={defaultLogs} onChange={onSetDefaultLogs} />
+                            <Checkbox label='None' id='none' checked={noHints} onChange={onSetNoHints} />
+                            <div style={{ width: 64 }} /> {/* spacer */}
+                        </AlignItems>
+                    </div>
+                    <div>
+                        <em>Builders</em>
+                        <hr style={{ padding: 0, margin: 0 }} />
+                        {supportedBuilders.map((builder: string) => <BuilderCheckbox fastMode={fastMode} name={builder} key={builder} selectedBuilders={selectedBuilders} toggleBuilder={toggleBuilder} />)}
+                        <Checkbox label="all" id="all" checked={allBuilders === true || fastMode === true} disabled={fastMode === true} onChange={toggleAllBuilders} />
+                    </div>
                 </SimpleDropdown.HiddenBody>
             </SimpleDropdown>
         </GridBlock>

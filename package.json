@@ -60,6 +60,8 @@
     "@docusaurus/eslint-plugin": "^3.0.0-beta.0",
     "@docusaurus/module-type-aliases": "^3.0.0-beta.0",
     "@docusaurus/tsconfig": "^3.0.0-beta.0",
+    "@tsconfig/docusaurus": "^2.0.2",
+    "@types/node": "^20.8.6",
     "@types/react": "^18.2.23",
     "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.8",
