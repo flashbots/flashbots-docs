@@ -6,17 +6,19 @@ import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector";
 
 ## Key Considerations
 
-Before you get started with Flashbots Protect here are a few things to be mindful of:
-
-It has the following key benefits:
+Flashbots Protect has the following key benefits:
 - **Configurable:** you can choose which builders to send to and your mev-share settings.
 - **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
 - **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
 - **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
 
-### Speeding up your transaction's inclusion
+### Faster Transactions
 
-Transactions sent through Flashbots Protect are, by default, only shared with Flashbots Builder, which builds only a subset of all Ethereum blocks. To enhance the rate of transaction inclusion, you may choose to share your transaction with additional builders. This can be accomplished by selecting other builders in the advanced options when [configuring your Protect RPC](/flashbots-protect/quick-start#using-flashbots-protect).
+You can speed up your transaction's inclusion by using Protect in fast mode. Click the "fast" option when [configuring your Protect RPC](/flashbots-protect/quick-start#using-flashbots-protect) or manually set your RPC to `rpc.flashbots.net/fast`.
+
+Fast mode has 2 key differences from the default Protect experience:
+1. **Shared with all builders:** By default, Protect transactions are only shared with the Flashbots Builder, which builds only a subset of all Ethereum blocks. In fast mode, transactions are shared with all [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json) to increase the number of blocks the user's transaction can be included in.
+2. **Larger refund paid to validator:** By default, only 10% of MEV-Share refunds are paid to validators. In fast mode, validators receive 50% of refunds which makes it more likely that the user’s transactions will be chosen in a given block.
 
 **Note**: When you send your transaction to a builder, you are entrusting them not to frontrun your transaction or disclose it to third parties who might.
 

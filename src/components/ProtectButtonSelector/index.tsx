@@ -1,13 +1,23 @@
+/**
+ * Copyright (c) Flashbots Ltd. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import React, { useEffect, useState } from "react"
-import SimpleDropdown from '../SimpleDropdown'
 import FlashbotsProtectButton, { generateRpcUrl, HintPreferences } from 'protect-button';
+import SimpleDropdown from '../SimpleDropdown'
 import Checkbox from '../Checkbox'
 import AlignItems from '../AlignItems/AlignItems'
 import GridBlock from '../GridBlock/GridBlock'
-import { Builder, useSupportedBuilders } from '../mev-share/useSupportedBuilders'
+import { useSupportedBuilders } from '../mev-share/useSupportedBuilders'
 import styles from './styles.module.scss';
 
-const ProtectButtonSelector = () => {
+function BuilderCheckbox({ name, selectedBuilders, fastMode, toggleBuilder }: { name: string, selectedBuilders: string[], fastMode: boolean, toggleBuilder: (name: string) => any }) {
+    return <Checkbox label={name} id={`builder_${name}`} checked={selectedBuilders.includes(name) || fastMode} disabled={fastMode === true} onChange={() => toggleBuilder(name)} />
+}
+
+export default function ProtectButtonSelector() {
     const [selectedBuilders, setSelectedBuilders] = useState<string[]>([])
     const [calldata, setCalldata] = useState(false)
     const [logs, setLogs] = useState(false)
@@ -16,11 +26,12 @@ const ProtectButtonSelector = () => {
     const [functionSelector, setFunctionSelector] = useState(false)
     const [noHints, setNoHints] = useState(false)
     const [allBuilders, setAllBuilders] = useState(false)
-    const [advancedOptionsShown, setAdvancedOptionsShown] = useState(true)
+    const [advancedOptionsShown, setAdvancedOptionsShown] = useState(false)
+    const [fastMode, setFastMode] = useState(false)
 
     const supportedBuilders = useSupportedBuilders().map(builder => builder.name)
 
-    const hints: HintPreferences = advancedOptionsShown ? {
+    const hints: HintPreferences | undefined = advancedOptionsShown ? {
         calldata,
         logs,
         defaultLogs,
@@ -31,8 +42,9 @@ const ProtectButtonSelector = () => {
 
     // Generate the RPC URL
     const rpcUrl = generateRpcUrl({
-        hints: hints,
-        builders: advancedOptionsShown ? selectedBuilders : undefined
+        hints,
+        builders: advancedOptionsShown ? selectedBuilders : undefined,
+        fast: fastMode
     }).toString();
 
     const onSetNoHints = (val: boolean) => {
@@ -85,7 +97,7 @@ const ProtectButtonSelector = () => {
         } else {
             setSelectedBuilders(selectedBuilders.concat(name));
         }
-    };
+    }
 
     const toggleAllBuilders = (val: boolean) => {
         setAllBuilders(val);
@@ -96,58 +108,46 @@ const ProtectButtonSelector = () => {
         }
     }
 
-    const BuilderCheckbox = ({ name }: { name: string }) => <Checkbox label={name} id={`builder_${name}`} checked={selectedBuilders.includes(name)} onChange={(_) => toggleBuilder(name)} />
-
-    const RenderRpcUrl = () => (
-        <div className={styles.rpcUrlContainer}>
-            <div className={styles.rpcUrlLabel}>RPC URL:</div>
-            <div className={styles.rpcUrl}>{rpcUrl}</div>
-        </div>
-    );
-
-    const RenderHints = () => (
-        <div>
-            <em>MEV-Share Hints</em>
-            <hr style={{ padding: 0, margin: 0 }} />
-            <AlignItems horizontal='left'>
-                <Checkbox label='Calldata' id='calldata' checked={calldata} onChange={onSetCalldata} />
-                <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={onSetContractAddress} />
-                <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={onSetFunctionSelector} />
-                <Checkbox label='Logs' id='logs' checked={logs} onChange={onSetLogs} />
-                <Checkbox label='DefaultLogs' id='defaultLogs' checked={defaultLogs} onChange={onSetDefaultLogs} />
-                        <Checkbox label='None' id='none' checked={noHints} onChange={onSetNoHints} />
-                <div style={{ width: 64 }} /> {/* spacer */}
-            </AlignItems>
-        </div>
-    );
-
-    const RenderBuilders = () => (
-        <div>
-            <em>Builders</em>
-            <hr style={{ padding: 0, margin: 0 }} />
-            {supportedBuilders.map((builder, idx) => <BuilderCheckbox name={builder} key={idx} />)}
-            {<Checkbox label={"all"} id="all" checked={allBuilders === true} onChange={toggleAllBuilders} />}
-        </div>
-    );
-
     return (
         <GridBlock>
-            <SimpleDropdown header={"Advanced options"} onClickHeader={() => {
+            <SimpleDropdown header="Advanced options" onClickHeader={() => {
                 setAdvancedOptionsShown(!advancedOptionsShown)
             }} isOpen={advancedOptionsShown}>
                 <SimpleDropdown.Body>
                     <AlignItems horizontal='center'>
-                        <><FlashbotsProtectButton hints={hints} builders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton></>
+                        <FlashbotsProtectButton chainId={1} hints={hints} fast={fastMode} builders={advancedOptionsShown ? selectedBuilders : undefined}>Connect Wallet to Protect</FlashbotsProtectButton>
+                        <></>
                     </AlignItems>
-                    <RenderRpcUrl />
+                    <div className={styles.fastContainer}>
+                        <Checkbox label="Fast" id="fast" checked={fastMode} onChange={setFastMode} />
+                    </div>
+                    <div className={styles.rpcUrlContainer}>
+                        <div className={styles.rpcUrlLabel}>RPC URL:</div>
+                        <div className={styles.rpcUrl}>{rpcUrl}</div>
+                    </div>
                 </SimpleDropdown.Body>
                 <SimpleDropdown.HiddenBody>
-                    <RenderHints />
-                    <RenderBuilders />
+                    <div>
+                        <em>MEV-Share Hints</em>
+                        <hr style={{ padding: 0, margin: 0 }} />
+                        <AlignItems horizontal='left'>
+                            <Checkbox label='Calldata' id='calldata' checked={calldata} onChange={onSetCalldata} />
+                            <Checkbox label='Contract Address' id='contractAddress' checked={contractAddress} onChange={onSetContractAddress} />
+                            <Checkbox label='Function Selector' id='functionSelector' checked={functionSelector} onChange={onSetFunctionSelector} />
+                            <Checkbox label='Logs' id='logs' checked={logs} onChange={onSetLogs} />
+                            <Checkbox label='DefaultLogs' id='defaultLogs' checked={defaultLogs} onChange={onSetDefaultLogs} />
+                            <Checkbox label='None' id='none' checked={noHints} onChange={onSetNoHints} />
+                            <div style={{ width: 64 }} /> {/* spacer */}
+                        </AlignItems>
+                    </div>
+                    <div>
+                        <em>Builders</em>
+                        <hr style={{ padding: 0, margin: 0 }} />
+                        {supportedBuilders.map((builder: string) => <BuilderCheckbox fastMode={fastMode} name={builder} key={builder} selectedBuilders={selectedBuilders} toggleBuilder={toggleBuilder} />)}
+                        <Checkbox label="all" id="all" checked={allBuilders === true || fastMode === true} disabled={fastMode === true} onChange={toggleAllBuilders} />
+                    </div>
                 </SimpleDropdown.HiddenBody>
             </SimpleDropdown>
         </GridBlock>
     );
 }
-
-export default ProtectButtonSelector
