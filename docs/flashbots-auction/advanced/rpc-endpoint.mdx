@@ -261,6 +261,8 @@ example response:
 `eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain.
 See [bundle cancellations](/flashbots-auction/advanced/bundle-cancellations) for more information.
 
+[`eth_cancelPrivateTransaction`](https://docs.alchemy.com/alchemy/apis/ethereum/eth_cancelPrivateTransaction/?a=fb) is also supported on [Alchemy](https://alchemy.com/?a=fb).
+
 > :information_source: `replacementUuid` must have been set when bundle was submitted.
 
 ```json
@@ -280,7 +282,7 @@ See [bundle cancellations](/flashbots-auction/advanced/bundle-cancellations) for
 
 `eth_sendPrivateTransaction` is used to send a single transaction to Flashbots. Flashbots will attempt to build a block including the transaction for the next 25 blocks. See [Private Transactions](/flashbots-protect/additional-documentation/eth-sendPrivateTransaction) for more info.
 
-[`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendprivatetransaction?a=fb) is also supported for free on [Alchemy](https://alchemy.com?a=fb).
+[`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendprivatetransaction?a=fb) is also supported on [Alchemy](https://alchemy.com?a=fb).
 
 This method has the following JSON-RPC format:
 
