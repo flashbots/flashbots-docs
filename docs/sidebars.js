@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) Flashbots Ltd. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 module.exports = {
   docs: [
     {
@@ -6,59 +12,61 @@ module.exports = {
       ],
     },
     {
-      'Flashbots Auction': [
+      'Flashbots Builders': [
         'flashbots-auction/overview',
+        'flashbots-auction/quick-start',
         {
-          "For Searchers": [
-            'flashbots-auction/searchers/quick-start',
-            'flashbots-auction/searchers/faq',
-            {
-              "Advanced Concepts": [
-                'flashbots-auction/searchers/advanced/understanding-bundles',
-                'flashbots-auction/searchers/advanced/coinbase-payment',
-                'flashbots-auction/searchers/advanced/bundle-pricing',
-                'flashbots-auction/searchers/advanced/rpc-endpoint',
-                'flashbots-auction/searchers/advanced/reputation',
-                'flashbots-auction/searchers/advanced/testnets',
-                'flashbots-auction/searchers/advanced/eip1559',
-                'flashbots-auction/searchers/advanced/troubleshooting',
-                'flashbots-auction/searchers/advanced/private-transaction',
-                'flashbots-auction/searchers/advanced/bundle-cancellations',
-              ],
-              "Example Searchers": [
-                'flashbots-auction/searchers/example-searchers/simple-arbitrage-bot',
-                'flashbots-auction/searchers/example-searchers/searcher-sponsored-tx',
-                'flashbots-auction/searchers/example-searchers/searcher-minter',
-                'flashbots-auction/searchers/example-searchers/synthetix-searcher',
-              ],
-              "Libraries": [
-                'flashbots-auction/searchers/libraries/golang',
-                'flashbots-auction/searchers/libraries/ethers-js-provider',
-                'flashbots-auction/searchers/libraries/web3py-provider',
-                'flashbots-auction/searchers/libraries/alchemyprovider',
-                'flashbots-auction/searchers/libraries/matchmaker',
-              ]
-            },
-            'flashbots-auction/other-resources'
+          "Example Searchers": [
+            'flashbots-auction/example-searchers/simple-arbitrage-bot',
+            'flashbots-auction/example-searchers/searcher-sponsored-tx',
+            'flashbots-auction/example-searchers/searcher-minter',
+            'flashbots-auction/example-searchers/synthetix-searcher',
           ],
-          'MEV-Geth Releases': [
-            'flashbots-auction/releases/alpha-v0.6',
-            'flashbots-auction/releases/alpha-v0.5',
-            'flashbots-auction/releases/alpha-v0.4',
-            'flashbots-auction/releases/alpha-v0.3',
-            'flashbots-auction/releases/alpha-v0.2',
-            'flashbots-auction/releases/upgrade-process',
-
+          "Libraries": [
+            'flashbots-auction/libraries/golang',
+            'flashbots-auction/libraries/ethers-js-provider',
+            'flashbots-auction/libraries/web3py-provider',
+            'flashbots-auction/libraries/alchemyprovider',
+            'flashbots-auction/libraries/mev-share-clients',
+          ],
+          "Advanced Concepts": [
+            'flashbots-auction/advanced/understanding-bundles',
+            'flashbots-auction/advanced/coinbase-payment',
+            'flashbots-auction/advanced/bundle-pricing',
+            'flashbots-auction/advanced/rpc-endpoint',
+            'flashbots-auction/advanced/reputation',
+            'flashbots-auction/advanced/testnets',
+            'flashbots-auction/advanced/eip1559',
+            'flashbots-auction/advanced/troubleshooting',
+            'flashbots-auction/advanced/bundle-cancellations',
           ],
         },
+        'flashbots-auction/faq',
+        'flashbots-auction/other-resources',
       ]
+    },
+    {
+      "Flashbots Protect": [
+        'flashbots-protect/overview',
+        'flashbots-protect/quick-start',
+        'flashbots-protect/mev-share',
+        'flashbots-protect/cancellations',
+        'flashbots-protect/stuck_transactions',
+        {
+          'Additional Documentation': [
+            'flashbots-protect/additional-documentation/eth-sendPrivateTransaction',
+            'flashbots-protect/additional-documentation/status-api',
+            'flashbots-protect/additional-documentation/ratelimiting',
+            'flashbots-protect/additional-documentation/bundle-cache',
+          ],
+        }
+      ],
     },
     {
       "Flashbots Data": [
         {
           'MEV-Inspect': [
             'flashbots-data/mev-inspect-py/overview',
-            'flashbots-data/mev-inspect-py/install',
             'flashbots-data/mev-inspect-py/quick-start',
             'flashbots-data/mev-inspect-py/inspecting',
             'flashbots-data/mev-inspect-py/exploring',
@@ -74,29 +82,11 @@ module.exports = {
           ]
         },
         'flashbots-data/blockapi',
-        'flashbots-data/mev-explore',
         'flashbots-data/dashboard',
       ],
     },
     {
-      "Flashbots Protect": [
-        'flashbots-protect/overview',
-        {
-          'RPC': [
-            'flashbots-protect/rpc/quick-start',
-            'flashbots-protect/rpc/mev-share',
-            'flashbots-protect/rpc/uncle-bandits',
-            'flashbots-protect/rpc/status-api',
-            'flashbots-protect/rpc/bundle-cache',
-            'flashbots-protect/rpc/ratelimiting',
-            'flashbots-protect/rpc/cancellations',
-            'flashbots-protect/rpc/releases',
-          ]
-        }
-      ],
-    },
-    {
-      "Flashbots MEV-Boost": [
+      "MEV-Boost": [
         'flashbots-mev-boost/introduction',
         {
           'Architecture Overview': [
@@ -126,22 +116,43 @@ module.exports = {
       ],
     },
     {
-      "Flashbots MEV-Share": [
-        'flashbots-mev-share/overview',
+      "MEV-Share": [
+        'flashbots-mev-share/introduction',
         'flashbots-mev-share/for-users',
+        'flashbots-mev-share/orderflow-providers',
         {
           'For Searchers': [
             'flashbots-mev-share/searchers/getting-started',
             'flashbots-mev-share/searchers/event-stream',
             'flashbots-mev-share/searchers/understanding-bundles',
             'flashbots-mev-share/searchers/sending-bundles',
-          ],
-          'For Wallet/Dapp Developers': [
+            'flashbots-mev-share/searchers/debugging',
             {
-              type: 'doc',
-              id: 'flashbots-mev-share/orderflow-providers/integration-guide',
-              label: 'Integration Guide'
-            },
+              'Tutorials': [
+                {
+                  'Limit Order Bot': [
+                    'flashbots-mev-share/searchers/tutorials/limit-order/introduction',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/setup',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/using-events',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/sending-bundles',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/debugging',
+                    'flashbots-mev-share/searchers/tutorials/limit-order/more-resources'
+                  ],
+                  'Flash Loan Arbitrage Bot': [
+                    'flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/introduction',
+                    'flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/simple-blind-arbitrage',
+                    'flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/flash-loan-basics',
+                    'flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/bot',
+                  ]
+                }
+              ]
+            }
+          ],
+          'Release Notes': [
+            'flashbots-mev-share/release-notes/2023-03',
+            'flashbots-mev-share/release-notes/2023-06',
+            'flashbots-mev-share/release-notes/2023-07',
+            'flashbots-mev-share/release-notes/2023-09'
           ]
         }
       ]
@@ -176,6 +187,6 @@ module.exports = {
       href: 'https://status.flashbots.net/',
       label: 'Status',
     },
-        'policies/privacy','policies/terms-of-service',
+        'policies/privacy','policies/terms-of-service', 'policies/prohibited-use-policy',
   ],
 };

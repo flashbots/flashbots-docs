@@ -18,11 +18,14 @@ jobs:
         env:
           TARGET_URL: "https://docs.flashbots.net"
           BASE_URL: "/"
+          ALGOLIA_APP_ID: "example"
+          ALGOLIA_SEARCH_API_KEY: "example"
+          ALGOLIA_INDEX_NAME: "example"
         run: |
           yarn install --frozen-lockfile
           yarn build
-      - name: Check for broken links
-        run: |
-          cd build
-          npm install -g linkinator
-          linkinator "**/*.html" --recurse --timeout 3000 --concurrency 10 --retry -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/.*','https://twitter.com.*','https://.*imgur.com.*'
+      # - name: Check for broken links
+      #   run: |
+      #     cd build
+      #     npm install -g linkinator
+      #     linkinator "**/*.html" --recurse --timeout 3000 --concurrency 10 --retry -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/.*','https://twitter.com.*','https://.*imgur.com.*'

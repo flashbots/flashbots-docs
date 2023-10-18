@@ -2,24 +2,24 @@
 title: Overview
 ---
 
-import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector"
+import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector";
 
-Flashbots Protect makes it easy for everyday users and developers to use Flashbots for frontrunning protection. We abstract away the complexity of submitting bundles to the Flashbots Auction and make integrating as simple as adding a URL to MetaMask.
+> **Privacy notice: Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
 
-Flashbots Protect RPC is an RPC endpoint that users can add to their wallets which sends their transactions to Flashbots. Learn more [in our quick start guide](/flashbots-protect/rpc/quick-start).
+Flashbots Protect is a user-friendly, secure, and powerful way to transact on Ethereum for both novices and sophisticated users.
 
-At a high level these are some of the major benefits of integrating Flashbots Protect:
+It has the following key benefits:
 
-- **Frontrunning protection:** transactions will not be seen by hungry sandwich bots in the public mempool.
-- **No failed transactions:** transactions will only be included if it doesn't include any reverts, so users don't pay for failed transactions. Note: transactions could be included in uncled blocks, emitted to the mempool, and then included on-chain.
-- **Etherscan integration:** users can see the status of their transactions on Etherscan.
+- **Configurable:** you can choose which builders to send to and your mev-share settings.
+- **Frontrunning protection:** your transaction will not be seen by bots hungry to frontrun you in the public mempool.
+- **Get backrunning MEV back**: if your transaction creates MEV in backrunning, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
+- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
+
+You can use Flashbots Protect by clicking the button below, or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net` or the custom URL based on your advanced configuration below.
 
 <ProtectButtonSelector />
 
-<br /><br />
+<br />
+<br />
 
-We intend to release more features on top of Flashbots Protect in the future, offering even more powerful functionality.
-
-## Community integrations
-
-The mistX team has developed a web SDK for integrating Flashbots that compliments the RPC endpoint. If you are a dApp that wants to offer easy support for Flashbots from your website, we recommend using the [mistX SDK](https://mistx.stoplight.io/docs/mistx).
+We want to thank MiningDAO, mistX and Nethermind for significant code contributions, testing, and being early adopters of Flashbots Protect.

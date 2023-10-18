@@ -4,8 +4,8 @@ title: Sending Bundles
 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
-import SendBundleRpc from '../../specs/mev-share/_mev_sendBundle.mdx'
-import BuilderInheritance from '../../specs/mev-share/blurbs/_builderInheritance.mdx'
+import SendBundleRpc from '@site/docs/specs/mev-share/_mev_sendBundle.mdx'
+import BuilderInheritance from '@site/docs/specs/mev-share/blurbs/_builderInheritance.mdx'
 
 While the new [bundle spec](/flashbots-mev-share/searchers/understanding-bundles#bundle-definition) may look complex, a bundle can be sent with default parameters using a client library, which ends up looking quite similar to sending bundles on mev-boost.
 
@@ -18,12 +18,12 @@ Variables in `ALL_CAPS` are placeholders. To use this code, replace them with yo
 :::
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
-import Matchmaker, { BundleParams } from '@flashbots/matchmaker-ts'
+import MevShareClient, { BundleParams } from '@flashbots/mev-share-client'
 
-const matchmaker = Matchmaker.useEthereumMainnet(authSigner)
+const mevShareClient = MevShareClient.useEthereumMainnet(authSigner)
 
 // ...
 
@@ -41,7 +41,7 @@ const params: BundleParams = {
     body: bundle,
 }
 
-const bundleResult = await matchmaker.sendBundle(params)
+const bundleResult = await mevShareClient.sendBundle(params)
 ```
 
 The first transaction in the bundle contains the hash of a pending transaction, which we presumably got from listening to the [event stream](/flashbots-mev-share/searchers/event-stream). The second transaction is one we sign ourself, which backruns the first transaction, presumably for a profit.
@@ -52,43 +52,79 @@ MEV-Share bundles are sent to the same RPC endpoint as MEV-Boost bundles: `https
 
 :::
 
-See [matchmaker-ts](https://github.com/flashbots/matchmaker-ts/blob/main/src/examples/sendBackrunBundle.ts) for a full working example.
+See [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts/blob/main/src/examples/sendBackrunBundle.ts) for a full working example.
 
 </TabItem>
 </Tabs>
 
 ---
 
-The params not included in the previous example can be used to configure more advanced conditions for your bundle's execution and the MEV kickbacks you earn.
+The params not included in the previous example can be used to configure more advanced conditions for your bundle's execution and the MEV refunds you earn.
 
 ### Share bundle data
 
-Specify data about your bundle's transactions that you wish to share with other searchers. Doing this can earn you MEV kickbacks and improve your bundle's chances of inclusion.
+To earn more MEV refunds and improve your bundle's chances of inclusion, you can specify data about your bundle's transactions that you wish to share with other searchers. The data that is shared is specified via the `privacy` parameter.
+
+:::caution bundles with signed txs only
+
+Note that bundles with transactions including the `hash` parameter are considered "unmatched", and will throw an error.
+
+:::
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
 const params: BundleParams = {
     inclusion: {
-        block: TARGET_BLOCK,
+        block: 17539448,
+        maxBlock: 17539450
     },
-    body: BUNDLE,
+    body: [
+        {tx: "0x02...", canRevert: false},
+        {tx: "0x02...", canRevert: false},
+    ],
     privacy: {
-        hints: ["calldata", "logs"],
+        hints: {
+            calldata: true,
+            logs: true,
+            txHash: true,
+        },
     },
 }
 ```
 
 </TabItem>
+<TabItem value="curl" label="curl">
+
+```bash
+curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: $FB_SIG" -d '{
+    inclusion: {
+        block: "0x10ba178",
+        maxBlock: "0x10ba17a",
+    },
+    body: [
+        {tx: "0x02...", canRevert: false},
+        {tx: "0x02...", canRevert: false},
+    ],
+    privacy: {
+        hints: ["calldata", "logs", "tx_hash"],
+    },
+}'
+```
+</TabItem>
 </Tabs>
 
-### Nest bundles (be a matchmaker)
+Even sharing only the `tx_hash` hint can be enough to earn some extra MEV. The only requirement to earn it is that your bundle is included in another searcher's bundle.
 
-Matchmakers nest bundles to build composite bundles that are more profitable.
+This strategy is particularly relevant to searchers who operate on public mempool transactions, and/or employ strategies that leave leftover MEV on the table (for example, if your strategy changes prices enough for a backrun arbitrage to be profitable).
+
+### Nest bundles (be a MEV-Share Node)
+
+MEV-Share Nodes nest bundles to build composite bundles that are more profitable.
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
 const params: BundleParams = {
@@ -116,7 +152,7 @@ const params: BundleParams = {
 
 ## Simulating Bundles
 
-Bundles matched by the matchmaker can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/searchers/advanced/rpc-endpoint#mev_simbundle) endpoint. 
+Bundles matched by the MEV-Share Node can be simulated to check MEV profits. To simulate a bundle, we use the [`mev_simBundle`](/flashbots-auction/advanced/rpc-endpoint#mev_simbundle) endpoint. 
 
 :::caution only matched bundles can be simulated
 
@@ -125,7 +161,7 @@ Bundle simulations can only be executed on matched bundles, which contain only s
 :::
 
 <Tabs>
-<TabItem value="ts" label="matchmaker-ts">
+<TabItem value="ts" label="mev-share-client-ts">
 
 ```typescript
 const params: BundleParams = {
@@ -154,7 +190,7 @@ const params: BundleParams = {
     }
 }
 
-const simResult = await matchmaker.simulateBundle(params)
+const simResult = await mevShareClient.simulateBundle(params)
 ```
 
 </TabItem>

@@ -8,6 +8,10 @@
         "description": "Share logs emitted by executing the transaction."
     },
     {
+        "name": "default_logs",
+        "description": "Share specific subset of logs related to defi swaps. Partial info (the pool id and the fact that a swap was made) for curve, balancer, and uniswapV2/V3-style trades"
+    },
+    {
         "name": "function_selector",
         "description": "Share the 4-byte identifier of the function being called on the smart contract by the transaction. The contract address will also be shared if the function selector is shared."
     },
@@ -17,7 +21,7 @@
     },
     {
         "name": "hash",
-        "description": "Share the transaction (or bundle) hash. To use full privacy mode, share this hint and this hint alone. The hash will always be shared if other hints are shared."
+        "description": "Share the transaction hash (or bundle hash if sending a bundle). To use full privacy mode, share this hint and this hint alone. The hash will always be shared if other hints are shared."
     },
     {
         "name": "tx_hash",

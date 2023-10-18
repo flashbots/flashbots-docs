@@ -8,7 +8,7 @@ Use Node.js v18+
 
 Note: if you want to install the node packages from within a Docker container (recommended for security), then you can start it like this:
 
-```sh
+```bash
 docker run -p 3000:3000 --rm -it -w /mnt -v $(pwd):/mnt node:18 /bin/bash
 ```
 
@@ -22,13 +22,18 @@ yarn install
 
 ## Local Development
 
+First create a local `.env` file to fill in env variable placeholders necessary for setting up the development. Note that these are merely placeholders.
+
+```sh
+cp .env.template .env
+```
+Then run the below command to start a local development server (and may open up a browser window). Some changes are reflected live without having to restart the server.
+
 ```console
 yarn start
 ```
 
-This command starts a local development server (and may open up a browser window). Some changes are reflected live without having to restart the server.
-
-You can open the local docs at [http://localhost:3000/docs](http://localhost:3000/docs)
+You can open the local docs at [http://localhost:3000/](http://localhost:3000/)
 
 ## Build
 
