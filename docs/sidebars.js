@@ -82,7 +82,6 @@ module.exports = {
           ]
         },
         'flashbots-data/blockapi',
-        'flashbots-data/mev-explore',
         'flashbots-data/dashboard',
       ],
     },
