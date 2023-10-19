@@ -6,7 +6,7 @@ import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 import SendBundleRpc from '@site/docs/specs/mev-share/_mev_sendBundle.mdx'
 import BuilderInheritance from '@site/docs/specs/mev-share/blurbs/_builderInheritance.mdx'
-import Hints from '@site/docs/specs/mev-share/_hints.mdx'
+import Hints from '@site/docs/specs/mev-share/HintsTable'
 
 Bundles on MEV-Share are conceptually the same as bundles on MEV-Boost: they are an ordered array of transactions that execute atomically. However, their structure is a bit different. MEV-Share bundles use a new method called [`mev_sendBundle`](https://github.com/flashbots/mev-share/blob/main/specs/bundles/v0.1.md) which has additional fields used to specify privacy preferences and introduce other new features like post-execution validity checks.
 
@@ -82,5 +82,5 @@ Bundles that set the `privacy` parameter can only contain original signed transa
 :::
 
 See [Sending Bundles](/flashbots-mev-share/searchers/sending-bundles#share-bundle-data) for more information.
--- 
+--
 Now that we know all the different ways in which we can send and share bundles, we're finally ready to [send a bundle](/flashbots-mev-share/searchers/sending-bundles).
