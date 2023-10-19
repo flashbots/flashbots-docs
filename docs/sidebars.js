@@ -23,11 +23,12 @@ module.exports = {
             'flashbots-auction/example-searchers/synthetix-searcher',
           ],
           "Libraries": [
+            'flashbots-auction/libraries/bundle-relay',
+            'flashbots-auction/libraries/mev-share-clients',
             'flashbots-auction/libraries/golang',
             'flashbots-auction/libraries/ethers-js-provider',
             'flashbots-auction/libraries/web3py-provider',
             'flashbots-auction/libraries/alchemyprovider',
-            'flashbots-auction/libraries/mev-share-clients',
           ],
           "Advanced Concepts": [
             'flashbots-auction/advanced/understanding-bundles',
