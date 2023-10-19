@@ -1,8 +1,12 @@
 camelcase
 dogfood
+flashbot
 flashbots
 Flashbots
 hideable
+Inpage
 katex
+MMSDK
 rehype
+SEPOLIA
 stylelint
