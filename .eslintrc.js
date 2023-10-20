@@ -50,9 +50,14 @@ module.exports = {
         ' ',
       ],
     ],
+    'import/no-unresolved': ERROR,
+    'import/no-extraneous-dependencies': [ERROR, {"includeTypes": true}],
+    "react/require-default-props": [WARNING, {
+      "functions": "defaultArguments"
+    }],
+    'react/jsx-filename-extension': [WARNING, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }]
   },
   settings: {
-    'import/no-unresolved': ERROR,
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
@@ -80,4 +85,4 @@ module.exports = {
       extends: ['plugin:mdx/overrides'],
     },
   ],
-};
+}
