@@ -1,6 +1,12 @@
+/**
+ * Copyright (c) Flashbots Ltd. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+import PropTypes from 'prop-types';
 import { MetaMaskProvider } from '@metamask/sdk-react';
 
-// Default implementation, that you can customize
 export default function Root({ children }) {
   return (
     <MetaMaskProvider debug={false} sdkOptions={{
@@ -9,7 +15,11 @@ export default function Root({ children }) {
         name: "Flashbots Protect",
       }
     }}>
-      <>{children}</>
+      {children}
     </MetaMaskProvider>
   );
 }
+
+Root.propTypes = {
+  children: PropTypes.node.isRequired,
+};

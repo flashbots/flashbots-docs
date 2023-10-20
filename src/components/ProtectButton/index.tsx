@@ -33,11 +33,14 @@ export const mungeHintsForRpcUrl = (hints: HintPreferences) => {
 };
 
 export interface ProtectButtonOptions extends PropsWithChildren {
-  /** Specify data to share; if undefined, uses default [Stable config](https://docs.flashbots.net/flashbots-protect/rpc/mev-share#stable-configuration) */
+  /** Specify data to share; if undefined, uses default
+   * [Stable config](https://docs.flashbots.net/flashbots-protect/rpc/mev-share#stable-configuration) */
   hints: HintPreferences;
-  /** Selected builders that are permitted to build blocks using the client's transactions. */
+  /** Selected builders that are permitted to build blocks using the client's
+   *  transactions. */
   builders: Array<string>;
-  /** `fast` mode enables all supported builders implicitly. Setting `fast` will override `builders`. */
+  /** `fast` mode enables all supported builders implicitly. Setting `fast`
+   * will override `builders`. */
   fast: boolean;
 }
 
@@ -61,21 +64,19 @@ export const generateRpcUrl = ({
   const rpcUrl = new URL(protectUrl);
 
   if (hints) {
-    for (const [hintName, hintEnabled] of Object.entries(
-      mungeHintsForRpcUrl(hints),
-    )) {
+    Object.entries(mungeHintsForRpcUrl(hints)).forEach(([hintName, hintEnabled]) => {
       if (hintEnabled) {
         rpcUrl.searchParams.append('hint', hintName.toLowerCase());
       }
-    }
+    });
   }
 
   if (fast) {
     rpcUrl.pathname += 'fast';
   } else if (builders) {
-    for (const builder of builders) {
+    builders.forEach(builder => {
       rpcUrl.searchParams.append('builder', builder.toLowerCase());
-    }
+    });
   }
   return rpcUrl;
 };
@@ -98,15 +99,16 @@ const chainName = (chainId: string) => {
  */
 function FlashbotsProtectButton(options: ProtectButtonOptions) {
   const {chainId = '0x1', sdk, provider} = useSDK();
+  const {children} = options;
   const rpcUrl = generateRpcUrl({
-    chainId: chainId,
+    chainId,
     options,
   });
 
   const connectToProtect = async () => {
     if (provider && sdk) {
       const addChainParams = {
-        chainId: chainId,
+        chainId,
         chainName: `Flashbots Protect (${chainName(chainId)})`,
         iconUrls: ['https://docs.flashbots.net/img/logo.png'],
         nativeCurrency: {
@@ -117,8 +119,8 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
         rpcUrls: [rpcUrl.toString()],
       };
       await sdk.connect();
-      // delete local storage key "providerType" to allow users pick extension or mobile
-      // when connecting
+      // delete local storage key "providerType" to allow users pick extension
+      // or mobile when connecting
       localStorage.removeItem('providerType');
       // do it manually with window.ethereum
       try {
@@ -143,7 +145,7 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
           type="button"
           className="flashButton"
           onClick={() => connectToProtect()}>
-          {options.children}
+          {children}
         </button>
       </div>
       <div className={styles.rpcUrlContainer}>
