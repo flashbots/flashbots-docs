@@ -1,14 +1,19 @@
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
-  plugins: ['stylelint-copyright'],
   rules: {
-    'docusaurus/copyright-header': [
+    'at-rule-no-unknown': [
       true,
       {
-        header: `*
- * Copyright (c) Flashbots Ltd. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.`,
+        ignoreAtRules: [
+          'tailwind',
+          'apply',
+          'variants',
+          'responsive',
+          'screen',
+        ],
       },
+    ],
+    'declaration-block-trailing-semicolon': null,
+    'no-descending-specificity': null,
+  },
 };

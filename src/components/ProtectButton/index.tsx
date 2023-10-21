@@ -7,7 +7,7 @@
 import {PropsWithChildren} from 'react';
 import type {HintPreferences} from '@flashbots/mev-share-client';
 import {useSDK} from '@metamask/sdk-react';
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const RPC_GOERLI_FLASHBOTS_NET = 'https://rpc-goerli.flashbots.net';
 const RPC_SEPOLIA_FLASHBOTS_NET = 'https://rpc-sepolia.flashbots.net';

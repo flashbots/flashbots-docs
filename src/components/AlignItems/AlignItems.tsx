@@ -1,20 +1,26 @@
+/**
+ * Copyright (c) Flashbots Ltd. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import React, { Children, ReactElement, ReactNode, useMemo } from "react"
-import styles from  './styles.module.scss';
+import styles from  './styles.module.css';
 
 interface IAlignItems {
   children: ReactNode | ReactNode[]
   horizontal?: "left" | "center" | "right" | "space-evenly" | "space-between"
-  vertical?: "top" | "center" | "bottom" 
+  vertical?: "top" | "center" | "bottom"
   direction?: "column" | "row"
   sideMargin?: number
 }
 
-const AlignItems = ({ 
+function AlignItems({
   children,
   horizontal = "center",
   sideMargin = 0,
   vertical = "center"
- }: IAlignItems) => {
+ }: IAlignItems) {
 
   const justifyContent = useMemo(() => {
     switch (horizontal) {
@@ -26,7 +32,7 @@ const AlignItems = ({
         return "flex-end"
       case "space-between":
         return "space-between"
-      case "space-evenly": 
+      case "space-evenly":
         return "space-evenly"
       default:
         return "center"
@@ -46,34 +52,32 @@ const AlignItems = ({
     }
   }, [vertical])
 
-  const margin = useMemo(() => {
-    return sideMargin ? `0 ${sideMargin}rem` : undefined
-  }, [sideMargin])
+  const margin = useMemo(() => sideMargin ? `0 ${sideMargin}rem` : undefined, [sideMargin])
 
   const correctChildren = useMemo(() => {
     if (Children.count(children) === 1) {
       let childrenParsed;
       Children.toArray(children).map((child)=> {
-        if (!childrenParsed) { 
+        if (!childrenParsed) {
           childrenParsed = (child as ReactElement).props.children
         }
       })
       return childrenParsed
-    } else {
+    } 
       return children
-    }
+    
   }, [children, margin])
 
 
   return (
-    <section 
+    <section
       className={styles.root}
       style={{
         justifyContent,
         alignItems,
         // @ts-ignore This is a standard css variable assignment
-        ["--align-items-margin"]: margin
-      } }  
+        "--align-items-margin": margin
+      } }
     >
       {
         correctChildren

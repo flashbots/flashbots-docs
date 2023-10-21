@@ -1,5 +1,11 @@
+/**
+ * Copyright (c) Flashbots Ltd. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import React, { Children, PropsWithChildren } from 'react'
-import styles from './styles.module.scss'
+import styles from './styles.module.css'
 
 type SimpleDropdownParams = {
     header: string,
@@ -8,15 +14,11 @@ type SimpleDropdownParams = {
     isOpen: boolean,
 }
 
-const SimpleDropdown = ({ children, header, italicHeader, onClickHeader, isOpen }: PropsWithChildren<SimpleDropdownParams>) => {
+function SimpleDropdown({ children, header, italicHeader, onClickHeader, isOpen }: PropsWithChildren<SimpleDropdownParams>) {
     const useItalic = italicHeader !== false // default to true
     const subComponentList = Object.keys(SimpleDropdown)
 
-    let subComponents = subComponentList.map((key) => {
-        return Children.map(children, (child: any) => {
-            return child.type({}).key === key ? child : null
-        })
-    })
+    const subComponents = subComponentList.map((key) => Children.map(children, (child: any) => child.type({}).key === key ? child : null))
 
     return (
         <div className='dropdown-container'>
@@ -37,7 +39,7 @@ const SimpleDropdown = ({ children, header, italicHeader, onClickHeader, isOpen 
     )
 }
 
-const Body = (props) => {
+function Body(props) {
     return (<div key='Body' className={styles.dropdownBody}>
         <div>
             {props.children}
@@ -46,7 +48,7 @@ const Body = (props) => {
 }
 SimpleDropdown.Body = Body
 
-const HiddenBody = ({ children }) => {
+function HiddenBody({ children }) {
     return (
         <div key='HiddenBody' className={styles.dropdownHiddenBody}>{children}</div>
     )

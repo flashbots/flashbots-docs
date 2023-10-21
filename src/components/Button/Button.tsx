@@ -1,6 +1,12 @@
+/**
+ * Copyright (c) Flashbots Ltd. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import { useHistory } from "@docusaurus/router";
 import React, { ReactNode, useCallback } from "react"
-import styles from  './styles.module.scss';
+import styles from  './styles.module.css';
 
 interface IButton {
   children: ReactNode | ReactNode[]
@@ -9,13 +15,13 @@ interface IButton {
   inline?: boolean
 }
 
-const Button = ({ children, href, action, inline = false }: IButton) => {
+function Button({ children, href, action, inline = false }: IButton) {
   const history = useHistory()
   const onClick = useCallback(() => {
     action && action()
     if (href) {
       if (href.includes("http://") || href.includes("https://")) {
-        let a = document.createElement('a');
+        const a = document.createElement('a');
         a.target = '_blank';
         a.href= href;
         a.click();

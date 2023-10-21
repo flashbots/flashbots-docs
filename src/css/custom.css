@@ -1,4 +1,3 @@
-/* stylelint-disable docusaurus/copyright-header */
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -8,51 +7,32 @@
 @font-face {
   font-family: CMU-Serif;
   src: url('/fonts/cmunbx.ttf') format('truetype');
-  style: bold;
-  weight: bold;
-  stretch: 100;
 }
 
 @font-face {
   font-family: CMU-Serif;
   src: url('/fonts/cmunci.ttf') format('truetype');
-  style: italic;
-  weight: 400;
-  stretch: 100;
 }
 
 @font-face {
   font-family: CMU-Serif;
   src: url('/fonts/cmunrm.ttf') format('truetype');
-  style: normal;
-  weight: 400;
-  stretch: 100;
 }
 
 /* You can override the default Infima variables here. */
 :root {
-  // --ifm-link-color: #0044FF;
-  // --ifm-menu-color-active: #0044FF;
-  // --ifm-toc-link-color: #0044FF;
-  // --ifm-color-primary: #25c2a0;
-  --ifm-color-primary: #0044FF;
+  --ifm-color-primary: #04F;
   --ifm-color-content: var(--ifm-color-emphasis-800);
-  // --ifm-color-primary-dark: #99AAFF;
-  // --ifm-color-primary-darker: rgb(31, 165, 136);
-  // --ifm-color-primary-darkest: rgb(26, 136, 112);
-  // --ifm-color-primary-light: rgb(70, 203, 174);
-  // --ifm-color-primary-lighter: rgb(102, 212, 189);
-  // --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #99AAFF;
-  --ifm-heading-color: #FFFFFF;
+  --ifm-color-primary: #9AF;
+  --ifm-heading-color: #FFF;
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
+  background-color: rgb(72 77 91);
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
@@ -80,8 +60,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'CMU-Serif', 'Times New Roman', Garamond, Georgia, serif;
-  // color: var(--ifm-color-gray-1000);
+  font-family: CMU-Serif, 'Times New Roman', Garamond, Georgia, serif;
 }
 
 h1,
@@ -95,7 +74,7 @@ h2 {
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
-.menu__link--sublist:after {
+.menu__link--sublist::after {
   background: var(--ifm-menu-link-sublist-icon) 50%/1.5rem 1.5rem;
   opacity: .75;
 }
@@ -106,12 +85,12 @@ h2 {
   border: 1px solid gray;
   font-size: 1em;
   font-weight: bold;
-  background: rgb(28, 184, 65);
+  background: rgb(28 184 65);
   color: white;
   border-radius: 4px;
   text-shadow: 0 1px 1px rgb(0 0 0 / 20%);
 
   &:hover {
-    background-image: linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1));
+    background-image: linear-gradient(transparent, rgb(0 0 0 / 5%) 40%, rgb(0 0 0 / 10%));
   }
 }

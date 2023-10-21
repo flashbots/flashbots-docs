@@ -82,7 +82,7 @@ module.exports = async function createConfigAsync() {
             rehypePlugins: [(await import('rehype-katex')).default],
           },
           theme: {
-            customCss: require.resolve("./src/scss/custom.scss")
+            customCss: require.resolve('./src/css/custom.css'),
           },
         }),
       ],
