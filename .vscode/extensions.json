@@ -1,0 +1,20 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "EditorConfig.EditorConfig",
+    "Gruntfuggly.todo-tree",
+    "github.vscode-github-actions",
+    "GitHub.vscode-pull-request-github",
+    "GitHub.remotehub",
+    "eamodio.gitlens",
+    "unifiedjs.vscode-mdx",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "bradlc.vscode-tailwindcss",
+  ],
+  "unwantedRecommendations": []
+}
