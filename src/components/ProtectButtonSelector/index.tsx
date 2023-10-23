@@ -24,7 +24,7 @@ const hintLabels = [
 export default function ProtectButtonSelector() {
   const [hashOnly, setHashOnly] = useState(false);
   const [advancedOptionsShown, setAdvancedOptionsShown] = useState(false);
-  const [fastMode, setFastMode] = useState(true);
+  const [fastMode, setFastMode] = useState(false);
   // Initialize the state object with all hints set to false
   const [hints, setHints] = useState(
     Object.fromEntries(hintLabels.map((label) => [label, false])),
