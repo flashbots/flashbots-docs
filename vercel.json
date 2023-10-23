@@ -1,25 +1,26 @@
 {
-    "trailingSlash": false,
-    "redirects": [
-        {
-            "source": "/flashbots-protect/rpc/:path(uncle-bandits|releases)",
-            "destination": "/flashbots-protect/overview",
-            "permanent": true
-        },
-        {
-            "source": "/flashbots-protect/rpc/:path(quick-start|mev-share|cancellations)",
-            "destination": "/flashbots-protect/:path",
-            "permanent": true
-        },
-        {
-            "source": "/flashbots-protect/rpc/:path(status-api|ratelimiting|bundle-cache)",
-            "destination": "/flashbots-protect/additional-documentation/:path",
-            "permanent": true
-        },
-        {
-            "source": "/flashbots-auction/searchers/:path*",
-            "destination": "/flashbots-auction/:path",
-            "permanent": true
-        }
-    ]
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/flashbots-protect/rpc/:path(uncle-bandits|releases)",
+      "destination": "/flashbots-protect/overview",
+      "permanent": true
+    },
+    {
+      "source": "/flashbots-protect/rpc/:path(quick-start|mev-share|cancellations)",
+      "destination": "/flashbots-protect/:path",
+      "permanent": true
+    },
+    {
+      "source": "/flashbots-protect/rpc/:path(status-api|ratelimiting|bundle-cache)",
+      "destination": "/flashbots-protect/additional-documentation/:path",
+      "permanent": true
+    },
+    {
+      "source": "/flashbots-auction/searchers/:path*",
+      "destination": "/flashbots-auction/:path",
+      "permanent": true
+    }
+  ]
 }
