@@ -3,6 +3,9 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
 
 @font-face {
   font-family: CMU-Serif;
