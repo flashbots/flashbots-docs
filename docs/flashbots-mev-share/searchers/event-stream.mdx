@@ -133,9 +133,7 @@ Returns an array of historical hints.
 
 ### Example
 
-<Tabs>
-<TabItem value="sh" label="curl">
-Get available historical hint data:
+#### Get information about historical hint data
 
 ```bash
 curl https://mev-share-goerli.flashbots.net/api/v1/history/info
@@ -154,10 +152,16 @@ _Response:_
 }
 ```
 
-Get historical hint data for a block range:
+#### Get historical event data beginning at start of stream history
 
 ```bash
 curl https://mev-share-goerli.flashbots.net/api/v1/history
+```
+
+#### Get historical hint data from a specific block range
+
+```bash
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&blockEnd=9091379'
 ```
 
 _Response:_
@@ -194,5 +198,21 @@ _Response:_
   }
 ]
 ```
-</TabItem>
-</Tabs>
+
+#### Querying with Offset & Limit
+
+Event history results are returned in chunks whose size are defined by `limit`, the maximum limit being specified in the [`/history/info` endpoint](#get-apiv1historyinfo).
+
+```bash
+# assuming the limit is 500
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&offset=500'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&offset=1000'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&offset=1500'
+
+# or with a custom limit
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&limit=100'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&limit=100&offset=100'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&limit=100&offset=200'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&limit=100&offset=300'
+```
