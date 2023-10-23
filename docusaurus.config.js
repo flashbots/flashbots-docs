@@ -91,7 +91,7 @@ module.exports = async function createConfigAsync() {
     ],
     plugins:    [
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      async function myPlugin(context, options) {
+      async function tailwindcssSupport(context, options) {
         return {
           name: "docusaurus-tailwindcss",
           configurePostCss(postcssOptions) {
