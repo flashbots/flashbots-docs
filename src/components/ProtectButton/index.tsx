@@ -7,7 +7,7 @@
 import {PropsWithChildren} from 'react';
 import type {HintPreferences} from '@flashbots/mev-share-client';
 import {useSDK} from '@metamask/sdk-react';
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 const RPC_GOERLI_FLASHBOTS_NET = 'https://rpc-goerli.flashbots.net';
 const RPC_SEPOLIA_FLASHBOTS_NET = 'https://rpc-sepolia.flashbots.net';
@@ -64,17 +64,19 @@ export const generateRpcUrl = ({
   const rpcUrl = new URL(protectUrl);
 
   if (hints) {
-    Object.entries(mungeHintsForRpcUrl(hints)).forEach(([hintName, hintEnabled]) => {
-      if (hintEnabled) {
-        rpcUrl.searchParams.append('hint', hintName.toLowerCase());
-      }
-    });
+    Object.entries(mungeHintsForRpcUrl(hints)).forEach(
+      ([hintName, hintEnabled]) => {
+        if (hintEnabled) {
+          rpcUrl.searchParams.append('hint', hintName.toLowerCase());
+        }
+      },
+    );
   }
 
   if (fast) {
     rpcUrl.pathname += 'fast';
   } else if (builders) {
-    builders.forEach(builder => {
+    builders.forEach((builder) => {
       rpcUrl.searchParams.append('builder', builder.toLowerCase());
     });
   }
@@ -138,9 +140,8 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
   };
 
   return (
-    <div
-      style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div className="flex flex-col items-center">
+      <div className="flex justify-center">
         <button
           type="button"
           className="flashButton"

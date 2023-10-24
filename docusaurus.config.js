@@ -7,6 +7,8 @@
 require('dotenv').config()
 const { themes: { github: lightCodeTheme } } = require('prism-react-renderer');
 const { themes: { dracula: darkCodeTheme } } = require('prism-react-renderer');
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
 
 /** @returns {Promise<import('@docusaurus/types').Config>} */
 module.exports = async function createConfigAsync() {
@@ -82,13 +84,25 @@ module.exports = async function createConfigAsync() {
             rehypePlugins: [(await import('rehype-katex')).default],
           },
           theme: {
-            customCss: require.resolve("./src/scss/custom.scss")
+            customCss: require.resolve('./src/css/custom.css'),
           },
         }),
       ],
     ],
-    plugins: [
-      'docusaurus-plugin-sass',
+    plugins:    [
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      async function tailwindcssSupport(context, options) {
+        return {
+          name: "docusaurus-tailwindcss",
+          configurePostCss(postcssOptions) {
+            // Appends TailwindCSS and AutoPrefixer.
+            postcssOptions.plugins.push('tailwindcss/nesting')
+            postcssOptions.plugins.push(tailwindcss);
+            postcssOptions.plugins.push(autoprefixer);
+            return postcssOptions;
+          },
+        };
+      },
     ],
   }
 }

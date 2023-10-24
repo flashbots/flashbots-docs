@@ -1,31 +1,26 @@
 {
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
-    /* Emit */
-    "target": "ES2020",
-    "lib": ["ESNext"],
-    "declaration": true,
-    // These two options will be selectively overridden in each project.
-    // Utility libraries will have source maps on, but plugins will not.
-    "declarationMap": false,
-    "sourceMap": false,
-    "importHelpers": true,
-    "noEmitHelpers": true,
-    // Will be overridden in client projects
-    "module": "NodeNext",
-    // Avoid accidentally using this config to build
-    "noEmit": true,
+    "lib": ["DOM", "ESNext"],
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "types": [
+      "node",
+      "@docusaurus/module-type-aliases",
+      "@docusaurus/theme-classic",
+    ],
 
-    /* Strict Type-Checking Options */
+    // Duplicated from the root config, because TS does not support extending
+    // multiple configs and we want to dogfood the @docusaurus/tsconfig one
     "allowUnreachableCode": false,
-    // Too hard to turn on
     "exactOptionalPropertyTypes": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    // `process.env` is usually accessed as property
     "noPropertyAccessFromIndexSignature": false,
     "noUncheckedIndexedAccess": true,
-    /* strict family */
     "strict": true,
     "alwaysStrict": true,
     "noImplicitAny": true,
@@ -35,25 +30,14 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "useUnknownInCatchVariables": true,
-    /* Handled by ESLint */
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "importsNotUsedAsValues": "remove",
 
-    /* Module Resolution */
-    "moduleResolution": "NodeNext",
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "allowJs": true,
-    "skipLibCheck": true // @types/webpack and webpack/types.d.ts are not the same thing
+    // This is important. We run `yarn tsc` in website so we can catch issues
+    // with our declaration files (mostly names that are forgotten to be
+    // imported, invalid semantics...). Because we don't have end-to-end type
+    // tests, removing this would make things much harder to catch.
+    "skipLibCheck": false,
   },
-  "include": ["./**/*", "./**/.eslintrc.js"],
-  "exclude": [
-    "node_modules",
-    "**/lib/**/*",
-    "src/**/*"
-  ]
 }

@@ -1,7 +1,0 @@
-// https://stackoverflow.com/questions/65782044/without-media-queries-how-to-achieve-3-column-desktop-to-1-column-mobile-layout
-.root {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(100px,(1024px - 100vw)*1000, 100%), 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}

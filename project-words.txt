@@ -10,3 +10,4 @@ MMSDK
 rehype
 SEPOLIA
 stylelint
+tailwindcss

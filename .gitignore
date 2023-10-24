@@ -25,5 +25,4 @@ node_modules
 .env*.local
 
 .idea/
-.vscode
 .eslintcache

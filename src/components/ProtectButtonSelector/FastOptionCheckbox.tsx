@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import Checkbox from '../Checkbox';
-import styles from './styles.module.scss';
+import styles from './styles.module.css';
 
 interface FastOptionCheckboxProps {
   fastMode: boolean;

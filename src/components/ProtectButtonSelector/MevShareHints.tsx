@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import Checkbox from '../Checkbox';
-import AlignItems from '../AlignItems/AlignItems';
 
 interface MevShareHintsProps {
   hintLabels: string[];
@@ -19,8 +18,8 @@ function MevShareHints({ hintLabels, hints, hashOnly, setHint, onSetNoHints }: M
   return (
     <div>
       <em>MEV-Share Hints</em>
-      <hr style={{padding: 0, margin: 0}} />
-      <AlignItems horizontal="left">
+      <hr className="my-0 py-0" />
+      <div className="flex flex-row justify-start space-x-4">
         {hintLabels.map((label) => (
           <Checkbox
             label={label}
@@ -37,8 +36,7 @@ function MevShareHints({ hintLabels, hints, hashOnly, setHint, onSetNoHints }: M
           checked={hashOnly}
           onChange={onSetNoHints}
         />
-        <div style={{width: 64}} /> {/* spacer */}
-      </AlignItems>
+      </div>
     </div>
   );
 }
