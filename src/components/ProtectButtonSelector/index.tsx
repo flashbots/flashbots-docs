@@ -74,7 +74,7 @@ export default function ProtectButtonSelector() {
   };
 
   return (
-    <div className='p-2 max-w-md mx-auto border border-solid border-slate-300/50 rounded-xl'>
+    <div className='p-2 max-w-md mx-auto border border-solid border-slate-300/50 rounded-2xl'>
       <SimpleDropdown
         header="Advanced options"
         onClickHeader={() => {

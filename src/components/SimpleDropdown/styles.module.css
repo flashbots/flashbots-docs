@@ -6,9 +6,12 @@
     border: 1px solid var(--ifm-color-emphasis-200);
     border-radius: 0.5rem;
     width: 100%;
-    padding: .5rem;
+    padding: 0 .5rem;
 }
 
 .dropdownHeader {
-    padding: 6px;
+    padding: 0 .25rem;
+    font-weight: 400;
+    font-size: .9rem;
+    cursor: pointer;
 }
