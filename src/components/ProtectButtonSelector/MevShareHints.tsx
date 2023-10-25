@@ -17,9 +17,8 @@ interface MevShareHintsProps {
 function MevShareHints({ hintLabels, hints, hashOnly, setHint, onSetNoHints }: MevShareHintsProps) {
   return (
     <div>
-      <em>MEV-Share Hints</em>
-      <hr className="my-0 py-0" />
-      <div className="flex flex-row justify-start space-x-4">
+      <p className='text-sm font-bold m-2'>MEV-Share Hints</p>
+      <div className="grid grid-cols-2">
         {hintLabels.map((label) => (
           <Checkbox
             label={label}
@@ -37,6 +36,7 @@ function MevShareHints({ hintLabels, hints, hashOnly, setHint, onSetNoHints }: M
           onChange={onSetNoHints}
         />
       </div>
+      <hr className='my-3 mx-2 opacity-50' />
     </div>
   );
 }
