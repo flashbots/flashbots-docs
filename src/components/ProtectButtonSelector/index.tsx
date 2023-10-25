@@ -7,7 +7,6 @@
 import {useState} from 'react';
 import FlashbotsProtectButton from '../ProtectButton';
 import SimpleDropdown from '../SimpleDropdown';
-import GridBlock from '../GridBlock/GridBlock';
 import BuilderOptions from './BuilderOptions';
 import {useSupportedBuilders} from '../mev-share/useSupportedBuilders';
 import FastOptionCheckbox from './FastOptionCheckbox';
@@ -75,7 +74,7 @@ export default function ProtectButtonSelector() {
   };
 
   return (
-    <GridBlock>
+    <div className='p-2 max-w-md mx-auto border border-solid border-slate-300/50 rounded-xl'>
       <SimpleDropdown
         header="Advanced options"
         onClickHeader={() => {
@@ -107,6 +106,6 @@ export default function ProtectButtonSelector() {
           />
         </SimpleDropdown.HiddenBody>
       </SimpleDropdown>
-    </GridBlock>
+    </div>
   );
 }
