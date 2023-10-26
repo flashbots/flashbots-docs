@@ -11,6 +11,8 @@ import BuilderOptions from './BuilderOptions';
 import {useSupportedBuilders} from '../mev-share/useSupportedBuilders';
 import FastOptionCheckbox from './FastOptionCheckbox';
 import MevShareHints from './MevShareHints';
+import FlashbotsLogo from '/static/img/flashbots-logo.svg';
+
 
 const hintLabels = [
   'calldata',
@@ -84,7 +86,10 @@ export default function ProtectButtonSelector() {
 
         <SimpleDropdown.Body>
           <div className="bg-white flex flex-col gap-2 p-4 mb-2 border-solid border-slate-200 rounded-xl">
-            <p className='font-bold text-2xl mb-2'>Flashbots Protect RPC</p>
+            <div className='flex mb-3'>
+              <p className='font-bold text-2xl m-0 grow'>Flashbots Protect RPC</p>
+              <FlashbotsLogo className='mx-1' />
+            </div>
             <FastOptionCheckbox fastMode={fastMode} setFastMode={setFastMode} />
             <FlashbotsProtectButton
               hints={hintsProcessed}
