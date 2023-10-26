@@ -74,22 +74,27 @@ export default function ProtectButtonSelector() {
   };
 
   return (
-    <div className='p-2 max-w-md mx-auto border border-solid border-slate-300/50 rounded-2xl'>
+    <div className="bg-gray-100 p-2 max-w-md mx-auto border border-solid border-slate-300/50 rounded-2xl">
       <SimpleDropdown
         header="Advanced options"
         onClickHeader={() => {
           setAdvancedOptionsShown(!advancedOptionsShown);
         }}
         isOpen={advancedOptionsShown}>
+
         <SimpleDropdown.Body>
-          <FlashbotsProtectButton
-            hints={hintsProcessed}
-            builders={selectedBuilders}
-            fast={fastMode}>
-            Connect Wallet to Protect
-          </FlashbotsProtectButton>
-          <FastOptionCheckbox fastMode={fastMode} setFastMode={setFastMode} />
+          <div className="bg-white flex flex-col gap-2 p-4 mb-2 border-solid border-slate-200 rounded-xl">
+            <p className='font-bold text-2xl mb-2'>Flashbots Protect RPC</p>
+            <FastOptionCheckbox fastMode={fastMode} setFastMode={setFastMode} />
+            <FlashbotsProtectButton
+              hints={hintsProcessed}
+              builders={selectedBuilders}
+              fast={fastMode}>
+              Connect Wallet to Protect
+            </FlashbotsProtectButton>
+          </div>
         </SimpleDropdown.Body>
+
         <SimpleDropdown.HiddenBody>
           <MevShareHints
             hintLabels={hintLabels}
