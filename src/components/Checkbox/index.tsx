@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from "react"
-import styles from './styles.module.css'
 
 function Checkbox({ label, id, checked, onChange, disabled, arrangement, orientation }:
         {
@@ -18,12 +17,12 @@ function Checkbox({ label, id, checked, onChange, disabled, arrangement, orienta
             onChange: (val: boolean) => void
         }) {
     const elements = [
-        <label htmlFor={id} key={0}>{label}</label>,
+        <label htmlFor={id} key={0} className="px-1 enabled:cursor-pointer enabled:hover:text-blue-600 ">{label}</label>,
         <input id={id} type="checkbox" checked={checked} disabled={disabled} key={1} onChange={(e) => {
             onChange(e.target.checked)
         }} />
     ]
-    return <div className={styles.checkboxContext}>
+    return <div className="m-1 flex items-center cursor-pointer disabled:opacity-50 disabled:pointer-events-none">
         {orientation === "last" ? elements : elements.reverse()}
     </div>
 }
