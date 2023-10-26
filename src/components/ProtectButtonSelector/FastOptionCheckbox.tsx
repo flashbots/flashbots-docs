@@ -20,7 +20,7 @@ function FastOptionCheckbox({ fastMode, setFastMode }: FastOptionCheckboxProps) 
       </svg>
       <div className='max-w-[80%]'>
         <p className='m-0 text-sm font-bold'>Fast mode</p>
-        <p className='m-0 text-sm'>Transactions are shared with all registered builders. A larger portion of the bundle value is sent to the validators</p>
+        <p className='m-0 text-sm text-gray-700'>Transactions are shared with all registered builders. A larger portion of the bundle value is sent to the validators</p>
       </div>
       <Checkbox
         id="fast"

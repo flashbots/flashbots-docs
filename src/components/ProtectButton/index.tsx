@@ -147,7 +147,7 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
         </svg>
         <div className='max-w-[93%]'>
           <p className='m-0 text-sm font-bold'>RPC URL</p>
-          <p className='m-0 text-sm break-words'>{rpcUrl.toString()}</p>
+          <p className='m-0 text-sm text-gray-700 break-words'>{rpcUrl.toString()}</p>
         </div>
       </div>
       <button
