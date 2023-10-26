@@ -25,7 +25,7 @@ function SimpleDropdown({ children, header, italicHeader, onClickHeader, isOpen 
             {subComponents[0]}
             <details open={isOpen}>
                 <summary
-                    className={styles.dropdownHeader}
+                    className="cursor-pointer text-gray-600 pl-1"
                     onClick={(event) => {
                         event.preventDefault();
                         onClickHeader();
@@ -50,7 +50,7 @@ SimpleDropdown.Body = Body
 
 function HiddenBody({ children }) {
     return (
-        <div key='HiddenBody' className={styles.dropdownHiddenBody}>{children}</div>
+        <div key='HiddenBody' className="p-2 border-solid border-slate-200/75 rounded-xl">{children}</div>
     )
 }
 SimpleDropdown.HiddenBody = HiddenBody

@@ -16,18 +16,19 @@ interface BuildersProps {
 function BuilderOptions({ supportedBuilders, buildersSelection, fastMode, setBuilder}: BuildersProps) {
   return (
     <div>
-      <em>Builders</em>
-      <hr style={{padding: 0, margin: 0}} />
-      {supportedBuilders.map((builder: string) => (
-        <Checkbox
-          label={builder}
-          id={`builder_${builder}`}
-          key={builder}
-          checked={buildersSelection[builder] || fastMode}
-          disabled={fastMode === true}
-          onChange={() => setBuilder(builder)}
-        />
-      ))}
+      <p className='text-sm font-bold m-2'>Builders</p>
+      <div className="grid grid-cols-2">
+        {supportedBuilders.map((builder: string) => (
+          <Checkbox
+            label={builder}
+            id={`builder_${builder}`}
+            key={builder}
+            checked={buildersSelection[builder] || fastMode}
+            disabled={fastMode === true}
+            onChange={() => setBuilder(builder)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

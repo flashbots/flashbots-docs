@@ -81,19 +81,3 @@ h2 {
   background: var(--ifm-menu-link-sublist-icon) 50%/1.5rem 1.5rem;
   opacity: .75;
 }
-
-.flashButton {
-  cursor: pointer;
-  padding: 12px 16px;
-  border: 1px solid gray;
-  font-size: 1em;
-  font-weight: bold;
-  background: rgb(28 184 65);
-  color: white;
-  border-radius: 4px;
-  text-shadow: 0 1px 1px rgb(0 0 0 / 20%);
-
-  &:hover {
-    background-image: linear-gradient(transparent, rgb(0 0 0 / 5%) 40%, rgb(0 0 0 / 10%));
-  }
-}

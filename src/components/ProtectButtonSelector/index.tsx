@@ -7,11 +7,12 @@
 import {useState} from 'react';
 import FlashbotsProtectButton from '../ProtectButton';
 import SimpleDropdown from '../SimpleDropdown';
-import GridBlock from '../GridBlock/GridBlock';
 import BuilderOptions from './BuilderOptions';
 import {useSupportedBuilders} from '../mev-share/useSupportedBuilders';
 import FastOptionCheckbox from './FastOptionCheckbox';
 import MevShareHints from './MevShareHints';
+import FlashbotsLogo from '/static/img/flashbots-logo.svg';
+
 
 const hintLabels = [
   'calldata',
@@ -75,22 +76,30 @@ export default function ProtectButtonSelector() {
   };
 
   return (
-    <GridBlock>
+    <div className="bg-gray-50 text-gray-950 p-2 max-w-md mx-auto border border-solid border-slate-200 rounded-2xl">
       <SimpleDropdown
         header="Advanced options"
         onClickHeader={() => {
           setAdvancedOptionsShown(!advancedOptionsShown);
         }}
         isOpen={advancedOptionsShown}>
+
         <SimpleDropdown.Body>
-          <FlashbotsProtectButton
-            hints={hintsProcessed}
-            builders={selectedBuilders}
-            fast={fastMode}>
-            Connect Wallet to Protect
-          </FlashbotsProtectButton>
-          <FastOptionCheckbox fastMode={fastMode} setFastMode={setFastMode} />
+          <div className="bg-white flex flex-col gap-2 p-4 mb-2 border-solid border-slate-200 rounded-xl">
+            <div className='flex mb-3'>
+              <p className='font-bold text-2xl m-0 grow'>Flashbots Protect RPC</p>
+              <FlashbotsLogo className='mx-1' />
+            </div>
+            <FastOptionCheckbox fastMode={fastMode} setFastMode={setFastMode} />
+            <FlashbotsProtectButton
+              hints={hintsProcessed}
+              builders={selectedBuilders}
+              fast={fastMode}>
+              Connect Wallet to Protect
+            </FlashbotsProtectButton>
+          </div>
         </SimpleDropdown.Body>
+
         <SimpleDropdown.HiddenBody>
           <MevShareHints
             hintLabels={hintLabels}
@@ -107,6 +116,6 @@ export default function ProtectButtonSelector() {
           />
         </SimpleDropdown.HiddenBody>
       </SimpleDropdown>
-    </GridBlock>
+    </div>
   );
 }
