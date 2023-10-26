@@ -150,14 +150,14 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
           <p className='m-0 text-sm break-words'>{rpcUrl.toString()}</p>
         </div>
       </div>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center"> */}
         <button
           type="button"
-          className="flashButton"
+          className="min-w-full h-10 px-4 py-2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-base font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gray-950 text-white hover:bg-gray-800"
           onClick={() => connectToProtect()}>
           {children}
         </button>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
