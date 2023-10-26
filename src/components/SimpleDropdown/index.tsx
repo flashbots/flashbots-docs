@@ -25,7 +25,7 @@ function SimpleDropdown({ children, header, italicHeader, onClickHeader, isOpen 
             {subComponents[0]}
             <details open={isOpen}>
                 <summary
-                    className={styles.dropdownHeader}
+                    className="cursor-pointer text-gray-600 pl-1"
                     onClick={(event) => {
                         event.preventDefault();
                         onClickHeader();
