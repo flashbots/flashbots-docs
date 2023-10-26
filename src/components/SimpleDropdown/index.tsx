@@ -50,7 +50,7 @@ SimpleDropdown.Body = Body
 
 function HiddenBody({ children }) {
     return (
-        <div key='HiddenBody' className={styles.dropdownHiddenBody}>{children}</div>
+        <div key='HiddenBody' className="p-2 border-solid border-slate-200/75 rounded-xl">{children}</div>
     )
 }
 SimpleDropdown.HiddenBody = HiddenBody

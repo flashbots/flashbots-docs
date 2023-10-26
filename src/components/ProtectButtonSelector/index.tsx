@@ -74,7 +74,7 @@ export default function ProtectButtonSelector() {
   };
 
   return (
-    <div className="bg-gray-100 p-2 max-w-md mx-auto border border-solid border-slate-300/50 rounded-2xl">
+    <div className="bg-gray-50 text-gray-950 p-2 max-w-md mx-auto border border-solid border-slate-200 rounded-2xl">
       <SimpleDropdown
         header="Advanced options"
         onClickHeader={() => {
