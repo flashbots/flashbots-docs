@@ -20,7 +20,7 @@ function FastOptionCheckbox({ fastMode, setFastMode }: FastOptionCheckboxProps) 
       </svg>
       <div>
         <p className='m-0 text-sm font-bold grow'>Fast mode</p>
-        <p className='m-0 text-sm text-gray-700'>Send to [more builders](/flashbots-protect/mev-share#builders) and give validators a larger tip.</p>
+        <p className='m-0 text-sm text-gray-700'>Send to more builders and give validators a larger tip.</p>
       </div>
       <Switch.Root 
         id="fast" 
