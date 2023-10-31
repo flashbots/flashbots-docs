@@ -78,7 +78,6 @@ module.exports = async function createConfigAsync() {
             routeBasePath: '/',
             editUrl:
               'https://github.com/flashbots/flashbots-docs/edit/main/',
-            showLastUpdateAuthor: true,
             showLastUpdateTime: true,
             remarkPlugins: [(await import('remark-math')).default],
             rehypePlugins: [(await import('rehype-katex')).default],
