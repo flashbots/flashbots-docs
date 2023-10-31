@@ -17,9 +17,9 @@ import FlashbotsLogo from '/static/img/flashbots-logo.svg';
 const hintLabels = [
   'calldata',
   'logs',
-  'defaultLogs',
-  'contractAddress',
-  'functionSelector',
+  'default_logs',
+  'contract_address',
+  'function_selector',
 ];
 
 export default function ProtectButtonSelector() {
@@ -54,19 +54,17 @@ export default function ProtectButtonSelector() {
 
   const hintsProcessed = {
     ...hints,
-    txHash: hashOnly,
+    hash: hashOnly,
   };
 
-  const onSetNoHints = (val: boolean) => {
+  const onSetHashOnly = (val: boolean) => {
     setHashOnly(val);
     if (val === true) {
-      // We have to also clear all of the other hints if someone selects no
-      // hints.
+      // We have to also clear all of the other hints if someone selects  hash
+      // only
       setHints(Object.fromEntries(hintLabels.map((label) => [label, false])));
     }
   };
-
-  // If the user selects any other hint, the "none" option should be deselected.
 
   const setBuilder = (name: string) => {
     setBuildersSelection((prevBuilders) => ({
@@ -106,7 +104,7 @@ export default function ProtectButtonSelector() {
             hints={hints}
             hashOnly={hashOnly}
             setHint={setHint}
-            onSetNoHints={onSetNoHints}
+            onSetHashOnly={onSetHashOnly}
           />
           <BuilderOptions
             supportedBuilders={supportedBuilders}

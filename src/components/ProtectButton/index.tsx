@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {PropsWithChildren} from 'react';
-import type {HintPreferences} from '@flashbots/mev-share-client';
 import {useSDK} from '@metamask/sdk-react';
 import styles from './styles.module.css';
 
@@ -13,24 +12,14 @@ const RPC_GOERLI_FLASHBOTS_NET = 'https://rpc-goerli.flashbots.net';
 const RPC_SEPOLIA_FLASHBOTS_NET = 'https://rpc-sepolia.flashbots.net';
 const RPC_FLASHBOTS_NET = 'https://rpc.flashbots.net';
 
-export const mungeHintsForRpcUrl = (hints: HintPreferences) => {
-  /*
-    `hash` is always shared on the backend.
-    We only need to specify it if we don't want default hints shared.
-
-    If other hints are specified, `hash` is implied. In that case we
-    set hash to undefined so it's removed from the URL.
- */
-  const hashImplied = Object.values(hints).some((v) => v);
-  return {
-    calldata: hints.calldata,
-    contract_address: hints.contractAddress,
-    function_selector: hints.functionSelector,
-    logs: hints.logs,
-    default_logs: hints.defaultLogs,
-    hash: hashImplied ? false : hints.txHash,
-  };
-};
+interface HintPreferences {
+  calldata: boolean;
+  contractAddress: boolean;
+  functionSelector: boolean;
+  logs: boolean;
+  defaultLogs: boolean;
+  hash: boolean;
+}
 
 export interface ProtectButtonOptions extends PropsWithChildren {
   /** Specify data to share; if undefined, uses default
@@ -64,7 +53,7 @@ export const generateRpcUrl = ({
   const rpcUrl = new URL(protectUrl);
 
   if (hints) {
-    Object.entries(mungeHintsForRpcUrl(hints)).forEach(
+    Object.entries(hints).forEach(
       ([hintName, hintEnabled]) => {
         if (hintEnabled) {
           rpcUrl.searchParams.append('hint', hintName.toLowerCase());
