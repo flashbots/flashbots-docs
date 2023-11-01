@@ -4,13 +4,13 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React, { ReactNode } from "react"
+import { ReactNode } from "react"
 import styles from  './styles.module.css';
 
 interface IGridBlock {
   children: ReactNode | ReactNode[]
-  symbol?: string
-  title?: string
+  symbol: string
+  title: string
 }
 
 function GridBlock({ children, symbol, title }: IGridBlock) {

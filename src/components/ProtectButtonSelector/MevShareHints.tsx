@@ -15,29 +15,31 @@ interface MevShareHintsProps {
   onSetHashOnly: (val: boolean) => void;
 }
 
-function MevShareHints({ hintLabels, hints, hashOnly, setHint, onSetHashOnly }: MevShareHintsProps) {
+function MevShareHints({
+  hintLabels,
+  hints,
+  hashOnly,
+  setHint,
+  onSetHashOnly,
+}: MevShareHintsProps) {
   return (
     <div>
-      <p className='text-sm font-bold m-2'>MEV-Share Hints</p>
+      <p className="m-2 text-sm font-bold">MEV-Share Hints</p>
       <div className="grid grid-cols-2">
         {hintLabels.map((label) => (
           <Checkbox
             label={capitalCase(label)}
-            id={label.toLowerCase()}
-            key={label}
             checked={hints[label] || false}
             onChange={(value) => setHint(label, value)}
           />
         ))}
         <Checkbox
-          label='Hash Only'
-          id='hash_only'
-          key='hash_only'
+          label="Hash Only"
           checked={hashOnly}
           onChange={onSetHashOnly}
         />
       </div>
-      <hr className='my-3 mx-2 opacity-50' />
+      <hr className="mx-2 my-3 opacity-50" />
     </div>
   );
 }
