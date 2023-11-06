@@ -11,7 +11,7 @@ export default function BrandAssets() {
 
   return (
     <div>
-      <div className='flex gap-4'>
+      <div className='flex max-[768px]:flex-col gap-4'>
         <AssetCard
           title="Flashbots Logo - Color"
           cover="/img/brand-assets/flashbots_logo_color.jpg"
@@ -26,7 +26,7 @@ export default function BrandAssets() {
         />
       </div>
 
-      <div className='flex gap-4'>
+      <div className='flex max-[768px]:flex-col gap-4'>
         <AssetCard
           title="Flashbots Logo - Black"
           cover="/img/brand-assets/flashbots_logo_black.jpg"
@@ -41,7 +41,7 @@ export default function BrandAssets() {
         />
       </div>
 
-      <div className='flex gap-4'>
+      <div className='flex max-[768px]:flex-col gap-4'>
         <AssetCard
           title="Flashbots Logo - White"
           cover="/img/brand-assets/flashbots_logo_white.jpg"
