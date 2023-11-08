@@ -21,8 +21,6 @@ function BuilderOptions({ supportedBuilders, buildersSelection, fastMode, setBui
         {supportedBuilders.map((builder: string) => (
           <Checkbox
             label={builder}
-            id={`builder_${builder}`}
-            key={builder}
             checked={buildersSelection[builder] || fastMode}
             disabled={fastMode === true}
             onChange={() => setBuilder(builder)}

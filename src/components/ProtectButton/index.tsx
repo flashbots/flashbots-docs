@@ -5,32 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {PropsWithChildren} from 'react';
-import type {HintPreferences} from '@flashbots/mev-share-client';
+import { snakeCase } from 'change-case';
 import {useSDK} from '@metamask/sdk-react';
-import styles from './styles.module.css';
 
 const RPC_GOERLI_FLASHBOTS_NET = 'https://rpc-goerli.flashbots.net';
 const RPC_SEPOLIA_FLASHBOTS_NET = 'https://rpc-sepolia.flashbots.net';
 const RPC_FLASHBOTS_NET = 'https://rpc.flashbots.net';
 
-export const mungeHintsForRpcUrl = (hints: HintPreferences) => {
-  /*
-    `hash` is always shared on the backend.
-    We only need to specify it if we don't want default hints shared.
-
-    If other hints are specified, `hash` is implied. In that case we
-    set hash to undefined so it's removed from the URL.
- */
-  const hashImplied = Object.values(hints).some((v) => v);
-  return {
-    calldata: hints.calldata,
-    contract_address: hints.contractAddress,
-    function_selector: hints.functionSelector,
-    logs: hints.logs,
-    default_logs: hints.defaultLogs,
-    hash: hashImplied ? false : hints.txHash,
-  };
-};
+interface HintPreferences {
+  calldata: boolean;
+  contractAddress: boolean;
+  functionSelector: boolean;
+  logs: boolean;
+  defaultLogs: boolean;
+  hash: boolean;
+}
 
 export interface ProtectButtonOptions extends PropsWithChildren {
   /** Specify data to share; if undefined, uses default
@@ -64,13 +53,11 @@ export const generateRpcUrl = ({
   const rpcUrl = new URL(protectUrl);
 
   if (hints) {
-    Object.entries(mungeHintsForRpcUrl(hints)).forEach(
-      ([hintName, hintEnabled]) => {
-        if (hintEnabled) {
-          rpcUrl.searchParams.append('hint', hintName.toLowerCase());
-        }
-      },
-    );
+    Object.entries(hints).forEach(([hintName, hintEnabled]) => {
+      if (hintEnabled) {
+        rpcUrl.searchParams.append('hint', snakeCase(hintName));
+      }
+    });
   }
 
   if (fast) {
@@ -141,18 +128,37 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="min-w-full max-w-full p-3 flex items-start gap-2 border-solid rounded-md border-slate-200">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 mt-0.5 min-w-[16px]">
-          <path fill-rule="evenodd" d="M19.902 4.098a3.75 3.75 0 00-5.304 0l-4.5 4.5a3.75 3.75 0 001.035 6.037.75.75 0 01-.646 1.353 5.25 5.25 0 01-1.449-8.45l4.5-4.5a5.25 5.25 0 117.424 7.424l-1.757 1.757a.75.75 0 11-1.06-1.06l1.757-1.757a3.75 3.75 0 000-5.304zm-7.389 4.267a.75.75 0 011-.353 5.25 5.25 0 011.449 8.45l-4.5 4.5a5.25 5.25 0 11-7.424-7.424l1.757-1.757a.75.75 0 111.06 1.06l-1.757 1.757a3.75 3.75 0 105.304 5.304l4.5-4.5a3.75 3.75 0 00-1.035-6.037.75.75 0 01-.354-1z" clip-rule="evenodd" />
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => navigator.clipboard.writeText(rpcUrl.toString())}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            navigator.clipboard.writeText(rpcUrl.toString());
+          }
+        }}
+        className="group relative flex min-w-full max-w-full items-start gap-2 rounded-md border-solid border-slate-200 p-3 transition-colors duration-200 hover:bg-gray-100">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="mt-0.5 w-4 min-w-[16px]">
+          <path
+            fillRule="evenodd"
+            d="M19.902 4.098a3.75 3.75 0 00-5.304 0l-4.5 4.5a3.75 3.75 0 001.035 6.037.75.75 0 01-.646 1.353 5.25 5.25 0 01-1.449-8.45l4.5-4.5a5.25 5.25 0 117.424 7.424l-1.757 1.757a.75.75 0 11-1.06-1.06l1.757-1.757a3.75 3.75 0 000-5.304zm-7.389 4.267a.75.75 0 011-.353 5.25 5.25 0 011.449 8.45l-4.5 4.5a5.25 5.25 0 11-7.424-7.424l1.757-1.757a.75.75 0 111.06 1.06l-1.757 1.757a3.75 3.75 0 105.304 5.304l4.5-4.5a3.75 3.75 0 00-1.035-6.037.75.75 0 01-.354-1z"
+            clipRule="evenodd"
+          />
         </svg>
         <div>
-          <p className='m-0 text-sm font-bold'>RPC URL</p>
-          <p className='m-0 text-sm text-gray-700 break-words'>{rpcUrl.toString()}</p>
+          <p className="m-0 text-sm font-bold">RPC URL</p>
+          <p className="m-0 break-all text-sm text-gray-700">
+            {rpcUrl.toString()}
+          </p>
         </div>
       </div>
       <button
         type="button"
-        className="min-w-full h-10 px-4 py-2 cursor-pointer inline-flex items-center justify-center whitespace-nowrap border-none rounded-md text-base font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gray-950 text-white hover:bg-gray-700"
+        className="ring-offset-background focus-visible:ring-ring inline-flex h-10 min-w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-md border-none bg-gray-950 px-4 py-2 text-base font-bold text-white transition-colors hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
         onClick={() => connectToProtect()}>
         {children}
       </button>
@@ -161,4 +167,4 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
 }
 
 export default FlashbotsProtectButton;
-export type {HintPreferences} from '@flashbots/mev-share-client';
+export type {HintPreferences};

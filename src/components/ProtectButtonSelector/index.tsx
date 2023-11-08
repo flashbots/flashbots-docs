@@ -5,31 +5,28 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {useState} from 'react';
-import FlashbotsProtectButton from '../ProtectButton';
+import FlashbotsLogo from '@site/static/img/flashbots-logo.svg';
+import FlashbotsProtectButton, { HintPreferences } from '../ProtectButton';
 import SimpleDropdown from '../SimpleDropdown';
 import BuilderOptions from './BuilderOptions';
 import {useSupportedBuilders} from '../mev-share/useSupportedBuilders';
 import FastOptionCheckbox from './FastOptionCheckbox';
 import MevShareHints from './MevShareHints';
-import FlashbotsLogo from '/static/img/flashbots-logo.svg';
 
-
-const hintLabels = [
-  'calldata',
-  'logs',
-  'defaultLogs',
-  'contractAddress',
-  'functionSelector',
-];
+const defaultHintSelectors = {
+  'calldata': false,
+  'logs': false,
+  'defaultLogs': false,
+  'contractAddress': false,
+  'functionSelector': false,
+};
 
 export default function ProtectButtonSelector() {
   const [hashOnly, setHashOnly] = useState(false);
   const [advancedOptionsShown, setAdvancedOptionsShown] = useState(false);
   const [fastMode, setFastMode] = useState(false);
   // Initialize the state object with all hints set to false
-  const [hints, setHints] = useState(
-    Object.fromEntries(hintLabels.map((label) => [label, false])),
-  );
+  const [hints, setHints] = useState(defaultHintSelectors);
   const supportedBuilders = useSupportedBuilders().map(
     (builder) => builder.name,
   );
@@ -52,21 +49,19 @@ export default function ProtectButtonSelector() {
     }
   };
 
-  const hintsProcessed = {
+  const hintsProcessed : HintPreferences = {
     ...hints,
-    txHash: hashOnly,
+    hash: hashOnly,
   };
 
-  const onSetNoHints = (val: boolean) => {
+  const onSetHashOnly = (val: boolean) => {
     setHashOnly(val);
     if (val === true) {
-      // We have to also clear all of the other hints if someone selects no
-      // hints.
-      setHints(Object.fromEntries(hintLabels.map((label) => [label, false])));
+      // We have to also clear all of the other hints if someone selects  hash
+      // only
+      setHints(defaultHintSelectors);
     }
   };
-
-  // If the user selects any other hint, the "none" option should be deselected.
 
   const setBuilder = (name: string) => {
     setBuildersSelection((prevBuilders) => ({
@@ -76,19 +71,20 @@ export default function ProtectButtonSelector() {
   };
 
   return (
-    <div className="bg-gray-50 text-gray-950 p-2 max-w-md mx-auto border border-solid border-slate-200 rounded-2xl">
+    <div className="mx-auto max-w-md rounded-2xl border border-solid border-slate-200 bg-gray-50 p-2 text-gray-950">
       <SimpleDropdown
         header="Advanced options"
         onClickHeader={() => {
           setAdvancedOptionsShown(!advancedOptionsShown);
         }}
         isOpen={advancedOptionsShown}>
-
         <SimpleDropdown.Body>
-          <div className="bg-white flex flex-col gap-2 p-4 mb-2 border-solid border-slate-200 rounded-xl">
-            <div className='flex mb-3'>
-              <p className='font-bold text-2xl m-0 grow'>Flashbots Protect RPC</p>
-              <FlashbotsLogo className='mx-1' />
+          <div className="mb-2 flex flex-col gap-2 rounded-xl border-solid border-slate-200 bg-white p-4">
+            <div className="mb-3 flex">
+              <p className="m-0 grow text-2xl font-bold">
+                Flashbots Protect RPC
+              </p>
+              <FlashbotsLogo className="mx-1" />
             </div>
             <FastOptionCheckbox fastMode={fastMode} setFastMode={setFastMode} />
             <FlashbotsProtectButton
@@ -102,11 +98,11 @@ export default function ProtectButtonSelector() {
 
         <SimpleDropdown.HiddenBody>
           <MevShareHints
-            hintLabels={hintLabels}
+            hintLabels={Object.keys(defaultHintSelectors)}
             hints={hints}
             hashOnly={hashOnly}
             setHint={setHint}
-            onSetNoHints={onSetNoHints}
+            onSetHashOnly={onSetHashOnly}
           />
           <BuilderOptions
             supportedBuilders={supportedBuilders}
