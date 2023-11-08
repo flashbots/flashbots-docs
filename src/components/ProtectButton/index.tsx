@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {PropsWithChildren} from 'react';
+import { snakeCase } from 'change-case';
 import {useSDK} from '@metamask/sdk-react';
 
 const RPC_GOERLI_FLASHBOTS_NET = 'https://rpc-goerli.flashbots.net';
@@ -54,7 +55,7 @@ export const generateRpcUrl = ({
   if (hints) {
     Object.entries(hints).forEach(([hintName, hintEnabled]) => {
       if (hintEnabled) {
-        rpcUrl.searchParams.append('hint', hintName.toLowerCase());
+        rpcUrl.searchParams.append('hint', snakeCase(hintName));
       }
     });
   }
@@ -131,7 +132,7 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
         role="button"
         tabIndex={0}
         onClick={() => navigator.clipboard.writeText(rpcUrl.toString())}
-        onKeyPress={(event) => {
+        onKeyDown={(event) => {
           if (event.key === 'Enter') {
             navigator.clipboard.writeText(rpcUrl.toString());
           }
@@ -166,4 +167,4 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
 }
 
 export default FlashbotsProtectButton;
-export type {HintPreferences} from '@flashbots/mev-share-client';
+export type {HintPreferences};

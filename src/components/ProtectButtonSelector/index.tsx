@@ -6,29 +6,27 @@
  */
 import {useState} from 'react';
 import FlashbotsLogo from '@site/static/img/flashbots-logo.svg';
-import FlashbotsProtectButton from '../ProtectButton';
+import FlashbotsProtectButton, { HintPreferences } from '../ProtectButton';
 import SimpleDropdown from '../SimpleDropdown';
 import BuilderOptions from './BuilderOptions';
 import {useSupportedBuilders} from '../mev-share/useSupportedBuilders';
 import FastOptionCheckbox from './FastOptionCheckbox';
 import MevShareHints from './MevShareHints';
 
-const hintLabels = [
-  'calldata',
-  'logs',
-  'default_logs',
-  'contract_address',
-  'function_selector',
-];
+const defaultHintSelectors = {
+  'calldata': false,
+  'logs': false,
+  'defaultLogs': false,
+  'contractAddress': false,
+  'functionSelector': false,
+};
 
 export default function ProtectButtonSelector() {
   const [hashOnly, setHashOnly] = useState(false);
   const [advancedOptionsShown, setAdvancedOptionsShown] = useState(false);
   const [fastMode, setFastMode] = useState(false);
   // Initialize the state object with all hints set to false
-  const [hints, setHints] = useState(
-    Object.fromEntries(hintLabels.map((label) => [label, false])),
-  );
+  const [hints, setHints] = useState(defaultHintSelectors);
   const supportedBuilders = useSupportedBuilders().map(
     (builder) => builder.name,
   );
@@ -51,7 +49,7 @@ export default function ProtectButtonSelector() {
     }
   };
 
-  const hintsProcessed = {
+  const hintsProcessed : HintPreferences = {
     ...hints,
     hash: hashOnly,
   };
@@ -61,7 +59,7 @@ export default function ProtectButtonSelector() {
     if (val === true) {
       // We have to also clear all of the other hints if someone selects  hash
       // only
-      setHints(Object.fromEntries(hintLabels.map((label) => [label, false])));
+      setHints(defaultHintSelectors);
     }
   };
 
@@ -100,7 +98,7 @@ export default function ProtectButtonSelector() {
 
         <SimpleDropdown.HiddenBody>
           <MevShareHints
-            hintLabels={hintLabels}
+            hintLabels={Object.keys(defaultHintSelectors)}
             hints={hints}
             hashOnly={hashOnly}
             setHint={setHint}
