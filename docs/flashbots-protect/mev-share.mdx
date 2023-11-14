@@ -111,3 +111,9 @@ https://rpc.flashbots.net?refund=userAddr:10
 ```
 
 All percentages in the refund parameters must total less than 100. The remaining percentage, inferred from 100 - total refund percentages, is the payment to the validator. Note that keeping a larger percentage of the refund may result in longer inclusion times, because it reduces the payment to the validator.
+
+### Priority fee
+
+When sending private transaction to rpc endpoint you should set priority fee (tips) to be strictly greater than zero.
+Transactions with 0 priority fee will not be shared with block builders and included on chain, unless they are bundled
+by a searcher via MEV-Share.
