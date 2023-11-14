@@ -25,6 +25,12 @@ You can access this method using the following libraries:
 - For Python, use [web3-flashbots.py](/flashbots-auction/libraries/web3py-provider).
 - Additionally, [`eth_sendPrivateTransaction`](https://docs.alchemy.com/reference/eth-sendprivatetransaction?a=fb) is freely supported on [Alchemy](https://alchemy.com?a=fb).
 
+## Priority fee
+
+When sending transaction using `eth_sendPrivateTransaction` or `eth_sendPrivateRawTransaction` methods you should set
+priority fee (tips) to be strictly greater than zero. In case you set it to 0 transaction will not land unless it could
+be backrunned by searcher.
+
 ## Examples
 
 The following code examples show how to use eth_sendPrivateTransaction using the Flashbots ethers and web3.py libraries.
