@@ -28,8 +28,8 @@ You can access this method using the following libraries:
 ## Priority fee
 
 When sending transaction using `eth_sendPrivateTransaction` or `eth_sendPrivateRawTransaction` methods you should set
-priority fee (tips) to be strictly greater than zero. In case you set it to 0 transaction will not land unless it could
-be backrunned by searcher.
+priority fee (tips) to be strictly greater than zero. Transactions with 0 priority fee will not be shared with block
+builders and included on chain, unless they are bundled by a searcher via MEV-Share.
 
 ## Examples
 

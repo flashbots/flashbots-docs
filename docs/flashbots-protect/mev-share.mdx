@@ -115,4 +115,5 @@ All percentages in the refund parameters must total less than 100. The remaining
 ### Priority fee
 
 When sending private transaction to rpc endpoint you should set priority fee (tips) to be strictly greater than zero.
-In case you set it to 0 transaction will not land unless it is backrunned by searcher.
+Transactions with 0 priority fee will not be shared with block builders and included on chain, unless they are bundled
+by a searcher via MEV-Share.
