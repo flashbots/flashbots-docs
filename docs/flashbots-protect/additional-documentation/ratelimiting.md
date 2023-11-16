@@ -13,7 +13,7 @@ Note that you are not required to read JSON RPC requests to send transactions to
 
 ## Rate limiting exceptions
 
-If you are a wallet or application integrating with protect and you require a higher rate limit please reach out to [bertcmiller](https://twitter.com/bertcmiller).
+If you are a wallet or application integrating with protect and you require a higher rate limit please reach out to [Shea Ketsdever](https://twitter.com/SheaKetsdever).
 
 ## Batch request support
 
