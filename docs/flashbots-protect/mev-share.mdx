@@ -88,15 +88,17 @@ This configuration shares the calldata, logs, and hash of your transaction with 
 
 To designate the builders who will receive your transactions, use the `builder` parameter. This parameter can be repeated multiple times to include multiple builders. The builders listed below are currently supported.
 
+Note that all transactions are shared with the Flashbots block builder, even if it is not explicitly specified.
+
 <Builders />
 
 It's important to understand that while adding more builders can increase your transaction inclusion rate, it also requires you to place trust in those builders. Here's an example of how to utilize the `builder` parameter:
 
 ```url
-https://rpc.flashbots.net?builder=flashbots&builder=XYZ
+https://rpc.flashbots.net?builder=ABC&builder=XYZ
 ```
 
-This configuration sends your transaction to the Flashbots block builder and the XYZ block builder.
+This configuration sends your transaction to the ABC block builder and the XYZ block builder, as well as the Flashbots block builder.
 
 ### Refunds
 
