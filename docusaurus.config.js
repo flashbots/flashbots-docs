@@ -63,8 +63,13 @@ module.exports = async function createConfigAsync() {
               position: 'right',
             },
           ],
+        },
+        announcementBar: {
+          id: "DevConnect",
+          content:
+            '<a href="https://lu.ma/hookathon" target="_blank" rel="noreferrer">🦄 ⚡️ Join the UNISUAVE Researchathon @Devconnect Istanbul!</a>',
+          isCloseable: false,
         }
-
       }),
     presets: [
       [
