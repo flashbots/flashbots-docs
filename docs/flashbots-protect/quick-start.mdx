@@ -22,6 +22,12 @@ Fast mode has 2 key differences from the default Protect experience:
 
 **Note**: When you send your transaction to a builder, you are entrusting them not to frontrun your transaction or disclose it to third parties who might.
 
+### Transactions Without MEV
+
+Flashbots Protect screens all transactions to check if they need MEV protection. If your transaction is performing an action that does not typically generate MEV, it will automatically be sent to the public mempool for faster inclusion.
+
+The following functions do not typically require MEV protection: `transfer`, `transferFrom`, `approve`, `(weth) withdraw`, `(weth) deposit`, `safe transfer (NFT)`.
+
 ## Using Flashbots Protect
 
 There are three ways to use Flashbots Protect:
