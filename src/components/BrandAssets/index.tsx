@@ -13,48 +13,29 @@ export default function BrandAssets() {
     <div>
       <div className='flex max-[768px]:flex-col gap-4'>
         <AssetCard
-          title="Flashbots Logo - Color"
-          cover="/img/brand-assets/flashbots_logo_color.jpg"
-          svg="/img/brand-assets/flashbots_logo_color.svg"
-          png="/img/brand-assets/flashbots_logo_color.png"
+          title="Flashbots Logo - Dark"
+          cover="/img/brand-assets/flashbots_logo_dark.jpg"
+          svg="/img/brand-assets/flashbots_logo_dark.svg"
+          png="/img/brand-assets/flashbots_logo_dark.png"
         />
         <AssetCard
-          title="Flashbots Icon - Color"
-          cover="/img/brand-assets/flashbots_icon_color.jpg"
-          svg="/img/brand-assets/flashbots_icon_color.svg"
-          png="/img/brand-assets/flashbots_icon_color.png"
+          title="Flashbots Logo - Light"
+          cover="/img/brand-assets/flashbots_logo_light.jpg"
+          svg="/img/brand-assets/flashbots_logo_light.svg"
+          png="/img/brand-assets/flashbots_logo_light.png"
         />
       </div>
 
       <div className='flex max-[768px]:flex-col gap-4'>
         <AssetCard
-          title="Flashbots Logo - Black"
-          cover="/img/brand-assets/flashbots_logo_black.jpg"
-          svg="/img/brand-assets/flashbots_logo_black.svg"
-          png="/img/brand-assets/flashbots_logo_black.png"
+          title="Flashbots Icon"
+          cover="/img/brand-assets/flashbots_icon.jpg"
+          svg="/img/brand-assets/flashbots_icon.svg"
+          png="/img/brand-assets/flashbots_icon.png"
         />
-        <AssetCard
-          title="Flashbots Icon - Black"
-          cover="/img/brand-assets/flashbots_icon_black.jpg"
-          svg="/img/brand-assets/flashbots_icon_black.svg"
-          png="/img/brand-assets/flashbots_icon_black.png"
-        />
+        <div className='block my-4 w-1/2 w-full'></div>
       </div>
 
-      <div className='flex max-[768px]:flex-col gap-4'>
-        <AssetCard
-          title="Flashbots Logo - White"
-          cover="/img/brand-assets/flashbots_logo_white.jpg"
-          svg="/img/brand-assets/flashbots_logo_white.svg"
-          png="/img/brand-assets/flashbots_logo_white.png"
-        />
-        <AssetCard
-          title="Flashbots Icon - White"
-          cover="/img/brand-assets/flashbots_icon_white.jpg"
-          svg="/img/brand-assets/flashbots_icon_white.svg"
-          png="/img/brand-assets/flashbots_icon_white.png"
-        />
-      </div>
     </div>
   );
 }
