@@ -123,7 +123,7 @@ Detailed JSON-RPC structure for the method are below:
     tx,               // String, raw signed transaction
     maxBlockNumber,   // Hex-encoded number string, optional. Highest block number in which the transaction should be included.
     preferences?: {
-      fast: boolean,  // Deprecated; required until this is removed from the API. Value has no effect.
+      fast: boolean,  // Sends transactions to all registered block builders, sets MEV-Share revenue share to 50%
       privacy?: {     // MEV-Share options; optional
         hints?: Array< // data about tx to share w/ searchers on mev-share
             "contract_address" |
@@ -157,7 +157,7 @@ example request:
       "tx": "0x123abc...",
       "maxBlockNumber": "0xcd23a0",
       "preferences": {
-        "fast": true, // left for backwards compatibility; may be removed in a future version
+        "fast": true,
         "privacy": {
           "hints": ["calldata", "transaction_hash"],
           "builders": ["default"]
