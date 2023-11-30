@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {PropsWithChildren} from 'react';
-import { snakeCase } from 'change-case';
+import {snakeCase} from 'change-case';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const RPC_FLASHBOTS_NET = 'https://rpc.flashbots.net';
 const ETH_CHAIN_ID = '0x1';
@@ -63,7 +64,7 @@ export const generateRpcUrl = ({
 function FlashbotsProtectButton(options: ProtectButtonOptions) {
   const {children} = options;
   const rpcUrl = generateRpcUrl({
-    options
+    options,
   });
 
   const provider = window.ethereum;
@@ -126,12 +127,16 @@ function FlashbotsProtectButton(options: ProtectButtonOptions) {
           </p>
         </div>
       </div>
-      <button
-        type="button"
-        className="ring-offset-background focus-visible:ring-ring inline-flex h-10 min-w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-md border-none bg-gray-950 px-4 py-2 text-base font-bold text-white transition-colors hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-        onClick={() => connectToProtect()}>
-        {children}
-      </button>
+      <BrowserOnly>
+        {() => (
+          <button
+            type="button"
+            className="ring-offset-background focus-visible:ring-ring inline-flex h-10 min-w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-md border-none bg-gray-950 px-4 py-2 text-base font-bold text-white transition-colors hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            onClick={() => connectToProtect()}>
+            {children}
+          </button>
+        )}
+      </BrowserOnly>
     </div>
   );
 }
