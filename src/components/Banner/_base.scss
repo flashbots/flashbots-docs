@@ -1,0 +1,19 @@
+%banner-structure {
+  height: fit-content;
+  padding: 0.5rem 2rem;
+  text-align: center;
+  line-height: 1.25;
+
+  a{
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 720px){
+      padding: 0.5rem 2rem;
+  }
+}

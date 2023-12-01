@@ -1,0 +1,21 @@
+@use '_base';
+
+/*
+Add custom CSS styling for your banner here
+
+You can add any classes you'd like based on the markup for your banner
+The .banner class is already provided and apply to the parent element of
+the banner.
+
+The '@extend %banner-structure' defines the structural properties for the
+banner and should not be removed.
+*/
+
+.banner {
+  @extend %banner-structure; // Do not remove
+}
+
+
+[data-theme=dark] .banner {
+  @extend %banner-structure; // Do not remove
+}
