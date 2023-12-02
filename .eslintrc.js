@@ -51,21 +51,24 @@ module.exports = {
       ],
     ],
     'import/no-unresolved': ERROR,
-    'import/no-extraneous-dependencies': [ERROR, {"includeTypes": true}],
-    "react/require-default-props": [WARNING, {
-      "functions": "defaultArguments"
-    }],
-    'react/jsx-filename-extension': [WARNING, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }]
+    'import/no-extraneous-dependencies': [ERROR, {includeTypes: true}],
+    'react/require-default-props': [
+      WARNING,
+      {
+        functions: 'defaultArguments',
+      },
+    ],
+    'react/jsx-filename-extension': [
+      WARNING,
+      {extensions: ['.js', '.jsx', '.ts', '.tsx']},
+    ],
   },
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
-      'webpack': true,
-      'typescript': {
-        'alwaysTryTypes': true,
-      },
+      typescript: {},
     },
     // optional, if you want to lint code blocks at the same time
     'mdx/code-blocks': true,
@@ -85,4 +88,4 @@ module.exports = {
       extends: ['plugin:mdx/overrides'],
     },
   ],
-}
+};

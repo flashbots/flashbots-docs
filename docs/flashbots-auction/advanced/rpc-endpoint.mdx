@@ -2,11 +2,11 @@
 title: RPC Endpoint
 ---
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-import Hints from "../../specs/mev-share/HintsTable";
-import Builders from "../../specs/mev-share/_builders.mdx";
-import SendBundleSpec from "../../specs/mev-share/_mev_sendBundle.mdx";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Hints from '../../specs/mev-share/HintsTable';
+import Builders from '../../specs/mev-share/_builders.mdx';
+import SendBundleSpec from '../../specs/mev-share/_mev_sendBundle.mdx';
 
 ## Interact directly with the Flashbots RPC endpoint
 
@@ -20,7 +20,7 @@ Advanced users can interact with the RPC endpoint at `relay.flashbots.net`, or o
 | Goerli  | `https://relay-goerli.flashbots.net`  |
 | Sepolia | `https://relay-sepolia.flashbots.net` |
 
-The API provides JSON-RPC methods for interfacing with Flashbots which are documented below:
+The API provides JSON-RPC methods for interfacing with Flashbots. There will be a rate limit of 10,000 requests per second per IP. Each method is documented below.
 
 ### eth_sendBundle
 
@@ -258,8 +258,7 @@ example response:
 
 ### eth_cancelBundle
 
-`eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain.
-See [bundle cancellations](/flashbots-auction/advanced/bundle-cancellations) for more information.
+`eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain. See [bundle cancellations](/flashbots-auction/advanced/bundle-cancellations) for more information.
 
 [`eth_cancelPrivateTransaction`](https://docs.alchemy.com/alchemy/apis/ethereum/eth_cancelPrivateTransaction/?a=fb) is also supported on [Alchemy](https://alchemy.com/?a=fb).
 
@@ -335,7 +334,7 @@ example request:
           "builders": ["default"]
         },
         "validity": {
-          "refund": [{ "address": "0xadd123", "percent": 50 }]
+          "refund": [{"address": "0xadd123", "percent": 50}]
         }
       }
     }
@@ -357,10 +356,10 @@ example response:
 
 By default, transactions are sent to the Flashbots MEV-Share Node with the default [Stable](/flashbots-protect/mev-share#stable-configuration) configuration. The `privacy` parameter allows you to specify your own privacy parameters.
 
-| Param      | Type Info        | Description                                                                                      |
-| ---------- | ---------------- | ------------------------------------------------------------------------------------------------ |
-| `hint`     | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
-| `builders` | Array of strings | Builders to grant permission to include the transaction in a block.                              |
+| Param | Type Info | Description |
+| --- | --- | --- |
+| `hint` | Array of strings | Each hint specifies which data about the transaction will be shared with searchers on mev-share. |
+| `builders` | Array of strings | Builders to grant permission to include the transaction in a block. |
 
 **`hint`**
 
@@ -378,20 +377,17 @@ Validity is used to specify the address and percentage to pay refund from the ba
 
 By default, the refund is paid to the signer of the transaction and 90% of the backrun value is sent to the user by default.
 
-If multiple refund addresses are specified, then the backrun value is split between them according to the percentage specified.
-For example, if refund is `[{address: addr1, percent: 10}, {address: addr1, percent: 20}]` then 10% of the backrun value is sent to `addr1` and 20% is sent to `addr2`
-and 70% of the backrun value is left to the builder.
+If multiple refund addresses are specified, then the backrun value is split between them according to the percentage specified. For example, if refund is `[{address: addr1, percent: 10}, {address: addr1, percent: 20}]` then 10% of the backrun value is sent to `addr1` and 20% is sent to `addr2` and 70% of the backrun value is left to the builder.
 
-| Param              | Type Info        | Description                                                                                                         |
-| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `refund`           | Array of objects | Each entry in the array specifies address that should receive refund from backrun and percent of the backrun value. |
-| `refund[].address` | Address          | Address that should receive refund.                                                                                 |
-| `refund[].percent` | Number           | Percentage of the total backrun value that this address should receive.                                             |
+| Param | Type Info | Description |
+| --- | --- | --- |
+| `refund` | Array of objects | Each entry in the array specifies address that should receive refund from backrun and percent of the backrun value. |
+| `refund[].address` | Address | Address that should receive refund. |
+| `refund[].percent` | Number | Percentage of the total backrun value that this address should receive. |
 
 ### eth_sendPrivateRawTransaction
 
-`eth_sendPrivateRawTransaction` behaves like [eth_sendPrivateTransaction](#eth_sendprivatetransaction) but its format
-is similar to that of [`eth_sendRawTransaction`](https://docs.alchemy.com/reference/eth-sendrawtransaction)
+`eth_sendPrivateRawTransaction` behaves like [eth_sendPrivateTransaction](#eth_sendprivatetransaction) but its format is similar to that of [`eth_sendRawTransaction`](https://docs.alchemy.com/reference/eth-sendrawtransaction)
 
 This method has the following JSON-RPC format:
 
@@ -402,7 +398,25 @@ This method has the following JSON-RPC format:
   method: "eth_sendPrivateRawTransaction",
   params: [
     tx,               // String, raw signed transaction
-    preferences?      // Optional, see eth_sendPrivateTransaction
+    preferences?: {
+      fast: boolean,  // Sends transactions to all registered block builders, sets MEV-Share revenue share to 50%
+      privacy?: {     // MEV-Share options; optional
+        hints?: Array< // data about tx to share w/ searchers on mev-share
+            "contract_address" |
+            "function_selector" |
+            "calldata" |
+            "logs" |
+            "hash"
+        >,
+        builders?: Array< // MEV-Share builders to exclusively receive bundles; optional
+            "default" |
+            "flashbots"
+        >,
+      },
+      validity?: {
+        refund?: Array<{address, percent}>
+      }
+    }
   ]
 }
 ```
@@ -428,10 +442,10 @@ example response:
 }
 ```
 
-| Param       | Type Info | Description                                                                       |
-| ----------- | --------- | --------------------------------------------------------------------------------- |
-| `params[0]` | String    | Raw signed transaction                                                            |
-| `params[1]` | Object    | Optional private tx preferences, see `preferences` in eth_sendPrivateTransaction. |
+| Param | Type Info | Description |
+| --- | --- | --- |
+| `params[0]` | String | Raw signed transaction |
+| `params[1]` | Object | Optional private tx preferences, see `preferences` in eth_sendPrivateTransaction. |
 
 ### eth_cancelPrivateTransaction
 
@@ -705,13 +719,13 @@ The signature is calculated by taking the [EIP-191](https://eips.ethereum.org/EI
 <TabItem value="ethers.js">
 
 ```ts
-import { Wallet, utils } from "ethers";
+import {Wallet, utils} from 'ethers';
 
-const privateKey = "0x1234";
+const privateKey = '0x1234';
 const wallet = new Wallet(privateKey);
 const body =
   '{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}';
-const signature = wallet.address + ":" + wallet.signMessage(utils.id(body));
+const signature = wallet.address + ':' + wallet.signMessage(utils.id(body));
 ```
 
 </TabItem>
