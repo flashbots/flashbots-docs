@@ -16,14 +16,12 @@ $$
 r(U) = \frac{\sum_{T\in H_U}(\Delta_{coinbase_T} + g_Tp_T)}{\sum_{T\in S_U}g_T}
 $$
 
-<!-- markdownlint-disable MD037 -->
 $r$: searcher reputation score.  
 $H_U$: set of all transactions $T$ submitted by searcher $U$ to `eth_sendBundle` RPC and successfully landed on chain.  
 $S_U$: set of all transactions $T$ submitted by searcher $U$ to `eth_sendBundle` and `eth_callBundle` RPC.  
 $g_{T}$: _gas used_ by transaction $T$.  
 $p_{T}$: _gas price_ of transaction $T$.  
 $\Delta_{coinbase_T}$: coinbase difference from direct payment in transaction $T$.
-<!-- markdownlint-enable MD037 -->
 
 ## Querying reputation
 

@@ -50,7 +50,7 @@ module.exports = {
         ' ',
       ],
     ],
-    'import/no-unresolved': ERROR,
+    'import/no-unresolved': [ERROR, {ignore: ['^@docusaurus']}],
     'import/no-extraneous-dependencies': [ERROR, {includeTypes: true}],
     'react/require-default-props': [
       WARNING,
