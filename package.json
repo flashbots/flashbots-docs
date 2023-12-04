@@ -34,6 +34,7 @@
     "axios": "^1.4.0",
     "change-case": "^5.1.2",
     "clsx": "^1.1.1",
+    "docusaurus-plugin-sass": "^0.2.5",
     "dotenv": "^8.2.0",
     "ethers": "^6.7.1",
     "postcss": "^8.4.31",
@@ -45,6 +46,7 @@
     "react-loadable": "^5.5.0",
     "rehype-katex": "^7",
     "remark-math": "^6",
+    "sass": "^1.69.5",
     "search-insights": "^2.8.3",
     "tailwindcss": "^3.3.3",
     "webpack": "^5.88.1"

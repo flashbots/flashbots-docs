@@ -102,6 +102,7 @@ module.exports = async function createConfigAsync() {
           },
         };
       },
+      'docusaurus-plugin-sass'
     ],
   }
 }
