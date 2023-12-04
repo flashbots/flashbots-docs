@@ -6,7 +6,8 @@
  */
 import {useState} from 'react';
 import FlashbotsLogo from '@site/static/img/flashbots-logo.svg';
-import FlashbotsProtectButton, { HintPreferences } from '../ProtectButton';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import FlashbotsProtectButton, {HintPreferences} from '../ProtectButton';
 import SimpleDropdown from '../SimpleDropdown';
 import BuilderOptions from './BuilderOptions';
 import {useSupportedBuilders} from '../mev-share/useSupportedBuilders';
@@ -14,11 +15,11 @@ import FastOptionCheckbox from './FastOptionCheckbox';
 import MevShareHints from './MevShareHints';
 
 const defaultHintSelectors = {
-  'calldata': false,
-  'logs': false,
-  'defaultLogs': false,
-  'contractAddress': false,
-  'functionSelector': false,
+  calldata: false,
+  logs: false,
+  defaultLogs: false,
+  contractAddress: false,
+  functionSelector: false,
 };
 
 export default function ProtectButtonSelector() {
@@ -49,7 +50,7 @@ export default function ProtectButtonSelector() {
     }
   };
 
-  const hintsProcessed : HintPreferences = {
+  const hintsProcessed: HintPreferences = {
     ...hints,
     hash: hashOnly,
   };
@@ -87,12 +88,16 @@ export default function ProtectButtonSelector() {
               <FlashbotsLogo className="mx-1" />
             </div>
             <FastOptionCheckbox fastMode={fastMode} setFastMode={setFastMode} />
-            <FlashbotsProtectButton
-              hints={hintsProcessed}
-              builders={selectedBuilders}
-              fast={fastMode}>
-              Connect Wallet to Protect
-            </FlashbotsProtectButton>
+            <BrowserOnly>
+              {() => (
+                <FlashbotsProtectButton
+                  hints={hintsProcessed}
+                  builders={selectedBuilders}
+                  fast={fastMode}>
+                  Connect Wallet to Protect
+                </FlashbotsProtectButton>
+              )}
+            </BrowserOnly>
           </div>
         </SimpleDropdown.Body>
 

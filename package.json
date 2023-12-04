@@ -21,14 +21,13 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.20.0",
-    "@docusaurus/core": "^3.0.0-beta.0",
-    "@docusaurus/plugin-content-docs": "^3.0.0-beta.0",
-    "@docusaurus/plugin-sitemap": "^3.0.0-beta.0",
-    "@docusaurus/preset-classic": "^3.0.0-beta.0",
-    "@docusaurus/utils": "^3.0.0-beta.0",
-    "@docusaurus/utils-common": "^3.0.0-beta.0",
-    "@mdx-js/react": "^2.3.0",
-    "@metamask/sdk-react": "^0.9.0",
+    "@docusaurus/core": "^3.0.0",
+    "@docusaurus/plugin-content-docs": "^3.0.0",
+    "@docusaurus/plugin-sitemap": "^3.0.0",
+    "@docusaurus/preset-classic": "^3.0.0",
+    "@docusaurus/utils": "^3.0.0",
+    "@docusaurus/utils-common": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
     "@radix-ui/react-switch": "^1.0.3",
     "@vercel/analytics": "^0.1.11",
     "autoprefixer": "^10.4.16",
@@ -45,8 +44,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loadable": "^5.5.0",
-    "rehype-katex": "^6.0.3",
-    "remark-math": "^5.1.1",
+    "rehype-katex": "^7",
+    "remark-math": "^6",
     "sass": "^1.69.5",
     "search-insights": "^2.8.3",
     "tailwindcss": "^3.3.3",
@@ -65,9 +64,9 @@
     ]
   },
   "devDependencies": {
-    "@docusaurus/eslint-plugin": "^3.0.0-beta.0",
-    "@docusaurus/module-type-aliases": "^3.0.0-beta.0",
-    "@docusaurus/tsconfig": "^3.0.0-beta.0",
+    "@docusaurus/eslint-plugin": "^3.0.0",
+    "@docusaurus/module-type-aliases": "^3.0.0",
+    "@docusaurus/tsconfig": "^3.0.0",
     "@flashbots/mev-share-client": "^0.7.10",
     "@tsconfig/docusaurus": "^2.0.2",
     "@types/react": "^18.2.23",
@@ -82,9 +81,8 @@
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-import-resolver-webpack": "^0.13.7",
     "eslint-plugin-header": "^3.1.1",
-    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-jest": "^27.4.2",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-mdx": "^2.2.0",
@@ -101,5 +99,8 @@
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^29.0.0",
     "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=18.0"
   }
 }
