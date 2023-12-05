@@ -4,12 +4,10 @@ title: rate limiting
 
 In order to protect our service from abuse we have rate limits on the number of requests that can be made to Flashbots Protect RPC. Currently, the rate limits are set as follows:
 
-- Maximum Requests per Second: 80 requests
+- There is no rate limit for `sendRawTransaction`
+- Other requests are capped to 200/5min/IP
 
-- Burst Limit: Up to 100 requests
-
-Note that this is _requests_ and not _transactions_ submitted per second. There is no limitation on the number of transactions in a request.
-Note that you are not required to read JSON RPC requests to send transactions to Flashbots Protect RPC.
+Note that this is _requests_ and not _transactions_ submitted per second. There is no limitation on the number of transactions in a request. Note that you are not required to read JSON RPC requests to send transactions to Flashbots Protect RPC.
 
 ## Rate limiting exceptions
 
