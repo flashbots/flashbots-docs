@@ -20,7 +20,12 @@ Advanced users can interact with the RPC endpoint at `relay.flashbots.net`, or o
 | Goerli  | `https://relay-goerli.flashbots.net`  |
 | Sepolia | `https://relay-sepolia.flashbots.net` |
 
-The API provides JSON-RPC methods for interfacing with Flashbots. There will be a rate limit of 10,000 requests per second per IP. Each method is documented below.
+The API provides JSON-RPC methods for interfacing with Flashbots. Below are some of the restrictions:
+
+- There is a rate limit of 10,000 requests per second per IP
+- Each bundle (`txs` parameter) can contain at most 100 transactions and have a size limit of 300,000 bytes
+
+Each method is documented below.
 
 ### eth_sendBundle
 
