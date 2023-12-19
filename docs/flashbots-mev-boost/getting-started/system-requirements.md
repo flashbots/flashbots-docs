@@ -2,7 +2,7 @@
 title: System Requirements
 ---
 
-This guide assumes a pre-installed and hardened Ubuntu installation [as well as Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04). Excellent introductory resources to start with are: [Coincashew](https://www.coincashew.com/coins/overview-eth/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node), and [Rocketpool's Securing your Node](https://docs.rocketpool.net/guides/node/securing-your-node.html#securing-your-node)
+This guide assumes a pre-installed and hardened Ubuntu installation [as well as Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04). Excellent introductory resources to start with are: [Coincashew](https://www.coincashew.com/coins/overview-eth/archived-guides/guide-or-how-to-setup-a-validator-on-eth2-mainnet/part-i-installation/guide-or-security-best-practices-for-a-eth2-validator-beaconchain-node), and [Rocketpool's Securing your Node](https://docs.rocketpool.net/guides/node/securing-your-node.html#securing-your-node)
 
 ## Requirements for different systems
 
@@ -38,5 +38,5 @@ There are variations in client resource usage. Please review [CoinCashew’s Cli
 | Teku       | [Guide](hthttps://docs.teku.consensys.net/Concepts/Builder-Network/tps://hackmd.io/@StefanBratanov/BkMlo1RO9) |
 | Prysm      | [Guide](https://hackmd.io/@prysmaticlabs/BJeinxFsq)                                                           |
 | Lighthouse | [Guide](https://lighthouse-book.sigmaprime.io/builders.html#mev-and-lighthouse)                               |
-| Lodestar   | [Guide](https://github.com/ChainSafe/lodestar/blob/unstable/docs/usage/mev-integration.md)                    |
+| Lodestar   | [Guide](https://github.com/ChainSafe/lodestar/blob/unstable/docs/pages/beacon-management/mev-and-builder-integration.md)                    |
 | Nimbus     | [Guide](https://nimbus.guide/external-block-builder.html)                                                     |
