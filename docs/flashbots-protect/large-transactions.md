@@ -1,5 +1,5 @@
 ---
-title: large transaction allowlist
+title: Large transaction allowlist
 ---
 
 Some projects need to post transactions that are larger in size (measured in bytes) than the txpool traditionally allows. Flashbots bundles are not subject to the same constraints. However, at the RPC level only transactions to certain contracts are allowed to be over 128kb.
