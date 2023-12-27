@@ -2,7 +2,7 @@
 title: Testnets
 ---
 
-Flashbots operates on Goerli and Sepolia, so that searchers can test Flashbots without risking real funds. 
+Flashbots operates on Goerli so that searchers can test Flashbots without risking real funds. 
 
 ## Bundle Relay URLS
 
@@ -10,16 +10,13 @@ Flashbots operates on Goerli and Sepolia, so that searchers can test Flashbots w
 | --- | --- |
 | Mainnet | `https://relay.flashbots.net` |
 | Goerli | `https://relay-goerli.flashbots.net` |
-| Sepolia | `https://relay-sepolia.flashbots.net` |
 
 ## Examples
 
-Here's how to setup the Flashbots Bundle Provider in Ethers to use Goerli or Sepolia:
+Here's how to setup the Flashbots Bundle Provider in Ethers to use Goerli:
 
 ```js
 const provider = new ethers.getDefaultProvider("goerli");
-// uncomment the line below to use Sepolia
-// const provider = new ethers.getDefaultProvider("sepolia");
 
 const authSigner = new ethers.Wallet(
   '0x2000000000000000000000000000000000000000000000000000000000000000',
@@ -29,7 +26,6 @@ const authSigner = new ethers.Wallet(
 const flashbotsProvider = await flashbots.FlashbotsBundleProvider.create(
   provider,
   authSigner,
-  // use "https://relay-sepolia.flashbots.net" for Sepolia
   "https://relay-goerli.flashbots.net",
   "goerli"
 );
