@@ -40,6 +40,7 @@ module.exports = {
             'flashbots-auction/advanced/eip1559',
             'flashbots-auction/advanced/troubleshooting',
             'flashbots-auction/advanced/bundle-cancellations',
+            'flashbots-auction/advanced/co-locate',
           ],
         },
         'flashbots-auction/faq',
