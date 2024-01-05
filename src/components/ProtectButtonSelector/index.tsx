@@ -29,6 +29,5 @@ export default function ProtectButtonSelector() {
     src={`https://flashbots-protect-72l.vercel.app/button?theme=${theme}`}
     height="88" width="336"
     className="flex dark:dark border-none rounded-lg hover:outline"
-    sandbox="allow-top-navigation-by-user-activation"
   />
 }
