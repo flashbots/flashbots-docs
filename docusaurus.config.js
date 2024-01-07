@@ -51,12 +51,22 @@ module.exports = async function createConfigAsync() {
           }
         },
         navbar: {
-          title: 'Flashbots Docs',
+          title: 'Flashbots',
           logo: {
             alt: 'Flashbots Logo',
             src: 'img/logo.png',
           },
           items: [
+            {
+              to: '/',
+              label: 'Docs',
+              position: 'left',
+            },
+            {
+              to: '/flashbots-auction/advanced/rpc-endpoint',
+              label: 'API',
+              position: 'left',
+            },
             {
               href: 'https://github.com/flashbots/docs',
               label: 'GitHub',
