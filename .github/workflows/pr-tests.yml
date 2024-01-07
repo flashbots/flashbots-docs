@@ -21,7 +21,7 @@ jobs:
           ALGOLIA_INDEX_NAME: "example"
         run: |
           bun install --frozen-lockfile
-          bun build
+          bun run build
       # - name: Check for broken links
       #   run: |
       #     cd build
