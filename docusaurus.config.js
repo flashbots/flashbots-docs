@@ -61,11 +61,13 @@ module.exports = async function createConfigAsync() {
               to: '/',
               label: 'Docs',
               position: 'left',
+              activeBasePath: 'docs',
             },
             {
               to: '/flashbots-auction/advanced/rpc-endpoint',
               label: 'API',
               position: 'left',
+              activeBasePath: 'flashbots-auction',
             },
             {
               href: 'https://github.com/flashbots/docs',
