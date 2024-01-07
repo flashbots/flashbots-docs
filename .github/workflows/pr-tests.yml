@@ -11,9 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '18.x'
+      - uses: oven-sh/setup-bun@v1
       - name: Test build
         env:
           TARGET_URL: "https://docs.flashbots.net"
@@ -22,8 +20,8 @@ jobs:
           ALGOLIA_SEARCH_API_KEY: "example"
           ALGOLIA_INDEX_NAME: "example"
         run: |
-          yarn install --frozen-lockfile
-          yarn build
+          bun install --frozen-lockfile
+          bun build
       # - name: Check for broken links
       #   run: |
       #     cd build
