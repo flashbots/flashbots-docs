@@ -34,7 +34,6 @@ module.exports = {
             'flashbots-auction/advanced/understanding-bundles',
             'flashbots-auction/advanced/coinbase-payment',
             'flashbots-auction/advanced/bundle-pricing',
-            'flashbots-auction/advanced/rpc-endpoint',
             'flashbots-auction/advanced/reputation',
             'flashbots-auction/advanced/testnets',
             'flashbots-auction/advanced/eip1559',
@@ -58,9 +57,7 @@ module.exports = {
         {
           'Additional Documentation': [
             'flashbots-protect/additional-documentation/eth-sendPrivateTransaction',
-            'flashbots-protect/additional-documentation/status-api',
             'flashbots-protect/additional-documentation/ratelimiting',
-            'flashbots-protect/additional-documentation/bundle-cache',
           ],
         }
       ],
@@ -192,4 +189,9 @@ module.exports = {
     },
         'policies/privacy','policies/terms-of-service', 'policies/prohibited-use-policy', 'brand-assets',
   ],
+  api: [
+    "flashbots-auction/advanced/rpc-endpoint",
+    "flashbots-protect/additional-documentation/status-api",
+    "flashbots-protect/additional-documentation/bundle-cache",
+  ]
 };

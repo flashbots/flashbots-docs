@@ -58,13 +58,15 @@ module.exports = async function createConfigAsync() {
           },
           items: [
             {
-              to: '/',
+              type: 'docSidebar',
               label: 'Docs',
+              sidebarId: 'docs',
               position: 'left',
             },
             {
-              to: '/flashbots-auction/advanced/rpc-endpoint',
+              type: 'docSidebar',
               label: 'API',
+              sidebarId: 'api',
               position: 'left',
             },
             {
