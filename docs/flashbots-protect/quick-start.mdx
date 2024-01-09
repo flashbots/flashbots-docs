@@ -2,11 +2,12 @@
 title: Quick start
 ---
 
-import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector";
+import ProtectButton from '@site/src/components/ProtectButton';
 
 ## Key Considerations
 
 Flashbots Protect has the following key benefits:
+
 - **Configurable:** you can choose which builders to send to and your mev-share settings.
 - **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
 - **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
@@ -17,6 +18,7 @@ Flashbots Protect has the following key benefits:
 You can speed up your transaction's inclusion by using Protect in fast mode. Click the "fast" option when [configuring your Protect RPC](/flashbots-protect/quick-start#using-flashbots-protect) or manually set your RPC to `rpc.flashbots.net/fast`.
 
 Fast mode has 2 key differences from the default Protect experience:
+
 1. **Shared with all builders:** By default, Protect transactions are only shared with the Flashbots Builder, which builds only a subset of all Ethereum blocks. In fast mode, transactions are shared with all [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json) to increase the number of blocks the user's transaction can be included in.
 2. **Larger refund paid to validator:** By default, only 10% of MEV-Share refunds are paid to validators. In fast mode, validators receive 50% of refunds which makes it more likely that the user’s transactions will be chosen in a given block.
 
@@ -38,7 +40,7 @@ There are three ways to use Flashbots Protect:
 
 Which way you integrate is up to you and your preferences. The most simple way to use Flashbots Protect is to add the Flashbots Protect RPC to your wallet. You can do so using the below button or by following the manual instructions below. **Note that you can configure the builders you send to and your MEV-Share hints as well**.
 
-<ProtectButtonSelector />
+<ProtectButton />
 
 ## Adding Flashbots Protect RPC Manually
 

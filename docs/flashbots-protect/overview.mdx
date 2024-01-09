@@ -4,10 +4,13 @@ title: MEV Protection Overview
 
 <head>
   <title>MEV Protection - Block MEV With Flashbots Protect RPC</title>
-  <meta name="description" content="Privacy notice: Flashbots MEV Protect RPC does not track any user information (i.e. IP, location, etc.). No user information is ever stored or even logged." />
+  <meta
+    name="description"
+    content="Privacy notice: Flashbots MEV Protect RPC does not track any user information (i.e. IP, location, etc.). No user information is ever stored or even logged."
+  />
 </head>
 
-import ProtectButtonSelector from "@site/src/components/ProtectButtonSelector";
+import ProtectButton from '@site/src/components/ProtectButton';
 
 > **Privacy notice: Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
 
@@ -22,7 +25,7 @@ It has the following key benefits:
 
 You can use Flashbots Protect by clicking the button below, or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net` or the custom URL based on your advanced configuration below.
 
-<ProtectButtonSelector />
+<ProtectButton />
 
 <br />
 <br />
