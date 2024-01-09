@@ -27,8 +27,7 @@ export default function ProtectButton() {
       <iframe
         title='Protect Button'
         id="protect-button"
-        // TODO: replace Vercel preview link with correct URL after deployment
-        src={`https://flashbots-protect-72l.vercel.app/button?theme=${theme}`}
+        src={`https://protect.flashbots.net/button?theme=${theme}`}
         height="88" width="348"
         className="flex dark:dark border-none rounded-lg hover:outline"
       />
