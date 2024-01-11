@@ -1,5 +1,5 @@
 ---
-title: rust provider
+title: Rust Provider
 ---
 
 Ethers-flashbots is a robust and user-friendly Rust library for interacting with flashbots. 
