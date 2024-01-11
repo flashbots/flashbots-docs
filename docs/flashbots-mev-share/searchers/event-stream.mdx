@@ -1,0 +1,218 @@
+---
+title: Event Stream
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import StreamEvent from '@site/docs/specs/mev-share/_streamEvent.mdx'
+
+Events on MEV-Share are distributed via an SSE endpoint. Searchers listen to this endpoint to receive a stream of new events, which contain data they can use in their bundles. Currently, the events refer to Ethereum transactions.
+
+## Quickstart
+
+Subscribe to the stream by making an HTTP GET request on the stream endpoint. The [mev-share-client-ts](https://npmjs.com/@flashbots/mev-share-client) library implements this as an asynchronous event handler.
+
+<Tabs>
+<TabItem value="ts" label="mev-share-client-ts">
+
+```typescript
+import MevShareClient, { IPendingTransaction, IPendingBundle } from '@flashbots/mev-share-client'
+
+const mevShareClient = MevShareClient.useEthereumMainnet(authSigner)
+
+const txHandler = mevShareClient.on("transaction", async (tx: IPendingTransaction) => {
+    /*
+    Do something with the pending tx here.
+    */
+})
+
+const bundleHandler = mevShareClient.on("bundle", async (tx: IPendingBundle) => {
+    /*
+    Do something with the pending bundle here.
+    */
+})
+
+// call before your program terminates:
+txHandler.close()
+bundleHandler.close()
+```
+
+</TabItem>
+<TabItem value="sh" label="curl">
+
+```bash
+curl https://mev-share-goerli.flashbots.net
+```
+
+This will block until terminated manually (CTRL-C).
+
+_Response:_
+
+```bash
+:ping
+
+data: {"hash":"0xc7dc06c994400830054ab815732d91275bc1241f9be62b62b687b7882f19b8d4","logs":null,"txs":[{"to":"0x0000c335bc9d5d1af0402cad63fa7f258363d71a","functionSelector":"0x696d2073","callData":"0x696d20736861726969696969696e67"}]}
+```
+
+</TabItem>
+</Tabs>
+
+:::info Event Data
+
+Events currently represent pending transactions, but eventually may be expanded to support other event types. For this reason we refer to this endpoint as an _event stream_, rather than a _transaction stream_.
+
+:::
+
+### Event Stream Endpoints
+
+| Network | URL |
+|-|-|
+| Mainnet | https://mev-share.flashbots.net |
+| Goerli | https://mev-share-goerli.flashbots.net |
+
+The endpoint sends an event with the message `:ping` every 15 seconds if no other messages were sent in the last 15 seconds.
+
+## Event Scheme
+
+Events dispatched via the SSE endpoint are JSON-encoded objects that adhere to the following scheme:
+
+<StreamEvent />
+
+Note that each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information.
+
+---
+
+Now that you've started listening to transactions, you're almost ready to start searching! Read on to the next page to learn [about bundles](/flashbots-mev-share/searchers/understanding-bundles).
+
+
+## Historical Data
+
+Historical hints can be retrieved from the historical hint API supported by the event stream endpoint.
+Each hint is associated with a block number and timestamp. Block number is the latest Ethereum block number at the time the hint was generated.
+Timestamp is the timestamp at the time the hint was generated.
+
+### GET /api/v1/history/info
+
+Returns information about the available historical hint data.
+
+#### Response
+
+| Field | Type | Description |
+|-|-|-|
+| count | number | The number of historical hints available. |
+| minBlock | number | The earliest block number for which historical hints are available. |
+| maxBlock | number | The latest block number for which historical hints are available. |
+| minTimestamp | number | The earliest timestamp for which historical hints are available. |
+| maxTimestamp | number | The latest timestamp for which historical hints are available. |
+| maxLimit | number | The maximum number of historical hints that can be requested in a single request. |
+
+
+### GET /api/v1/history
+
+#### Query Parameters
+
+| Field | Type | Description |
+|-|-|-|
+| blockStart (optional) | number | The block number to start retrieving historical hints from. |
+| blockEnd (optional) | number | The block number to end retrieving historical hints from. |
+| timestampStart (optional) | number | The timestamp to start retrieving historical hints from. |
+| timestampEnd (optional) | number | The timestamp to end retrieving historical hints from. |
+| limit (optional) | number | The maximum number of historical hints to retrieve. Default limit is `maxLimit`. |
+| offset (optional) | number | The offset to start retrieving historical hints from. |
+
+#### Response
+
+Returns an array of historical hints.
+
+| Field | Type | Description |
+|-|-|-|
+| block | number | The block number associated with the historical hint. |
+| timestamp | number | The timestamp associated with the historical hint. |
+| hint | Hint | Hint as it was sent to the live streaming endpoint in the past. |
+
+
+### Example
+
+#### Get information about historical hint data
+
+```bash
+curl https://mev-share-goerli.flashbots.net/api/v1/history/info
+```
+
+_Response:_
+
+```json
+{
+    "count": 20146,
+    "minBlock": 9091377,
+    "maxBlock": 9143624,
+    "minTimestamp": 1685452445,
+    "maxTimestamp": 1686225251,
+    "maxLimit": 500
+}
+```
+
+#### Get historical event data beginning at start of stream history
+
+```bash
+curl https://mev-share-goerli.flashbots.net/api/v1/history
+```
+
+#### Get historical hint data from a specific block range
+
+```bash
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&blockEnd=9091379'
+```
+
+_Response:_
+
+```json
+[
+  {
+    "block": 9091377,
+    "timestamp": 1685452445,
+    "hint": {
+      "txs": [
+        {
+          "to": "0x8d460b72eaf3d63830e16c22d1fc6908d0834abe",
+          "callData": "0x",
+          "functionSelector": "0x00000000"
+        }
+      ],
+      "hash": "0x50df4922dd5f9adee91d44119132da85b50fe61f0c77556b039261f7828e1794",
+      "logs": null,
+      "gasUsed": "0x5208",
+      "mevGasPrice": "0x3b9aca00"
+    }
+  },
+  {
+    "block": 9091379,
+    "timestamp": 1685452489,
+    "hint": {
+      "txs": null,
+      "hash": "0x40a85a6e37b449033924da72c0cf9dabcf2ac726b5a88f0ceff330f11bd01913",
+      "logs": null,
+      "gasUsed": "0xaae60",
+      "mevGasPrice": "0x45a9b5b00"
+    }
+  }
+]
+```
+
+#### Querying with Offset & Limit
+
+Event history results are returned in chunks whose size are defined by `limit`, the maximum limit being specified in the [`/history/info` endpoint](#get-apiv1historyinfo).
+
+```bash
+# assuming the limit is 500
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&offset=500'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&offset=1000'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&offset=1500'
+
+# or with a custom limit
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&limit=100'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&limit=100&offset=100'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&limit=100&offset=200'
+curl 'https://mev-share-goerli.flashbots.net/api/v1/history?blockStart=9091377&limit=100&offset=300'
+```

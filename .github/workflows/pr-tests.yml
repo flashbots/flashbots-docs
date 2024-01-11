@@ -1,28 +1,31 @@
 name: PR Tests
 
-on: 
+on:
+  push:
+    branches:
+      - main
   pull_request:
-    branches: "staging"
 
 jobs:
-  build:
-    if: github.event_name != 'push'
+  build-and-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
-      - name: Test Build
+          node-version: '18.x'
+      - name: Test build
         env:
-          TARGET_URL: "http://not-docs.flashbots.net"
-          BASE_URL: "/docs/"
+          TARGET_URL: "https://docs.flashbots.net"
+          BASE_URL: "/"
+          ALGOLIA_APP_ID: "example"
+          ALGOLIA_SEARCH_API_KEY: "example"
+          ALGOLIA_INDEX_NAME: "example"
         run: |
-          if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
-          elif [ -e package-lock.json ]; then
-          npm ci
-          else
-          npm i
-          fi
-          npm run build
+          yarn build
+      # - name: Check for broken links
+      #   run: |
+      #     cd build
+      #     npm install -g linkinator
+      #     linkinator "**/*.html" --recurse --timeout 3000 --concurrency 10 --retry -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/.*','https://twitter.com.*','https://.*imgur.com.*'

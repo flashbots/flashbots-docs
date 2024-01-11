@@ -1,0 +1,5 @@
+.combinedNavigation {
+  position: sticky;
+  top: 0px;
+  z-index: var(--ifm-z-index-fixed);
+}

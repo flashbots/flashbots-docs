@@ -1,0 +1,12 @@
+@use 'base';
+
+.banner {
+  @extend %banner-structure;
+
+  background-color: var(--banner-background-color, var(--ifm-navbar-background-color));
+  color: var(--banner-text-color, var(--ifm-font-color-base));
+  
+  a {
+    color: var(--banner-text-color , var(--ifm-font-color-base));
+  }
+}

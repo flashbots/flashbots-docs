@@ -1,0 +1,16 @@
+name: Check for broken links (cron)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 10 * * *'
+
+jobs:
+  check-for-broken-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - run: npm install -g linkinator
+      - run: linkinator https://docs.flashbots.net --recurse --timeout 3000 --concurrency 10 --retry -s https://dune.com/ChainsightAnalytics,'https://.*etherscan.io/tx.*','https://twitter.com.*','https://.*imgur.com.*'

@@ -1,0 +1,74 @@
+---
+title: Quick start
+---
+
+import ProtectButton from '@site/src/components/ProtectButton';
+
+## Key Considerations
+
+Flashbots Protect has the following key benefits:
+
+- **Configurable:** you can choose which builders to send to and your mev-share settings.
+- **Frontrunning protection:** your transaction will not be seen by hungry sandwich bots in the public mempool.
+- **Get MEV back**: if your transaction creates MEV, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
+- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
+
+### Faster Transactions
+
+You can speed up your transaction's inclusion by using Protect in fast mode. Click the "fast" option when [configuring your Protect RPC](/flashbots-protect/quick-start#using-flashbots-protect) or manually set your RPC to `rpc.flashbots.net/fast`.
+
+Fast mode has 2 key differences from the default Protect experience:
+
+1. **Shared with all builders:** By default, Protect transactions are only shared with the Flashbots Builder, which builds only a subset of all Ethereum blocks. In fast mode, transactions are shared with all [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json) to increase the number of blocks the user's transaction can be included in.
+2. **Larger refund paid to validator:** By default, only 10% of MEV-Share refunds are paid to validators. In fast mode, validators receive 50% of refunds which makes it more likely that the user’s transactions will be chosen in a given block.
+
+**Note**: When you send your transaction to a builder, you are entrusting them not to frontrun your transaction or disclose it to third parties who might.
+
+### Transactions Without MEV
+
+Flashbots Protect screens all transactions to check if they need MEV protection. If your transaction is performing an action that does not typically generate MEV, it will automatically be sent to the public mempool for faster inclusion.
+
+The following functions do not typically require MEV protection: `transfer`, `transferFrom`, `approve`, `(weth) withdraw`, `(weth) deposit`, `safe transfer (NFT)`.
+
+## Using Flashbots Protect
+
+There are three ways to use Flashbots Protect:
+
+1. Add the Flashbots Protect RPC to your wallet. Most users will do this.
+2. Send transactions to the RPC URL using [eth_sendRawTransaction](https://docs.alchemy.com/reference/eth-sendrawtransaction).
+3. Send transactions to Flashbots using [eth_sendPrivateTransaction](/flashbots-protect/additional-documentation/eth-sendPrivateTransaction).
+
+Which way you integrate is up to you and your preferences. The most simple way to use Flashbots Protect is to add the Flashbots Protect RPC to your wallet. You can do so using the below button or by following the manual instructions below. **Note that you can configure the builders you send to and your MEV-Share hints as well**.
+
+<ProtectButton />
+
+## Adding Flashbots Protect RPC Manually
+
+You can also add Flashbots Protect RPC manually in MetaMask by following these steps:
+
+1. Expand the Network drop-down menu by clicking on your current network at the top of your MetaMask. By default you are connected to “Ethereum mainnet.”
+2. Click “Add network”
+3. Click “Add a network manually” and fill in the following information:
+
+- **Network Name:** Flashbots Protect
+- **New RPC URL:** https://rpc.flashbots.net or the URL provided above based on your configuration
+- **Chain ID:** 1
+- **Currency Symbol:** ETH
+- **Block Explorer URL:** https://etherscan.io/
+
+4. Click “Save.”
+5. Click “Switch to Flashbots Protect”
+
+![mm_rpc](/img/mm_rpc.png)
+
+Flashbots Protect RPC for Goerli testnet can be added with these details:
+
+- **Network Name:** Goerli Flashbots Protect
+- **New RPC URL:** https://rpc-goerli.flashbots.net
+- **Chain ID:** 5
+- **Currency Symbol:** ETH
+- **Block Explorer URL**: https://goerli.etherscan.io/
+
+## Stuck transactions
+
+If a transaction is "stuck" as pending then please see our [stuck transactions guide](/flashbots-protect/stuck_transactions).

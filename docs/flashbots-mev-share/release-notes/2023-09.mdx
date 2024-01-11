@@ -1,0 +1,18 @@
+# September 2023
+
+## default logs hint
+
+A new hint which shares a subset of logs, as described in the [stable configuration](/flashbots-protect/mev-share#stable-configuration).
+
+Previously these logs were shared by default. Now, users of the private transaction API, Protect RPC, and bundle relay can also request to share these logs when customizing their settings.
+
+## simple-limit-order-bot
+
+New tutorial for searching on MEV-Share, using a flashloan arbitrage bot as an example.
+
+- [Step by step tutorial with full code examples](/flashbots-mev-share/searchers/tutorials/flash-loan-arbitrage/introduction)
+- [Open source bot repository](https://github.com/flashbots/simple-blind-arbitrage)
+
+## SSE stability updates
+
+Made several improvements to the SSE stream endpoint to reduce client timeouts and hanging connections. The SSE stream now scales better under dynamic workloads and can handle a greater number of client connections.

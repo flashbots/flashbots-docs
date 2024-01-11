@@ -1,0 +1,13 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "css.validate": false,
+  "scss.validate": false,
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": true,
+  "javascript.suggest.paths": false,
+  "typescript.suggest.paths": false
+}
