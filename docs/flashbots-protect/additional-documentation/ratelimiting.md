@@ -4,7 +4,7 @@ title: Rate limiting
 
 In order to protect our service from abuse we have rate limits on the number of requests that can be made to Flashbots Protect RPC. Currently, the rate limits are set as follows:
 
-- There is no rate limit for `sendRawTransaction`
+- There is no rate limit for `eth_sendRawTransaction`
 - `eth_call` 200/IP/5min
 - `eth_getTransactionReceipt` 200/IP/5min
 - `eth_getTransactionByBlockNumberAndIndex` 200/IP/5min
