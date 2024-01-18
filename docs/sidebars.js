@@ -32,6 +32,7 @@ module.exports = {
           ],
           "Advanced Concepts": [
             'flashbots-auction/advanced/understanding-bundles',
+            'flashbots-auction/advanced/multiplexing',
             'flashbots-auction/advanced/coinbase-payment',
             'flashbots-auction/advanced/bundle-pricing',
             'flashbots-auction/advanced/reputation',
