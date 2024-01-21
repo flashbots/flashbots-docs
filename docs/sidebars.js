@@ -29,6 +29,7 @@ module.exports = {
             'flashbots-auction/libraries/ethers-js-provider',
             'flashbots-auction/libraries/web3py-provider',
             'flashbots-auction/libraries/alchemyprovider',
+            'flashbots-auction/libraries/rust-provider',
           ],
           "Advanced Concepts": [
             'flashbots-auction/advanced/understanding-bundles',
