@@ -8,7 +8,7 @@ module.exports = {
   docs: [
     {
       "Welcome": [
-        'welcome', 'new-to-mev', 'code-of-conduct'
+        'welcome', 'new-to-mev', 'code-of-conduct', 'guide-send-tx-bundle'
       ],
     },
     {

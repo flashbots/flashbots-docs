@@ -1,0 +1,33 @@
+---
+title: Guide to Sending Transactions and Bundles on Flashbots
+---
+
+Navigating the various methods for submitting transactions and bundles on Flashbots can be overwhelming. This guide aims to clarify the available options, helping you choose the most suitable one.
+
+## Understanding Relay and RPC Endpoints
+
+Flashbots offers two primary JSON-RPC endpoints on the Ethereum Mainnet: `rpc.flashbots.net` and `relay.flashbots.net`.
+
+### `rpc.flashbots.net` - For Retail Users
+- **Purpose**: Designed specifically for retail users as drop-in RPC replacement for MEV protection and refund.
+- **Features**: Provides MEV protection and MEV refunds for eligible transactions. Support all the regular [Ethereum JSON RPC methods](https://docs.infura.io/networks/ethereum/json-rpc-methods/) but not [Flashbots specific JSON RPC
+methods](flashbots-auction/advanced/rpc-endpoint).
+- **Performance**: [Rate limited](/flashbots-protect/additional-documentation/ratelimiting) to satisfy the need of regular users.
+- **Note**: Transactions are submitted through `eth_sendRawTransaction` to fit wallet RPC interface. Underneath, the endpoint uses `relay.flashbots.net` to submit transactions.
+
+### `relay.flashbots.net` - For Advanced Users
+- **Purpose**: Designed for advanced users, including searchers and Telegram bots, to submit transactions and bundles.
+- **Features**: Support all [Flashbots specific JSON RPC methods](flashbots-auction/advanced/rpc-endpoint). Do not support regular [Ethereum JSON RPC methods](https://docs.infura.io/networks/ethereum/json-rpc-methods/).
+- **Performance**: Offers a high rate limit of 10,000 requests per second per IP address.
+- **Recommendation**: Ideal for activities beyond simple transaction submissions via wallets.
+
+## Choosing the Right JSON-RPC Method
+
+With `relay.flashbots.net` identified as the go-to for advanced operations, the choice of JSON-RPC methods is as follows:
+
+- **For Single Transactions**:
+  - **Use**: `eth_sendPrivateTransaction`.
+  - **Note**: `eth_sendPrivateRawTransaction` is a legacy method and not recommended for new transactions.
+- **For Bundles of Transactions**:
+  - **Use**: `mev_sendBundle` for more flexibility and power, like leveraging the [new bundle format](flashbots-mev-share/searchers/understanding-bundles), [MEV-Share](flashbots-mev-share/introduction), and [multiplexing to multiple builders](flashbots-auction/advanced/multiplexing).
+  - **Note**: `eth_sendBundle` is the older method and do not support the new bundle format.
