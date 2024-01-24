@@ -1,24 +1,24 @@
 ---
-title: Guide to Sending Transactions and Bundles on Flashbots
+title: Sending Tx and Bundles
 ---
 
-Navigating the various methods for submitting transactions and bundles on Flashbots can be overwhelming. This guide aims to clarify the available options, helping you choose the most suitable one.
+Flashbots provides a variety of methods for submitting transactions and bundles. This guide is designed to help you understand these options and select the one that best fits your needs.
 
 ## Understanding Relay and RPC Endpoints
 
-Flashbots offers two primary JSON-RPC endpoints on the Ethereum Mainnet: `rpc.flashbots.net` and `relay.flashbots.net`.
+Flashbots offers two primary JSON-RPC endpoints on Ethereum Mainnet: `rpc.flashbots.net` and `relay.flashbots.net`.
 
 ### `rpc.flashbots.net` - For Retail Users
-- **Purpose**: Designed specifically for retail users as drop-in RPC replacement for MEV protection and refund.
+- **Purpose**: Designed specifically for retail users as a drop-in RPC replacement in their wallet.
 - **Features**: Provides MEV protection and MEV refunds for eligible transactions. Support all the regular [Ethereum JSON RPC methods](https://docs.infura.io/networks/ethereum/json-rpc-methods/) but not [Flashbots specific JSON RPC
 methods](flashbots-auction/advanced/rpc-endpoint).
 - **Performance**: [Rate limited](/flashbots-protect/additional-documentation/ratelimiting) to satisfy the need of regular users.
 - **Note**: Transactions are submitted through `eth_sendRawTransaction` to fit wallet RPC interface. Underneath, the endpoint uses `relay.flashbots.net` to submit transactions.
 
 ### `relay.flashbots.net` - For Advanced Users
-- **Purpose**: Designed for advanced users, including searchers and Telegram bots, to submit transactions and bundles.
-- **Features**: Support all [Flashbots specific JSON RPC methods](flashbots-auction/advanced/rpc-endpoint). Do not support regular [Ethereum JSON RPC methods](https://docs.infura.io/networks/ethereum/json-rpc-methods/).
-- **Performance**: Offers a high rate limit of 10,000 requests per second per IP address.
+- **Purpose**: This endpoint is designed for advanced users, including searchers, applications, and Telegram bots. Its primary use is to submit transactions and bundles.
+- **Features**: Support all [Flashbots specific JSON RPC methods](flashbots-auction/advanced/rpc-endpoint). Does not support regular [Ethereum JSON RPC methods](https://docs.infura.io/networks/ethereum/json-rpc-methods/).
+- **Performance**: Offers a high [rate limit](flashbots-auction/advanced/rpc-endpoint) of 10,000 requests per second per IP address.
 - **Recommendation**: Ideal for activities beyond simple transaction submissions via wallets.
 
 ## Choosing the Right JSON-RPC Method
