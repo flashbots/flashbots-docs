@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-// const OFF = 0;
+const OFF = 0;
 const WARNING = 1;
 const ERROR = 2;
 
@@ -50,7 +50,7 @@ module.exports = {
         ' ',
       ],
     ],
-    'import/no-unresolved': [ERROR, {ignore: ['^@docusaurus']}],
+    'import/no-unresolved': [ERROR, {ignore: ['^@docusaurus', '@theme']}],
     'import/no-extraneous-dependencies': [ERROR, {includeTypes: true}],
     'react/require-default-props': [
       WARNING,
@@ -62,6 +62,7 @@ module.exports = {
       WARNING,
       {extensions: ['.js', '.jsx', '.ts', '.tsx']},
     ],
+    "react/jsx-props-no-spreading": OFF,
   },
   settings: {
     'import/parsers': {

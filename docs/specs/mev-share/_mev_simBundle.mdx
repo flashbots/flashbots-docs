@@ -39,6 +39,15 @@
         },
         metadata?: {
             originId?: string,
+        },
+        simOptions?: { /* SimBundleOptions */
+            parentBlock?: number | string, // Block used for simulation state. Defaults to latest block.
+            blockNumber?: number, // default = parentBlock.number + 1
+            coinbase?: string, // default = parentBlock.coinbase
+            timestamp?: number, // default = parentBlock.timestamp + 12
+            gasLimit?: number, // default = parentBlock.gasLimit
+            baseFee?: bigint, // default = parentBlock.baseFeePerGas
+            timeout?: number, // default = 5 (defined in seconds)
         }
     }]
 }

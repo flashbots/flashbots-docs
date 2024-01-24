@@ -9,12 +9,12 @@ To start searching on MEV-Share, you will first need to connect to a MEV-Share N
 
 ## Connect to MEV-Share Node
 
-Flashbots operates an MEV-Share Node on the Ethereum mainnet. This Node provides endpoints for user transactions and searcher bundles. Additionally, it offers an SSE event stream endpoint, broadcasting pending events/transactions to searchers.
+Flashbots operates an MEV-Share Node on the Ethereum mainnet. This Node provides endpoints for user transactions and searcher bundles. Additionally, it offers an Server-Sent Events (SSE) streaming endpoint, broadcasting pending events/transactions to searchers.
 
 The simplest way to connect to the Flashbots MEV-Share Node is to use a [client library](/flashbots-auction/libraries/mev-share-clients). For this guide, we'll refer to [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts).
 
 <Tabs>
-<TabItem value="ts" label="mev-share-client-ts">
+<TabItem value="ts" label="Typescript">
 
 _Add library to your project:_
 
@@ -44,7 +44,7 @@ _Connecting to Goerli:_
 const mevShareClient = MevShareClient.useEthereumGoerli(authSigner);
 ```
 
-_Advanced setup_ (for developers):
+To use custom network parameters, you can instantiate a new MevShareClient instance directly. This example is what the client uses to connect to mainnet:
 
 ```typescript
 // connect to MEV-Share on mainnet
@@ -58,12 +58,18 @@ const mevShareClient = new MevShareClient(authSigner, {
 
 Further documentation on the client library can be found in the [mev-share-client-ts](https://github.com/flashbots/mev-share-client-ts).
 
+</TabItem>
+
+<TabItem value="Rust" label="Rust">
+For Rust users, thanks to Paradigm's effort, we have a Rust MEV-Share client [mev-share-rs](https://github.com/paradigmxyz/mev-share-rs).
+
+If you want a complete MEV bot framework, could also directly go for [Artemis](https://github.com/paradigmxyz/artemis), which has built-in support for MEV-Share as outlined in this [example](https://github.com/paradigmxyz/artemis/blob/main/examples/mev-share-arb/src/main.rs).
+</TabItem>
+</Tabs>
+
 ### A note on other languages
 
 If you're coding in a language that doesn't yet have a MEV-Share Node client library, you can send transactions and bundles directly with the [JSON-RPC endpoint](/flashbots-auction/advanced/rpc-endpoint). To listen for transactions, all you need is an HTTP client. More details on that in the [Event Stream](/flashbots-mev-share/searchers/event-stream) page.
-
-</TabItem>
-</Tabs>
 
 ---
 
@@ -79,4 +85,4 @@ There are three primary strategies for searching on MEV-Share:
 - On-chain: perform more of your searching on-chain instead of off-chain.
 - Existing: only search on transactions which share all the information you need.
 
-To maximally leverage MEV-Share searchers will need to employ new strategies. :::
+To maximally leverage MEV-Share searchers will need to employ new strategies.
