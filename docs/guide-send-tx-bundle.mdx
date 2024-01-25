@@ -16,7 +16,7 @@ methods](flashbots-auction/advanced/rpc-endpoint).
 - **Note**: Transactions are submitted through `eth_sendRawTransaction` to fit wallet RPC interface. Underneath, the endpoint uses `relay.flashbots.net` to submit transactions.
 
 ### `relay.flashbots.net` - For Advanced Users
-- **Purpose**: This endpoint is designed for advanced users, including searchers, applications, and Telegram bots. Its primary use is to submit transactions and bundles.
+- **Purpose**: Designed for advanced users, including searchers, applications, and Telegram bots. It accepts both transactions and bundles.
 - **Features**: Support all [Flashbots specific JSON RPC methods](flashbots-auction/advanced/rpc-endpoint). Does not support regular [Ethereum JSON RPC methods](https://docs.infura.io/networks/ethereum/json-rpc-methods/).
 - **Performance**: Offers a high [rate limit](flashbots-auction/advanced/rpc-endpoint) of 10,000 requests per second per IP address.
 - **Recommendation**: Ideal for activities beyond simple transaction submissions via wallets.
@@ -28,4 +28,4 @@ With `relay.flashbots.net` identified as the go-to for advanced operations, the 
 - **For Single Transactions**: Use `eth_sendPrivateTransaction`.
 - **For Bundles of Transactions**:
   - **Use**: `mev_sendBundle` for more flexibility and power, like leveraging the [new bundle format](flashbots-mev-share/searchers/understanding-bundles), [MEV-Share](flashbots-mev-share/introduction), and [multiplexing to multiple builders](flashbots-auction/advanced/multiplexing).
-  - **Note**: `eth_sendBundle` if you want something simple and quick! The OG way of sending bundles.
+  - **Use**: `eth_sendBundle` if you want something simple and quick! The OG way of sending bundles.
