@@ -25,9 +25,7 @@ methods](flashbots-auction/advanced/rpc-endpoint).
 
 With `relay.flashbots.net` identified as the go-to for advanced operations, the choice of JSON-RPC methods is as follows:
 
-- **For Single Transactions**:
-  - **Use**: `eth_sendPrivateTransaction`.
-  - **Note**: `eth_sendPrivateRawTransaction` is a legacy method and not recommended for new transactions.
+- **For Single Transactions**: Use `eth_sendPrivateTransaction`.
 - **For Bundles of Transactions**:
   - **Use**: `mev_sendBundle` for more flexibility and power, like leveraging the [new bundle format](flashbots-mev-share/searchers/understanding-bundles), [MEV-Share](flashbots-mev-share/introduction), and [multiplexing to multiple builders](flashbots-auction/advanced/multiplexing).
-  - **Note**: `eth_sendBundle` is the older method and do not support the new bundle format.
+  - **Note**: `eth_sendBundle` if you want something simple and quick! The OG way of sending bundles.
