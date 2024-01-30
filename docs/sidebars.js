@@ -83,7 +83,6 @@ module.exports = {
             },
           ]
         },
-        'flashbots-data/blockapi',
         'flashbots-data/dashboard',
       ],
     },
@@ -195,5 +194,6 @@ module.exports = {
     "flashbots-auction/advanced/rpc-endpoint",
     "flashbots-protect/additional-documentation/status-api",
     "flashbots-protect/additional-documentation/bundle-cache",
+    "flashbots-data/blockapi",
   ]
 };
