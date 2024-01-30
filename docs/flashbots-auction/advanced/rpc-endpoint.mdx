@@ -656,7 +656,7 @@ The `flashbots_getBundleStatsV2` JSON-RPC method returns stats for a single bund
 }
 ```
 
-example response:
+example response when bundle relay has simulated the bundle and the target block has been reached:
 
 ```json
 {
@@ -684,6 +684,35 @@ example response:
       "timestamp": "2022-10-06T21:36:07.742Z"
     }
   ]
+}
+```
+
+when relay has not seen the bundle yet:
+
+```json
+{
+  "isSimulated": false,
+}
+```
+
+when relay has seen the bundle but has yet to simulate it:
+
+```json
+{
+  "isSimulated": false,
+  "isHighPriority": true,
+  "receivedAt": "2022-10-06T21:36:06.250Z",
+}
+```
+
+when relay has simulated the bundle but the target block has not been reached:
+
+```json
+{
+  "isSimulated": true,
+  "isHighPriority": true,
+  "simulatedAt": "2022-10-06T21:36:06.317Z",
+  "receivedAt": "2022-10-06T21:36:06.250Z"
 }
 ```
 
