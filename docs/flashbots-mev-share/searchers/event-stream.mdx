@@ -83,7 +83,9 @@ Events dispatched via the SSE endpoint are JSON-encoded objects that adhere to t
 
 <StreamEvent />
 
-Note that each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information. Below is an example of a transaction event received from the stream:
+Note that each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information.
+
+Below is an example of a transaction event received from the stream:
 
 ```json
 {
@@ -124,6 +126,32 @@ Note that each of these properties are optional; if a field is not present, it m
          "callData":"0x44b8be680000000000000000000000003a23f943181408eac424116af7b7790c94cb97a5000000000000000000000000b658ba58f7153e99c05c9b7610f17bfeeab6bff5000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000000000000000000000000000161fb772f99eaf7a000000000000000000000000000000000000000000000000161fb772f99eaf7a0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000008900000000000000000000000000000000000000000000000000016b90ac92248e0000000000000000000000000000000000000000000000000005216e484d6dde00000000000000000000000000000000000000000000000000000000001173630000000000000000000000000000000000000000000000000000000000000180ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000"
       }
    ]
+}
+```
+
+### Understanding double-hash
+
+Note that the `hash` field is actually a keccak256 hash of the underlying bundle/transaction hash, essentially a double-hash.
+
+Below is code-snippet in golang to calculate double-hash for testing purposes.
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/ethereum/go-ethereum/common"
+	"golang.org/x/crypto/sha3"
+)
+
+func main() {
+	underlyingHash := common.HexToHash("0xd2d662b8aa0e8d86ea75d363522c9ede42ef538ae353da564d501c044a885293")
+	doubleHasher := sha3.NewLegacyKeccak256()
+	doubleHasher.Write(underlyingHash.Bytes())
+	dHash := doubleHasher.Sum(nil)
+	matchingHash := common.BytesToHash(dHash)
+	fmt.Println(matchingHash.String()) //prints 0x90b4f5664cc201c3aa112d6bb2fa414c4aee10f00994692b282c1d14a1db6e4d
 }
 ```
 
