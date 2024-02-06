@@ -83,7 +83,9 @@ Events dispatched via the SSE endpoint are JSON-encoded objects that adhere to t
 
 <StreamEvent />
 
-Note that each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information. Below is an example of a transaction event received from the stream:
+Note that each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information.
+
+Below is an example of a transaction event received from the stream:
 
 ```json
 {
@@ -129,9 +131,10 @@ Note that each of these properties are optional; if a field is not present, it m
 
 ### Understanding double-hash
 
-`hash` field is actually a hash of the underlying bundle (transaction) hash, essentially double-hash. If you send a private transaction
-via `rpc.flashbots.net` or `relay.flashbots.net` underlying hash is transaction hash. If you send bundle to `mev-share`, than you receive
-underlying hash as part of the response. Below is code-snippet in golang to calculate double-hash for testing purposes
+Note that the `hash` field is actually a keccak256 hash of the underlying bundle/transaction hash, essentially a double-hash.
+
+Below is code-snippet in golang to calculate double-hash for testing purposes.
+
 ```go
 package main
 
