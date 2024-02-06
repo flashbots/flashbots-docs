@@ -127,6 +127,31 @@ Note that each of these properties are optional; if a field is not present, it m
 }
 ```
 
+### Understanding double-hash
+
+`hash` field is actually a hash of the underlying bundle (transaction) hash, essentially double-hash. If you send a private transaction
+via `rpc.flashbots.net` or `relay.flashbots.net` underlying hash is transaction hash. If you send bundle to `mev-share`, than you receive
+underlying hash as part of the response. Below is code-snippet in golang to calculate double-hash for testing purposes
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/ethereum/go-ethereum/common"
+	"golang.org/x/crypto/sha3"
+)
+
+func main() {
+	underlyingHash := common.HexToHash("0xd2d662b8aa0e8d86ea75d363522c9ede42ef538ae353da564d501c044a885293")
+	doubleHasher := sha3.NewLegacyKeccak256()
+	doubleHasher.Write(underlyingHash.Bytes())
+	dHash := doubleHasher.Sum(nil)
+	matchingHash := common.BytesToHash(dHash)
+	fmt.Println(matchingHash.String()) //prints 0x90b4f5664cc201c3aa112d6bb2fa414c4aee10f00994692b282c1d14a1db6e4d
+}
+```
+
 ---
 
 Now that you've started listening to transactions, you're almost ready to start searching! Read on to the next page to learn [about bundles](/flashbots-mev-share/searchers/understanding-bundles).
