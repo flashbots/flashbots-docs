@@ -267,7 +267,13 @@ example response:
 
 [`eth_cancelPrivateTransaction`](https://docs.alchemy.com/alchemy/apis/ethereum/eth_cancelPrivateTransaction/?a=fb) is also supported on [Alchemy](https://alchemy.com/?a=fb).
 
-> :information_source: `replacementUuid` must have been set when bundle was submitted.
+:::caution
+`replacementUuid` must have been set when bundle was submitted.
+:::
+
+:::caution
+When you cancel a bundle in Flashbots, the cancelled bundle is excluded from all future bids by the builder. However, there's no active adjustment to decrease the bid value on the relay for already placed bids. If the block value increases without your bundle, the bid might be replaced to reflect the new value.
+:::
 
 ```json
 {
