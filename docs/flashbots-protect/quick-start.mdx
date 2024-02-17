@@ -30,6 +30,12 @@ Flashbots Protect screens all transactions to check if they need MEV protection.
 
 The following functions do not typically require MEV protection: `transfer`, `transferFrom`, `approve`, `(weth) withdraw`, `(weth) deposit`, `safe transfer (NFT)`.
 
+:::warning Switching RPCs Before Transaction Confirmation
+If you submit a transaction through Flashbots Protect using MetaMask and then switch RPCs before the transaction is confirmed, MetaMask may resend the transaction to the public mempool. This could expose your transaction to MEV attacks.
+
+To avoid this, ensure you do not switch RPCs until your transaction has been successfully included in a block.
+:::
+
 ## Using Flashbots Protect
 
 There are three ways to use Flashbots Protect:
