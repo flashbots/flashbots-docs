@@ -4,6 +4,17 @@ title: Transaction Status API
 
 Transactions that you submit to Flashbots Protect won't be observable in the public mempool. However, you can use our status API to check the status of your transactions. The URL for doing so is: `https://protect.flashbots.net/tx/YOUR_TX_HASH_HERE`, and you can also use Etherscan as you normally would for transactions. They will show the status of your transaction from the status API as well.
 
+The Transaction Status API is also available on test networks. Below is a table of URLs for accessing the API across different networks:
+
+| Network  | URL                                                |
+| -------- | -------------------------------------------------- |
+| Mainnet  | `https://protect.flashbots.net/tx/` |
+| Goerli   | `https://protect-goerli.flashbots.net/tx/` |
+| Sepolia  | `https://protect-sepolia.flashbots.net/tx/` |
+| Holesky  | `https://protect-holesky.flashbots.net/tx/` |
+
+
+
 In turn you will receive a JSON response that looks like the following:
 
 ```json
