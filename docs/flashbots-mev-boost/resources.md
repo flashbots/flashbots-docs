@@ -6,7 +6,7 @@ title: Resources
 
 - [The Hitchhiker's Guide to Ethereum](https://members.delphidigital.io/reports/the-hitchhikers-guide-to-ethereum/)
 - [Combining Ghost and Casper - Vitalik Buterin et al.](https://arxiv.org/pdf/2003.03052.pdf)
-- [Endgame - Vitalik Buterin](https://vitalik.ca/general/2021/12/06/endgame.html)
+- [Endgame - Vitalik Buterin](https://vitalik.eth.limo/general/2021/12/06/endgame.html)
 - [Fork Choice](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/fork-choice.md)
 - [A compiled list of resources from Flashbots Research](https://github.com/flashbots/mev-boost/wiki/Research#open-questions)
 
