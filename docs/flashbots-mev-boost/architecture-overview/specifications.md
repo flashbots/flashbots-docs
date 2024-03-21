@@ -25,4 +25,3 @@ title: MEV-Boost Specifications
 - [MEV-Boost Relay](https://github.com/flashbots/mev-boost-relay)
 - [Go Boost Utils](https://github.com/flashbots/go-boost-utils)
 - [MEV-Boost Builder](https://github.com/flashbots/boost-geth-builder)
-- [Relay Status Page ](https://0xpanoramix.github.io/flashbots-boost-status/)
