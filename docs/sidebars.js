@@ -113,7 +113,6 @@ module.exports = {
           'flashbots-mev-boost/FAQ',
           'flashbots-mev-boost/glossary',
           'flashbots-mev-boost/resources',
-          'flashbots-mev-boost/community-tools',
       ],
     },
     {
