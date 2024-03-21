@@ -15,6 +15,6 @@ To get started:
 
 * [https://www.alchemy.com/sdk](https://www.alchemy.com/sdk)
 
-* [https://docs.alchemy.com/reference/eth-sendprivatetransaction-sdk-v3](https://docs.alchemy.com/reference/sendprivatetransaction-sdk-v3)
+* [https://docs.alchemy.com/reference/sendprivatetransaction-sdk-v3](https://docs.alchemy.com/reference/sendprivatetransaction-sdk-v3)
 
 * [https://github.com/alchemyplatform/alchemy-sdk-js](https://github.com/alchemyplatform/alchemy-sdk-js)
