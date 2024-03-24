@@ -18,6 +18,31 @@
       "permanent": true
     },
     {
+      "source": "/flashbots-protect/rpc/fast-mode",
+      "destination": "/flashbots-protect/quick-start#faster-transactions",
+      "permanent": true
+    },
+    {
+      "source": "/flashbots-protect/api/json-rpc",
+      "destination": "/flashbots-auction/advanced/rpc-endpoint",
+      "permanent": true
+    },
+    {
+      "source": "/flashbots-mev-share/overview",
+      "destination": "/flashbots-mev-share/introduction",
+      "permanent": true
+    },
+    {
+      "source": "/flashbots-mev-boost/relays",
+      "destination": "/flashbots-mev-boost/relay",
+      "permanent": true
+    },
+    {
+      "source": "/flashbots-mev-boost/architecture-overview/MEV-boost-block-proposal",
+      "destination": "/flashbots-mev-boost/architecture-overview/block-proposal",
+      "permanent": true
+    },
+    {
       "source": "/flashbots-auction/searchers/:path*",
       "destination": "/flashbots-auction/:path",
       "permanent": true
