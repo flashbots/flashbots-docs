@@ -47,16 +47,12 @@ Get a list of validator registrations for the current and next epoch, submit a n
 
 Provides data about received blocks from builders, payloads delivered to proposers as well as insights into validator registrations.
 
-## [Relay Monitor](https://hackmd.io/@ralexstokes/SynPJN_pq)
-
-While relays are trusted actors, the ability to run a relay is permissionless. To mitigate potential abuses of this role, Flashbots [has suggested](https://github.com/flashbots/mev-boost/issues/142) a “relay monitor,” which uses publicly available data to form a view on the behavior and performance of the set of relays it is monitoring. More details can be found in the [relay monitor design documentation](https://hackmd.io/@ralexstokes/SynPJN_pq), [keeping MEV-Boost relays honest](https://notes.ethereum.org/@yoav/BJeOQ8rI5), and [understanding liveness risks](https://writings.flashbots.net/understanding-mev-boost-liveness-risks).
-
 ## [Circuit Breaker](https://hackmd.io/@ralexstokes/BJn9N6Thc)
 
-The circuit breaker is implemented by client software teams to define “circuit breaking” conditions using globally available inputs (simply, the chain) which determine whether clients should make a decision to terminate an external builder network in favor of local block production. Once the circuit breaker condition is met, the only way to reset the state is to restart the beacon node where the missing slots tally will be 0.
+The circuit breaker is implemented by client software teams to define “circuit breaking” conditions using globally available inputs (such as the chain) to determine whether clients should stop sourcing blocks from an external block builder network and fallback to local block production instead. Each consensus client implements different circuit breaker conditions and once the circuit breaker condition is met, clients have different behaviour regarding when to resume sourcing external blocks. 
 
-Each consensus client implements different circuit breaker conditions, as an example:
+For the exact behavior and available configuration around circuit breaker conditions for a specific client, please refer to the documentation for the specific consensus client.
 
-| Name                      | Value | Units   |
-| ------------------------- | ----- | ------- |
-| MAX_ALLOWED_MISSING_SLOTS | 5     | slot(s) |
+## [Relay Monitor](https://hackmd.io/@ralexstokes/SynPJN_pq)
+
+While relays are trusted actors, the ability to run a relay is permissionless. To mitigate potential abuses of this role, Flashbots [has suggested](https://github.com/flashbots/mev-boost/issues/142) a “relay monitor,” which uses publicly available data to form a view on the behavior and performance of the set of relays it is monitoring. This is an ongoing proposal and more details can be found in the [relay monitor design documentation](https://hackmd.io/@ralexstokes/SynPJN_pq), [keeping MEV-Boost relays honest](https://notes.ethereum.org/@yoav/BJeOQ8rI5), and [understanding liveness risks](https://writings.flashbots.net/understanding-mev-boost-liveness-risks).
