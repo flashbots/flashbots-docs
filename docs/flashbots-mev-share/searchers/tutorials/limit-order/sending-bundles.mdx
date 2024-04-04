@@ -4,7 +4,7 @@ title: Sending Bundles
 
 ## Getting our trade ready
 
-After we find a transaction that touches the trading pair we're targeting, we need to calculate how many tokens we should expect to receive. In this project, we are specifically *buying* DAI with ETH (technically WETH, because Uniswap only trades ERC-20 tokens), so we want the price of DAI/WETH to be as low as possible. In code, we define our price requirements in terms of the *amount of tokens we receive* from the trade — so we want the *highest* amount of tokens possible, but we have a definite minimum (1800 DAI). 
+After we find a transaction that touches the trading pair we're targeting, we need to calculate how many tokens we should expect to receive. In this project, we are specifically *buying* DAI with ETH (technically WETH, because Uniswap only trades ERC-20 tokens), so we want the price of DAI/WETH to be as low as possible. In code, we define our price requirements in terms of the *amount of tokens we receive* from the trade — so we want the *highest* amount of tokens possible, but we have a definite minimum (1800 DAI).
 
 In terms of a limit order, we're saying that we want our order to be filled when the price is *at most* 1800 DAI, but if the price is lower, then we want to fill at the lower price, which yields more DAI per WETH.
 
@@ -167,17 +167,68 @@ async function main() {
 
 > For a full, working code example, check out https://github.com/flashbots/simple-limit-order-bot
 
-![Mario finish](/img/mario-finish.png)
+![Mario finish](/img/mario-finish.jpg)
 
 *That's all you need!* This code will listen for new transactions and blocks, and trigger our code to send bundles when we find a transaction that changes the price.
 
 Run the code and you should see something like this:
 
-![First logs](/img/limit-order-logs-1.png)
+```bash
+$ npx ts-node src/index.ts
+mev-share auth address: 0xE52A621a647A1013cE44EEBB37676F4c7205F87e
+executor address: 0x5b2c1E34C3Be923c123Ec858F474645B1Fcee0A3
+skipping tx: 0x8ec57508495115338395a0de7cb9b85956845c83047bc523fc5b169fc9820251
+skipping tx: 0xbe8be3ddfe27c03d79d44bf5f46a40e3491960c85fc29ceb9b9d7b968e3c7760
+skipping tx: 0xd8bdceffde345bf71fb8058c0baae04eee58c25739dd31d3354c9777162be769
+skipping tx: 0xfdc9ed3cd98e15d9e2b6bcea832f7f178d23f7c20d7900de5cf23af9051337c3
+skipping tx: 0x4878de9bf339cffd8facb5037698839f97e8624806dec97f39d71254101ed712
+skipping tx: 0x0b1964af41ddf4d4082f6d68073f200b1d72ffc9852441aa7621feba34c4e045
+skipping tx: 0x23494341ec01dd3797778958e02cf9a8dbb8bb91989150b162cc7c16fe177267
+skipping tx: 0xb201acbfe4c140a14cdd90b84d3a2c277d14bbb53e9bbacc095282c7b5e93c93
+skipping tx: 0x8777978ea1c14af518d32ce74c8671905619ee8b6008c4c6f9a94e83fa2dda15
+skipping tx: 0x6f25db574493009c6a9a22f3c15370038f80b8c86f3547f72811c0c58dfc6160
+skipping tx: 0xb98f1e587f9a292043738f5c70e6532a6cd94a2f530a060556ce99256ca52e05
+skipping tx: 0x0c347e08df1fee8bb0f4fafe606b1a1b8159804623bbcd78c03097dc316ca47a
+skipping tx: 0x2081950a40ca29cbc46c043f846a1e3205f3baaa09a8e531a20ff63c649617ed
+skipping tx: 0x8ccc554df02cf2c8880bde8ea4b7dcfecc533ec4c799e2a14a55282937934abf
+skipping tx: 0x7258bf29fb9879f10ee859ae80f491a7a652caf0825a1b2196cb2b39747e9a77
+skipping tx: 0x8d49b3d723457845484c16b1d637265821a63c601dc0184417c2a20789ec2881
+skipping tx: 0xfacd7b58b52184724fc1d8ad688544d0f45fb005110f49b790d320997e5ba79e
+skipping tx: 0x176d69b0353ea5cb421f7218f94ec54191bdca3cc1d659587546235d73ae8837
+skipping tx: 0x518f3b9844a92d617146520b61face546aa399358f40136827fc24db8827b9ea
+skipping tx: 0x58da384fd342fdc8d8ba96faf3e12bc89417c7099888eaedfd77a00bcf10f701
+skipping tx: 0x1431112c598a1a7969f048d6893b3ad72424fcc7a1de0b880ffc98585fcd2e7d
+skipping tx: 0x55bb0a2209665e464a385b188d0dcc1d91c93bae1509368cdc5abf9cb38afdfe
+skipping tx: 0x0978078667fd1bd834c5b8ca20e06b403e0df6311455de6dc6651c33542a594d
+skipping tx: 0xed23e27981fba7b4e661c10c9d4e70ada3eafb9cd4197a24f4566c1c5266e601
+skipping tx: 0x3734c599be31a485a84376cf108fd76d5edc9637f834a9982a1600f0abd533d0
+skipping tx: 0xc932320f77f8436037ab27ead89c004acc8f8bc52e0c19dcb6ecea103bc2973a
+skipping tx: 0xe880ce068eba29657bf14c535f421adefc43933fe84ef157cf4cdf7524edd22e
+skipping tx: 0x350aaae85d6167e219480fb60104d27a773675ff387c2634da44f1b36bbeba6b
+skipping tx: 0xfddcfb509e19be4500e4a1a03c97d77b2261fe41d8f019d48e0c0cea11cd1cc8
+skipping tx: 0x08867976aecc2b09c57cf17d2e16dda9e3c3026da9c2ca3fed3187c7b577fa91
+```
 
 And after some time…
 
-![Second logs](/img/limit-order-logs-2.png)
+```bash
+skipping tx: 0x82b46667867fd7e1684f14dd34503ee9b9bbe106352c00006592ceae8e58a9d7
+skipping tx: 0x51c79454c4e86df176b51524fc254ab2e04c0861c329cdeab7a90d2e3309c3b7
+skipping tx: 0xf0977236782c93462ea442514a28be64f11cd5feee647929b74834adff0b527a
+skipping tx: 0x8d5273f1eefa3a6daa40355df621e488dcf434e7bffb6201e0d98c26709ea35b
+skipping tx: 0x382ba4c5d62557277f494032b2578ba52435cccef7fd236f02278df337fa0f7b
+skipping tx: 0x04b40010c4a986f19fdedde1c2b0b92bf146074fae98693dc53a10d32a15bbba
+skipping tx: 0x7c89acc455e040f8690933af2fa40cac714f5f2790758972a35d4ea39ced32c9
+skipping tx: 0xfcb49a980017cc3e0e5d5d4a0ff40aa170dc2e32021f81319c8d2b117b12bf52
+skipping tx: 0x1861b5afc21a2e82dbdb8bc26777ced087c6a4830482b2f65273ba7159c204c8
+skipping tx: 0x0817d834d6a537b6839858465f5e7ce2f95c9c5e353cf85282cd0f1da5b90e50
+skipping tx: 0x387dd96be2b59da5f6e991b41d670f752fecd4d6571198729f1037996a4e2d3c
+skipping tx: 0x6b8577d861ce46f1e780c7ce59925ac9be40fd5428954c15a7e115cacaf974e2
+skipping tx: 0xc41d53c886897aeda1fc401f337a2d8b3ef737e78f06a52cbbe29b501a1c7736
+skipping tx: 0x52f2f383b4af41aa47f09ed8fd237358b32f33a0f471fc7be40b83179e513458
+skipping tx: 0xbcc799ad42925730cbb724c0fe5ed7b8444e7fbc8a4219d7346a2a03e8ac5131
+It's a match: 0xf76ce750b75ccd34b9174fdf8b574d129630d51422f3ca84f4f308952a4ea3b4
+```
 
 It may take a while to find a match — remember, the code scans for a trade on the ETH/DAI pair on Uniswap V2. There are lots of other events to consider for future improvements to this bot!
 

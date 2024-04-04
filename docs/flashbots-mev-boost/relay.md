@@ -28,7 +28,7 @@ A relay has several responsibilities:
 
 The current specification for the [open-source Flashbots relay](https://github.com/flashbots/mev-boost-relay). Diagram below displays the current architecture:
 
-![Relay Architecture](https://i.imgur.com/Z1AtQpw.png)
+![Relay Architecture](/img/relay_architecture.jpg)
 
 ### [Proposer API](https://flashbots.notion.site/Relay-API-Spec-5fb0819366954962bc02e81cb33840f5)
 

@@ -38,7 +38,53 @@ npx ts-node src/index.ts
 
 You should see events popping up in the console. Something like this:
 
-![MEV-Share events](/img/mev-share-events.png)
+```tsx
+PendingTransaction {
+  hash: '0x26aba6f3c5083d58915161efb0cd0f713418cdd7a95425cdde451efd1dfb5dff',
+  logs: [
+    {
+      address: '0x8255ffbb54bbb825cc544b67ccf36526e6101f5e',
+      topics: [Array],
+      data: 'Ox'
+    },
+    {
+      address: '0x8255ffbb54bbb825cc544b67ccf36526e6101f5e'
+      topics: [Array],
+      data: 'Ox'
+    }
+  ],
+  to: null,
+  functionSelector: null,
+  callData: null,
+  gasUsed: undefined,
+  mevGasPrice: undefined
+}
+PendingTransaction {
+  hash: '0xeb0d75030e0c7253b60a17a58eb2a2e66a6e3ca58343cadece70a528dfd378a1',
+  logs: [
+    {
+      address: 'Oxdac17f958d2ee523a2206206994597c13d831ec7',
+      topics: [Array],
+      data: '0x0000000000000000000000000000000000000000000000000000000253f52170'
+    },
+    {
+      address: 'Oxdac17f958d2ee523a2206206994597c13d831ec7',
+      topics: [Array],
+      data: '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+    },
+    {
+      address: 'Oxdac17f958d2ee523a2206206994597c13d831ec7',
+      topics: [Array],
+      data: '0x0000000000000000000000000000000000000000000000000000000253f52170'
+    },
+    {
+      address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+      topics: [Array],
+      data: '0x00000000000000000000000000000000000000000000021e08ad287c5f8d3bff'
+    }
+  ]
+}
+```
 
 > Traffic is often low on goerli, so you may want to try connecting to mainnet with `MevShareClient.useEthereumMainnet(authSigner)` to see more events.
 
@@ -121,7 +167,7 @@ async function main() {
             console.log('skipping tx: ' + pendingTx.hash)
             return
         }
-        console.log(`It's a match: ${ pendingTx.hash }`)        
+        console.log(`It's a match: ${ pendingTx.hash }`)
     })
 }
 ```
