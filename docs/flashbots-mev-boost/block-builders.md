@@ -76,6 +76,7 @@ The various `builder_pubkeys` used to identify Flashbots builders to relays are
 - [Relay API documentation - Block Builder API](https://bit.ly/3BmGZ3T)
 - Block Builder Self-Help Group: [https://collective.flashbots.net/c/builders/14](https://collective.flashbots.net/c/builders/14)
 - Github issue about becoming block builder: [https://github.com/flashbots/mev-boost/issues/145](https://github.com/flashbots/mev-boost/issues/145).
-- [Mevboost.org\*](https://www.mevboost.pics/) - Tracking MEV-Boost relays and block builders. A quick hack by [Toni](https://twitter.com/nero_eth).
+- [Mevboost.pics](https://www.mevboost.pics/) - Tracking MEV-Boost relays and block builders, by [Toni Wahrstätter](https://twitter.com/nero_eth).
+- [Relayscan.io](https://www.relayscan.io/) - Up-to-date stats on the MEV-Boost ecosystem, by [Chris Hager](https://twitter.com/metachris).
 
 _Note: Flashbots does not control and cannot verify the data coming from external people and organizations. Please direct questions or issues directly to the creators of external data sources._
