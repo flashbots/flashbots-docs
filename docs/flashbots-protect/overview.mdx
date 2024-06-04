@@ -6,28 +6,28 @@ title: MEV Protection Overview
   <title>MEV Protection - Block MEV With Flashbots Protect RPC</title>
   <meta
     name="description"
-    content="Privacy notice: Flashbots MEV Protect RPC does not track any user information (i.e. IP, location, etc.). No user information is ever stored or even logged."
+    content="Privacy notice: Flashbots MEV Protect RPC does not track user information (i.e. IP, location, etc.). No user information is stored or logged."
   />
 </head>
 
 import ProtectButton from '@site/src/components/ProtectButton';
 
-> **Privacy notice: Flashbots Protect RPC does not track** any kind of user information (i.e. IP, location, etc.). No user information is ever stored or even logged.
+> **Privacy notice: Flashbots Protect RPC does not track** user information (i.e. IP, location, etc.). No user information is stored or logged.
 
-Flashbots Protect is a user-friendly, secure, and powerful way to transact on Ethereum for both novices and sophisticated users.
+Flashbots Protect is a secure way to protect Ethereum transactions from harmful front-running and sandwich attacks and to receive refunds on MEV generated from any back-running.
 
 It has the following key benefits:
 
-- **Configurable:** you can choose which builders to send to and your mev-share settings.
-- **Frontrunning protection:** your transaction will not be seen by bots hungry to frontrun you in the public mempool.
-- **Get backrunning MEV back**: if your transaction creates MEV in backrunning, you get up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
-- **No failed transactions:** your transaction will only be included if it doesn't include any reverts, so you don't pay for failed transactions.
+- **Configurable:** You can choose which builders to send to and your mev-share settings.
+- **Frontrunning protection:** Transactions are sent to a private Flashbots mempool where they will be hidden from front-running and sandwich bots.
+- **Receive backrunning MEV refunds**: If your transaction creates MEV via backrunning, you will receive up to 90% of it back through [MEV-Share](/flashbots-mev-share/introduction).
+- **Revert protection:** Users do not pay for failed transactions since transactions that would revert are excluded.
 
-You can use Flashbots Protect by clicking the button below, or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net` or the custom URL based on your advanced configuration below.
+You can use Flashbots Protect by clicking the button below or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net/fast` or the custom URL based on your advanced configuration below.
 
 <ProtectButton />
 
 <br />
 <br />
 
-We want to thank MiningDAO, mistX and Nethermind for significant code contributions, testing, and being early adopters of Flashbots Protect.
+We want to thank MiningDAO, mistX, and Nethermind for significant code contributions, testing, and being early adopters of Flashbots Protect.
