@@ -2,7 +2,9 @@
 title: Fixing Stuck Transactions
 ---
 
-In the case that your transaction is stuck in a "pending" state or you have an extremely high nonce, you will need to clear activity and nonce data in your MetaMask. This will cause it to update the nonce and transaction history from the network. Your funds and keys are safe during this process.
+If your transaction is stuck in a "pending" state or you have an extremely high nonce, you should clear your activity and nonce data in your MetaMask. This will cause Metamask to update the nonce and transaction history from the network. 
+
+**Note**: Your funds and keys are safe during this process.
 
 To reset your MetaMask account, follow these steps:
 
