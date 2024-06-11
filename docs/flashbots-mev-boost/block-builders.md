@@ -39,10 +39,10 @@ External builders can submit blocks to Mainnet, Goerli and Sepolia Flashbots rel
 
 ### Relay Block Submission Endpoints by Network
 
-|                 |                                                                                                              | Mainnet                                                          | Goerli                                                                  | Sepolia                                                                 |
-| --------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+|  |  | Mainnet | Goerli | Sepolia |
+| --- | --- | --- | --- | --- |
 | `getValidators` | GET Request - Returns an array of validator registrations with assigned duties in the current and next epoch | [Mainnet](https://boost-relay.flashbots.net/relay/v1/builder/validators)  | [Goerli](https://boost-relay-goerli.flashbots.net/relay/v1/builder/validators)  | [Sepolia](https://boost-relay-sepolia.flashbots.net/relay/v1/builder/validators) |
-| `submitBlock`   | POST Request - submits a block to the relay                                                                | [Mainnet](https://boost-relay.flashbots.net/relay/v1/builder/blocks)      | [Goerli](https://boost-relay-goerli.flashbots.net/relay/v1/builder/blocks)      | [Sepolia](https://boost-relay-sepolia.flashbots.net/relay/v1/builder/blocks)     |
+| `submitBlock` | POST Request - submits a block to the relay | [Mainnet](https://boost-relay.flashbots.net/relay/v1/builder/blocks)  | [Goerli](https://boost-relay-goerli.flashbots.net/relay/v1/builder/blocks) | [Sepolia](https://boost-relay-sepolia.flashbots.net/relay/v1/builder/blocks)  |
 
 - See also the [Relay API documentation - Block Builder API](https://bit.ly/3BmGZ3T) for more details on the API and payloads.
 - The example [Flashbots builder implementation](https://github.com/flashbots/boost-geth-builder) is a good external builder reference, and is currently used in production by several builders.
@@ -57,18 +57,20 @@ All Flashbots builders pay block proposers from the [`flashbots-builder.eth` EN
 
 The various `builder_pubkeys` used to identify Flashbots builders to relays are listed below:
 
-| **Builder Public Key**                                                                             |
-| -------------------------------------------------------------------------------------------------- |
-| 0x81babeec8c9f2bb9c329fd8a3b176032fe0ab5f3b92a3f44d4575a231c7bd9c31d10b6328ef68ed1e8c02a3dbc8e80f9 |
-| 0x81beef03aafd3dd33ffd7deb337407142c80fea2690e5b3190cfc01bde5753f28982a7857c96172a75a234cb7bcb994f |
-| 0xa1dead01e65f0a0eee7b5170223f20c8f0cbf122eac3324d61afbdb33a8885ff8cab2ef514ac2c7698ae0d6289ef27fc |
-| 0xa1defa73d675983a6972e8686360022c1ebc73395067dd1908f7ac76a526a19ac75e4f03ccab6788c54fdb81ff84fc1b |
-| 0x81babad2d5fd9413c942f49bfd86bc1dca5b02ff4cd065a10c7ab05713e63883056e6a87777e236424574aa25bbe3e99 |
-| 0xb89b9308fbc6c2998c7e60e39424b858c74b02c234b3e0fa5ecf7c3971208dfa5f92e0bdbe16fc24abfd71c248acf0f9 |
-| 0xa1f1a5a4970903afd6f0f16049c3e9997d348a3254e99b08e89ffb553d0b1575595776b1d849ca2e8d64106443a47e76 |
-| 0xa35e2b13ef528efbed8d2f709c0eb9eceb1225ed0605a653ba923588b0150c94772a9ba1c809d048e321f6b73d905c60 |
-| 0xa1aa1ad4f2ad89f3cd2da667259022763ce7d22f75582fc824cd6cc8c56a89edb6a922e64ab95666f4bdeb2c309052ef |
-| 0x9287fa9e04193b9868d78caa085f703ac694b324f60ee7520b0f48082591be9f6beb276994383f0ca6b6d9b474663a61 |
+| **Builder Public Key** |
+| --- |
+| 0xa01a00479f1fa442a8ebadb352be69091d07b0c0a733fae9166dae1b83179e326a968717da175c7363cd5a13e8580e8d |
+| 0xa01b00a4ab433cbb0a0801cff3815722d56e1980caad7ed156900563e6670cdf6280535dae331f358c647c4bf4558a85 |
+| 0xa02a0054ea4ba422c88baccfdb1f43b2c805f01d1475335ea6647f69032da847a41c0e23796c6bed39b0ee11ab9772c6 |
+| 0xa02b009596e741d5f61d18b900cbd03bbcdb9c0f16b1981928d13b57fcb48d4ddce21a96c523bf84425b3a4e6e6b3f14 |
+| 0xa03a000b0e3d1dc008f6075a1b1af24e6890bd674c26235ce95ac06e86f2bd3ccf4391df461b9e5d3ca654ef6b9e1ceb |
+| 0xa03b00ddb78b2c111450a5417a8c368c40f1f140cdf97d95b7fa9565467e0bbbe27877d08e01c69b4e5b02b144e6a265 |
+| 0xa08a00b8d1521ddc7e51717f9e1ed77266108008acec8cb58aa492ed0a17cc4c55330cfb1871d4471a7451d3f7c89192 |
+| 0xa08b00cedceeb18c97d723f9338ead7d660fffc9050e487a5219e334e08e3d15faf4d8b51b0daf0e792f5f27a8c54da0 |
+| 0x800a002dd9e1afc77af8ae909cf7f8169b413a92cfd43caa56ac749024774d9817a806dae49f4bd5af0661b054595ea4 |
+| 0x800b00c6e03a92b910cfe928fe6d5bff63eb326af308a6224c512a82c6fdeae92e4d3a39e7b8dbfc572af5d2411cb26c |
+| 0x801a00923e9949a7c510f565d92d282bcc79d79da6d57c98972891553443877ba5905b8bdf8145e23a06dac45b9a4d69 |
+| 0x801b00e0e3a828ef58174652bc74cc6695fee2c7035a935b739c59cdd958c69564668ca5334dc51a85421eba77f9acc2 |
 
 ## Additional Links & References
 
