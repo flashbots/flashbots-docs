@@ -39,6 +39,10 @@ const params: BundleParams = {
         maxBlock: targetBlock + 3,
     },
     body: bundle,
+    // send the bundles to more builders to speed up inclusion
+    privacy: {
+      builders: ["flashbots", "beaverbuild.org", "rsync", "Titan"]
+    }
 }
 
 const bundleResult = await mevShareClient.sendBundle(params)
