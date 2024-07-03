@@ -10,7 +10,7 @@ Flashbots Protect has the following key benefits:
 
 - **Highly Configurable:** Customize your preference level for privacy, latency, and rebate returns.
 - **No frontrunning:** Transactions are hidden from the public mempool away from front-running and sandwich bots.
-- **Earn MEV refunds**: If your transaction creates MEV, reclaim significant portion of it back through [MEV-Share](/flashbots-mev-share/introduction).
+- **Earn MEV refunds**: If your transaction creates MEV, earn refunds through [MEV-Share](/flashbots-mev-share/introduction).
 - **No failed transactions:** Transactions are only included in the block if they will not revert. Users do not pay fees for failed transactions.
 
 ### Faster Transactions
@@ -19,13 +19,12 @@ Using Protect in fast mode accelerates the inclusion of your transaction. Click 
 
 Fast mode details:
 
-1. **Shared with all builders:** Transactions are multiplexed, or shared, with all [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json) within one block after they are received.  Multiplexing increases the probability that the transaction will be sent to the builder building the winning block.
-2. **Larger validator payment:** With the default RPC, 10% of the MEV-Share refund is paid to validators. In fast mode, validators receive a higher percentage of the MEV-Share refund increasing the probability that the transaction will be included in the winning block. 
+1. **Shared with all builders:** Transactions are multiplexed, or shared, with all [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json) within one block after they are received. Multiplexing increases the probability that the transaction will be sent to the builder building the winning block.
+2. **Larger validator payment:** With the default RPC, 10% of the MEV-Share refund is paid to validators. In fast mode, validators receive a higher percentage of the MEV-Share refund increasing the probability that the transaction will be included in the winning block.
 
 **Note**: When you send your transaction to a builder, you trust them not to frontrun your transaction or disclose it to third-party MEV searchers.
 
-:::warning Do Not Switch RPCs Before Transaction Confirmation
-If you submit a transaction through Flashbots Protect via the MetaMask wallet, do not switch RPCs before transaction confirmation.  MetaMask may resend the transaction to the public mempool exposing your transaction to potential MEV attacks if RPCs are switched before transaction confirmation. 
+:::warning Do Not Switch RPCs Before Transaction Confirmation If you submit a transaction through Flashbots Protect via the MetaMask wallet, do not switch RPCs before transaction confirmation. MetaMask may resend the transaction to the public mempool exposing your transaction to potential MEV attacks if RPCs are switched before transaction confirmation.
 
 :::
 
@@ -50,10 +49,10 @@ You can also add Flashbots Protect RPC manually in MetaMask by following these s
 3. Click “Add a network manually” and fill in the following information:
 
 - **Network Name:** Flashbots Protect
-- **New RPC URL:** https://rpc.flashbots.net/fast or the URL provided above based on your configuration
+- **New RPC URL:** <https://rpc.flashbots.net/fast> or the URL provided above based on your configuration
 - **Chain ID:** 1
 - **Currency Symbol:** ETH
-- **Block Explorer URL:** https://etherscan.io/
+- **Block Explorer URL:** <https://etherscan.io/>
 
 4. Click “Save.”
 5. Click “Switch to Flashbots Protect”
@@ -63,19 +62,19 @@ You can also add Flashbots Protect RPC manually in MetaMask by following these s
 Flashbots Protect RPC for Goerli testnet can be added with these details:
 
 - **Network Name:** Goerli Flashbots Protect
-- **New RPC URL:** https://rpc-goerli.flashbots.net/
+- **New RPC URL:** <https://rpc-goerli.flashbots.net/>
 - **Chain ID:** 5
 - **Currency Symbol:** ETH
-- **Block Explorer URL**: https://goerli.etherscan.io/
+- **Block Explorer URL**: <https://goerli.etherscan.io/>
 
 Below is the list of Flashbots Protect RPCs we currently support across Ethereum mainnet and testnets:
 
-| Network  | URL                                           |
-| -------- | --------------------------------------------- |
-| Mainnet  | `https://rpc.flashbots.net/fast`              |
-| Goerli   | `https://rpc-goerli.flashbots.net/`       |
-| Sepolia  | `https://rpc-sepolia.flashbots.net/`      |
-| Holesky  | `https://rpc-holesky.flashbots.net/`      |
+| Network | URL                                  |
+| ------- | ------------------------------------ |
+| Mainnet | `https://rpc.flashbots.net/fast`     |
+| Goerli  | `https://rpc-goerli.flashbots.net/`  |
+| Sepolia | `https://rpc-sepolia.flashbots.net/` |
+| Holesky | `https://rpc-holesky.flashbots.net/` |
 
 ## Stuck transactions
 
