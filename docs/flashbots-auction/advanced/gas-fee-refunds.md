@@ -12,15 +12,11 @@ Gas fee refunds do not change how bundles are executed and searchers do not need
 
 Gas fee refunds include both priority fees and coinbase transfers.
 
-In an optimal case, searchers are refunded the difference between their bid and the bid of the next-best bundle or transaction targeting the same state. Ie. the refund effectively results in the searcher paying the second price.
-
-In practice, searchers will receive some fraction of this amount depending on how much profit the Flashbots builder makes.
+In an optimal case, searchers are refunded the difference between their bid and the bid of the next-best bundle or transaction targeting the same state. Ie. the refund effectively results in the searcher paying the second price. In practice, searchers will receive some fraction of this amount depending on how much profit the Flashbots builder makes.
 
 ## Which bundles receive refunds
 
-Flashbots provides refunds for bundles in blocks landed by the Flashbots block builder.
-
-Whether a bundle receives a refund depends on a few factors that vary from block to block:
+Flashbots provides refunds for bundles in blocks landed by the Flashbots block builder. Whether a bundle receives a refund depends on a few factors that vary from block to block:
 * How much network congestion and competition there was
 * Whether the Flashbots builder made a profit and how much
 * How much the specific bundle contributed to the value of the block
@@ -34,7 +30,7 @@ The Flashbots block builder does not land 100% of blocks. In order to land bundl
 
 ### Smart multiplexing
 
-To share bundles with other builders, add the `builders` field to your `eth_sendBundle` request. The `builders` field accepts a list of strings which correspond to the `name` tags of [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json).
+To share bundles with other builders, add the `builders` field to your `eth_sendBundle` request. The `builders` field accepts a list of strings which correspond to the "name" tags of [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json).
 
 All `eth_sendBundle` requests are shared with the Flashbots builder. They are multiplexed to other block builders at the end of the slot if the Flashbots builder determines it will not win that block.
 
@@ -59,19 +55,43 @@ For example:
 
 Searchers can also use `mev_sendBundle` to multiplex bundles if they prefer. Though this method is more complex and not necessary for gas fee refunds.
 
-_Note: Flashbots does track where bundles are sent. All bundles included in Flashbots blocks, regardless of if they are sent directly, are eligible for refunds. The impact on refunds is entirely due to the fact that multiplexing reduces builder profits._
-
 _Note: Smart multiplexing has a 1% rate of false positives, meaning that in 1% of MEV-Boost blocks there is a risk that searcher bundles will not be landed._
 
 ### Bundle stats for multiplexed bundles
 
-To view bundle stats on multiplexed `eth_sendBundle` requests, you will need to use the `flashbots_getSbundleStats` api instead of `flashbots_getBundleStatsV2`. You will see a new `smart` field in the response to multiplexed`eth_sendBundle` which indicates that the "sbundle" stats endpoint should be used instead.
+To view bundle stats on multiplexed `eth_sendBundle` requests, use the `flashbots_getSbundleStats` API. You will see a new "smart" field in the response to multiplexed `eth_sendBundle` which indicates that the sbundle stats endpoint should be used.
 
 ## How are refunds calculated
 
-The Flashbots builder retroactively calculates refunds for all bundles landed in its blocks. The refund for a given bundle is calculated as follows:
+The Flashbots builder uses a refund rule to retroactively calculate refunds for all bundles landed in its blocks.
 
-TODO
+The refund rule aims to have bundles make the minimum net payment so that bidding optimally is as straight forward as possible. We do this by measuring the contribution of bundles above the other bundles the builder has received, and refunding as much of that as possible. 
+
+Bundles sent by the same signer will be treated as non-competitive.
+
+### The Flat Tax Rule
+
+<div className="med caption-img">
+
+![Flat tax rule](/img/flat-tax-rule.png)
+
+Definition of the flat tax rule
+
+</div>
+
+Notice that if the block generates enough value after paying the proposer, everyone should be refunded their contribution, meaning everyone pays the minimum they need to pay to beat competition. 
+
+### Identity constraint
+
+To avoid the rule being gamed by submitting bundles from multiple identities, we impose an additional constraint that no set of identities can receive in total more refunds than they contribute to the block.
+
+<div className="med caption-img">
+
+![Identity constraint](/img/identity-constraint.png)
+
+Definition of the identity constraint
+
+</div>
 
 ## Who receives refunds
 

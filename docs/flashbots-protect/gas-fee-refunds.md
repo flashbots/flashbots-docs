@@ -20,9 +20,7 @@ Gas fee refunds include both priority fees (more common in user transactions) an
 
 ## Which transactions receive refunds
 
-Flashbots provides refunds for transactions in blocks landed by the Flashbots block builder.
-
-Whether a transaction receives a refund depends on a few factors that vary from block to block:
+Flashbots provides refunds for transactions in blocks landed by the Flashbots block builder. Whether a transaction receives a refund depends on a few factors that vary from block to block:
 * How much network congestion and competition there was
 * Whether the Flashbots builder made a profit and how much
 * How much the specific transaction contributed to the value of the block
@@ -37,8 +35,6 @@ The Flashbots block builder does not land 100% of blocks. In order to improve in
 There are two ways to share with other builders:
 * Use [fast mode](/docs/flashbots-protect/quick-start#faster-transactions) to share with all registered builders
 * Choose [specific builders](/docs/flashbots-protect/mev-share#builders) to share transactions with
-
-_Note: Flashbots does track where transactions are sent. All transactions included in Flashbots blocks, regardless of if they are sent directly, are eligible for refunds. The impact on refunds is entirely due to the fact that multiplexing reduces builder profits._
 
 ## Who receives refunds
 
