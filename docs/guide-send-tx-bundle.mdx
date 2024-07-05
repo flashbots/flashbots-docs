@@ -27,5 +27,6 @@ With `relay.flashbots.net` identified as the go-to for advanced operations, the 
 
 - **For Single Transactions**: Use `eth_sendPrivateTransaction`.
 - **For Bundles of Transactions**:
-  - **Use**: `mev_sendBundle` for more flexibility and power, like leveraging the [new bundle format](flashbots-mev-share/searchers/understanding-bundles), [MEV-Share](flashbots-mev-share/introduction), and [multiplexing to multiple builders](flashbots-auction/advanced/multiplexing).
+  - **Use**: `mev_sendBundle` for more flexibility and power, like leveraging the [new bundle format](flashbots-mev-share/searchers/understanding-bundles) and [MEV-Share](flashbots-mev-share/introduction).
   - **Use**: `eth_sendBundle` if you want something simple and quick! The OG way of sending bundles.
+  - Both bundle APIs support [multiplexing to multiple builders](flashbots-auction/advanced/multiplexing).

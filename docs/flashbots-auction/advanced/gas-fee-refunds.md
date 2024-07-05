@@ -63,6 +63,10 @@ _Note: Flashbots does track where bundles are sent. All bundles included in Flas
 
 _Note: Smart multiplexing has a 1% rate of false positives, meaning that in 1% of MEV-Boost blocks there is a risk that searcher bundles will not be landed._
 
+### Bundle stats for multiplexed bundles
+
+To view bundle stats on multiplexed `eth_sendBundle` requests, you will need to use the `flashbots_getSbundleStats` api instead of `flashbots_getBundleStatsV2`. You will see a new `smart` field in the response to multiplexed`eth_sendBundle` which indicates that the "sbundle" stats endpoint should be used instead.
+
 ## How are refunds calculated
 
 The Flashbots builder retroactively calculates refunds for all bundles landed in its blocks. The refund for a given bundle is calculated as follows:
