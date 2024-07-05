@@ -20,7 +20,7 @@ It has the following key benefits:
 
 - **Configurable:** You can choose which builders to send to and your mev-share settings.
 - **Frontrunning protection:** Transactions are sent to a private Flashbots mempool where they will be hidden from front-running and sandwich bots.
-- **Receive backrunning MEV refunds**: If your transaction creates MEV via backrunning, you will receive an MEV refund through [MEV-Share](/flashbots-mev-share/introduction).
+- **Receive refunds**: If your transaction creates MEV via backrunning, you will receive an MEV refund through [MEV-Share](/flashbots-mev-share/introduction). If your transaction pays a higher priority fee than required for inclusion on chain, you will receive a [gas fee refund](/docs/flashbots-protect/gas-fee-refunds).
 - **Revert protection:** Users do not pay for failed transactions since transactions that would revert are excluded.
 
 You can use Flashbots Protect by clicking the button below or by sending transactions using `eth_sendRawTransaction` to `rpc.flashbots.net/fast` or the custom URL based on your advanced configuration below.
