@@ -4,7 +4,7 @@ title: Gas Fee Refunds
 
 ## Introduction
 
-Searchers and API users are automatically eligible to receive gas fee refunds. If Flashbots can include a bundle on chain for a lower price, you are eligible to receive a refund.
+Searchers and private transaction API users are automatically eligible to receive gas fee refunds. If Flashbots can include a bundle on chain for a lower price, you are eligible to receive a refund.
 
 Gas fee refunds do not change how bundles are executed and searchers do not need to make any changes to be eligible for them.
 
@@ -99,6 +99,6 @@ The refund recipient is the signer used on the `eth_sendBundle`, `mev_sendBundle
 
 ## How to track refunds
 
-Refunds are tracked from a start date of July 8, 2024.
-
-Searchers will be able to view the unclaimed refund amount for an address in a public API in early July 2024.
+Refunds are tracked from a start date of July 8, 2024. Via an upcoming API, users will be able to:
+* View unclaimed refund amounts
+* Delegate refunds to an Ethereum account other than their signing key address.
