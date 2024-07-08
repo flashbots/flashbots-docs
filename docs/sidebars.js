@@ -34,6 +34,7 @@ module.exports = {
           "Advanced Concepts": [
             'flashbots-auction/advanced/understanding-bundles',
             'flashbots-auction/advanced/multiplexing',
+            'flashbots-auction/advanced/gas-fee-refunds',
             'flashbots-auction/advanced/coinbase-payment',
             'flashbots-auction/advanced/bundle-pricing',
             'flashbots-auction/advanced/reputation',
@@ -53,6 +54,7 @@ module.exports = {
         'flashbots-protect/overview',
         'flashbots-protect/quick-start',
         'flashbots-protect/mev-share',
+        'flashbots-protect/gas-fee-refunds',
         'flashbots-protect/cancellations',
         'flashbots-protect/stuck_transactions',
         'flashbots-protect/large-transactions',

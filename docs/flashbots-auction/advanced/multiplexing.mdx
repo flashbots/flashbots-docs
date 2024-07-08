@@ -6,7 +6,9 @@ import Builders from '../../specs/mev-share/_builders.mdx';
 
 Some users might want to send their transactions or bundles to multiple builders for various reasons. The ability to multiplex is supported by our APIs.
 
-When you are using [`mev_sendBundle`](https://docs.flashbots.net/flashbots-auction/advanced/rpc-endpoint#mev_sendbundle) to send bundle, or [`eth_sendPrivateTransaction`](https://docs.flashbots.net/flashbots-auction/advanced/rpc-endpoint#eth_sendprivatetransaction) to send transaction, simply specify the builders you want to multiplex to in the `privacy.builders` parameter.
+If you are using [`mev_sendBundle`](https://docs.flashbots.net/flashbots-auction/advanced/rpc-endpoint#mev_sendbundle) to send bundles, or [`eth_sendPrivateTransaction`](https://docs.flashbots.net/flashbots-auction/advanced/rpc-endpoint#eth_sendprivatetransaction) to send transactions, specify the builders you want to multiplex to in the `privacy.builders` parameter.
+
+If you are using [`eth_sendBundle`](https://docs.flashbots.net/flashbots-auction/advanced/rpc-endpoint#eth_sendbundle) to send bundles, specify the builders you want to multiplex to in the `builders` parameter.
 
 Below is the list of builders that you can multiplex to:
 
