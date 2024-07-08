@@ -8,7 +8,7 @@ Flashbots Protect users are automatically eligible to receive gas fee refunds. I
 
 Gas fee refunds do not change how transactions are executed and users do not need to make any changes to be eligible for them.
 
-Gas fee refunds are calculated separately, and applied in addition to, refunds from [MEV-Share](/docs/flashbots-protect/mev-share).
+Gas fee refunds are calculated separately, and applied in addition to, refunds from [MEV-Share](/flashbots-protect/mev-share).
 
 ## Where do refunds come from
 
@@ -33,12 +33,12 @@ Transactions which are sent directly to the Flashbots RPC or API, and not multip
 The Flashbots block builder does not land 100% of blocks. In order to improve inclusion speed, users can ask Flashbots to share their transactions with other block builders in cases where the Flashbots builder does not win a block. Flashbots will automatically share with all specified builders on the user's behalf.
 
 There are two ways to share with other builders:
-* Use [fast mode](/docs/flashbots-protect/quick-start#faster-transactions) to share with all registered builders
-* Choose [specific builders](/docs/flashbots-protect/mev-share#builders) to share transactions with
+* Use [fast mode](/flashbots-protect/quick-start#faster-transactions) to share with all registered builders
+* Choose [specific builders](/flashbots-protect/mev-share#builders) to share transactions with
 
 ## Who receives refunds
 
-For the RPC: The refund recipient is the address specified in the first [refund parameter](/docs/flashbots-protect/mev-share#refunds) on an RPC request, if one is provided. Otherwise, refunds are sent to the transaction originator (`tx.origin`) by default.
+For the RPC: The refund recipient is the address specified in the first [refund parameter](/flashbots-protect/mev-share#refunds) on an RPC request, if one is provided. Otherwise, refunds are sent to the transaction originator (`tx.origin`) by default.
 
 For the private transaction API: The refund recipient is the signer used on the `eth_sendPrivateTransaction` request.
 
