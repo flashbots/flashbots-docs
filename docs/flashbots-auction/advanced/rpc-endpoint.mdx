@@ -770,8 +770,8 @@ where
 
 ### flashbots_getSbundleStats
 
-The `flashbots_getSbundleStats` JSON-RPC method returns stats for a single sbundle. You must provide bundleHash, and the signing address must be the same as the one who submitted the bundle.
-Only bundles not containing backruns are supported
+The `flashbots_getSbundleStats` JSON-RPC method returns stats for a single [sbundle](/flashbots-mev-share/searchers/understanding-bundles). You must provide `bundleHash`, and the signing address must be the same as the one who submitted the bundle.
+Only bundles that do not contain user's private transactions are supported (so no backrun bundles)
 
 ```json
 {
@@ -819,7 +819,7 @@ example response when bundle relay has simulated the bundle and the target block
 
 Only responds with success when sbundle is already simulated.
 
-When relay has simulated the bundle but the target block (or maxBlock) has not been reached:
+When bundle-relay has simulated the bundle but the target block (or maxBlock) has not been reached:
 
 ```json
 {
