@@ -6,9 +6,7 @@ title: Gas Fee Refunds
 
 Flashbots Protect users are automatically eligible to receive gas fee refunds. If Flashbots can include your transaction on chain for a lower price, you are eligible to receive a refund. This applies to both the RPC and the private transaction API.
 
-Gas fee refunds do not change how transactions are executed and users do not need to make any changes to be eligible for them.
-
-Gas fee refunds are calculated separately, and applied in addition to, refunds from [MEV-Share](/flashbots-protect/mev-share).
+Gas fee refunds do not change how transactions are executed and users do not need to make any changes to be eligible for them. Gas fee refunds are calculated separately, and applied in addition to, refunds from [MEV-Share](/flashbots-protect/mev-share).
 
 ## Where do refunds come from
 
@@ -25,6 +23,8 @@ Flashbots provides refunds for transactions in blocks landed by the Flashbots bl
 * Whether the Flashbots builder made a profit and how much
 * How much the specific transaction contributed to the value of the block
 * If the transaction was sent directly to Flashbots, or shared with other RPCs and block builders
+
+Note that transactions seen in the public mempool are excluded and do not receive refunds.
 
 ## How to maximize both refunds and speed
 
