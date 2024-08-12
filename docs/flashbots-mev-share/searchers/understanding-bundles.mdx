@@ -44,6 +44,9 @@ Revert mode `drop` is preferred in most scenarios, since it allows for your tx t
 ## Builders
 MEV-Share bundles can be sent to multiple builders at once. This is done by setting the `builders` field in the `privacy` parameter of `mev_sendBundle`.
 
+### Replacement uuid
+If `replacementUuid` is set, only builders that support cancellations will be processed. You can check list of builders [here](https://github.com/flashbots/dowg/blob/main/builder-registrations.json)
+
 ## Bundle composition (backrunning other bundles)
 With the `privacy` parameter in `mev_sendBundle` you can share select information about your bundle with other searchers, who can then use that to try to extract MEV. Should they succeed, you get paid some of the MEV they extracted!
 
