@@ -838,6 +838,37 @@ where
 - `consideredByBuildersAt`: indicates time at which each builder selected the bundle to be included in the target block
 - `sealedByBuildersAt`: indicates time at which each builder sealed a block containing the bundle
 
+### flashbots_setFeeRefundRecipient
+
+The `flashbots_setFeeRefundRecipient` JSON-RPC method allows a user to "delegate" their fee refunds to a specific wallet address.  Two addresses must be provided, the first is the address associated with the signing key used to authenticate your request, while the second is the address to send refunds to.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "flashbots_setFeeRefundRecipient",
+  "params": [
+    "0xD2824D2D7D6399a4b9A47F258B870D2AFb213948",
+    "0xa273A268CE96E54cF6a7D879B7d016F57E396F48"
+  ]
+}
+```
+
+If the first address matches the authentication signature, then a response with `from` and `to` fields in the result will be returned:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "from":"0xd2824d2d7d6399a4b9a47f258b870d2afb213948",
+    "to":"0xa273a268ce96e54cf6a7d879b7d016f57e396f48"
+  }
+}
+```
+
+If the signature is invalid or does not match the first address, an appropriate error will be returned instead.
+
 ### API Response
 
 - All method supports JSON-RPC standards for success response and not supported for error response(V2 methods are exceptions).
