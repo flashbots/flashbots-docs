@@ -37,6 +37,10 @@ MEV-Share bundles can share hints with searchers, which can be used to backrun t
 
 Searchers can share hints to give other searchers information about their bundle that would allow them to be backrun. If your bundle gets backrun by another searcher, you get paid a cut of the MEV they extract!
 
+## Revert mode
+Revert mode field is optional, if set - it is preferred over `canRevert` field. Revert mode `allow` corresponds to `canRevert: true`, `fail` corresponds to `canRevert: false`.
+Revert mode `drop` is preferred in most scenarios, since it allows for your tx to be dropped if it can't be included in the block, which is used to merge multiple backruns for the same bundle.
+
 ## Builders
 MEV-Share bundles can be sent to multiple builders at once. This is done by setting the `builders` field in the `privacy` parameter of `mev_sendBundle`.
 
