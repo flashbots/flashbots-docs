@@ -872,7 +872,7 @@ Refunds which are `pending` have yet to be sent to the user, while refunds which
 
 #### Authenticated Response
 
-If the user includes a valid `X-Flashbots-Signature` header with the request, the response will also include the `refundAddress` field, which is the address to which refunds will be sent:
+If the user includes a valid `X-Flashbots-Signature` header with the request, the response will also include the `recipient` field, which is the address to which refunds will be sent:
 
 ```json
 {
@@ -882,7 +882,7 @@ If the user includes a valid `X-Flashbots-Signature` header with the request, th
     "pending": "0x2bb2c8eabcc000",
     "received": "0x1b667a56d488000",
     "maxBlockNumber": "0x13b1f2f",
-    "refundAddress":"0x92ca1b2473e3c25418a821c2b4c99253a19d2137"
+    "recipient":"0x92ca1b2473e3c25418a821c2b4c99253a19d2137"
   }
 }
 ```
