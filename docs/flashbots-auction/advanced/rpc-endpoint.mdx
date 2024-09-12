@@ -838,6 +838,59 @@ where
 - `consideredByBuildersAt`: indicates time at which each builder selected the bundle to be included in the target block
 - `sealedByBuildersAt`: indicates time at which each builder sealed a block containing the bundle
 
+### flashbots_getFeeRefundTotalsBySender
+
+The `flashbots_getFeeRefundTotalsBySender` JSON-RPC method allows a user to query the total amount of fee refunds they have received from Flashbots.
+The method requires the user to provide the address of the sender whose refunds they are querying.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "flashbots_getFeeRefundTotalsBySender",
+  "params": [
+    "0xd2824d2d7d6399a4b9a47f258b870d2afb213948"
+  ]
+}
+```
+
+The response will include the total amount of fee refunds pending and received by the sender:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "pending": "0x2bb2c8eabcc000",
+    "received": "0x1b667a56d488000",
+    "maxBlockNumber": "0x13b1f2f",
+  }
+}
+```
+
+Refunds which are `pending` have yet to be sent to the user, while refunds which are `received` have already been sent. The `maxBlockNumber` field indicates the highest block number for which refunds have been processed.
+
+#### Authenticated Response
+
+If the user includes a valid `X-Flashbots-Signature` header with the request, the response will also include the `refundAddress` field, which is the address to which refunds will be sent:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "pending": "0x2bb2c8eabcc000",
+    "received": "0x1b667a56d488000",
+    "maxBlockNumber": "0x13b1f2f",
+    "refundAddress":"0x92ca1b2473e3c25418a821c2b4c99253a19d2137"
+  }
+}
+```
+
+See [flashbots_setFeeRefundRecipient](#flashbots_setFeeRefundRecipient) below for more information on setting the refund address.
+
+If the signature is invalid or does not match the queried address, an appropriate error will be returned instead.
+
 ### flashbots_setFeeRefundRecipient
 
 The `flashbots_setFeeRefundRecipient` JSON-RPC method allows a user to "delegate" their [fee refunds](/flashbots-auction/advanced/gas-fee-refunds) to a specific wallet address.  Two addresses must be provided, the first is the address associated with the signing key used to authenticate your request, while the second is the address to send refunds to.
