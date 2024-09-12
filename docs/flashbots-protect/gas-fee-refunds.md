@@ -44,4 +44,4 @@ For the private transaction API: The refund recipient is the signer used on the 
 
 ## How to track refunds
 
-Refunds are tracked from a start date of July 8, 2024. Refunds are sent to recipients in batches, and originate from our builder address `0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555`. The recipient can track the status of their refunds using the [`flashbots_getFeeRefundTotalsBySender`](/flashbots-auction/advanced/rpc-endpoint#flashbots_getFeeRefundTotalsBySender) RPC method.
+Refunds are tracked from a start date of July 8, 2024. Refunds are sent to recipients in batches, and originate from our builder address `0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555`. The recipient can track the status of their refunds using the [`flashbots_getFeeRefundTotalsBySender`](/flashbots-auction/advanced/rpc-endpoint#flashbots_getfeerefundtotalsbysender) RPC method.
