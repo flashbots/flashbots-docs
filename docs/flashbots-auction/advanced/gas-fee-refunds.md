@@ -115,7 +115,7 @@ where $\phi(T, c)$ are the orginal flat-tax rebates as defined above.
 
 ## Who receives refunds
 
-The refund recipient is the signer used on the `eth_sendBundle`, `mev_sendBundle`, or `eth_sendPrivateTransaction` request.
+By default, the refund recipient is the signer used on the `eth_sendBundle`, `mev_sendBundle`, or `eth_sendPrivateTransaction` request. You can delegate your recipient to a different address using the `flashbots_setFeeRefundRecipient` API.
 
 ## How to track refunds
 
