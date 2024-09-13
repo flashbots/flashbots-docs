@@ -1,7 +1,0 @@
----
-title: eth_getTransactionCount
----
-
-When sending the `eth_getTransactionCount` RPC, users should sign their requests following our `X-Flashbots-Signature` standard to be able to their current `pending` transaction count.
-
-More details here after I confirm the page renders.
