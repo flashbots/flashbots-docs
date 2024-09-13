@@ -2,7 +2,10 @@
 title: Nonce Management
 ---
 
-Normally, a wallet can call `eth_getTransactionCount` to get the next nonce to use for a transaction. 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Normally, a wallet can call `eth_getTransactionCount` to get the next nonce to use for a transaction.
 However, since transactions sent to Flashbots Protect are potentially sensitive, even exposing the incremented nonce can leak information about the user's activity.
 
 As such, Flashbots Protect requires that all requests to `eth_getTransactionCount` be signed by the user when querying the `"pending"` nonce.
@@ -31,7 +34,7 @@ To authenticate your request, Flashbots endpoints require you to sign the payloa
 curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: <public key address>:<signature>" --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0xYOUR_ADDRESS","pending"],"id":1}' https://rpc.flashbots.net
 ```
 
-The private key of the address your want to query must be used to sign the payload. 
+The private key of the address your want to query must be used to sign the payload.
 
 The signature is calculated by taking the [EIP-191](https://eips.ethereum.org/EIPS/eip-191) hash of the json body encoded as UTF-8 bytes. Here's an example using ethers.js:
 
