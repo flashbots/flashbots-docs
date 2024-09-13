@@ -8,9 +8,9 @@ import TabItem from '@theme/TabItem';
 Normally, a wallet can call `eth_getTransactionCount` to get the next nonce to use for a transaction.
 However, since transactions sent to Flashbots Protect are potentially sensitive, even exposing the incremented nonce can leak information about the user's activity.
 
-As such, Flashbots Protect requires that all requests to `eth_getTransactionCount` be signed by the user when querying the `"pending"` nonce.
+As such, transactions sent to Flashbots Protect are only included in the `eth_getTransactionCount` results when querying the `"pending"` nonce, and only if the request is signed by the user's private key.
 
-To query the `"pending"` nonce, requests must be signed with the user's private key. This is done by sending a JSON-RPC request to the Flashbots Protect RPC endpoint with the following parameters:
+This is done by sending a JSON-RPC request to the Flashbots Protect RPC endpoint with the following parameters:
 
 ```json
 {
@@ -24,11 +24,11 @@ To query the `"pending"` nonce, requests must be signed with the user's private 
 }
 ```
 
-The request is signed and the signature is included in the `X-Flashbots-Signature` header.
+The request is signed and the signature is included in the `X-Flashbots-Signature` header. Without such a signature, the returned nonce will only include transactions sent to the public mempool.
 
 ### Authentication
 
-To authenticate your request, Flashbots endpoints require you to sign the payload and include the signed payload in the `X-Flashbots-Signature` header of your request.
+To authenticate your request, sign the payload and include the signed payload in the `X-Flashbots-Signature` header of your request.
 
 ```curl
 curl -X POST -H "Content-Type: application/json" -H "X-Flashbots-Signature: <public key address>:<signature>" --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0xYOUR_ADDRESS","pending"],"id":1}' https://rpc.flashbots.net
