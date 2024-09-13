@@ -24,7 +24,7 @@ This is done by sending a JSON-RPC request to the Flashbots Protect RPC endpoint
 }
 ```
 
-The request is signed and the signature is included in the `X-Flashbots-Signature` header. Without such a signature, the returned nonce will only include transactions sent to the public mempool.
+The request is then signed and the signature is included in the `X-Flashbots-Signature` header. Without such a signature, the returned nonce will only include transactions sent to the public mempool.
 
 ### Authentication
 
