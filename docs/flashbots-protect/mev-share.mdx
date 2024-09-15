@@ -98,6 +98,36 @@ https://rpc.flashbots.net?builder=ABC&builder=XYZ
 
 This configuration sends your transaction to ABC block builder, XYZ block builder, and Flashbots block builder.
 
+### Mempool Configuration
+
+You can configure our RPC endpoint to allow your transaction to fall back to the public mempool under specific conditions. This feature is useful for users who prioritize transaction inclusion, even if it means potentially sacrificing some MEV protection.
+
+Your transaction will fall back to the mempool if:
+
+1. The current block is not `mev-boost` enabled, or
+2. Your transaction is not included within a 25-block range
+
+To enable this feature, add the `useMempool` parameter to your Protect RPC URL:
+
+```url
+https://rpc.flashbots.net?useMempool=true
+```
+
+For analytics or other purposes, you can specify a custom mempool URL by adding the `mempoolRpc` parameter:
+
+```url
+https://rpc.flashbots.net?useMempool=true&mempoolRpc=https://your-custom-node-url
+```
+
+### Allowing Reverted Transactions
+By default, Protect excludes transactions that would revert. If you want to include potentially reverting transactions, add the `canRevert` parameter to your Protect RPC URL:
+
+```url
+https://rpc.flashbots.net?canRevert=true
+```
+
+This option may be useful for specific use cases where transaction execution is not guaranteed or where you want to ensure submission regardless of the outcome.
+
 ### Refunds
 
 You can tailor your refund settings using the refund parameter. This determines the distribution of the searcher's payment among different addresses for bundled transactions. If not specified, the transaction originator (tx.origin) will by default receive 90% of the searcher's payment.
