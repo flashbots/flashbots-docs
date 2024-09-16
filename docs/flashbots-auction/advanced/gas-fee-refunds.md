@@ -119,6 +119,4 @@ By default, the refund recipient is the signer used on the `eth_sendBundle`, `me
 
 ## How to track refunds
 
-Refunds are tracked from a start date of July 8, 2024. Via an upcoming API, users will be able to:
-* View unclaimed refund amounts
-* Delegate refunds to an Ethereum account other than their signing key address.
+Refunds are tracked from a start date of July 8, 2024. Users will be able to view refund amounts via an upcoming API.
