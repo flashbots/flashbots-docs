@@ -44,4 +44,4 @@ For the private transaction API: The refund recipient is the signer used on the 
 
 ## How to track refunds
 
-Refunds are tracked from a start date of July 8, 2024. Users wil be able to view unclaimed refund amounts via an upcoming API.
+Refunds are tracked from a start date of July 8, 2024. Users wil be able to view refund amounts via an upcoming API.
