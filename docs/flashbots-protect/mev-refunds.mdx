@@ -1,0 +1,50 @@
+---
+title: MEV Refunds
+---
+
+import ProtectButton from '@site/src/components/ProtectButton';
+
+## Introduction
+
+Flashbots Protect users are automatically eligible to receive MEV refunds from [MEV-Share](/flashbots-mev-share/introduction). If your transaction (eg. a large DEX swap) generates MEV, MEV-Share can help you reclaim a significant portion of this value. The remainder is split with searchers and validators to facilitate transaction inclusion.
+
+By default, all Protect transactions use the [default](/flashbots-protect/settings-guide#default) privacy setting which is continuously optimized by Flashbots to balance efficient execution and protection against harmful MEV. Advanced users can customize their settings when configuring their RPC or by manually editing the query parameters their Protect RPC request.
+
+<ProtectButton />
+
+## Common privacy settings
+
+You can customize how much information is shared about your transactions in MEV-Share. Each piece of information is called a "hint". Sharing more hints can increase refunds, while sharing fewer hints can increase privacy. Below are some common hint choices for different levels of privacy. See the complete [settings page](/flsahbots-protect/settings-guide) for a full list of all settings you can apply to your RPC request.
+
+### Default
+
+To use the default privacy settings, you don't need to specify any query parameters.
+
+```url
+https://rpc.flashbots.net
+```
+
+Currently, this configuration shares the following information:
+
+- The `hash` of all transactions
+- `default_logs` Partial logs (the pool id and the fact that a swap was made) for curve, balancer, and uniswapV2/V3-style trades
+
+### Max Privacy
+
+To use Protect with full privacy, set _only_ the `hash` hint in your Protect RPC URL:
+
+```url
+https://rpc.flashbots.net?hint=hash
+```
+
+This configuration ensures that all identifiable transaction data sent to the MEV-Share Node is concealed from searchers. However, it's important to note that this could make it more challenging for searchers to spot MEV opportunities, leading to a very likely decrease in your MEV refund.
+
+### Max Refund
+
+To use Protect with the maximum refund, set _all_ hints in your Protect RPC URL:
+
+```url
+https://rpc.flashbots.net?hint=calldata&hint=contract_address&hint=function_selector&hint=logs
+```
+
+This configuration provides searchers with comprehensive details about your transaction, giving them a better chance to identify more MEV opportunities and return MEV refunds.

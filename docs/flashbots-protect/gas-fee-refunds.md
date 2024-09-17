@@ -6,7 +6,7 @@ title: Gas Fee Refunds
 
 Flashbots Protect users are automatically eligible to receive gas fee refunds. If Flashbots can include your transaction on chain for a lower price, you are eligible to receive a refund. This applies to both the RPC and the private transaction API.
 
-Gas fee refunds do not change how transactions are executed and users do not need to make any changes to be eligible for them. Gas fee refunds are calculated separately, and applied in addition to, refunds from [MEV-Share](/flashbots-protect/mev-share).
+Gas fee refunds do not change how transactions are executed and users do not need to make any changes to be eligible for them. Gas fee refunds are calculated separately, and applied in addition to, MEV refunds from [MEV-Share](/flashbots-protect/mev-refunds).
 
 ## Where do refunds come from
 
@@ -34,11 +34,11 @@ The Flashbots block builder does not land 100% of blocks. In order to improve in
 
 There are two ways to share with other builders:
 * Use [fast mode](/flashbots-protect/quick-start#faster-transactions) to share with all registered builders
-* Choose [specific builders](/flashbots-protect/mev-share#builders) to share transactions with
+* Choose [specific builders](/flashbots-protect/settings-guide#builders) to share transactions with
 
 ## Who receives refunds
 
-For the RPC: The refund recipient is the address specified in the first [refund parameter](/flashbots-protect/mev-share#refunds) on an RPC request, if one is provided. Otherwise, refunds are sent to the transaction originator (`tx.origin`) by default.
+For the RPC: The refund recipient is the address specified in the first [refund parameter](/flashbots-protect/settings-guide#refunds) on an RPC request, if one is provided. Otherwise, refunds are sent to the transaction originator (`tx.origin`) by default.
 
 For the private transaction API: The refund recipient is the signer used on the `eth_sendPrivateTransaction` request.
 
