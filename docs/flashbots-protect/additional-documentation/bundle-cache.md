@@ -49,7 +49,7 @@ Once all the transactions you want to include in your bundle are added to the qu
 
 If you're being helped with a whitehat recovery, we may provide a web interface for you to do this.
 
-If you want to send a bundle directly, check out the [Flashbots Auction Docs](/flashbots-auction/quick-start#how-to-send-your-first-flashbots-bundle) for instructions on how to do this.
+If you want to send a bundle directly, check out the [Flashbots Builder Docs](/flashbots-auction/quick-start#how-to-send-your-first-flashbots-bundle) for instructions on how to do this.
 
 ## Fake Funds
 

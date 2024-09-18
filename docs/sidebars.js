@@ -53,8 +53,9 @@ module.exports = {
       "Flashbots Protect": [
         'flashbots-protect/overview',
         'flashbots-protect/quick-start',
-        'flashbots-protect/mev-share',
+        'flashbots-protect/mev-refunds',
         'flashbots-protect/gas-fee-refunds',
+        'flashbots-protect/settings-guide',
         'flashbots-protect/cancellations',
         'flashbots-protect/nonce-management',
         'flashbots-protect/stuck_transactions',
