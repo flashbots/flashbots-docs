@@ -1,5 +1,5 @@
 ---
-title: Settings guide
+title: Settings Guide
 ---
 
 import HintsTable from '../specs/mev-share/HintsTable';
@@ -116,14 +116,19 @@ Allow reverted transactions by including the `canRevert` query parameter in your
 https://rpc.flashbots.net?canRevert=true
 ```
 
-## Examples
+### Bundle Mode
 
-Here are some examples of configurations that you might choose for different goals.
+Use the Protect PRC in bundle mode to interactively construct a bundle of transactions that you want to be land together. This setting is typically used for whitehat rescues and you can find the complete documentation in the [Flashbots API docs](flashbots-protect/additional-documentation/bundle-cache).
 
-| <div style={{width:"180px"}}>Goal</div> | Flashbots Protect RPC URL |
-| --- | --- |
-| All Builders | `https://rpc.flashbots.net/fast` |
-| Custom Builders | `https://rpc.flashbots.net?builder=flashbots&builder=XYZ` |
-| Max Privacy | `https://rpc.flashbots.net/fast?hint=hash` |
-| Max Kickback | `https://rpc.flashbots.net/fast?hint=calldata&hint=logs` |
-| Custom Refund (send more to validator for faster inclusion) | `https://rpc.flashbots.net/fast?refund=recipientAddress:10` |
+Bundle mode has a few differences from the regular Protect experience:
+- Protect will not immediately attempt to land transactions sent in bundle mode. Instead, new transactions will be queued and kept in a pending state.
+- To send all pending transactions as a bundle, you must make a separate API request to Flashbots.
+- Querying the balance of an address in bundle mode will return a fake balance of 100 ETH.
+
+### Custom Read RPC
+
+Use a custom RPC endpoint for **read** requests by including the `url` query parameter in your request. **Write** requests (eg. `eth_sendRawTransaction`) will still be sent to the Protect RPC. This feature is recommended for wallets and applications with large volumes of read requests.
+
+```url
+https://rpc.flashbots.net?url=http://RPC-ENDPOINT.COM
+```
