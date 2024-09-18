@@ -118,7 +118,7 @@ https://rpc.flashbots.net?canRevert=true
 
 ### Bundle Mode
 
-Use the Protect PRC in bundle mode to interactively construct a bundle of transactions that you want to be land together. This setting is typically used for whitehat rescues and you can find the complete documentation in the [Flashbots API docs](flashbots-protect/additional-documentation/bundle-cache).
+Use the Protect PRC in bundle mode to interactively construct a bundle of transactions that you want to be land together. This setting is typically used for whitehat rescues and you can find the complete documentation in the [Flashbots API docs](https://docs.flashbots.net/flashbots-protect/additional-documentation/bundle-cache).
 
 Bundle mode has a few differences from the regular Protect experience:
 - Protect will not immediately attempt to land transactions sent in bundle mode. Instead, new transactions will be queued and kept in a pending state.
