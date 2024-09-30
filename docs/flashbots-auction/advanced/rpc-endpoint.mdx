@@ -840,7 +840,7 @@ where
 
 ### flashbots_getFeeRefundTotalsByRecipient
 
-The `flashbots_getFeeRefundTotalsByRecipient` JSON-RPC method returns the total amount of fee refunds that have been processed for a specific address.
+The `flashbots_getFeeRefundTotalsByRecipient` JSON-RPC method returns the total amount of fee refunds that have been processed for a specific address.  Our refund process calculates these values weekly.
 
 ```json
 {
@@ -865,13 +865,13 @@ The response contains three fields:
 }
 ```
 
-- `pending`: the total amount of fee refunds that have been processed but not yet sent to the recipient
+- `pending`: the total amount of fee refunds not yet received by the recipient
 - `received`: the total amount of fee refunds that have been processed and sent to the recipient
 - `maxBlockNumber`: the highest block number for which fee refunds have been processed
 
 ### flashbots_getFeeRefundsByRecipient
 
-The `flashbots_getFeeRefundsByRecipient` JSON-RPC method returns detailed information about fee refunds that have been processed for a specific address.
+The `flashbots_getFeeRefundsByRecipient` JSON-RPC method returns detailed information about [fee refunds](/flashbots-protect/gas-fee-refunds) that have been earned by a specific address.  Our refund process calculates these values weekly.
 
 ```json
 {
