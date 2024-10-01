@@ -840,7 +840,7 @@ where
 
 ### flashbots_getFeeRefundTotalsByRecipient
 
-The `flashbots_getFeeRefundTotalsByRecipient` JSON-RPC method returns the total amount of fee refunds that have been processed for a specific address.  Our refund process calculates these values weekly.
+The `flashbots_getFeeRefundTotalsByRecipient` JSON-RPC method returns the total amount of fee refunds that have been earned by a specific address.  Our refund process calculates these values weekly.
 
 ```json
 {
@@ -865,8 +865,8 @@ The response contains three fields:
 }
 ```
 
-- `pending`: the total amount of fee refunds not yet received by the recipient
-- `received`: the total amount of fee refunds that have been processed and sent to the recipient
+- `pending`: the total amount of fee refunds that have been earned but not yet received by the recipient
+- `received`: the total amount of fee refunds that have been received by the recipient
 - `maxBlockNumber`: the highest block number for which fee refunds have been processed
 
 ### flashbots_getFeeRefundsByRecipient
@@ -891,7 +891,7 @@ Responses are paginated and contain the following fields:
 
 ```json
 {
-  "orders": [
+  "refunds": [
     {
       "hash": "0x...",
       "amount": "0x...",
@@ -905,7 +905,7 @@ Responses are paginated and contain the following fields:
 }
 ```
 
-The `"orders"` field contains an array of fee refund orders, each with the following fields:
+The `"refund"` field contains an array of per-order fee refunds, each with the following fields:
 
 - `hash`: the bundle hash or transaction hash associated with the fee refund
 - `amount`: the amount of the fee refund, in wei
