@@ -1,21 +1,21 @@
 ---
-title: Quick start
+title: Quick Start
 ---
 
 import ProtectButton from '@site/src/components/ProtectButton';
 
-## Key Considerations
+### Key Considerations
 
 Flashbots Protect has the following key benefits:
 
-- **Highly Configurable:** Customize your preference level for privacy, latency, and rebate returns.
-- **No frontrunning:** Transactions are hidden from the public mempool away from front-running and sandwich bots.
-- **Earn refunds**: If your transaction creates MEV, earn MEV refunds through [MEV-Share](/flashbots-mev-share/introduction). If your transaction pays high priority fees, earn [gas fee refunds](/flashbots-protect/gas-fee-refunds).
-- **No failed transactions:** Transactions are only included in the block if they will not revert. Users do not pay fees for failed transactions.
+- **Frontrunning protection:** Transactions are hidden from the public mempool away from front-running and sandwich bots.
+- **Refunds**: If your transaction creates MEV, you an earn an [MEV refund](/flashbots-protect/mev-refunds). If your transaction pays high priority fees, you can earn [gas fee refunds](/flashbots-protect/gas-fee-refunds).
+- **No failed transactions:** Transactions are only included in the block if they do not revert. Users do not pay fees for failed transactions.
+- **Configurable:** You can customize your privacy, speed, and refund settings.
 
 ### Faster Transactions
 
-Using Protect in fast mode accelerates the inclusion of your transaction. Click the "fast" option when [configuring your Protect RPC](/flashbots-protect/quick-start#using-flashbots-protect) or manually set your RPC to `rpc.flashbots.net/fast`.
+Use Protect in fast mode to land your transactions faster on chain. Click the "fast" option when [configuring your Protect RPC](/flashbots-protect/quick-start#using-flashbots-protect) or manually set your RPC to `rpc.flashbots.net/fast`.
 
 Fast mode details:
 
@@ -26,13 +26,17 @@ Fast mode details:
 
 ### Customer Support
 
-Wallets and applications can receive customer support for transactions tagged with their `originId`. To opt into customer support update your RPC URL to `rpc.flashbots.net/fast?originId=[your-wallet-name]`.
+Wallets and applications can receive customer support for transactions tagged with their `originId`. To opt into customer support, update your RPC URL to `rpc.flashbots.net/fast?originId=[your-wallet-name]`.
 
 :::warning Do Not Switch RPCs Before Transaction Confirmation
 
 If you submit a transaction through Flashbots Protect via the MetaMask wallet, do not switch RPCs before transaction confirmation. MetaMask may resend the transaction to the public mempool exposing your transaction to potential MEV attacks if RPCs are switched before transaction confirmation.
 
 :::
+
+### 0 Priority Fees
+
+Flashbots Protect does not accept transactions with a priority fee of 0. They will be dropped and a standard error message will be returned.
 
 ## Using Flashbots Protect
 

@@ -73,13 +73,17 @@ Bundles sent by the same signer will be treated as non-competitive.
 
 ### The Flat Tax Rule
 
-<div className="med caption-img">
+- **$B(T)$** is the most profitable block produced from bundles in $T$.
+- **$v(T)$** is the value of $B(T)$.
+- **$b_i(T)$** is the payment of all bundles sent by identity $i$ if block $B(T)$ is realized.
+- **$\mu_i(T) = \min\{b_i(T), v(T) - v(T \setminus \{i\})\}$** is the marginal contribution of all bundles sent by identity $i$ if $B(T)$ is realized. We bound the marginal contribution so that the net payment can't be negative.
+- **$c$** is the amount the builder pays to the proposer to win the block.
+  
+$$
+\phi_i(T, c) = \frac{\mu_i(T)}{\sum_j \mu_j(T)} \min\{v(B(T)) - c, \sum_j \mu_j(T)\}
+$$
 
-![Flat tax rule](/img/flat-tax-rule.png)
-
-Definition of the flat tax rule
-
-</div>
+So the net payment per identity (assuming it's included) is $p_i(T) = b_i(B(T)) - \phi_i(T, c)$.
 
 Notice that if the block generates enough value after paying the proposer, everyone should be refunded their contribution, meaning everyone pays the minimum they need to pay to beat competition. 
 
@@ -87,20 +91,32 @@ Notice that if the block generates enough value after paying the proposer, every
 
 To avoid the rule being gamed by submitting bundles from multiple identities, we impose an additional constraint that no set of identities can receive in total more refunds than they contribute to the block.
 
-<div className="med caption-img">
+For each set of identities $I$ we define
 
-![Identity constraint](/img/identity-constraint.png)
+$$
+\mu_I(T) = \min\{\sum_{i\in I} b_i(T), v(T) - v(T \setminus I)\},
+$$
 
-Definition of the identity constraint
+to be the joint marginal contribution of the identities in $I$ to the block. Then we choose rebates that are minimally different from the flat-tax rule subject to the constraint that they don't rebate a set of bundles more in total than its joint marginal contribution. This means the vector of rebates $\psi(T, c)$ solves
 
-</div>
+$$
+\min_{r\in\mathbb{R}^n_+} \sum_i (r_i - \phi_i(T, c))^2
+$$
+
+$$
+\text{subject to} \sum_{i\in I} r_i \leq \mu_I(T) \text{ for each } I \subseteq B(T),
+$$
+
+$$
+\sum_i r_i \leq v(T) - c
+$$
+
+where $\phi(T, c)$ are the orginal flat-tax rebates as defined above.
 
 ## Who receives refunds
 
-The refund recipient is the signer used on the `eth_sendBundle`, `mev_sendBundle`, or `eth_sendPrivateTransaction` request.
+By default, the refund recipient is the signer used on the `eth_sendBundle`, `mev_sendBundle`, or `eth_sendPrivateTransaction` request. You can delegate your recipient to a different address using the `flashbots_setFeeRefundRecipient` API.
 
 ## How to track refunds
 
-Refunds are tracked from a start date of July 8, 2024. Via an upcoming API, users will be able to:
-* View unclaimed refund amounts
-* Delegate refunds to an Ethereum account other than their signing key address.
+Refunds are tracked from a start date of July 8, 2024. Users will be able to view refund amounts via an upcoming API.
