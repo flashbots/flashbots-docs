@@ -108,6 +108,8 @@ For analytics or other purposes, you can also specify a custom mempool URL by ad
 https://rpc.flashbots.net?useMempool=true&mempoolRpc=https://your-custom-node-url
 ```
 
+Note: If this setting is enabled, all cancellations will be immediately forwarded to the public mempool, regardless of if the transaction itself has been made public.
+
 ### Reverted Transactions
 
 Allow reverted transactions by including the `canRevert` query parameter in your request. By default, Flashbots Protect does not land reverted transactions on chain to save users gas fees. You can override this feature to receive faster feedback about failing transactions.
