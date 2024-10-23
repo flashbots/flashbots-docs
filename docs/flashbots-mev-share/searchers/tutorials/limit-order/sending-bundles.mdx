@@ -73,7 +73,7 @@ async function backrunAttempt( currentBlockNumber: number, nonce: number, pendin
 }
 ```
 
-The `getSignedBackrunTx` function creates the transaction we'll send to execute our trade on Uniswap. We set a fixed gas price here for simplicity. If you prefer, you could replace the with dynamic fees that track the base fee of the chain. But constant gas prices may work better if you don't want to spend a lot on gas, and don't mind having to wait if the network's base fee exceeds your settings.
+The `getSignedBackrunTx` function creates the transaction we'll send to execute our trade on Uniswap. We set a fixed gas price here for simplicity. If you prefer, you could replace it with dynamic fees that track the base fee of the chain. But constant gas prices may work better if you don't want to spend a lot on gas, and don't mind having to wait if the network's base fee exceeds your settings.
 
 The `backrunAttempt` function defines our price requirement logic: we make sure that `outputAmount` is at least our previously-defined cutoff amount. However, if the simulated output amount is higher, then we set `outputAmount` to expect that much, which protects us from [slippage](https://en.wikipedia.org/wiki/Slippage_(finance)) in case other transactions in the block happen to trade on the same pair. This function then sends our bundle to MEV-Share. If the bundle was received successfully, we should see a bundle hash logged to our console.
 

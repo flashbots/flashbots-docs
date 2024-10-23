@@ -9,7 +9,7 @@ import WhatsMevShareAdvanced from "../specs/mev-share/blurbs/_whatsMevShareAdvan
 ## What is MEV-Share?
 <WhatsMevShareAdvanced />
 
-To start earning MEV refunds from MEV-share, submit your transactions to the Flashbots **MEV-Share Node**, either by [connecting your wallet to the Protect RPC](/flashbots-protect/quick-start/#using-flashbots-protect), or sending a [private transaction](/flashbots-auction/advanced/rpc-endpoint#eth_sendprivatetransaction) to the MEV-Share Node API.
+To start earning MEV refunds from MEV-Share, submit your transactions to the Flashbots **MEV-Share Node**, either by [connecting your wallet to the Protect RPC](/flashbots-protect/quick-start/#using-flashbots-protect), or sending a [private transaction](/flashbots-auction/advanced/rpc-endpoint#eth_sendprivatetransaction) to the MEV-Share Node API.
 
 ## Why MEV-Share?
 MEV-Share redistributes MEV back to the party that creates it in the first place: users. It does so through a design that is built to scale and be decentralized, which means that it is permissionless for searchers to integrate and it does not enshrine a single block builder.
@@ -17,10 +17,11 @@ MEV-Share redistributes MEV back to the party that creates it in the first place
 ## How does MEV-Share work?
 Users send their transactions to a specialized actor called a MEV-Share Node. The MEV-Share Node selectively shares information about the user's transaction according to their privacy preferences. Seeing this information, searchers submit partial bundles to the MEV-Share Node to attempt to extract MEV from user's transactions without seeing the full transaction data. MEV-Share Nodes simulate each of these searcher bundles and forward the successful ones on to builders along with a condition that the user must be paid back specified percentage (by default 90%) of the MEV their transactions create.
 
-At the moment, MEV-Share Nodes ony accept backruns.
+At the moment, MEV-Share Nodes only accept backruns.
 
 ## How do I use MEV-Share?
-The most simple way to use MEV-Share is by sending transactions to [Flashbots Protect](/flashbots-protect/quick-start), which leverages the [Flashbots MEV-Share Node](/flashbots-protect/mev-refunds). Wallet and application developers should check out the [Flashbots Protect MEV-Share section](/flashbots-protect/mev-refunds) for information about integrating and configuring the Flashbots MEV-Share Node.
+The simplest way to use MEV-Share is by sending transactions to [Flashbots Protect](/flashbots-protect/quick-start), which leverages the [Flashbots MEV-Share Node](/flashbots-protect/mev-share). Wallet and application developers should check out the [Flashbots Protect MEV-Share section](/flashbots-protect/mev-share) for information about integrating and configuring the Flashbots MEV-Share Node.
+
 
 ## How do I search on MEV-Share?
 Searchers should see the [Getting Started](/flashbots-mev-share/searchers/getting-started) guide for a walkthrough of MEV-Share and how it differs from traditional searching.
