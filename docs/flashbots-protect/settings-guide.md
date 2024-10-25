@@ -118,6 +118,14 @@ Allow reverted transactions by including the `canRevert` query parameter in your
 https://rpc.flashbots.net?canRevert=true
 ```
 
+### Block range
+
+By default we try to land transactions in the next 25 blocks. You can change this range by including the `blockRange` query parameter in your request.
+
+```url
+https://rpc.flashbots.net?blockRange=10
+```
+
 ### Bundle Mode
 
 Use the Protect PRC in bundle mode to interactively construct a bundle of transactions that you want to be land together. This setting is typically used for whitehat rescues and you can find the complete documentation in the [Flashbots API docs](https://docs.flashbots.net/flashbots-protect/additional-documentation/bundle-cache).
