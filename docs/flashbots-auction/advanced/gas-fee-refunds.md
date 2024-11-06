@@ -71,6 +71,8 @@ The refund rule aims to have bundles make the minimum net payment so that biddin
 
 Bundles sent by the same signer will be treated as non-competitive.
 
+See the [explainer](https://collective.flashbots.net/t/refund-rule-wat-dis-how-to-and-faq/4049/2) for more details about how to bid and interact with the refund rule.
+
 ### The Flat Tax Rule
 
 - **$B(T)$** is the most profitable block produced from bundles in $T$.
