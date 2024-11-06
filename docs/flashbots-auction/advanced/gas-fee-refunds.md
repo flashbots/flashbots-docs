@@ -71,6 +71,8 @@ The refund rule aims to have bundles make the minimum net payment so that biddin
 
 Bundles sent by the same signer will be treated as non-competitive.
 
+See the [explainer](https://collective.flashbots.net/t/refund-rule-wat-dis-how-to-and-faq/4049/2) for more details about how to bid and interact with the refund rule.
+
 ### The Flat Tax Rule
 
 - **$B(T)$** is the most profitable block produced from bundles in $T$.
@@ -119,4 +121,16 @@ By default, the refund recipient is the signer used on the `eth_sendBundle`, `me
 
 ## How to track refunds
 
-Refunds are tracked from a start date of July 8, 2024. Users will be able to view refund amounts via an upcoming API.
+Refunds are tracked from a start date of July 8, 2024. Refunds are sent to recipients in batches, and originate from our builder address `0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555`.
+
+Track your refunds using the [`flashbots_getFeeRefundTotalsByRecipient`](/flashbots-auction/advanced/rpc-endpoint#flashbots_getfeerefundtotalsbyrecipient) RPC method or the [refund dashboard](https://app.hex.tech/9eb1e790-53f7-4c16-be76-4a22c1aa7d17/app/0c2d34ef-1304-481a-b3d6-b773ce9e0e19/latest) on Dune.
+
+## Distributed refunds
+
+Refunds have been sent as part of the following on-chain transactions:
+
+| Block Number | Sender                                     | Transaction Hash                                                                                                                                                 | Refunded Amount            |
+|--------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| 20728671     | 0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555 | [0xe4c242dbaf75b0c72bf061cb0b24dfb2ac9b889c8312f85502b819c522143475](https://etherscan.io/tx/0xe4c242dbaf75b0c72bf061cb0b24dfb2ac9b889c8312f85502b819c522143475) | `0.005350659617303609` ETH |
+| 20730702     | 0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555 | [0x7f4b2747bca62e7cb30595bc8fd597d00b111f6e30836f90420a5f596fe6fb20](https://etherscan.io/tx/0x7f4b2747bca62e7cb30595bc8fd597d00b111f6e30836f90420a5f596fe6fb20) | `2.178974530716050227` ETH |
+| 20737357     | 0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555 | [0xa975df43bd397f2a6776811c46d8208df5833b4800f152d5e7df2f96fc20d560](https://etherscan.io/tx/0xa975df43bd397f2a6776811c46d8208df5833b4800f152d5e7df2f96fc20d560) | `1.012930151524122284` ETH |
