@@ -2,7 +2,7 @@
 title: Rate limiting
 ---
 
-In order to protect our service from abuse we have rate limits on the number of requests that can be made. Currently, the rate limits are set as follows.
+In order to protect our services from abuse we have rate limits on the number of requests that can be made. Currently, the rate limits are set as follows.
 
 ## `rpc.flashbots.net` - Flashbots Protect RPC
 
