@@ -121,7 +121,9 @@ By default, the refund recipient is the signer used on the `eth_sendBundle`, `me
 
 ## How to track refunds
 
-Refunds are tracked from a start date of July 8, 2024. Refunds are sent to recipients in batches, the first batch originated from our builder address `0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555` while newer batches originate from [`refunds.buildernet.eth`](https://etherscan.io/address/0x62a29205f7ff00f4233d9779c210150787638e7f). The recipient can track the status of their refunds using the [`flashbots_getFeeRefundTotalsByRecipient`](/flashbots-auction/advanced/rpc-endpoint#flashbots_getfeerefundtotalsbyrecipient) RPC method.
+Refunds are tracked from a start date of July 8, 2024. Refunds are sent to recipients in batches, the first batch originated from our builder address `0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555` while newer batches originate from [`refunds.buildernet.eth`](https://etherscan.io/address/0x62a29205f7ff00f4233d9779c210150787638e7f). 
+
+Track your refunds using the [`flashbots_getFeeRefundTotalsByRecipient`](/flashbots-auction/advanced/rpc-endpoint#flashbots_getfeerefundtotalsbyrecipient) RPC method or the [refund dashboard](https://app.hex.tech/9eb1e790-53f7-4c16-be76-4a22c1aa7d17/app/0c2d34ef-1304-481a-b3d6-b773ce9e0e19/latest) on Dune.
 
 ## Distributed refunds
 
