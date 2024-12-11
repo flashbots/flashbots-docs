@@ -121,16 +121,10 @@ By default, the refund recipient is the signer used on the `eth_sendBundle`, `me
 
 ## How to track refunds
 
-Refunds are tracked from a start date of July 8, 2024. Refunds are sent to recipients in batches, and originate from our builder address `0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555`.
+Refunds are tracked from a start date of July 8, 2024. Refunds are sent to recipients in batches, the first batch originated from our builder address `0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555` while newer batches originate from [`refunds.buildernet.eth`](https://etherscan.io/address/0x62a29205f7ff00f4233d9779c210150787638e7f). 
 
 Track your refunds using the [`flashbots_getFeeRefundTotalsByRecipient`](/flashbots-auction/advanced/rpc-endpoint#flashbots_getfeerefundtotalsbyrecipient) RPC method or the [refund dashboard](https://app.hex.tech/9eb1e790-53f7-4c16-be76-4a22c1aa7d17/app/0c2d34ef-1304-481a-b3d6-b773ce9e0e19/latest) on Dune.
 
 ## Distributed refunds
 
-Refunds have been sent as part of the following on-chain transactions:
-
-| Block Number | Sender                                     | Transaction Hash                                                                                                                                                 | Refunded Amount            |
-|--------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
-| 20728671     | 0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555 | [0xe4c242dbaf75b0c72bf061cb0b24dfb2ac9b889c8312f85502b819c522143475](https://etherscan.io/tx/0xe4c242dbaf75b0c72bf061cb0b24dfb2ac9b889c8312f85502b819c522143475) | `0.005350659617303609` ETH |
-| 20730702     | 0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555 | [0x7f4b2747bca62e7cb30595bc8fd597d00b111f6e30836f90420a5f596fe6fb20](https://etherscan.io/tx/0x7f4b2747bca62e7cb30595bc8fd597d00b111f6e30836f90420a5f596fe6fb20) | `2.178974530716050227` ETH |
-| 20737357     | 0xdf99A0839818B3f120EBAC9B73f82B617Dc6A555 | [0xa975df43bd397f2a6776811c46d8208df5833b4800f152d5e7df2f96fc20d560](https://etherscan.io/tx/0xa975df43bd397f2a6776811c46d8208df5833b4800f152d5e7df2f96fc20d560) | `1.012930151524122284` ETH |
+The on-chain transactions corresponding to distributed refunds can be viewed with this Dune query: [https://dune.com/queries/4398421](https://dune.com/queries/4398421)
