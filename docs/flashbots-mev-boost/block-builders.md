@@ -88,6 +88,8 @@ The various `builder_pubkeys` used to identify Flashbots builders to relays are
 | 0x808a0004c6802692bee5217ae930d29ccd9f6c9983acde9acf873d93f16b7d2d6064cb72cae1c89c0a59eb83c0bed40d |
 | 0x808b0035e892b3e47eb8b4b3e6f7116313c6d1378abfde48c6311f687f93f6fe241f270f2acf32e3927adc21c46b3a1e |
 
+The keys used in BuilderNet are listed here: https://buildernet.org/docs/public-identity#bls-keys-for-submitting-blocks-to-mev-boost-relays
+
 ## Additional Links & References
 
 - [MEV-Boost Geth Builder](https://github.com/flashbots/boost-geth-builder) - an example builder implementation
