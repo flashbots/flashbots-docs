@@ -1,3 +1,8 @@
+
+
+
+
+
 ---
 title: bundle cache API
 ---
@@ -8,7 +13,7 @@ This will be used for whitehat recoveries. By enabling users to sign transaction
 
 ## Create a Bundle ID
 
-To start addding transactions to a bundle, first create a bundle ID. We recommend using a UUID (v4). You can generate a UUID at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with any uuid library.
+To start adding transactions to a bundle, first create a bundle ID. We recommend using a UUID (v4). You can generate a UUID at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with any UUID library.
 
 ## Connect to Flashbots Protect with Bundle ID
 
