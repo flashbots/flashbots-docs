@@ -12,13 +12,11 @@ Flashbots offers two primary JSON-RPC endpoints on Ethereum Mainnet: `rpc.flashb
 - **Purpose**: Designed specifically for retail users as a drop-in RPC replacement in their wallet.
 - **Features**: Provides MEV protection and MEV refunds for eligible transactions. Support all the regular [Ethereum JSON RPC methods](https://docs.infura.io/networks/ethereum/json-rpc-methods/) but not [Flashbots specific JSON RPC
 methods](flashbots-auction/advanced/rpc-endpoint).
-- **Performance**: [Rate limited](/flashbots-protect/additional-documentation/ratelimiting) to satisfy the need of regular users.
 - **Note**: Transactions are submitted through `eth_sendRawTransaction` to fit wallet RPC interface. Underneath, the endpoint uses `relay.flashbots.net` to submit transactions.
 
 ### `relay.flashbots.net` - For Advanced Users
 - **Purpose**: Designed for advanced users, including searchers, applications, and Telegram bots. It accepts both transactions and bundles.
 - **Features**: Support all [Flashbots specific JSON RPC methods](flashbots-auction/advanced/rpc-endpoint). Does not support regular [Ethereum JSON RPC methods](https://docs.infura.io/networks/ethereum/json-rpc-methods/).
-- **Performance**: Offers a high [rate limit](flashbots-auction/advanced/rpc-endpoint) of 10,000 requests per second per IP address.
 - **Recommendation**: Ideal for activities beyond simple transaction submissions via wallets.
 
 ## Choosing the Right JSON-RPC Method
@@ -30,3 +28,10 @@ With `relay.flashbots.net` identified as the go-to for advanced operations, the 
   - **Use**: `mev_sendBundle` for more flexibility and power, like leveraging the [new bundle format](flashbots-mev-share/searchers/understanding-bundles) and [MEV-Share](flashbots-mev-share/introduction).
   - **Use**: `eth_sendBundle` if you want something simple and quick! The OG way of sending bundles.
   - Both bundle APIs support [multiplexing to multiple builders](flashbots-auction/advanced/multiplexing).
+
+## Rate Limits
+
+In order to protect our services from abuse we have rate limits on the number of requests that can be made.
+
+- [RPC rate limits for retail user transactions sent to](flashbots-protect/ratelimiting) `rpc.flashbots.net`
+- [Relay rate limits for advanced user bundles sent to](flashbots-mev-share/searchers/ratelimiting) `relay.flashbots.net`
