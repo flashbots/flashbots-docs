@@ -60,10 +60,10 @@ module.exports = {
         'flashbots-protect/nonce-management',
         'flashbots-protect/stuck_transactions',
         'flashbots-protect/large-transactions',
+        'flashbots-protect/ratelimiting',
         {
           'Additional Documentation': [
             'flashbots-protect/additional-documentation/eth-sendPrivateTransaction',
-            'flashbots-protect/additional-documentation/ratelimiting',
           ],
         }
       ],
@@ -131,6 +131,7 @@ module.exports = {
             'flashbots-mev-share/searchers/understanding-bundles',
             'flashbots-mev-share/searchers/sending-bundles',
             'flashbots-mev-share/searchers/debugging',
+            'flashbots-mev-share/searchers/ratelimiting',
             {
               'Tutorials': [
                 {
