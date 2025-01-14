@@ -1,0 +1,24 @@
+---
+title: Rate Limits
+---
+
+In order to protect our services from abuse we have rate limits on the number of requests that can be made. Currently, the rate limits are set as follows.
+
+## `relay.flashbots.net` - Bundles
+
+| Method              | Limit              |
+|---------------------|--------------------|
+| `eth_sendBundle`    | 1800 / IP / 1 min  |
+| `mev_sendBundle`    | 1800 / IP / 1 min  |
+| `eth_cancelBundle`  | 600 / IP / 1 min   |
+| `mev_simBundle`     | 300 / IP / 1 min   |
+| `eth_callBundle`    | 300 / IP / 1 min   |
+| All others          | 120 / IP / 1 min   |
+
+Note that this is _requests_ and not _transactions_ submitted per second. There is no limitation on the number of transactions in a request.
+
+RPC rate limits for retail user transactions sent to `rpc.flashbots.net` [can be found here](../../flashbots-protect/ratelimiting).
+
+## Rate limit exceptions
+
+If you require a higher rate limit please reach out to [Shea Ketsdever](https://twitter.com/SheaKetsdever).
