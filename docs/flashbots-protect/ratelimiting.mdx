@@ -15,7 +15,9 @@ In order to protect our services from abuse we have rate limits on the number of
 | `eth_getBalance`                           | 200 / IP / 5 min  |
 | All others                                 | 600 / IP / 5 min  |
 
-Note that this is _requests_ and not _transactions_ submitted per second. There is no limitation on the number of transactions in a request. Note that you are not required to read JSON RPC requests to send transactions to Flashbots Protect RPC.
+Note that you are not required to read JSON RPC requests to send transactions to Flashbots Protect RPC.
+
+Relay rate limits for advanced user bundles sent to `relay.flashbots.net` [can be found here](flashbots-mev-share/searchers/ratelimiting).
 
 ## Rate limiting exceptions
 
