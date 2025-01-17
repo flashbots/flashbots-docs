@@ -32,7 +32,10 @@ In turn you will receive a JSON response that looks like the following:
     "value": ""
   },
   "fastMode": true, // for backwards compatibility; may be removed in a future version
-  "seenInMempool": false
+  "seenInMempool": false,
+  "simError": "",
+  "revertReason": "",
+  "isRevert": false
 }
 ```
 
@@ -67,6 +70,23 @@ For instance, once a transaction is included, the JSON response will be populate
     "value": "10000000000"
   },
   "fastMode": true, // for backwards compatibility; may be removed in a future version
-  "seenInMempool": false
+  "seenInMempool": false,
+  "isRevert": false
 }
 ```
+
+While your transaction is `PENDING` or `FAILED` we will try to respond with the latest seen simulation error and revert reason if exists.
+
+Below is the table of currently supported `simError` values.
+
+| Sim error                    | Description                                                                                 |
+|------------------------------|---------------------------------------------------------------------------------------------|
+| `SimErrorMaxFeePerGasTooLow` | Consensus incompatible tx that wasn't caught on rpc                                         |
+| `SimErrorInsufficientFunds`  | Insufficient ETH balance to pay for gas                                                     |
+| `SimErrorNonceTooLow`        | Nonce too low                                                                               |
+| `SimErrorNonceTooHigh`       | Nonce too high                                                                              |
+| `SimErrorInvalidChainId`     | Consensus incompatible tx that wasn't caught on rpc                                         |
+| `SimErrorExecutionReverted`  | Execution reverted (slippage tolerance exceeded). Check revertReason field for more details |
+| `SimErrorOutOfGas`           | Ran out of gas during execution (gas limit too low)                                         |
+
+`revertReason` field is a valid utf-8 part of the simulation result. Example: `TRANSFER_FROM_FAILED`, `UniswapV2: INSUFFICIENT_OUTPUT_AMOUNT` 
