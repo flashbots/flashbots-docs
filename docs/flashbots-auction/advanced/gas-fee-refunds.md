@@ -113,7 +113,7 @@ $$
 \sum_i r_i \leq v(T) - c
 $$
 
-where $\phi(T, c)$ are the orginal flat-tax rebates as defined above.
+where $\phi(T, c)$ are the original flat-tax rebates as defined above.
 
 ## Who receives refunds
 
