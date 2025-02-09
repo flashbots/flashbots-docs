@@ -129,7 +129,7 @@ The `profit_token_address` is the address for WETH, our `start_amount` is 70 WET
 
 ## Query for arbitrage swaps
 
-We can learn about the swaps involed in this arbitrage by joining against the `arbitrage_swaps` and `swaps` tables
+We can learn about the swaps involved in this arbitrage by joining against the `arbitrage_swaps` and `swaps` tables
 
 :::note
 You'll need to switch in the id you got in the first query for arbitrage_id
