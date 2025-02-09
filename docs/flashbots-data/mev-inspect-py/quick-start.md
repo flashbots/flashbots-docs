@@ -39,7 +39,7 @@ mev-inspect-py currently requires and RPC with support for OpenEthereum / Erigon
 
 :::
 
-Next, start all servcies with:
+Next, start all services with:
 
 ```sh
 tilt up
