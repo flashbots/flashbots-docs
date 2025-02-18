@@ -26,5 +26,9 @@
     {
         "name": "tx_hash",
         "description": "Share individual tx hashes in the bundle."
+    },
+    {
+        "name": "full",
+        "description": "Share all fields of individual txs except signature. This includes nonce, gas price, gas limit, to, from, value, data, and chainId."
     }
 ]

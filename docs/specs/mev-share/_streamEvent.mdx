@@ -1,3 +1,4 @@
+
 ```typescript
 {
     hash: string,
@@ -7,6 +8,18 @@
         callData?: string,
         functionSelector?: string,
         to?: string,
+        from?: string,
+        value?: string,
+        maxFeePerGas?: string,
+        maxPriorityFeePerGas?: string,
+        nonce?: string,
+        chainId?: string,
+        accessList?: Array<{
+            address: string,
+            storageKeys: string[]
+        }>,
+        gas?: string,
+        type?: string
     }>
 }
 ```
@@ -20,3 +33,15 @@
 | `txs.callData` | Hex-string | Calldata of the transaction. |
 | `txs.functionSelector` | Hex-string | 4-byte function selector. |
 | `txs.to` | Hex-string | Transaction recipient address. |
+| `txs.from` | Hex-string | Transaction sender address. |
+| `txs.value` | Hex-string | Value transferred in the transaction. |
+| `txs.gasLimit` | Hex-string | Gas limit of the transaction. |
+| `txs.maxFeePerGas` | Hex-string | Maximum fee per gas of the transaction. GasFeeCap |
+| `txs.maxPriorityFeePerGas` | Hex-string | Maximum priority fee per gas of the transaction. GasTipCap |
+| `txs.nonce` | Hex-string | Nonce of the transaction. |
+| `txs.chainId` | Hex-string | Chain ID of the transaction. |
+| `txs.accessList` | Array of JSON objects | Access list of the transaction. |
+| `txs.accessList.address` | Hex-string | Address in the access list. |
+| `txs.accessList.storageKeys` | Array of hex-strings | Storage keys in the access list. |
+| `txs.gas` | Hex-string | Gas limit of the transaction. |
+| `txs.type` | Hex-string | Type of the transaction. |
