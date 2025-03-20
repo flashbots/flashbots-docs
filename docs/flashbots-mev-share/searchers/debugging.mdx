@@ -123,7 +123,7 @@ This happens when one of your transactions reverts. Since our `simulateBundle` f
 
 If you see this error when running the bot, it most likely means that the transaction you tried to backrun didn't affect the price enough to meet our target. This is expected — it's a feature, not a bug!
 
-However, if you want to be sure, a good way to further verify what's happening is to simulate transactions in a local development environment. Toolkits such as [foundry](https://github.com/foundry-rs/foundry) or [hardhat](https://hardhat.org/docs) give you tools to compile contracts, create local nodes that fork their state from public nodes (e.g. mainnet, goerli), and simulate transactions locally, with stack traces to show you where things went wrong.
+However, if you want to be sure, a good way to further verify what's happening is to simulate transactions in a local development environment. Toolkits such as [foundry](https://github.com/foundry-rs/foundry) or [hardhat](https://hardhat.org/docs) give you tools to compile contracts, create local nodes that fork their state from public nodes, and simulate transactions locally, with stack traces to show you where things went wrong.
 
 ## Did it pay enough gas?
 
