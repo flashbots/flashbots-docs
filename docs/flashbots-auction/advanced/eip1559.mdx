@@ -2,7 +2,7 @@
 title: EIP-1559 Support
 ---
 
-EIP-1559 is a new upgrade to the Ethereum network that changes how you pay for transactions. It introduces a base fee that varies depending on the network demand, and a priority fee that you can set to get faster confirmation. The base fee is burned, while the priority fee goes to the miner who includes your transaction in a block. Flashbots, starting from [mev-geth v1.10.5-mev-0.3.0](https://github.com/flashbots/mev-geth/releases/tag/v1.10.5-mev0.3.0), has integrated support for EIP-1559 transactions.
+EIP-1559 is an upgrade to the Ethereum network that changes how you pay for transactions. It introduces a base fee that varies depending on the network demand, and a priority fee that you can set to get faster confirmation. The base fee is burned, while the priority fee goes to the miner who includes your transaction in a block. Flashbots, starting from [mev-geth v1.10.5-mev-0.3.0](https://github.com/flashbots/mev-geth/releases/tag/v1.10.5-mev0.3.0), has integrated support for EIP-1559 transactions.
 
 While users of the legacy transaction type don't need to make any configuration changes, they should be aware that it's now mandatory to include a `gasPrice` that is at least equal to the base fee. Coinbase transfer can still be used to incentivize faster inclusion, but it cannot be used to bypass the base fee requirement.
 
