@@ -35,14 +35,14 @@ Constructing a payment proof for this scoring method requires a Merkle Proof of 
 
 ## External Builders
 
-External builders can submit blocks to Mainnet, Goerli and Sepolia Flashbots relays. The table below outlines Builder API methods available on each network.
+External builders can submit blocks to Mainnet and Sepolia Flashbots relays. The table below outlines Builder API methods available on each network.
 
 ### Relay Block Submission Endpoints by Network
 
-|  |  | Mainnet | Goerli | Sepolia |
-| --- | --- | --- | --- | --- |
-| `getValidators` | GET Request - Returns an array of validator registrations with assigned duties in the current and next epoch | [Mainnet](https://boost-relay.flashbots.net/relay/v1/builder/validators)  | [Goerli](https://boost-relay-goerli.flashbots.net/relay/v1/builder/validators)  | [Sepolia](https://boost-relay-sepolia.flashbots.net/relay/v1/builder/validators) |
-| `submitBlock` | POST Request - submits a block to the relay | [Mainnet](https://boost-relay.flashbots.net/relay/v1/builder/blocks)  | [Goerli](https://boost-relay-goerli.flashbots.net/relay/v1/builder/blocks) | [Sepolia](https://boost-relay-sepolia.flashbots.net/relay/v1/builder/blocks)  |
+|  |  | Mainnet | Sepolia |
+| --- | --- | --- | --- |
+| `getValidators` | GET Request - Returns an array of validator registrations with assigned duties in the current and next epoch | [Mainnet](https://boost-relay.flashbots.net/relay/v1/builder/validators)  | [Sepolia](https://boost-relay-sepolia.flashbots.net/relay/v1/builder/validators) |
+| `submitBlock` | POST Request - submits a block to the relay | [Mainnet](https://boost-relay.flashbots.net/relay/v1/builder/blocks) | [Sepolia](https://boost-relay-sepolia.flashbots.net/relay/v1/builder/blocks)  |
 
 - See also the [Relay API documentation - Block Builder API](https://bit.ly/3BmGZ3T) for more details on the API and payloads.
 - The example [Flashbots builder implementation](https://github.com/flashbots/boost-geth-builder) is a good external builder reference, and is currently used in production by several builders.
@@ -92,7 +92,7 @@ The keys used in BuilderNet are listed here: https://buildernet.org/docs/public-
 
 ## Additional Links & References
 
-- [MEV-Boost Geth Builder](https://github.com/flashbots/boost-geth-builder) - an example builder implementation
+- [rbuilder](https://github.com/flashbots/rbuilder) - Blazingly fast, cutting edge block builder written in Rust.
 - [Relay API documentation - Block Builder API](https://bit.ly/3BmGZ3T)
 - Block Builder Self-Help Group: [https://collective.flashbots.net/c/builders/14](https://collective.flashbots.net/c/builders/14)
 - Github issue about becoming block builder: [https://github.com/flashbots/mev-boost/issues/145](https://github.com/flashbots/mev-boost/issues/145).

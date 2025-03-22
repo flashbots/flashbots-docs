@@ -38,12 +38,6 @@ const authSigner = new Wallet(FB_REPUTATION_PRIVATE_KEY, provider);
 const mevShareClient = MevShareClient.useEthereumMainnet(authSigner);
 ```
 
-_Connecting to Goerli:_
-
-```typescript
-const mevShareClient = MevShareClient.useEthereumGoerli(authSigner);
-```
-
 To use custom network parameters, you can instantiate a new MevShareClient instance directly. This example is what the client uses to connect to mainnet:
 
 ```typescript
