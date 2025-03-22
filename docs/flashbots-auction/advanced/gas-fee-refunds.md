@@ -34,7 +34,7 @@ The Flashbots block builder does not land 100% of blocks. In order to land bundl
 
 To share bundles with other builders, add the `builders` field to your `eth_sendBundle` request. The `builders` field accepts a list of strings which correspond to the "name" tags of [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json).
 
-All `eth_sendBundle` requests are shared with the Flashbots builder. They are multiplexed to other block builders at the end of the slot if the Flashbots builder determines it will not win that block.
+All `eth_sendBundle` requests are shared with the Flashbots builder. They are multiplexed to other block builders at the end of the slot (<= 1s before the slot ends) if the Flashbots builder determines it will not win that block.
 
 For example:
 
