@@ -90,9 +90,9 @@ Covers:
 3. Competitors paying more
 ```
 
-[Flashbots bundles adhere to a "blind" auction](/flashbots-auction/overview), where bundle pricing is not released by Flashbots prior to landing on-chain. The winning "bids" are revealed _only_ after the block containing winning bundles is propagated (via the transactions themselves and [blocks-api](https://blocks.flashbots.net/) for recognizing which set of transactions belong to a bundle).
+[Flashbots bundles adhere to a "blind" auction](/flashbots-auction/overview), where bundle pricing is not released by Flashbots prior to landing on-chain. The winning "bids" are revealed _only_ after the block containing winning bundles is propagated.
 
-While you cannot see a competitor's bid in real time, it is possible to look AFTER the fact to:
+While you cannot see a competitor's bid in real time, it is possible to look onchain AFTER the fact to:
 
 1. Identify the exact bundle (if any) that conflicted with yours
 2. Compare the conflicting bundle's `effective priority fee` with your own (to see if you should be bidding more to remain competitive)
@@ -256,11 +256,7 @@ Analyze the timestamps above in relation to when you observe the targeted block 
 
 mev-boost is an opt-in system that runs alongside a validator's consensus client. Unless every validator on Ethereum runs mev-boost, some slots cannot be targeted with Flashbots. Additionally, your builder must be connected to the same relay as the proposer for the target slot.
 
-If no bundles are detected in the blocks-api response, check if other blocks from the same validator ever have Flashbots bundles. If no blocks from a particular validator contain Flashbots bundles, it is possible your bundle was not seen by the validator who proposed the block for the target block height.
-
-## New Blocks API fields
-
-New fields have been added to the blocks API to align the API with PoS Ethereum nomenclature. Details can be found in the [Blocks API page](/flashbots-data/blockapi).
+If no blocks from a particular validator contain Flashbots bundles, it is possible your bundle was not seen by the validator who proposed the block for the target block height.
 
 ## Everything checks out, what's next?
 
