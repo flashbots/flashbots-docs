@@ -24,6 +24,7 @@ Bundles can be replaced and canceled using a unique identifier (`replacementUuid
       maxTimestamp,
       revertingTxHashes,
       replacementUuid, // UUIDv4 to uniquely identify submission
+      builders,
     }
   ]
 }
@@ -36,6 +37,7 @@ To replace a bundle, send the new bundle via `eth_sendBundle` with the same `rep
 ### Canceling bundles
 
 Canceling a bundle will prevent Flashbots builders from including it on-chain. To cancel a bundle, call the [`eth_cancelBundle`](/flashbots-auction/advanced/rpc-endpoint#eth_cancelbundle) endpoint, or use the `cancelBundle` function in your preferred [Flashbots library](/flashbots-auction/libraries/bundle-relay).
+It is important to use the same set of builders as the original bundle submission to achieve a successful cancellation.
 
 ```json
 {
@@ -45,6 +47,7 @@ Canceling a bundle will prevent Flashbots builders from including it on-chain. T
   "params": [
     {
       replacementUuid, // UUIDv4 to uniquely identify submission
+      builders,
     }
   ]
 }
