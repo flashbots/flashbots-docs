@@ -16,7 +16,7 @@ In an optimal case, searchers are refunded the difference between their bid and 
 
 ## Which bundles receive refunds
 
-Flashbots provides refunds for bundles in blocks landed by BuilderNet. Whether a bundle receives a refund depends on a few factors that vary from block to block:
+Flashbots provides refunds for bundles in blocks landed by [BuilderNet](https://buildernet.org/). Whether a bundle receives a refund depends on a few factors that vary from block to block:
 * How much network congestion and competition there was
 * Whether BuilderNet made a profit and how much
 * How much the specific bundle contributed to the value of the block
