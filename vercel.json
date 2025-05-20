@@ -46,6 +46,11 @@
       "source": "/flashbots-auction/searchers/:path*",
       "destination": "/flashbots-auction/:path",
       "permanent": true
+    },
+    {
+      "source": "/flashbots-protect/mev-share",
+      "destination": "/flashbots-protect/mev-refunds",
+      "permanent": true
     }
   ]
 }
