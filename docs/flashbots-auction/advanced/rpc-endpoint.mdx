@@ -1031,13 +1031,13 @@ The signature is calculated by taking the [EIP-191](https://eips.ethereum.org/EI
 <TabItem value="ethers.js">
 
 ```ts
-import {Wallet, utils} from 'ethers';
+import {Wallet, id} from 'ethers';
 
 const privateKey = '0x1234';
 const wallet = new Wallet(privateKey);
 const body =
   '{"jsonrpc":"2.0","method":"eth_sendBundle","params":[{see above}],"id":1}';
-const signature = wallet.address + ':' + wallet.signMessage(utils.id(body));
+const signature = wallet.address + ':' + wallet.signMessage(id(body));
 ```
 
 </TabItem>
