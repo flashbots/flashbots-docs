@@ -142,3 +142,12 @@ Use a custom RPC endpoint for **read** requests by including the `url` query par
 ```url
 https://rpc.flashbots.net?url=http://RPC-ENDPOINT.COM
 ```
+
+### Auction timeout
+
+If `auctionTimeout=T`, where `T` is the time in milliseconds, is specified, and a transaction arrives within `T` milliseconds of the end of the current slot, it will be scheduled for the next slot.
+This ensures the transaction is processed at the beginning of the next slot, giving searchers the full slot duration to submit their bundles and backruns.
+
+```
+https://rpc.flashbots.net?auctionTimeout=3000
+```
