@@ -69,28 +69,6 @@ module.exports = {
       ],
     },
     {
-      "Flashbots Data": [
-        {
-          'MEV-Inspect': [
-            'flashbots-data/mev-inspect-py/overview',
-            'flashbots-data/mev-inspect-py/quick-start',
-            'flashbots-data/mev-inspect-py/inspecting',
-            'flashbots-data/mev-inspect-py/exploring',
-            {
-              "Data": [
-                'flashbots-data/mev-inspect-py/data/classified_traces',
-                'flashbots-data/mev-inspect-py/data/transfers',
-                'flashbots-data/mev-inspect-py/data/swaps',
-                'flashbots-data/mev-inspect-py/data/arbitrages',
-                'flashbots-data/mev-inspect-py/data/miner_payments',
-              ],
-            },
-          ]
-        },
-        'flashbots-data/dashboard',
-      ],
-    },
-    {
       "MEV-Boost": [
         'flashbots-mev-boost/introduction',
         {
