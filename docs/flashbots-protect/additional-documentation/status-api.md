@@ -10,7 +10,6 @@ The Transaction Status API is also available on test networks. Below is a table 
 | -------- | -------------------------------------------------- |
 | Mainnet  | `https://protect.flashbots.net/tx/` |
 | Sepolia  | `https://protect-sepolia.flashbots.net/tx/` |
-| Holešky  | `https://protect-holesky.flashbots.net/tx/` |
 
 
 
