@@ -70,6 +70,10 @@ module.exports = async function createConfigAsync() {
               position: 'left',
             },
             {
+              type: 'custom-mevMetrics',
+              position: 'right',
+            },
+            {
               href: 'https://github.com/flashbots/docs',
               label: 'GitHub',
               position: 'right',
