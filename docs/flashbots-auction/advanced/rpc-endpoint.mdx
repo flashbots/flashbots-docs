@@ -867,7 +867,7 @@ The response contains three fields:
 
 ### flashbots_getFeeRefundsByRecipient
 
-The `flashbots_getFeeRefundsByRecipient` JSON-RPC method returns detailed information about [fee refunds](/flashbots-protect/gas-fee-refunds) that have been earned by a specific address.  Our refund process calculates these values weekly.
+The `flashbots_getFeeRefundsByRecipient` JSON-RPC method returns detailed information about [fee refunds](/flashbots-protect/gas-fee-refunds) that have been earned by a specific address.  Our refund process usually calculates these values with a 4 hour delay.
 
 ```json
 {
@@ -912,6 +912,42 @@ The `"refunds"` field contains an array of per-order fee refunds, each with the 
 The `"cursor"` field is only included if there are more fee refunds to fetch. To continue fetching fee refunds, include the cursor as the second argument in the next request.
 
 NOTE: This API currently only returns details for bundles included in block 20802497 and later.  To see total fee refunds processed for a specific address since inception, use the `flashbots_getFeeRefundTotalsByRecipient` method.
+
+### flashbots_getFeeRefundsByBundle
+
+The `flashbots_getFeeRefundsByBundle` is similar to `flashbots_getFeeRefundsByRecipient` but returns result for the given bundle.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "flashbots_getFeeRefundsByBundle",
+  "params": [
+    {
+      bundle_hash,       // String, the hash of the bundle
+    }
+  ]
+}
+```
+
+### flashbots_getFeeRefundsByBlock
+
+The `flashbots_getFeeRefundsByBlock` is similar to `flashbots_getFeeRefundsByRecipient` but returns result for the given block.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "flashbots_getFeeRefundsByBlock",
+  "params": [
+    {
+      block_number,       // String, hex-encoded block number (e.g. 0x15d0280)
+    }
+  ]
+}
+```
+
+
 
 ### flashbots_setFeeRefundRecipient
 
