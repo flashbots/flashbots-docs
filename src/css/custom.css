@@ -27,6 +27,7 @@
   --ifm-color-primary: #04F;
   --ifm-color-content: var(--ifm-color-emphasis-800);
   --ifm-code-font-size: 95%;
+  --ifm-toc-padding-horizontal: 4px;
 }
 
 [data-theme='dark'] {

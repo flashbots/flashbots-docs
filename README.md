@@ -48,3 +48,25 @@ This command generates static content into the `build` directory and can be serv
 Create a PR and once merged, Github actions automatically deploy it.
 
 The docs use Vercel for hosting, and deployment is done by Vercel on any merge into the master branch.
+
+## Refund Metrics Widget
+
+This site displays MEV and gas refund metrics in the navbar, fetched from the [Flashbots Refund Metrics API](https://github.com/flashbots/refund-metrics-dune-api).
+
+### Configuration
+
+To configure the widget, edit `docusaurus.config.js`:
+
+```js
+customFields: {
+  refundMetricsApiUrl: 'https://refund-metrics-dune-api.vercel.app',
+  refundMetricsRedirectUrl: 'https://protect.flashbots.net/',
+},
+```
+
+- `refundMetricsApiUrl`: The API endpoint for fetching metrics
+- `refundMetricsRedirectUrl`: Where to redirect when users click on MEV refunds
+
+The widget implementation is in `src/components/MevMetrics.tsx`. For Flashbots docs, it:
+- Shows both MEV and gas refunds
+- Clicking on MEV refunds redirects to the configured URL (default: [Flashbots Protect](https://protect.flashbots.net/))
