@@ -49,7 +49,7 @@ Below is a table of status codes that can be returned:
 
 ## Privacy
 
-The `transaction` fields are disclosed only for transactions with an `INCLUDED` status to maintain privacy for trades that are pending, failed, or cancelled. These fields will remain empty for transactions with `PENDING`, `FAILED`, `UNKNOWN`, or `CANCELLED` statuses.
+The `transaction` fields are disclosed only for transactions with an `INCLUDED` status to maintain privacy for trades that are pending, failed, or cancelled. These fields will remain empty for transactions with `PENDING`, `FAILED`, `UNKNOWN`, or `CANCELLED` statuses. Protect fast mode transactions are an exception to this rule as TEE searchers will receive all fields for all transactions (including reverted or failed) with a 5 minute delay for troubleshooting and debugging purposes. 
 
 For instance, once a transaction is included, the JSON response will be populated with data for all fields:
 
