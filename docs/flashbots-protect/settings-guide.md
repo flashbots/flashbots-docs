@@ -39,7 +39,7 @@ Compared with the default configuration:
 
 ### Hints
 
-Change what transaction data is visible to MEV-Share searchers with the `hint` query parameter. The [default](/flashbots-protect/settings-guide#default) hint configuration will be used if no hints are provided. If you specify one or more hints, any hint that is _not_ included will be disabled. If fast mode is used, MEV-Share searchers will only receive the hints specified while TEE searchers will receive all hints regardless of specification. 
+Change what transaction data is visible to MEV-Share searchers with the `hint` query parameter. The [default](/flashbots-protect/settings-guide#default) hint configuration will be used if no hints are provided. If you specify one or more hints, any hint that is _not_ included will be disabled. If fast mode is used, searchers not in TEEs will only receive the hints specified while TEE searchers will receive all hints regardless of specification. 
 
 <HintsTable />
 
