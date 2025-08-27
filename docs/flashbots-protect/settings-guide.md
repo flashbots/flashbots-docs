@@ -33,7 +33,7 @@ https://rpc.flashbots.net/fast
 ```
 
 Compared with the default configuration:
-- Transactions are shared with TEE searchers in addition to MEV-Share searchers. MEV-Share searchers will receive only the hints specified, while TEE searchers will receive full transaction information given the privacy-preserving nature of the TEE. TEE searchers will be able to see full transaction information (even for failed or reverted transactions) after a 5-minute delay for troubleshooting and debugging purposes. **Do not** use fast mode if you are not comfortable with this. 
+- Full transaction information (without signatures) is shared with searchers inside TEEs without exposing users to frontrunning risks. This allows searchers to more efficiently compute arbitrages, leading to better refunds. Searchers not in TEEs will receive only the hints specified. TEE searchers will be able to see full transaction information (even for failed or reverted transactions) after a 5-minute delay for troubleshooting and debugging purposes. **Do not** use fast mode if you are not comfortable with this. 
 - Transactions are shared with all [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json)
 - Validators receive a higher percentage of the MEV-Share refund increasing the probability that the transaction will be included in the winning block.
 
