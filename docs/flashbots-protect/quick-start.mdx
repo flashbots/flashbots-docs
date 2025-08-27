@@ -19,7 +19,7 @@ Use Protect in fast mode to land your transactions faster on chain. Click the "f
 
 Fast mode details:
 
-1. **Shared with TEE searchers:** Transactions are shared with non-TEE and TEE searchers, leading to better MEV refunds than the default RPC without exposing the user to any additional frontrunning or sandwich attack risk. 
+1. **Shared with TEE searchers:** Full transaction information is also shared with searchers in TEEs (secure enviroments), leading to better MEV refunds while preserving frontrunning protection. 
 2. **Shared with all builders:** Transactions are multiplexed, or shared, with all [registered builders](https://github.com/flashbots/dowg/blob/main/builder-registrations.json) within one block after they are received. Multiplexing increases the probability that the transaction will be sent to the builder building the winning block.
 3. **Larger validator payment:** With the default RPC, 10% of the MEV-Share refund is paid to validators. In fast mode, validators receive a higher percentage of the MEV-Share refund increasing the probability that the transaction will be included in the winning block.
 
