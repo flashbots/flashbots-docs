@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--ifm-navbar-link-color);
+}
+
+.metric {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.value {
+  font-weight: 500;
+}
+
+.loading {
+  opacity: 0.5;
+}
+
+.separator {
+  color: var(--ifm-navbar-link-color);
+  opacity: 0.3;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.clickable:hover {
+  opacity: 0.8;
+}
+
+.clickable:active {
+  opacity: 0.6;
+}
+
+@media (max-width: 996px) {
+  .container {
+    display: none !important;
+  }
+}
