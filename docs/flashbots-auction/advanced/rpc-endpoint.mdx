@@ -537,11 +537,11 @@ example response:
 }
 ```
 
-### flashbots_getUserStats
+### flashbots_getUserStats (deprecated)
 
 :::caution
 
-flashbots_getUserStats will be deprecated soon, use [flashbots_getUserStatsV2](/flashbots-auction/advanced/rpc-endpoint#flashbots_getuserstatsv2)
+flashbots_getUserStats was [deprecated on Monday June 9 2025](https://collective.flashbots.net/t/deprecation-of-bundle-stats-api-methods-in-flashbots-protect/4973) and is displayed here only for historical purposes.
 
 :::
 
@@ -584,11 +584,11 @@ Parameters with `miner` in the name are retrofitted with Flashbots block builder
 
 :::
 
-### flashbots_getBundleStats
+### flashbots_getBundleStats (deprecated)
 
 :::caution
 
-flashbots_getBundleStats will be deprecated soon, use [flashbots_getBundleStatsV2](/flashbots-auction/advanced/rpc-endpoint#flashbots_getbundlestatsv2)
+flashbots_getBundleStats was [deprecated on Monday June 9 2025](https://collective.flashbots.net/t/deprecation-of-bundle-stats-api-methods-in-flashbots-protect/4973) and is displayed here only for historical purposes.
 
 :::
 
@@ -642,7 +642,13 @@ example response:
 }
 ```
 
-### flashbots_getUserStatsV2
+### flashbots_getUserStatsV2 (deprecated)
+
+:::caution
+
+flashbots_getUserStatsV2 was [deprecated on Monday June 9 2025](https://collective.flashbots.net/t/deprecation-of-bundle-stats-api-methods-in-flashbots-protect/4973) and is displayed here only for historical purposes.
+
+:::
 
 The `flashbots_getUserStatsV2` JSON-RPC method returns a quick summary of how a searcher is performing in the Flashbots ecosystem, including their [reputation-based priority](/flashbots-auction/advanced/reputation). It is currently updated once every hour and has the following payload format:
 
@@ -679,7 +685,13 @@ where
 - `allTimeValidatorPayments`: the total amount paid to validators over all time
 - `allTimeGasSimulated`: the total amount of gas simulated across all bundles submitted to Flashbots. This is the actual gas used in simulations, not gas limit
 
-### flashbots_getBundleStatsV2
+### flashbots_getBundleStatsV2 (deprecated)
+
+:::caution
+
+flashbots_getBundleStatsV2 was [deprecated on Monday June 9 2025](https://collective.flashbots.net/t/deprecation-of-bundle-stats-api-methods-in-flashbots-protect/4973) and is displayed here only for historical purposes.
+
+:::
 
 The `flashbots_getBundleStatsV2` JSON-RPC method returns stats for a single bundle. You must provide a blockNumber and the bundleHash, and the signing address must be the same as the one who submitted the bundle.
 
@@ -766,7 +778,13 @@ where
 - `consideredByBuildersAt`: indicates time at which each builder selected the bundle to be included in the target block
 - `sealedByBuildersAt`: indicates time at which each builder sealed a block containing the bundle
 
-### flashbots_getSbundleStats
+### flashbots_getSbundleStats (deprecated)
+
+:::caution
+
+flashbots_getSbundleStats was [deprecated on Monday June 9 2025](https://collective.flashbots.net/t/deprecation-of-bundle-stats-api-methods-in-flashbots-protect/4973) and is displayed here only for historical purposes.
+
+:::
 
 The `flashbots_getSbundleStats` JSON-RPC method returns stats for a single [sbundle](/flashbots-mev-share/searchers/understanding-bundles). You must provide `bundleHash`, and the signing address must be the same as the one who submitted the bundle.
 Only bundles that do not contain user's private transactions are supported (so no backrun bundles)
