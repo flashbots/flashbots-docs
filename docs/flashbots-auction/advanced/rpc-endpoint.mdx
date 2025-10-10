@@ -980,6 +980,90 @@ If the first address matches the authentication signature, then a response with 
 
 If the signature is invalid or does not match the first address, an appropriate error will be returned instead.
 
+### buildernet_getDelayedRefunds
+
+The `buildernet_getDelayedRefunds` JSON-RPC method returns detailed information about delayed refunds.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "buildernet_getDelayedRefunds",
+  "params": [
+    {
+      recipient,       // String, the address that receives delayed refunds
+      blockRangeFrom,  // [optional] String, hex-encoded block number for the start of the range (inclusive)
+      blockRangeTo,    // [optional] String, hex-encoded block number for the end of the range (inclusive)
+      cursor,          // [optional] String, the cursor to continue from
+      hash,            // [optional] String, bundle hash to get data for specific bundle if set block range must be set too
+    }
+  ]
+}
+```
+
+Responses are paginated and contain the following fields:
+
+```json
+{
+  "refunds": [
+    {
+      "hash": "0x...",
+      "amount": "0x...",
+      "blockNumber": "0x13ddaa4",
+      "status": "pending",
+      "recipient": "0x..."
+    },
+    ...
+  ],
+  "nextCursor": "0x..."
+  "indexedUpTo": "0x..."
+}
+```
+
+The `"refunds"` field contains an array of per-order fee refunds, each with the following fields:
+
+- `hash`: the bundle hash that generated delayed refund
+- `amount`: the amount of the delayed refund, in wei
+- `blockNumber`: the block number the order was contained in
+- `status`: the status of the delayed refund, either "pending" or "received"
+- `recipient`: the address the delayed refund is credited to
+
+The `"cursor"` field is only included if there are more delayed refunds to fetch, some data might be avaiable in the future. To continue fetching, include the cursor as the second argument in the next request. If response is empty but contains cursor retry later.
+
+`"indexedUpTo"` contains maximum block number for which delayed refunds are indexed
+
+### buildernet_getDelayedRefundTotalsByRecipient
+
+The `buildernet_getDelayedRefundTotalsByRecipient` JSON-RPC method returns the total amount of delayed refunds that have been earned by a specific address.
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "buildernet_getDelayedRefundTotalsByRecipient",
+  "params": [{
+    recipient,       // String, the address to query for delayed refunds
+    blockRangeFrom,  // [optional] String, hex-encoded block number for the start of the range (inclusive)
+    blockRangeTo,    // [optional] String, hex-encoded block number for the end of the range (inclusive)
+  }]
+}
+```
+
+The response contains three fields:
+
+```json
+{
+  "pending":"0x17812ea4fbbe314",
+  "received":"0x108d1b27b63a213",
+  "indexedUpTo":"0x13ddb08"
+}
+```
+
+- `pending`: the total amount of fee refunds that have been earned but not yet received by the recipient
+- `received`: the total amount of fee refunds that have been received by the recipient
+- `indexedUpTo`: the highest block number for which delayed refunds have been processed
+
+
 ### flashbots_getMevRefundTotalByRecipient
 
 Returns the total amount of [MEV refunds](/flashbots-protect/mev-refunds) that have been paid to a specific recipient address. This API not require authentication.
