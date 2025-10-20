@@ -995,7 +995,7 @@ The `buildernet_getDelayedRefunds` JSON-RPC method returns detailed information 
       blockRangeFrom,  // [optional] String, hex-encoded block number for the start of the range (inclusive)
       blockRangeTo,    // [optional] String, hex-encoded block number for the end of the range (inclusive)
       cursor,          // [optional] String, the cursor to continue from
-      hash,            // [optional] String, bundle hash to get data for specific bundle if set block range must be set too
+      hash,            // [optional] String, bundle hash; if provided, you must also set both blockRangeFrom and blockRangeTo
     }
   ]
 }
