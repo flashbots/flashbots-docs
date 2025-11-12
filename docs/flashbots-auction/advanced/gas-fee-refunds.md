@@ -59,10 +59,6 @@ Searchers can also use `mev_sendBundle` to multiplex bundles if they prefer. Thi
 
 _Note: Smart multiplexing has a 1% rate of false positives, meaning that in 1% of MEV-Boost blocks there is a risk that searcher bundles will not be landed._
 
-### Bundle stats for multiplexed bundles
-
-To view bundle stats on multiplexed `eth_sendBundle` requests, use the `flashbots_getSbundleStats` API. You will see a new "smart" field in the response to multiplexed `eth_sendBundle` which indicates that the sbundle stats endpoint should be used.
-
 ## How are refunds calculated
 
 BuilderNet uses a refund rule to retroactively calculate refunds for all bundles landed in its blocks. For more information, see the [BuilderNet docs](https://buildernet.org/docs/refunds).
