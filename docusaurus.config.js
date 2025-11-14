@@ -100,7 +100,7 @@ module.exports = async function createConfigAsync() {
         }),
       ],
     ],
-    plugins:    [
+    plugins: [
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async function tailwindcssSupport(context, options) {
         return {
