@@ -2,9 +2,10 @@
 title: Testnets
 ---
 
-Flashbots operates on Sepolia so that searchers can test Flashbots without risking real funds. 
+Flashbots currently operates a test environment on **Sepolia**, allowing searchers to test Flashbots without risking real funds.  
+Holesky is the successor to Goerli and may be supported in future updates, but Flashbots does not yet host a Holesky relay.
 
-## Bundle Relay URLS
+## Bundle Relay URLs
 
 | Network | URL |
 | --- | --- |
@@ -13,12 +14,10 @@ Flashbots operates on Sepolia so that searchers can test Flashbots without riski
 
 ## Examples
 
-Here's how to setup the Flashbots Bundle Provider in Ethers to use Goerli or Sepolia:
+Here's how to set up the Flashbots Bundle Provider in Ethers to use Sepolia for testing:
 
 ```js
-const provider = new ethers.getDefaultProvider("goerli");
-// uncomment the line below to use Sepolia
-// const provider = new ethers.getDefaultProvider("sepolia");
+const provider = new ethers.getDefaultProvider("sepolia");
 
 const authSigner = new ethers.Wallet(
   '0x2000000000000000000000000000000000000000000000000000000000000000',
@@ -28,70 +27,55 @@ const authSigner = new ethers.Wallet(
 const flashbotsProvider = await flashbots.FlashbotsBundleProvider.create(
   provider,
   authSigner,
-  // use "https://relay-sepolia.flashbots.net" for Sepolia
-  "https://relay-goerli.flashbots.net",
-  "goerli"
+  "https://relay-sepolia.flashbots.net",
+  "sepolia"
 );
 ```
 
-Sending bundles works the same as sending bundles on the mainnet. For example this will simulate a bundle and if it is successful then send a batch of 10:
+Sending bundles works the same as sending bundles on mainnet.  
+For example, this will simulate a bundle and, if successful, send a batch of 10 future bundles:
 
 ```js
 const wallet = new ethers.Wallet(SOME_PRIVATE_KEY);
 const signedTransactions = await flashbotsProvider.signBundle([
-    {
-      signer: wallet,
-      transaction: {
-        to: "0xf1a54b075fb71768ac31b33fd7c61ad8f9f7dd18",
-        gasPrice: 10,
-        gasLimit: 21000,
-        chainId: 5,
-        value: 0,
-      },
+  {
+    signer: wallet,
+    transaction: {
+      to: "0xf1a54b075fb71768ac31b33fd7c61ad8f9f7dd18",
+      gasPrice: 10,
+      gasLimit: 21000,
+      chainId: 11155111, // Sepolia chain ID
+      value: 0,
     },
-    {
-      signer: wallet,
-      transaction: {
-        to: "0xf1a54b075fb71768ac31b33fd7c61ad8f9f7dd18",
-        gasPrice: 10,
-        gasLimit: 21000,
-        chainId: 5,
-        value: 0,
-      },
-    },
-  ]);
+  },
+]);
 
-  const blockNumber = await provider.getBlockNumber();
-
-  console.log(new Date());
-  const simulation = await flashbotsProvider.simulate(
-    signedTransactions,
-    blockNumber + 1
+const blockNumber = await provider.getBlockNumber();
+const simulation = await flashbotsProvider.simulate(
+  signedTransactions,
+  blockNumber + 1
+);
+if ("error" in simulation) {
+  console.log(`Simulation Error: ${simulation.error.message}`);
+} else {
+  console.log(
+    `Simulation Success: ${blockNumber} ${JSON.stringify(
+      simulation,
+      null,
+      2
+    )}`
   );
-  console.log(new Date());
+}
 
-  // Using TypeScript discrimination
-  if ("error" in simulation) {
-    console.log(`Simulation Error: ${simulation.error.message}`);
-  } else {
-    console.log(
-      `Simulation Success: ${blockNumber} ${JSON.stringify(
-        simulation,
-        null,
-        2
-      )}`
-    );
-  }
-  console.log(signedTransactions);
-
-  for (var i = 1; i <= 10; i++) {
-    const bundleSubmission = flashbotsProvider.sendRawBundle(
-      signedTransactions,
-      blockNumber + i
-    );
-    console.log("submitted for block # ", blockNumber + i);
-  }
-  console.log("bundles submitted");
+for (let i = 1; i <= 10; i++) {
+  await flashbotsProvider.sendRawBundle(
+    signedTransactions,
+    blockNumber + i
+  );
+  console.log("submitted for block #", blockNumber + i);
+}
+console.log("bundles submitted");
 ```
 
-The reason why we submit bundles for the next 10 blocks is because Flashbots only runs a small portion of the validators on Goerli. We are more likely to have a bundle included if we submit bundles for several blocks into the future.
+Because Flashbots currently operates only a subset of validators on Sepolia,  
+submitting bundles for several blocks into the future increases the likelihood of inclusion.
