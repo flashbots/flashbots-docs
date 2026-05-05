@@ -24,7 +24,7 @@ Flashbots Protect provides refunds for transactions in blocks landed by BuilderN
 * How much the specific transaction contributed to the value of the block
 * If the transaction was sent directly to Flashbots Protect, or shared with other RPCs and block builders
 
-Note that transactions seen in the public mempool are excluded and do not receive refunds.
+Note that transactions seen in the public mempool, non-exclusive flow, backruns, and pre-matched searcher bundles are excluded and do not receive refunds.
 
 ## How to maximize both refunds and speed
 
