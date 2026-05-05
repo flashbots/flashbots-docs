@@ -22,7 +22,7 @@ Flashbots provides refunds for bundles in blocks landed by [BuilderNet](https://
 * How much the specific bundle contributed to the value of the block
 * If the bundle was sent directly to Flashbots or BuilderNet, or shared with other block builders by the searcher
 
-Note that transactions seen in the public mempool are excluded and bundles containing only public mempool transactions do not receive refunds.
+Note that transactions seen in the public mempool, non-exclusive flow, backruns, and pre-matched searcher bundles are excluded and bundles containing only public mempool transactions do not receive refunds.
 
 ## How to maximize both refunds and speed
 
