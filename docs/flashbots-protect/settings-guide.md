@@ -91,26 +91,6 @@ The sum of all refund percentages must be less than 100. The remaining percentag
 
 Gas fee refunds can only be sent to a single recipient. If multiple addresses are specified, the first refund address listed will receive 100% of the gas fee refund. There is no additional payment split with the validator.
 
-### Mempool Configuration
-
-Send certain transactions to the public mempool to improve the likelihood of inclusion by including the `useMempool` query parameter. If either of the following conditions are true, Flashbots will send all pending transactions with this parameter to the public mempool:
-1. The Ethereum validator responsible for proposing the next block does not run [MEV-Boost](/flashbots-mev-boost/introduction). Approximately 10% of Ethereum blocks do not include any private transactions. Sending your transaction to the public mempool will give you access to those blocks at the expense of privacy and MEV refunds.
-2. The transaction has not been included for 25 blocks: Some transactions pay very low priority fees are unlikely to land within 25 blocks. Send them to the public mempool to allow them to wait for lower gas prices.
-
-To enable this feature, add the `useMempool` parameter to your Protect RPC URL:
-
-```url
-https://rpc.flashbots.net?useMempool=true
-```
-
-For analytics or other purposes, you can also specify a custom mempool URL by adding the `mempoolRpc` parameter:
-
-```url
-https://rpc.flashbots.net?useMempool=true&mempoolRpc=https://your-custom-node-url
-```
-
-Note: If this setting is enabled, all cancellations will be immediately forwarded to the public mempool, regardless of if the transaction itself has been made public.
-
 ### Reverted Transactions
 
 Allow reverted transactions by including the `canRevert` query parameter in your request. By default, Flashbots Protect does not land reverted transactions on chain to save users gas fees. You can override this feature to receive faster feedback about failing transactions.
