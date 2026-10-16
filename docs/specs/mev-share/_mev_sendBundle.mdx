@@ -13,13 +13,14 @@
     method: "mev_sendBundle",
     params: [{ /* MevSendBundleParams */
         version: "v0.1",
+        replacementUuid?: string,
         inclusion: {
             block: string,     // hex-encoded number
             maxBlock?: string, // hex-encoded number
         },
         body: Array<
             { hash: string } |
-            { tx: string, canRevert: boolean } |
+            { tx: string, canRevert: boolean, revertMode?: "allow" | "drop" | "fail" } |
             { bundle: MevSendBundleParams }
         >,
         validity?: {
