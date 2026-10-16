@@ -8,7 +8,7 @@ Searchers use Flashbots to submit bundles to block builders for inclusion in blo
 const blockNumber = await provider.getBlockNumber()
 const minTimestamp = (await provider.getBlock(blockNumber)).timestamp
 const maxTimestamp = minTimestamp + 120
-const signedBundle = flashbotsProvider.signBundle(
+const signedBundle = await flashbotsProvider.signBundle(
   [
     {
       signedTransaction: SIGNED_ORACLE_UPDATE_FROM_PENDING_POOL // serialized signed transaction hex
