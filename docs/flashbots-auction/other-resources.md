@@ -13,3 +13,4 @@ Below are a list of useful resources for searchers to wrap their heads around ru
 * [A thread of all of Robert's MEV-related twitter threads](https://twitter.com/bertcmiller/status/1402665992422047747?s=20) by Robert Miller
 * [Flashbots: MEV Of The Week thread](https://twitter.com/epheph/status/1357089176898969600?s=20) by Scott Bigelow
 * [Lost ENS sanctuary using Flashbots](https://twitter.com/andrekorol1/status/1358252320207876104?s=19) by Andre Korol 🔥
+* [Simulate a Flashbots Bundle With eth_callBundle](https://mevdao.org/blog/simulate-a-flashbots-bundle-with-eth-callbundle-2026) by MEV DAO
