@@ -4,7 +4,7 @@ title: Transaction Status API
 
 Transactions that you submit to Flashbots Protect won't be observable in the public mempool. However, you can use our status API to check the status of your transactions. The URL for doing so is: `https://protect.flashbots.net/tx/YOUR_TX_HASH_HERE`, and you can also use Etherscan as you normally would for transactions. They will show the status of your transaction from the status API as well.
 
-The status API covers transactions sent through the Protect RPC, and keeps each transaction for about one hour after it was received. After that it returns `UNKNOWN`.
+The status API covers transactions sent through the Protect RPC, and keeps each transaction for 45 minutes after it was received. After that it returns `UNKNOWN`.
 
 In turn you will receive a JSON response that looks like the following:
 
@@ -38,11 +38,11 @@ Below is a table of status codes that can be returned:
 | `INCLUDED`  | The transaction was included on-chain                                              |
 | `FAILED`    | The transaction was submitted for 25 blocks and failed to be included on-chain     |
 | `CANCELLED` | The transaction was cancelled by the user and not included on-chain                |
-| `UNKNOWN`   | The transaction was not received, or was received more than about an hour ago      |
+| `UNKNOWN`   | The transaction was not received, or was received more than 45 minutes ago         |
 
 ## Privacy
 
-For Protect fast mode transactions, TEE searchers will receive all fields (without signature) for all transactions, including reverted or failed transactions, with a 5 minute delay for troubleshooting and debugging purposes.
+For Protect fast mode transactions, TEE searchers will receive all fields (without signature) for all transactions, including reverted or failed transactions, with a 5 minute delay for troubleshooting and debugging purposes. The TEE environment serves as a frontrunning countermeasure. You can learn more at [flashbots-images](https://github.com/flashbots/flashbots-images).
 
 For instance, once a transaction is included, the JSON response will be populated with data for all fields:
 
