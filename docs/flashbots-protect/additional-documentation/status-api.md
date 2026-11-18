@@ -4,14 +4,7 @@ title: Transaction Status API
 
 Transactions that you submit to Flashbots Protect won't be observable in the public mempool. However, you can use our status API to check the status of your transactions. The URL for doing so is: `https://protect.flashbots.net/tx/YOUR_TX_HASH_HERE`, and you can also use Etherscan as you normally would for transactions. They will show the status of your transaction from the status API as well.
 
-The Transaction Status API is also available on test networks. Below is a table of URLs for accessing the API across different networks:
-
-| Network  | URL                                                |
-| -------- | -------------------------------------------------- |
-| Mainnet  | `https://protect.flashbots.net/tx/` |
-| Sepolia  | `https://protect-sepolia.flashbots.net/tx/` |
-
-
+The status API covers transactions sent through the Protect RPC, and keeps each transaction for about one hour after it was received. After that it returns `UNKNOWN`.
 
 In turn you will receive a JSON response that looks like the following:
 
@@ -45,11 +38,11 @@ Below is a table of status codes that can be returned:
 | `INCLUDED`  | The transaction was included on-chain                                              |
 | `FAILED`    | The transaction was submitted for 25 blocks and failed to be included on-chain     |
 | `CANCELLED` | The transaction was cancelled by the user and not included on-chain                |
-| `UNKNOWN`   | The transaction was not received                                                   |
+| `UNKNOWN`   | The transaction was not received, or was received more than about an hour ago      |
 
 ## Privacy
 
-The `transaction` fields are disclosed only for transactions with an `INCLUDED` status to maintain privacy for trades that are pending, failed, or cancelled. These fields will remain empty for transactions with `PENDING`, `FAILED`, `UNKNOWN`, or `CANCELLED` statuses. Protect fast mode transactions are an exception to this rule as TEE searchers will receive all fields (without signature) for all transactions, including reverted or failed transactions, with a 5 minute delay for troubleshooting and debugging purposes. 
+For Protect fast mode transactions, TEE searchers will receive all fields (without signature) for all transactions, including reverted or failed transactions, with a 5 minute delay for troubleshooting and debugging purposes.
 
 For instance, once a transaction is included, the JSON response will be populated with data for all fields:
 
@@ -79,12 +72,12 @@ Below is the table of currently supported `simError` values.
 
 | Sim error                    | Description                                                                                 |
 |------------------------------|---------------------------------------------------------------------------------------------|
-| `SimErrorMaxFeePerGasTooLow` | Consensus incompatible tx that wasn't caught on rpc                                         |
-| `SimErrorInsufficientFunds`  | Insufficient ETH balance to pay for gas                                                     |
-| `SimErrorNonceTooLow`        | Nonce too low                                                                               |
-| `SimErrorNonceTooHigh`       | Nonce too high                                                                              |
-| `SimErrorInvalidChainId`     | Consensus incompatible tx that wasn't caught on rpc                                         |
-| `SimErrorExecutionReverted`  | Execution reverted (slippage tolerance exceeded). Check revertReason field for more details |
-| `SimErrorOutOfGas`           | Ran out of gas during execution (gas limit too low)                                         |
+| `MaxFeePerGasTooLow`         | Consensus incompatible tx that wasn't caught on rpc                                         |
+| `InsufficientFunds`          | Insufficient ETH balance to pay for gas                                                     |
+| `NonceTooLow`                | Nonce too low                                                                               |
+| `NonceTooHigh`               | Nonce too high                                                                              |
+| `InvalidChainId`             | Consensus incompatible tx that wasn't caught on rpc                                         |
+| `ExecutionReverted`          | Execution reverted (slippage tolerance exceeded). Check revertReason field for more details |
+| `OutOfGas`                   | Ran out of gas during execution (gas limit too low)                                         |
 
 `revertReason` field is a valid utf-8 part of the simulation result. Example: `TRANSFER_FROM_FAILED`, `UniswapV2: INSUFFICIENT_OUTPUT_AMOUNT` 
