@@ -76,8 +76,9 @@ Below is the table of currently supported `simError` values.
 | `InsufficientFunds`          | Insufficient ETH balance to pay for gas                                                     |
 | `NonceTooLow`                | Nonce too low                                                                               |
 | `NonceTooHigh`               | Nonce too high                                                                              |
-| `InvalidChainId`             | Consensus incompatible tx that wasn't caught on rpc                                         |
+| `InvalidChainIdForSigner`    | Consensus incompatible tx that wasn't caught on rpc                                         |
 | `ExecutionReverted`          | Execution reverted (slippage tolerance exceeded). Check revertReason field for more details |
 | `OutOfGas`                   | Ran out of gas during execution (gas limit too low)                                         |
+| `Other`                      | Any other simulation error                                                                  |
 
 `revertReason` field is a valid utf-8 part of the simulation result. Example: `TRANSFER_FROM_FAILED`, `UniswapV2: INSUFFICIENT_OUTPUT_AMOUNT` 
