@@ -29,6 +29,10 @@ Each method is documented below.
 
 ### eth_sendBundle
 
+:::info
+Bundles are built by [BuilderNet](https://buildernet.org/). The [BuilderNet `eth_sendBundle` docs](https://buildernet.org/docs/api#eth_sendbundle) are the reference for bundle fields, replacement and cancellation.
+:::
+
 `eth_sendBundle` can be used to send your bundles to the Flashbots builder. The `eth_sendBundle` RPC has the following payload format:
 
 ```json
@@ -296,6 +300,10 @@ example response:
 ```
 
 ### eth_cancelBundle
+
+:::info
+Bundles are built by [BuilderNet](https://buildernet.org/). The [BuilderNet `eth_sendBundle` docs](https://buildernet.org/docs/api#eth_sendbundle) are the reference for bundle fields, replacement and cancellation.
+:::
 
 `eth_cancelBundle` is used to prevent a submitted bundle from being included on-chain. See [bundle cancellations](/flashbots-auction/advanced/bundle-cancellations) for more information.
 
