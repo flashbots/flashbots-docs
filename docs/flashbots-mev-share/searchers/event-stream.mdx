@@ -85,6 +85,14 @@ Events dispatched via the SSE endpoint are JSON-encoded objects that adhere to t
 
 Note that each of these properties are optional; if a field is not present, it means that the transaction sender chose not to share that information.
 
+### Repeated events
+
+The same transaction or bundle can be streamed more than once. While it is still pending and valid, MEV-Share re-simulates it on each new block and streams its hints again for a few blocks.
+
+- Each repeat has the same `hash`. Use `hash` to deduplicate events, or to tell that an opportunity is still open.
+- Each repeat is built from the latest simulation, so `logs` can differ between repeats. `stateBlock` tells you which block's state an event's `logs` were simulated on.
+- A repeat is sent at most once per block.
+
 Below is an example of a transaction event received from the stream:
 
 ```json
@@ -165,6 +173,7 @@ Now that you've started listening to transactions, you're almost ready to start 
 Historical hints can be retrieved from the historical hint API supported by the event stream endpoint.
 Each hint is associated with a block number and timestamp. Block number is the latest Ethereum block number at the time the hint was generated.
 Timestamp is the timestamp at the time the hint was generated.
+Only the first time a hint is streamed is stored, so [repeated events](#repeated-events) do not appear in the history.
 
 ### GET /api/v1/history/info
 

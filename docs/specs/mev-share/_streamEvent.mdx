@@ -2,6 +2,7 @@
 ```typescript
 {
     hash: string,
+    stateBlock?: string,
     logs?: LogParams[],
     txs: Array<{
         hash?: string,
@@ -27,6 +28,7 @@
 | Param | Type Info | Description |
 |-|-|-|
 | `hash` | Hex-string | [Double-hashed](/flashbots-mev-share/searchers/event-stream#understanding-double-hash) transaction hash, or, bundle hash |
+| `stateBlock` | Hex-string | Number of the block whose state the transaction or bundle was simulated on (the chain head at simulation time). `logs` reflect this state. Omitted when unknown. |
 | `logs` | Array of JSON-encoded events | Event logs emitted by executing the transaction. |
 | `txs` | Array of JSON objects | Transactions from the event. Will only be one if event is a transaction, otherwise event is a bundle.
 | `txs.hash` | Hex-string | Transaction hash. |

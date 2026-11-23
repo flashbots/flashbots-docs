@@ -19,7 +19,6 @@ By default, Flashbots Protect uses the following settings:
 - The `hash` and `default_logs` [hints](/flashbots-protect/settings-guide#hints) are shared with MEV-Share searchers
 - 90% of MEV refunds are sent to `tx.origin` (the remaining 10% is sent to the validator)
 - 100% of gas fee refunds are sent to `tx.origin`
-- 0 priority fee transactions are not included on chain
 - Reverted transactions are not included on chain
 
 This may change as the configuration is tuned to maximize benefits.
